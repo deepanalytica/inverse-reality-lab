@@ -442,3 +442,16 @@ contacto@deepanalytica.cl
 GitHub: https://github.com/deepanalytica
 
 Collaboration is especially welcome from Egyptologists, field archaeologists, architectural historians, geologists, structural engineers, computational archaeologists, muography teams, topologists, inverse-problem researchers and relativists.
+
+
+# Benchmarks
+
+## IRL-Bench 001 — Golden Gate Bridge
+
+First positive-control experiment for the inverse-construction framework.
+
+- [Benchmark report](benchmarks/golden-gate/BENCHMARK.md)
+- [Reproducible calculations](benchmarks/golden-gate/benchmark.py)
+- [Result snapshot](benchmarks/golden-gate/result.json)
+
+The coarse terminal ontology reduces 7 major-component serial orders from 5,040 to 3 admissible linear extensions (99.9405% reduction), predicts a latent temporary aerial-access class before cable formation, and recovers mechanism classes consistent with climbing tower lifting, aerial cable spinning and balanced suspended-deck erection. At this resolution, conventional mechanics yields an unexplained-force residual approximately equal to zero.
