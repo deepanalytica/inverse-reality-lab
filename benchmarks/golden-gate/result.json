@@ -1,0 +1,25 @@
+{
+  "benchmark": "IRL-Bench 001 — Golden Gate Bridge",
+  "status": "coarse proof of concept",
+  "terminal_nodes": 7,
+  "unconstrained_serial_orders": 5040,
+  "admissible_linear_extensions": 3,
+  "search_space_reduction_percent": 99.94047619047619,
+  "core_precedence_selected_set_consistency": 1.0,
+  "mechanism_class_matches": {
+    "tower_erection": "modular + vertically advancing lifting support -> historical climbing derrick",
+    "temporary_access": "aerial temporary access/support -> historical catwalk",
+    "main_cables": "incremental in-situ wire formation -> historical cable spinning",
+    "deck": "modular suspension-supported balanced erection -> documented balanced deck erection"
+  },
+  "force_scales": {
+    "tower_weight_each_MN": 197.113665,
+    "tower_uniform_height_potential_each_GJ": 22.3724009775,
+    "main_cable_weight_each_MN_approx": 106.757318766252,
+    "average_wire_mass_scale_kg_approx": 394.82869867982015,
+    "50ft_deck_slice_weight_MN_simplified": 5.0292,
+    "50ft_deck_slice_mass_t_simplified": 512.8356778308597
+  },
+  "coarse_unexplained_force_result": "approximately zero when ordinary temporary/modular construction mechanisms are admitted",
+  "epistemic_warning": "This does not validate full automatic reconstruction and does not prove exact historical machinery from terminal geometry alone."
+}
