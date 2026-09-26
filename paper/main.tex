@@ -1,0 +1,663 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertinus}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{margin=25mm}
+\usepackage{amsmath,amssymb,mathtools,amsthm,bm,mathrsfs}
+\usepackage{booktabs,longtable,array,enumitem}
+\usepackage{xcolor,hyperref,cleveref,fancyhdr,setspace,url}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!55!black,pdftitle={Inverse Reality Ontology},pdfauthor={Alexis Brian Reyes Saavedra}}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Inverse Reality Laboratory}
+\rhead{Working Paper v0.2}
+\cfoot{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\onehalfspacing
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{remark}{Remark}
+\newcommand{\Kp}{\mathcal K^{+}}
+\newcommand{\Kn}{\mathcal K^{-}}
+\newcommand{\Rinv}{\mathscr R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\SE}{\mathrm{SE}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+
+\title{\textbf{Inverse Reality Ontology}\\[0.35em]\large A Chrono-Causal, Topological and Evidence-Constrained Framework for Reconstructing Construction Histories from Terminal Physical States}
+\author{Alexis Brian Reyes Saavedra\\Deep Analytica, Chile\\\href{mailto:contacto@deepanalytica.cl}{contacto@deepanalytica.cl}\\\url{https://deepanalytica.cl}}
+\date{Working paper v0.2 --- September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This working paper develops an inverse, evidence-constrained framework for reconstructing the formation history of a physical object from a terminal state. The Great Pyramid of Khufu is the primary archaeological laboratory because it combines large-scale geometry, heterogeneous stone, internal chambers and passages, quarry evidence, structural constraints, muographic observations, and unresolved construction chronology. Rather than selecting a single narrative and demonstrating plausibility, the framework seeks a posterior distribution over physically and archaeologically admissible predecessor states, typed construction partial orders, material provenance, access constraints, and negative architectural spaces.
+
+A central proposal is a dual representation of positive material structure and negative architectural structure. Chambers, galleries and shafts are treated not merely as empty voxels but as entities with their own boundary, portals, topological identity, construction genealogy and a counterfactual absent-mass variable relative to a declared solid reference. The framework further defines reverse gravitational bookkeeping: gravity retains its ordinary direction while gravitational potential accumulated during forward construction is subtracted along an inferred inverse trajectory. Geometric height, removed mass, gravitational potential and historical time are treated as non-equivalent clocks.
+
+A two-parameter negative-space filtration $(\tau,r)$ is proposed to track architectural voids across inverse construction state and morphological clearance scale. A typed partial-order graph, contact mechanics, rigid-body configuration-space accessibility in $\SE(3)$, provenance inference, logistics, Bayesian inversion and counterfactual forward simulation are integrated into one inference architecture. Vaidya collapse and Kerr null-geodesic accessibility are used only as mathematical comparison systems for global accessibility and critical boundaries; no physical equivalence with ancient architecture is claimed.
+
+The scientific objective is not to solve the pyramid by narrative. It is to construct a falsifiable computational archaeology platform in which candidate histories generate observable predictions and are progressively eliminated by independent evidence.
+\end{abstract}
+
+\textbf{Keywords:} Egyptology; Egyptian archaeology; Great Pyramid of Giza; Khufu; inverse archaeology; computational archaeology; causal reconstruction; construction sequence; partial orders; negative space; persistent homology; multiparameter persistence; muography; ScanPyramids; structural mechanics; inverse problems; Vaidya spacetime; Kerr geodesics; PRAXIOS; Meta-Harness.
+
+\tableofcontents
+\newpage
+
+\section{Scientific problem and epistemic direction}
+
+A common historical-engineering workflow begins with a candidate mechanism and asks whether that mechanism could have produced the observed structure. Such forward plausibility is useful, but many mechanisms may be individually plausible while remaining poorly discriminated by evidence.
+
+Let $X_T$ denote the terminal \emph{as-built} state, $Y_{\mathrm{now}}$ modern observations, and $\mathcal L$ admissible physical laws and model assumptions. The target is not a single history $H=f(X_T)$ but
+\begin{equation}
+\boxed{P(H\mid Y_{\mathrm{now}},\mathcal L)}.
+\end{equation}
+
+The Great Pyramid is a strong test object because several independent evidence modalities can constrain one another: external/internal geometry, stone types, quarry observations, bedrock, chambers, muographic anomalies, structural load paths, paleohydrology and archaeological documentation \cite{petrie1883,morishima2017,procureur2023,ghoneim2024,aeraquarry}.
+
+\subsection{Present state versus completed state}
+
+Let $\mathcal D_{\mathrm{post}}$ denote post-construction evolution and $\mathcal O$ the observation operator:
+\begin{equation}
+Y_{\mathrm{now}}
+=
+\mathcal O\left[\mathcal D_{\mathrm{post}}(X_T;\Theta_{\mathrm{post}})\right]+\varepsilon.
+\end{equation}
+Let the completed object be generated by
+\begin{equation}
+X_T=\mathcal B(C,D,\Gamma;\Theta_{\mathrm{build}}),
+\end{equation}
+where $C$ denotes conception constraints, $D$ design information and $\Gamma$ the construction history or partial order. Hence
+\begin{align}
+\mathcal I_{\mathrm{post}} &:Y_{\mathrm{now}}\rightarrow P(X_T\mid Y_{\mathrm{now}}),\\
+\mathcal I_{\mathrm{build}} &:X_T\rightarrow P(\Gamma,D,C\mid X_T,E,\mathcal L).
+\end{align}
+
+\section{Reverse time is an inference coordinate}
+
+Define
+\begin{equation}
+\boxed{\tau=T-t}.
+\end{equation}
+Then
+\begin{equation}
+\frac{d}{d\tau}=-\frac{d}{dt},
+\qquad
+\frac{d^2}{d\tau^2}=\frac{d^2}{dt^2}.
+\end{equation}
+
+\begin{remark}
+The inverse engine does not claim literal microscopic reversal of thermodynamic history. It searches for predecessor states that, when evolved forward under ordinary physics, are compatible with the terminal state.
+\end{remark}
+
+\section{Ideal square-pyramid baseline}
+
+Let base side be $a$, height $H$, vertical coordinate $z$ and normalized height $u=z/H$. A horizontal section has side
+\begin{equation}
+s(z)=a\left(1-\frac{z}{H}\right)
+\end{equation}
+and area
+\begin{equation}
+\boxed{A(z)=a^2\left(1-\frac{z}{H}\right)^2}.
+\end{equation}
+
+\begin{proposition}[Volume]
+\begin{equation}
+\boxed{V=\frac{a^2H}{3}}.
+\end{equation}
+\end{proposition}
+
+For a reverse front at $u$,
+\begin{equation}
+V_>(u)
+=
+a^2H\int_u^1(1-x)^2dx
+=
+\frac{a^2H}{3}(1-u)^3.
+\end{equation}
+Thus, for uniform density,
+\begin{equation}
+\boxed{\Gamma_M(u)=(1-u)^3}.
+\end{equation}
+At $u=1/2$, the upper half by height contains only $1/8$ of the ideal mass.
+
+\section{Gravitational potential as a different clock}
+
+For uniform density,
+\begin{equation}
+U=\rho ga^2H^2\int_0^1x(1-x)^2dx
+=\frac{\rho ga^2H^2}{12}.
+\end{equation}
+Since $M=\rho a^2H/3$,
+\begin{proposition}[Ideal potential]
+\begin{equation}
+\boxed{U=\frac14MgH}.
+\end{equation}
+\end{proposition}
+The center of mass lies at $H/4$.
+
+The potential associated with mass above the reverse front is
+\begin{equation}
+U_>(u)
+=
+\rho ga^2H^2\int_u^1x(1-x)^2dx,
+\end{equation}
+hence
+\begin{equation}
+\boxed{
+\Gamma_G(u)
+=
+1-6u^2+8u^3-3u^4
+}.
+\end{equation}
+At $u=1/2$,
+\begin{equation}
+\Gamma_G(1/2)=5/16=31.25\%.
+\end{equation}
+Thus the upper $12.5\%$ of ideal mass contains $31.25\%$ of total gravitational potential relative to the base.
+
+For a real block moved from $z_s$ to $z_f$,
+\begin{equation}
+\Delta U^+=mg(z_f-z_s),
+\qquad
+\boxed{\Delta U^-=-\Delta U^+}.
+\end{equation}
+Gravity remains $\bm g=(0,0,-g)$.
+
+\section{Positive and negative construction}
+
+Let $D\subset\mathbb R^3$ be a declared construction domain and $M(t)\subseteq D$ the material domain. Free space is
+\begin{equation}
+V(t)=D\setminus M(t).
+\end{equation}
+IRL models architecture as
+\begin{equation}
+\boxed{\mathcal A(t)=\big(\Kp(t),\Kn(t)\big)},
+\end{equation}
+where $\Kp$ is positive material and $\Kn$ negative architectural structure.
+
+A negative entity can be represented as
+\begin{equation}
+N_j=
+(V_j,\partial_sV_j,P_j,\mathcal H_j,m_j^\ominus,\eta_j,I_j,\mathcal E_j).
+\end{equation}
+
+\subsection{Counterfactual absent mass}
+
+For reference density $\rho_{\mathrm{ref}}(\bm x)$:
+\begin{definition}
+\begin{equation}
+\boxed{
+m_C^\ominus
+=
+-\int_{V_C}\rho_{\mathrm{ref}}(\bm x)\,dV
+}.
+\end{equation}
+\end{definition}
+This is a mass deficit relative to a chosen reference solid, not gravitational negative mass.
+
+\section{Architectural negative-space genealogy}
+
+A chamber may have distinct events:
+\begin{enumerate}[label=(\roman*)]
+\item reservation $t_R$;
+\item boundary emergence $t_B$;
+\item closure $t_C$;
+\item structural completion $t_S$;
+\item encapsulation $t_E$.
+\end{enumerate}
+Thus
+\begin{equation}
+t_R\le t_B\le t_C\le t_S\le t_E.
+\end{equation}
+This yields the important distinction
+\begin{equation}
+\boxed{
+\text{geometric emptiness}
+\neq
+\text{topological identity}
+\neq
+\text{architectural identity}
+}.
+\end{equation}
+
+For target chamber $C$, a boundary-realization measure is
+\begin{equation}
+\boxed{
+\eta_C(t;\varepsilon)
+=
+\frac{1}{\mathrm{Area}(\partial C)}
+\int_{\partial C}
+\mathbf 1[d(\bm x,M(t))\le\varepsilon]\,dA
+}.
+\end{equation}
+
+\section{Negative-space bifiltration}
+
+Connected components alone cannot distinguish a chamber from the exterior when passages exist. Let
+\begin{equation}
+d_M(\bm x,\tau)=\operatorname{dist}(\bm x,M_\tau).
+\end{equation}
+Define
+\begin{equation}
+\boxed{
+V_{\tau,r}
+=
+\{
+\bm x\in D\setminus M_\tau:
+d_M(\bm x,\tau)\ge r
+\}
+}.
+\end{equation}
+The two-parameter family
+\begin{equation}
+(\tau,r)\mapsto V_{\tau,r}
+\end{equation}
+tracks negative architecture across inverse state and geometric clearance scale. Large chambers can persist at scales at which narrow corridors disappear. Relevant tools include persistent homology, multiparameter persistence, merge trees and Reeb graphs \cite{edelsbrunner2010,carlsson2009multidimensional}.
+
+\section{Typed construction partial order}
+
+Let $P=(E,\prec)$ be a poset. Dependencies include structural, geometric, access, load, void-preservation, procedural and provenance edges:
+\begin{equation}
+\mathcal E=
+\mathcal E_S\cup\mathcal E_G\cup\mathcal E_A\cup
+\mathcal E_L\cup\mathcal E_V\cup\mathcal E_P\cup\mathcal E_Q.
+\end{equation}
+
+The graph-theoretic reverse candidates are maximal elements. The proposed physical/evidential frontier is
+\begin{equation}
+\boxed{
+\mathcal A^-(X_\tau)
+=
+\left\{
+e\in\operatorname{Max}(P_\tau):
+\mathrm{Stable}(X_\tau\setminus e)
+\land
+\mathrm{Accessible}(e)
+\land
+\mathrm{EvidenceCompatible}(e)
+\right\}
+}.
+\end{equation}
+The inverse operator $\Rinv$ returns a set or distribution over predecessor states, not one animation.
+
+\section{Structural mechanics as a Reality Gate}
+
+For quasi-static equilibrium,
+\begin{equation}
+\boxed{\nabla\cdot\bm\sigma+\rho\bm g=0}.
+\end{equation}
+At unilateral contact,
+\begin{equation}
+g_n\ge0,\qquad
+\lambda_n\ge0,\qquad
+g_n\lambda_n=0.
+\end{equation}
+A Coulomb approximation gives
+\begin{equation}
+\|\bm\lambda_t\|\le\mu\lambda_n.
+\end{equation}
+Candidate predecessor states that require impossible intermediate support can be eliminated.
+
+\section{Rigid-body accessibility in configuration space}
+
+A block pose is
+\begin{equation}
+q=(\bm x,R)\in\SE(3).
+\end{equation}
+Define
+\begin{equation}
+\boxed{
+\mathcal C_{\mathrm{free}}(t)
+=
+\{q\in\SE(3):B(q)\cap M(t)=\varnothing\}
+}.
+\end{equation}
+A placement requires a path
+\begin{equation}
+\gamma:[0,1]\rightarrow\mathcal C_{\mathrm{free}}(t)
+\end{equation}
+plus force, tool, slope and support constraints.
+
+\section{Force, work and scalability}
+
+For an ideal sliding block on a ramp,
+\begin{equation}
+\boxed{
+F=mg(\sin\theta+\mu\cos\theta)
+}.
+\end{equation}
+For vertical gain $h$, $L=h/\sin\theta$, so
+\begin{equation}
+\boxed{
+W=mgh+\mu mgh\cot\theta
+}.
+\end{equation}
+
+A mechanism that moves one stone is not necessarily globally scalable. For logistics edge $e$:
+\begin{equation}
+0\le f_e(t)\le c_e(t),
+\end{equation}
+and node inventory obeys
+\begin{equation}
+\frac{dS_v}{dt}
+=
+\sum_{e\in\mathrm{in}(v)}f_e
+-
+\sum_{e\in\mathrm{out}(v)}f_e.
+\end{equation}
+The project therefore distinguishes
+\begin{equation}
+\boxed{
+\text{possible}
+\rightarrow
+\text{feasible}
+\rightarrow
+\text{scalable}
+\rightarrow
+\text{historically compatible}
+}.
+\end{equation}
+
+\section{Material provenance}
+
+Let $\bm\ell_i$ represent petrographic/geochemical features of block $i$. For candidate quarry source $q_j$:
+\begin{equation}
+\boxed{
+P(q_j\mid\bm\ell_i)
+\propto
+P(\bm\ell_i\mid q_j)P(q_j)
+}.
+\end{equation}
+
+A useful transport baseline is
+\begin{equation}
+\gamma^\star
+=
+\arg\min_{\gamma\in\Pi(\mu_Q,\mu_P)}
+\int c(q,p,t)\,d\gamma(q,p),
+\end{equation}
+subject to capacity and chronology. This is a null model, not an assumption that ancient construction globally optimized this objective.
+
+\section{Bayesian inverse reconstruction}
+
+Let
+\begin{equation}
+Z=(X_T,P,T_b^+,T_b^-,Q,R,W,D,C,\ldots).
+\end{equation}
+Then
+\begin{equation}
+\boxed{
+P(Z\mid Y,\mathcal L)
+\propto
+P(Y\mid Z,\mathcal L)P(Z)
+}.
+\end{equation}
+
+When justified,
+\begin{equation}
+P(Y\mid Z)=\prod_mP(Y_m\mid Z),
+\end{equation}
+where modalities may include geometry, muography, lithology, structure, quarry evidence, damage, hydrology and texts.
+
+\subsection{Non-identifiability}
+
+If two histories generate the same observations under the model, the system must retain both.
+
+\begin{proposition}
+If
+\begin{equation}
+\mathcal O\circ\mathcal D_{\mathrm{post}}\circ\mathcal B(H_1)
+=
+\mathcal O\circ\mathcal D_{\mathrm{post}}\circ\mathcal B(H_2)
+\end{equation}
+and the priors are equal, posterior odds remain one under that observation model.
+\end{proposition}
+
+\subsection{Active evidence acquisition}
+
+For future measurement $m$:
+\begin{equation}
+\boxed{
+\mathrm{EIG}(m)
+=
+\E_m
+\left[
+\KL
+\left(
+P(H\mid Y,m)
+\|
+P(H\mid Y)
+\right)
+\right]
+}.
+\end{equation}
+The preferred new measurement is the one expected to separate surviving histories most strongly.
+
+\section{Counterfactual forward simulation}
+
+For candidate history $H$:
+\begin{equation}
+\boxed{
+\widehat Y_H
+=
+\mathcal O\circ
+\mathcal D_{\mathrm{post}}\circ
+\mathcal B(H)
+}.
+\end{equation}
+A multimodal discrepancy is
+\begin{equation}
+J(H)
+=
+\sum_m\lambda_m
+d_m(Y_m,\widehat Y_{H,m}).
+\end{equation}
+This makes a historical proposal falsifiable rather than merely plausible.
+
+\section{Complement-defined accessibility}
+
+The project proposes
+\begin{definition}
+\begin{equation}
+\boxed{
+N_{\mathcal R}(\lambda)
+=
+\Omega
+\setminus
+\mathrm{Accessible}_{\mathcal R}(\Omega,\lambda)
+}.
+\end{equation}
+\end{definition}
+The relation $\mathcal R$ can represent morphological connectivity, causal escape or allowed phase-space motion. The abstraction is mathematical and computational, not a physical equivalence.
+
+\section{Vaidya comparison system}
+
+The ingoing Vaidya metric is
+\begin{equation}
+ds^2
+=
+-\left(1-\frac{2m(v)}r\right)dv^2
++
+2dv\,dr+r^2d\Omega^2
+\cite{vaidya1951}.
+\end{equation}
+Outgoing radial null curves satisfy
+\begin{equation}
+\boxed{
+\frac{dr}{dv}
+=
+\frac12
+\left(1-\frac{2m(v)}r\right)
+}.
+\end{equation}
+The apparent horizon is
+\begin{equation}
+\boxed{r_{\mathrm{AH}}=2m(v)}.
+\end{equation}
+The methodological lesson is local versus globally constrained accessibility.
+
+\section{Kerr comparison system}
+
+For equatorial null geodesics with $E=1$, $b=L/E$, $Q=0$:
+\begin{equation}
+\Delta=r^2-2Mr+a^2,
+\end{equation}
+\begin{equation}
+\boxed{
+R(r;b)
+=
+[r^2+a^2-ab]^2
+-
+\Delta(b-a)^2
+}
+\cite{kerr1963,wald1984}.
+\end{equation}
+Allowed radial motion requires $R\ge0$. A critical circular null orbit satisfies
+\begin{equation}
+\boxed{
+R=0,\qquad
+\partial_rR=0
+}.
+\end{equation}
+The double root is a separatrix at which allowed-state connectivity can change.
+
+\section{Generic critical-boundary template}
+
+Let
+\begin{equation}
+N_\lambda=\{x:\Phi(x;\lambda)<0\}.
+\end{equation}
+A candidate critical event occurs at
+\begin{equation}
+\boxed{
+\Phi(x^\star;\lambda^\star)=0,
+\qquad
+\nabla_x\Phi(x^\star;\lambda^\star)=0
+}.
+\end{equation}
+System-specific non-degeneracy conditions are still required.
+
+\section{Proposed formal contributions}
+
+The following are contribution candidates, not established discoveries:
+\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=*]
+\item coupled positive/negative construction ontology $\mathcal A=(\Kp,\Kn)$;
+\item counterfactual absent mass $m^\ominus(V)$;
+\item paired material/void birth fields $T_b^+,T_b^-$;
+\item negative-space bifiltration $(\tau,r)\mapsto V_{\tau,r}$;
+\item typed inverse admissible frontier;
+\item complement-defined accessibility object $N_{\mathcal R}$;
+\item forward/inverse/counterfactual triad;
+\item non-identifiability as a first-class output.
+\end{enumerate}
+
+\section{Research conjectures}
+
+\begin{conjecture}[Multimodal contraction]
+Correctly modeled independent evidence modalities should reduce effective posterior volume over admissible construction histories, except when new evidence reveals model misspecification.
+\end{conjecture}
+
+\begin{conjecture}[Topological chronology bounds]
+Persistent negative-space events can impose chronological bounds not recoverable from elevation alone.
+\end{conjecture}
+
+\begin{conjecture}[Evidence-optimal sensing]
+Expected-information-gain selection of future measurements will discriminate candidate construction graphs more efficiently than uniform measurement refinement.
+\end{conjecture}
+
+\begin{conjecture}[Dual-state advantage]
+For architecture containing significant internal void systems, joint inference on $(\Kp,\Kn)$ provides greater chronological discrimination than material geometry alone.
+\end{conjecture}
+
+\section{First falsifiable Khufu experiment}
+
+The first serious experiment should focus on the King's Chamber subsystem rather than the whole monument:
+\begin{enumerate}
+\item build a documented 3D model of chamber, access, ceiling beams, relieving compartments, gabled system and surrounding masonry;
+\item create material and negative-space complexes;
+\item construct a typed dependency graph with evidence and uncertainty;
+\item sample geometrically plausible linear extensions;
+\item apply contact/structural gates;
+\item apply $\SE(3)$ accessibility gates;
+\item compute negative-space topological events under inverse states;
+\item quantify the number and posterior weight of sequences surviving each gate.
+\end{enumerate}
+The central experimental question is
+\begin{equation}
+\boxed{
+\text{How much does each independent constraint reduce the admissible history space?}
+}.
+\end{equation}
+
+\section{Scientific boundaries}
+
+The project does not claim a solved historical construction method for Khufu, antigravity, exotic negative mass, literal thermodynamic reversal, physical equivalence between chambers and black holes, or mathematical novelty before systematic literature review and peer evaluation.
+
+\section{Conclusion}
+
+The finished monument is a partially preserved record of its generative process. Geometry constrains placement; contacts constrain order; loads constrain support; voids constrain exclusion; lithology constrains provenance; quarry volume constrains extraction; access constrains chronology; logistics constrains scalability; and muography constrains density.
+
+Inverse Reality seeks
+\begin{equation}
+\boxed{
+P(
+\text{construction histories}
+\mid
+\text{terminal object},
+\text{evidence},
+\text{laws}
+)
+}.
+\end{equation}
+Its scientific value will be measured by whether it generates predictions, eliminates previously admissible histories, identifies non-identifiability honestly, and indicates which new evidence would be most discriminating.
+
+\appendix
+\section{Notation summary}
+
+\begin{longtable}{p{0.19\linewidth}p{0.72\linewidth}}
+\toprule
+Symbol & Meaning\\
+\midrule
+$X_T$ & as-built terminal state\\
+$Y_{\mathrm{now}}$ & present observations\\
+$\tau=T-t$ & inverse inference coordinate\\
+$\Kp$ & positive material complex\\
+$\Kn$ & negative architectural complex\\
+$m^\ominus$ & counterfactual absent mass\\
+$T_b^+$ & material incorporation-time field\\
+$T_b^-$ & negative-space reservation/birth field\\
+$V_{\tau,r}$ & negative-space bifiltration\\
+$P=(E,\prec)$ & construction partial order\\
+$\mathcal A^-(X)$ & inverse admissible frontier\\
+$\mathcal C_{\mathrm{free}}$ & rigid-body free configuration space\\
+$\Gamma_M$ & removed mass fraction\\
+$\Gamma_G$ & gravitational-potential fraction\\
+$N_{\mathcal R}$ & complement-defined accessibility object\\
+\bottomrule
+\end{longtable}
+
+\begin{thebibliography}{99}
+\bibitem{petrie1883} W. M. F. Petrie, \emph{The Pyramids and Temples of Gizeh}, Field \& Tuer, London, 1883.
+\bibitem{arnold1991} D. Arnold, \emph{Building in Egypt: Pharaonic Stone Masonry}, Oxford University Press, 1991.
+\bibitem{lehner1997} M. Lehner, \emph{The Complete Pyramids}, Thames \& Hudson, 1997.
+\bibitem{morishima2017} K. Morishima et al., Discovery of a big void in Khufu's Pyramid by observation of cosmic-ray muons, \emph{Nature} 552 (2017) 386--390. doi:10.1038/nature24647.
+\bibitem{procureur2023} S. Procureur et al., Precise characterization of a corridor-shaped structure in Khufu's Pyramid by observation of cosmic-ray muons, \emph{Nature Communications} 14 (2023) 1144. doi:10.1038/s41467-023-36351-0.
+\bibitem{ghoneim2024} E. Ghoneim et al., The Egyptian pyramid chain was built along the now abandoned Ahramat Nile Branch, \emph{Communications Earth \& Environment} 5 (2024) 233. doi:10.1038/s43247-024-01379-7.
+\bibitem{aeraquarry} Ancient Egypt Research Associates, The Great Pyramid Quarry, \url{https://aeraweb.org/great-pyramid-quarry/}.
+\bibitem{edelsbrunner2010} H. Edelsbrunner and J. Harer, \emph{Computational Topology: An Introduction}, AMS, 2010.
+\bibitem{carlsson2009multidimensional} G. Carlsson and A. Zomorodian, The theory of multidimensional persistence, \emph{Discrete \& Computational Geometry} 42 (2009) 71--93.
+\bibitem{vaidya1951} P. C. Vaidya, The gravitational field of a radiating star, \emph{Proceedings of the Indian Academy of Sciences A} 33 (1951) 264--276.
+\bibitem{kerr1963} R. P. Kerr, Gravitational field of a spinning mass as an example of algebraically special metrics, \emph{Physical Review Letters} 11 (1963) 237--238.
+\bibitem{wald1984} R. M. Wald, \emph{General Relativity}, University of Chicago Press, 1984.
+\end{thebibliography}
+
+\end{document}
