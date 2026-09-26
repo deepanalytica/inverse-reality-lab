@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inverse Reality Laboratory · PRAXIOS</title>
+<meta name="description" content="Interactive research laboratory for inverse causal reconstruction of the Great Pyramid of Khufu, negative topological spaces, Vaidya collapse and Kerr geodesic accessibility.">
+<meta name="keywords" content="Egyptology,Egyptian archaeology,Great Pyramid of Giza,Khufu,pyramid construction,inverse archaeology,computational archaeology,archaeological inference,muography,ScanPyramids,topology,persistent homology,4D reconstruction,inverse problems,Vaidya,Kerr,PRAXIOS,Meta-Harness">
+<meta name="author" content="Alexis Brian Reyes Saavedra, Deep Analytica">
+<link rel="canonical" href="https://deepanalytica.github.io/inverse-reality-lab/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inverse Reality Laboratory · Khufu · PRAXIOS">
+<meta property="og:description" content="Interactive research laboratory for inverse causal reconstruction of the Great Pyramid of Khufu, negative topological spaces, Vaidya collapse and Kerr geodesic accessibility.">
+<meta property="og:url" content="https://deepanalytica.github.io/inverse-reality-lab/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ResearchProject",
+  "name":"Inverse Reality Laboratory",
+  "alternateName":"IRL",
+  "url":"https://deepanalytica.github.io/inverse-reality-lab/",
+  "description":"Evidence-constrained inverse causal reconstruction laboratory using the Great Pyramid of Khufu as the primary archaeological case study.",
+  "keywords":["Egyptology","Egyptian archaeology","Great Pyramid of Giza","Khufu","inverse archaeology","computational archaeology","muography","ScanPyramids","topology","persistent homology","inverse problems","causal reconstruction","PRAXIOS"],
+  "founder":{"@type":"Person","name":"Alexis Brian Reyes Saavedra","email":"mailto:contacto@deepanalytica.cl","url":"https://deepanalytica.cl"},
+  "parentOrganization":{"@type":"Organization","name":"Deep Analytica","url":"https://deepanalytica.cl"},
+  "sameAs":["https://github.com/deepanalytica/inverse-reality-lab"]
+}
+</script>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#111827;--muted:#667085;--line:#d0d5dd;--blue:#2563eb;--cyan:#0891b2;--violet:#7c3aed;--amber:#d97706;--red:#dc2626}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 18px}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--muted)}h1{font-size:clamp(32px,6vw,60px);line-height:1;margin:.25em 0}.lead{max-width:850px;color:var(--muted);font-size:18px}.actions,.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.btn,.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;text-decoration:none;cursor:pointer}.btn.primary,.tab.active{background:var(--ink);color:#fff}.grid{display:grid;grid-template-columns:1.45fr .55fr;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.panel{display:none}.panel.active{display:block}.sim{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}svg{width:100%;height:auto;background:#fafafa;border:1px solid var(--line);border-radius:12px}.metric{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.metric div{padding:10px;background:#f8fafc;border-radius:10px}.small{font-size:12px;color:var(--muted)}label{display:block;margin:12px 0 4px}input[type=range]{width:100%}.call{margin-top:10px;padding:11px;border:1px solid var(--line);border-radius:10px}.foot{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}code{background:#f2f4f7;padding:2px 5px;border-radius:5px}@media(max-width:800px){.grid,.sim{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="eyebrow">Deep Analytica · PRAXIOS Research Laboratory</div>
+<h1>Inverse Reality Laboratory</h1>
+<p class="lead">Laboratorio experimental de reconstrucción causal inversa: Gran Pirámide de Khufu, espacios topológicos negativos, masa contrafactual ausente, dinámica Vaidya y accesibilidad geodésica Kerr.</p>
+<div class="actions">
+<a class="btn primary" href="paper/PAPER.pdf" download>Descargar paper PDF</a>
+<a class="btn" href="paper/PAPER.md" download>Paper fuente</a>
+<a class="btn" href="MATHEMATICAL_MODEL.md" download>Modelo matemático</a>
+<a class="btn" href="REFERENCES.md" download>Referencias</a>
+<a class="btn" href="CITATION.cff" download>Citation CFF</a>
+<a class="btn" href="mailto:contacto@deepanalytica.cl">Contactar autor</a>
+</div>
+<div class="grid"><main class="card">
+<div class="tabs"><button class="tab active" data-tab="pyr">Pirámide</button><button class="tab" data-tab="vai">Vaidya</button><button class="tab" data-tab="ker">Kerr</button><button class="tab" data-tab="uni">Unificado</button></div>
+
+<section id="pyr" class="panel active"><div class="sim"><svg id="pyrSvg" viewBox="0 0 520 350"></svg><div>
+<label>Retroceso geométrico τh: <b id="pTauV"></b></label><input id="pTau" type="range" min="0" max="100" step=".5" value="0">
+<div class="metric"><div>Frente z<br><b id="pZ"></b></div><div>Masa retirada*<br><b id="pM"></b></div><div>ΔUg descargada*<br><b id="pU"></b></div><div>m⊖ Cámara*<br><b id="pN"></b></div></div>
+<div class="call"><b id="pState"></b><div id="pDetail" class="small"></div></div>
+<p class="small">Modelo geométrico ideal: H=146,6 m; Cámara del Rey aproximada 10,5×5,2×5,8 m, piso ~43 m, techo ~48,8 m y superestructura ~64,5 m. m⊖ es masa contrafactual ausente, no masa física negativa.</p>
+</div></div></section>
+
+<section id="vai" class="panel"><div class="sim"><svg id="vSvg" viewBox="0 0 560 350"></svg><div>
+<label>v/M: <b id="vTV"></b></label><input id="vT" type="range" min="-5" max="5" step=".02" value="0">
+<label>Duración w/M: <b id="vWV"></b></label><input id="vW" type="range" min=".6" max="2.5" step=".05" value="1.5">
+<label>Radio prueba r/M: <b id="vRV"></b></label><input id="vR" type="range" min=".15" max="4" step=".01" value="1.2">
+<div class="metric"><div>m(v)<br><b id="vM"></b></div><div>rAH<br><b id="vAH"></b></div><div>rEH<br><b id="vEH"></b></div><div>θ+<br><b id="vTh"></b></div></div><div id="vState" class="call"></div>
+<p class="small">Vaidya es un modelo relativista didáctico; el horizonte de eventos se integra numéricamente hacia atrás desde una condición futura estacionaria.</p>
+</div></div></section>
+
+<section id="ker" class="panel"><div class="sim"><svg id="kSvg" viewBox="0 0 560 350"></svg><div>
+<label>Spin a/M: <b id="kAV"></b></label><input id="kA" type="range" min="0" max=".99" step=".005" value=".9">
+<label>Impacto b=L/E: <b id="kBV"></b></label><input id="kB" type="range" min=".5" max="7" step=".005" value="2.84">
+<div class="metric"><div>r+<br><b id="kHp"></b></div><div>rph<br><b id="kPh"></b></div><div>bc<br><b id="kBc"></b></div><div>β0<br><b id="kBeta"></b></div></div>
+<div class="call"><div id="kRoots"></div><div id="kState" class="small"></div></div>
+<p class="small">Geodésicas nulas ecuatoriales (Q=0). El conjunto radial permitido es R≥0; la raíz doble R=0, dR/dr=0 actúa como separatriz crítica.</p>
+</div></div></section>
+
+<section id="uni" class="panel"><svg viewBox="0 0 760 270" id="uSvg"></svg><div class="call"><b>Objeto común:</b> <code>N_R(λ)=Ω\Accessible_R(Ω,λ)</code>. La relación R significa conectividad material, escape causal o movimiento geodésico según el sistema. Es una comparación matemática, no equivalencia física.</div></section>
+</main>
+<aside class="card"><h3>Lectura epistemológica</h3><p id="readout"></p><p class="small"><b>Estado:</b> prototipo de investigación. No resuelve por sí solo el método histórico de construcción de Khufu y no propone nueva gravedad.</p><hr><h3>Para investigadores</h3><p class="small">Buscamos colaboración con egiptología, arqueología de campo, arquitectura histórica, geología, ingeniería estructural, muografía, topología computacional y problemas inversos.</p><p><b>Alexis Brian Reyes Saavedra</b><br>Deep Analytica<br><a href="mailto:contacto@deepanalytica.cl">contacto@deepanalytica.cl</a><br><a href="https://deepanalytica.cl">deepanalytica.cl</a></p></aside></div>
+
+<div class="foot"><b>Keywords:</b> Egyptology, Egyptian archaeology, Great Pyramid of Giza, Khufu, pyramid construction, construction sequence, inverse archaeology, computational archaeology, archaeological inference, digital archaeology, topology, persistent homology, causal reconstruction, inverse problems, muography, ScanPyramids, structural mechanics, Vaidya spacetime, Kerr geodesics, PRAXIOS, Meta-Harness.</div>
+</div>
+<script>
+const q=s=>document.querySelector(s), C={ink:'#111827',mut:'#667085',line:'#d0d5dd',b:'#2563eb',c:'#0891b2',v:'#7c3aed',a:'#d97706',r:'#dc2626'},NS='http://www.w3.org/2000/svg';
+const E=(t,a={})=>{let x=document.createElementNS(NS,t);Object.entries(a).forEach(([k,v])=>x.setAttribute(k,v));return x},clear=s=>s.replaceChildren(),ln=(s,x1,y1,x2,y2,a={})=>s.appendChild(E('line',{x1,y1,x2,y2,stroke:C.line,'stroke-width':1,...a})),tx=(s,x,y,z,a={})=>{let e=E('text',{x,y,fill:C.ink,'font-size':11,...a});e.textContent=z;s.appendChild(e)},pth=(s,d,a={})=>s.appendChild(E('path',{d,fill:'none',stroke:C.ink,'stroke-width':2,...a})),f=(x,n=3)=>Number.isFinite(x)?x.toFixed(n):'—',cl=(x,a,b)=>Math.max(a,Math.min(b,x));
+let active='pyr';
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{active=b.dataset.tab;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===active));all()});
+
+function pyramid(){let H=146.6,t=+q('#pTau').value/100,u=1-t,z=H*u,m=t**3,du=cl(1-6*u*u+8*u**3-3*u**4,0,1),floor=43,top=48.8,sup=64.5,eta,state,detail;
+if(z>=top){eta=1;state=z>=sup?'Cavidad cerrada y encapsulada':'Cavidad cerrada; superestructura expuesta';detail='La identidad topológica negativa sigue separada del exterior.'}else if(z>floor){eta=(z-floor)/(top-floor);state='Cavidad abierta al exterior';detail='Al desaparecer el techo, el vacío se fusiona topológicamente con el exterior.'}else{eta=0;state='Identidad de cámara extinguida';detail='El volumen dejó de estar delimitado como objeto arquitectónico.'}
+q('#pTauV').textContent=f(t*100,1)+' %';q('#pZ').textContent=f(z,1)+' m';q('#pM').textContent=f(m*100,1)+' %';q('#pU').textContent=f(du*100,1)+' %';q('#pN').textContent=f(-10.5*5.2*5.8*2.6*eta,0)+' t-eq';q('#pState').textContent=state;q('#pDetail').textContent=detail;
+let s=q('#pyrSvg');clear(s);let bx=260,by=315,ay=25,hw=205,y=by-(z/H)*(by-ay),w=hw*(1-z/H),Y=zz=>by-(zz/H)*(by-ay);
+s.appendChild(E('polygon',{points:'260,25 55,315 465,315',fill:'none',stroke:C.ink,'stroke-width':2}));s.appendChild(E('polygon',{points:'55,315 465,315 '+(bx+w)+','+y+' '+(bx-w)+','+y,fill:C.b,'fill-opacity':.14}));ln(s,bx-w,y,bx+w,y,{stroke:C.c,'stroke-width':2,'stroke-dasharray':'6 5'});s.appendChild(E('rect',{x:235,y:Y(top),width:50,height:Math.max(4,Y(floor)-Y(top)),fill:C.v,'fill-opacity':eta?.24:.05,stroke:C.v,'stroke-width':2,'stroke-dasharray':eta<1?'5 4':'0'}));ln(s,220,Y(sup),300,Y(sup),{stroke:C.a,'stroke-width':3});tx(s,306,Y(sup)+4,'~64,5 m',{fill:C.mut});tx(s,306,Y(top)+4,'~48,8 m',{fill:C.mut});tx(s,306,Y(floor)+4,'~43 m',{fill:C.mut})}
+
+function mv(v,w){if(v<=-w)return 0;if(v>=w)return 1;let s=(v+w)/(2*w);return 3*s*s-2*s*s*s}
+function ehCurve(w){let out=[],v0=6,v1=-6,n=650,r=2,v=v0,F=(x,y)=>y<=1e-6?.5:.5*(1-2*mv(x,w)/y);out.push([v,r]);for(let i=1;i<n;i++){let vn=v0+(v1-v0)*i/(n-1),h=vn-v;if(r<=1e-6){r=0;v=vn;out.push([v,r]);continue}let k1=F(v,r),k2=F(v+h/2,r+h*k1/2),k3=F(v+h/2,r+h*k2/2),k4=F(v+h,r+h*k3);r=Math.max(0,r+h*(k1+2*k2+2*k3+k4)/6);v=vn;out.push([v,r])}return out.reverse()}
+function interp(a,x){for(let i=1;i<a.length;i++)if(a[i][0]>=x){let p=a[i-1],n=a[i],t=(x-p[0])/(n[0]-p[0]);return p[1]+t*(n[1]-p[1])}return x<a[0][0]?a[0][1]:a.at(-1)[1]}
+function vaidya(){let v=+q('#vT').value,w=+q('#vW').value,r=+q('#vR').value,m=mv(v,w),ah=2*m,th=(r-2*m)/(r*r),curve=ehCurve(w),eh=interp(curve,v);q('#vTV').textContent=f(v,2);q('#vWV').textContent=f(w,2);q('#vRV').textContent=f(r,2);q('#vM').textContent=f(m);q('#vAH').textContent=f(ah);q('#vEH').textContent=f(eh);q('#vTh').textContent=f(th);q('#vState').textContent=ah>0&&r<ah?'θ+<0: punto de prueba atrapado':th>0?'θ+>0: expansión saliente':'θ+=0: frontera aparente';
+let s=q('#vSvg');clear(s),L=45,R=535,T=25,B=310,X=x=>L+(x+6)/12*(R-L),Y=y=>B-cl(y,0,3.2)/3.2*(B-T);ln(s,L,B,R,B);ln(s,L,T,L,B);let a='',e='';curve.forEach((p,i)=>{a+=(i?' L':'M')+X(p[0])+' '+Y(2*mv(p[0],w));e+=(i?' L':'M')+X(p[0])+' '+Y(p[1])});pth(s,a,{stroke:C.c});pth(s,e,{stroke:C.a});ln(s,X(v),T,X(v),B,{stroke:C.v,'stroke-dasharray':'5 4'});s.appendChild(E('circle',{cx:X(v),cy:Y(r),r:5,fill:ah>0&&r<ah?C.r:C.b}));tx(s,365,45,'AH: r=2m(v)',{fill:C.c});tx(s,365,62,'EH: global',{fill:C.a})}
+
+function KR(r,a,b){let D=r*r-2*r+a*a;return (r*r+a*a-a*b)**2-D*(b-a)**2}
+function rph(a){return a<1e-8?3:2*(1+Math.cos((2/3)*Math.acos(-a)))}
+function bc(a){if(a<1e-8)return 3*Math.sqrt(3);let r=rph(a);return -(r**3-3*r*r+a*a*r+a*a)/(a*(r-1))}
+function roots(a,b,r0,r1){let o=[],n=900,x0=r0,y0=KR(x0,a,b);for(let i=1;i<=n;i++){let x=r0+(r1-r0)*i/n,y=KR(x,a,b);if(y*y0<0){let lo=x0,hi=x,fl=y0;for(let j=0;j<38;j++){let m=(lo+hi)/2,fm=KR(m,a,b);if(fl*fm<=0)hi=m;else{lo=m;fl=fm}}let z=(lo+hi)/2;if(!o.some(k=>Math.abs(k-z)<1e-3))o.push(z)}x0=x;y0=y}return o}
+function comps(a,b,r0,r1){let n=0,on=false;for(let i=0;i<=600;i++){let r=r0+(r1-r0)*i/600,ok=KR(r,a,b)>=0;if(ok&&!on){n++;on=true}if(!ok)on=false}return n}
+function kerr(){let a=+q('#kA').value,b=+q('#kB').value,h=1+Math.sqrt(1-a*a),ph=rph(a),crit=bc(a),r0=h+.003,r1=8,rr=roots(a,b,r0,r1),beta=comps(a,b,r0,r1);q('#kAV').textContent=f(a);q('#kBV').textContent=f(b);q('#kHp').textContent=f(h);q('#kPh').textContent=f(ph);q('#kBc').textContent=f(crit);q('#kBeta').textContent=beta;q('#kRoots').textContent=rr.length?'Raíces R=0: '+rr.map(x=>f(x)+'M').join(', '):'Sin turning points externos detectados';q('#kState').textContent=Math.abs(b-crit)<.015?'Separatriz: R≈0 y ∂rR≈0 en el light ring':beta>1?'Una banda radial prohibida separa el conjunto permitido':'El conjunto radial permitido permanece conectado';
+let s=q('#kSvg');clear(s),L=45,R=535,T=28,B=310,X=x=>L+(x-r0)/(r1-r0)*(R-L),mid=170,mx=1e-9,pts=[];for(let i=0;i<=600;i++){let r=r0+(r1-r0)*i/600,v=KR(r,a,b);pts.push([r,v]);mx=Math.max(mx,Math.abs(v))}ln(s,L,mid,R,mid,{'stroke-dasharray':'4 4'});let d='';pts.forEach((p,i)=>d+=(i?' L':'M')+X(p[0])+' '+(mid-cl(p[1]/mx,-1,1)*115));pth(s,d,{stroke:C.c});rr.forEach(x=>ln(s,X(x),T,X(x),B,{stroke:C.a,'stroke-dasharray':'4 4'}));ln(s,X(ph),T,X(ph),B,{stroke:C.v,'stroke-width':2});tx(s,X(ph)+4,48,'rph',{fill:C.v})}
+
+function unified(){let s=q('#uSvg');clear(s),rows=[['Pirámide','conectado exterior','cierre ∂V','cavidad',C.b],['Vaidya','θ+>0','θ+=0','θ+<0',C.c],['Kerr','β0=1','R=0,R′=0','β0=2',C.v]];rows.forEach((r,i)=>{let y=60+i*70;tx(s,20,y,r[0],{'font-size':13,'font-weight':600});ln(s,145,y-5,680,y-5,{'stroke-width':3});s.appendChild(E('circle',{cx:410,cy:y-5,r:7,fill:r[4]}));tx(s,150,y+20,r[1],{fill:C.mut});tx(s,410,y+20,r[2],{'text-anchor':'middle',fill:r[4]});tx(s,675,y+20,r[3],{'text-anchor':'end',fill:C.mut})});tx(s,410,25,'transición crítica de accesibilidad',{'text-anchor':'middle',fill:C.mut})}
+function read(){q('#readout').textContent=active==='pyr'?'El estado terminal restringe el pasado: al desmontar, una cámara conserva identidad mientras su frontera permanezca cerrada. Masa retirada, altura y tiempo no son relojes equivalentes.':active==='vai'?'El horizonte aparente responde a variables locales; el horizonte de eventos depende de la estructura causal global y puede reconstruirse imponiendo una condición futura.':active==='ker'?'En Kerr, una raíz doble del potencial radial crea una separatriz: al cruzar el parámetro crítico puede cambiar la conectividad del espacio permitido.':'Los tres sistemas se comparan por accesibilidad y topología de complementos, no por una supuesta identidad física.'}
+function all(){pyramid();vaidya();kerr();unified();read()}['#pTau','#vT','#vW','#vR','#kA','#kB'].forEach(x=>q(x).oninput=all);all();
+</script></body></html>
