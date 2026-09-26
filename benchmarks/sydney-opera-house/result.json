@@ -1,0 +1,31 @@
+{
+  "benchmark": "IRL-Bench 005 — Sydney Opera House",
+  "status": "retrospective pseudo-blind coarse benchmark",
+  "recovered_classes": [
+    "shared geometric generator",
+    "reusable mould / mass prefabrication",
+    "segmental rib construction",
+    "longitudinal post-tensioning",
+    "adjustable curved temporary erection support",
+    "near-site precast factory and repetitive crane lifting",
+    "modularized tile cladding"
+  ],
+  "historical_matches": {
+    "generator": "ten roof sails from segments of the same 75 m diameter sphere",
+    "prefabrication": "precast ribs mass-produced on site",
+    "rib_continuity": "post-tensioned steel strands",
+    "temporary_support": "telescopic steel erection arch",
+    "logistics": "on-site factory and rail-mounted crane workflow",
+    "cladding": "4,228 tile chevrons produced using 26 shaped beds",
+    "stage_two_completion": "2,194th precast shell segment installed 17 Jan 1967"
+  },
+  "derived": {
+    "sphere_radius_m_from_75m_diameter": 37.5,
+    "gaussian_curvature_inverse_m2": 0.0007111111111111111,
+    "chevrons_per_bed_average": 162.6153846153846,
+    "tiles_per_chevron_average": 249.76490066225165,
+    "segments_per_sail_average": 219.4
+  },
+  "residual_force": "approximately zero after conventional geometric-production and temporary-support ontology",
+  "key_result": "terminal geometry can encode a manufacturing algorithm, not only a structural chronology"
+}
