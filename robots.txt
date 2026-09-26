@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deepanalytica.github.io/inverse-reality-lab/sitemap.xml
