@@ -1,0 +1,31 @@
+{
+  "benchmark": "IRL-Bench 004 — Empire State Building",
+  "status": "retrospective pseudo-blind coarse benchmark",
+  "coarse_pipeline": {
+    "nodes": 11,
+    "unconstrained_orders": 39916800,
+    "admissible_interleavings": 42,
+    "reduction_percent": 99.99989478114479
+  },
+  "recovered_classes": [
+    "prefabricated modular steel erection",
+    "external buffer / just-in-time site logistics",
+    "overlapping vertical trade pipeline",
+    "jumping/moving derricks",
+    "column-shortening / accumulated deformation control"
+  ],
+  "historical_matches": {
+    "prefabrication": "documented prefabricated steel and precision fabrication",
+    "logistics": "steel stored outside Manhattan and delivered as required",
+    "pipeline": "~4.5 floors/week; construction photographs show overlapping trades",
+    "lifting": "archival record explicitly documents jumping derricks",
+    "deformation": "1931 floor-by-floor steel compression notes survive in Starrett archive"
+  },
+  "derived": {
+    "average_steel_t_per_85_structural_floor": 676.2352941176471,
+    "theoretical_full_capacity_picks_per_floor_at_20t": 33.811764705882354,
+    "theoretical_full_capacity_picks_per_floor_at_30t": 22.541176470588237
+  },
+  "residual_force": "approximately zero after conventional industrialized vertical pipeline",
+  "key_result": "extreme construction speed is primarily a scheduling/logistics topology problem rather than a new-force problem"
+}
