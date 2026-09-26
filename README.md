@@ -466,3 +466,12 @@ Second positive-control benchmark. Tests modularity, temporary support topology,
 - [Result snapshot](benchmarks/eiffel-tower/result.json)
 
 The coarse 15-node support ontology reduces 15! serial orders to 60,480 admissible linear extensions (99.999995% reduction). The inverse model predicts classes corresponding to modular prefabrication, climbing lifting, temporary first-floor support, adjustable alignment and temporary fastening. The historical record documents precisely those process classes. At this resolution, the unexplained-force residual remains approximately zero under conventional mechanics.
+
+
+## IRL-Bench 003–005 — Three additional controls
+
+- [IRL-Bench 003 — Hoover Dam](benchmarks/hoover-dam/BENCHMARK.md): hydraulics, mass-concrete thermodynamics, cooling and canyon logistics.
+- [IRL-Bench 004 — Empire State Building](benchmarks/empire-state/BENCHMARK.md): industrialized vertical pipeline, JIT staging and jumping derricks.
+- [IRL-Bench 005 — Sydney Opera House](benchmarks/sydney-opera-house/BENCHMARK.md): common geometric generator, precast rib production, temporary erection arches and post-tensioning.
+
+[Open the complete benchmark index](benchmarks/README.md)
