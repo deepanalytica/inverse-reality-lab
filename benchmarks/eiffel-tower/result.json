@@ -1,0 +1,33 @@
+{
+  "benchmark": "IRL-Bench 002 — Torre Eiffel",
+  "status": "retrospective coarse proof of concept",
+  "methodological_warning": "Pseudo-blind retrospective benchmark, not a preregistered fully blind experiment.",
+  "coarse_terminal_nodes": 15,
+  "unconstrained_serial_orders": 1307674368000,
+  "admissible_linear_extensions": 60480,
+  "search_space_reduction_percent": 99.99999537499538,
+  "terminal_data": {
+    "metal_frame_mass_t": 7300,
+    "iron_parts": 18038,
+    "rivets": 2500000
+  },
+  "derived_scales": {
+    "total_metal_weight_MN": 71.588545,
+    "average_mass_per_terminal_iron_part_kg": 404.70118638429983,
+    "average_weight_per_terminal_iron_part_kN": 3.9687628894555935,
+    "documented_crane_capacity_t": 3,
+    "documented_crane_static_force_scale_kN": 29.41995,
+    "crane_capacity_to_average_piece_mass_ratio": 7.412876712328766,
+    "average_rivets_per_iron_part_global": 138.596296706952
+  },
+  "latent_process_class_matches": {
+    "modularity": "inferred modular incremental assembly -> historical 18,038-piece iron structure",
+    "prefabrication": "precision off-front fabrication favored -> historical Levallois-Perret prefabrication",
+    "lifting": "self-advancing lifting system -> historical 3-ton climbing steam cranes",
+    "first_floor_support": "temporary support topology -> historical wooden scaffolds",
+    "first_floor_adjustment": "temporary controllable DOFs -> historical sandboxes and hydraulic jacks",
+    "temporary_fastening": "temporary alignment fasteners -> historical provisional bolts before hot riveting"
+  },
+  "coarse_unexplained_force_result": "approximately zero after conventional modular and temporary-process ontology is admitted",
+  "new_methodological_candidate": "minimum latent temporary ontology T* required for a conventional-physics path to the terminal state"
+}
