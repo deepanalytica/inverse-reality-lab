@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "Inverse Reality Laboratory: Chrono-Causal Reconstruction of Physical Objects"
+message: "If you use this research prototype, please cite this repository and contact the author for collaboration."
+type: software
+authors:
+  - family-names: "Reyes Saavedra"
+    given-names: "Alexis Brian"
+    affiliation: "Deep Analytica"
+    email: "contacto@deepanalytica.cl"
+repository-code: "https://github.com/deepanalytica/inverse-reality-lab"
+url: "https://deepanalytica.cl"
+license: "Proprietary research prototype - contact author for reuse terms"
+keywords:
+  - Egyptology
+  - Egyptian archaeology
+  - Great Pyramid of Giza
+  - Khufu
+  - inverse archaeology
+  - computational archaeology
+  - causal reconstruction
+  - topology
+  - persistent homology
+  - muography
+  - ScanPyramids
+  - inverse problems
+  - Vaidya spacetime
+  - Kerr geodesics
+  - PRAXIOS
