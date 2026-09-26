@@ -1,0 +1,27 @@
+{
+  "benchmark": "IRL-Bench 003 — Hoover Dam",
+  "status": "retrospective pseudo-blind coarse benchmark",
+  "recovered_classes": [
+    "temporary hydraulic bypass",
+    "temporary isolation/cofferdams",
+    "segmented mass-concrete placement",
+    "active embedded cooling network",
+    "post-cooling joint grouting",
+    "mobile aerial canyon delivery"
+  ],
+  "historical_matches": {
+    "hydraulic_bypass": "four 50-ft diversion tunnels + cofferdams",
+    "segmentation": "~215 blocks/columns, 5-ft lifts",
+    "cooling": "more than 582–590 miles of embedded cooling pipe",
+    "integration": "keyed contraction joints pressure-grouted after cooling",
+    "delivery": "temporary overhead cableways with moving towers and 8 yd3 buckets"
+  },
+  "derived": {
+    "thermal_diffusion_scale_years_for_60m_alpha_8_5e_7": 134.20837191824026,
+    "bucket_8yd3_mass_t_at_2400kgm3": 14.6794532732928,
+    "peak_bucket_trips_per_day_at_10462yd3": 1307.75,
+    "average_cycle_minutes_if_five_cableways_share_peak_continuously": 5.505639457082776
+  },
+  "residual_force": "approximately zero after conventional hydraulic, thermal and logistics ontology",
+  "key_result": "a final monolith may require deliberate temporary segmentation and sacrificial internal thermal topology"
+}
