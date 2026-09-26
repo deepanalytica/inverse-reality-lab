@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research Library · Inverse Reality Laboratory</title>
+<meta name="description" content="Complete theory, ontology, variables, mathematical derivations, discoveries and research program for Inverse Reality Laboratory.">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+:root{--bg:#f4f2ed;--paper:#fffefa;--ink:#191816;--muted:#69655e;--line:#d8d2c6;--accent:#174c78}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"STIX Two Text","Iowan Old Style","Times New Roman",serif;line-height:1.68}.shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.side{background:#0b1018;color:#e8edf5;padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto}.brand{font:700 13px/1.35 system-ui;margin-bottom:4px}.sub{font:12px/1.5 system-ui;color:#98a2b3;margin-bottom:20px}.side a,.side button{width:100%;display:block;text-align:left;background:transparent;color:#cbd5e1;border:0;border-radius:8px;padding:9px 10px;margin:2px 0;font:600 12px system-ui;text-decoration:none;cursor:pointer}.side button.active{background:#1e293b;color:white}.side .primary{background:#fff;color:#111827;margin-bottom:12px}.main{padding:30px}.paper{max-width:920px;margin:auto;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,4vw,48px);box-shadow:0 10px 40px rgba(0,0,0,.04)}.toolbar{max-width:920px;margin:0 auto 12px;display:flex;gap:8px;flex-wrap:wrap}.toolbar a{font:600 12px system-ui;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--paper);padding:8px 11px;border-radius:8px}article h1{font-size:42px;line-height:1.08;border-bottom:1px solid var(--line);padding-bottom:16px}article h2{font-size:28px;margin-top:1.6em}article h3{font-size:21px;margin-top:1.5em}article p,article li{font-size:16.5px}article blockquote{margin-left:0;border-left:3px solid var(--accent);padding:8px 16px;background:#f7f9fb;color:#4b5563}article code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f1f0ec;padding:2px 5px;border-radius:5px;font-size:.88em}article pre{overflow:auto;background:#111827;color:#e5e7eb;padding:14px;border-radius:10px}article table{border-collapse:collapse;width:100%;font-family:system-ui;font-size:13px}article th,article td{border-bottom:1px solid var(--line);padding:9px;vertical-align:top}article th{text-align:left}article a{color:var(--accent)}.loading{font:14px system-ui;color:var(--muted)}mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:8px 0}.status{font:600 11px system-ui;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}@media(max-width:850px){.shell{grid-template-columns:1fr}.side{position:relative;height:auto}.main{padding:14px}.paper{padding:20px}.side nav{display:grid;grid-template-columns:repeat(2,1fr)}} 
+</style>
+</head>
+<body><div class="shell">
+<aside class="side">
+<div class="brand">Inverse Reality Laboratory</div><div class="sub">Research Library · LaTeX/MathJax</div>
+<a class="primary" href="./">← Volver al laboratorio</a>
+<nav id="nav"></nav>
+<hr style="border:0;border-top:1px solid #273244;margin:16px 0">
+<a href="paper/PAPER.pdf">Paper PDF</a><a href="paper/main.tex">Fuente LaTeX</a><a href="mathematics.html">Vista matemática</a>
+</aside>
+<main class="main">
+<div class="toolbar"><a id="raw" href="#">Ver fuente</a><a id="download" href="#" download>Descargar Markdown</a><a href="mailto:contacto@deepanalytica.cl">Contactar autor</a></div>
+<div class="paper"><div class="status" id="status">Research document</div><article id="content"><p class="loading">Cargando…</p></article></div>
+</main></div>
+<script>
+var docs={
+overview:["Resumen / README","README.md"],
+theory:["Teoría completa","THEORY.md"],
+math:["Modelo matemático","MATHEMATICAL_MODEL.md"],
+ontology:["Ontología","ONTOLOGY.md"],
+contrib:["Contribuciones y novedad","CONTRIBUTIONS.md"],
+log:["Proceso y descubrimientos","DISCOVERY_LOG.md"],
+program:["Programa de investigación","RESEARCH_PROGRAM.md"],
+vars:["Registro de variables","VARIABLES.md"],
+sim:["Especificación simulaciones","SIMULATION_SPEC.md"],
+epistemic:["Estado epistemológico","EPISTEMIC_STATUS.md"],
+refs:["Referencias","REFERENCES.md"]
+};
+var nav=document.getElementById('nav'),content=document.getElementById('content'),statusEl=document.getElementById('status'),raw=document.getElementById('raw'),download=document.getElementById('download');
+Object.keys(docs).forEach(function(k){var b=document.createElement('button');b.textContent=docs[k][0];b.dataset.key=k;b.onclick=function(){location.hash=k;load(k)};nav.appendChild(b)});
+function protectMath(src){
+ var stash=[];
+ src=src.replace(/\$\$([\s\S]*?)\$\$/g,function(_,m){var i=stash.push(['display',m])-1;return '@@MATH'+i+'@@'});
+ src=src.replace(/\$([^$\n]+?)\$/g,function(_,m){var i=stash.push(['inline',m])-1;return '@@MATH'+i+'@@'});
+ return {src:src,stash:stash};
+}
+function restoreMath(html,stash){
+ return html.replace(/@@MATH(\d+)@@/g,function(_,i){var x=stash[+i];return x[0]==='display'?'\\['+x[1]+'\\]':'\\('+x[1]+'\\)'});
+}
+async function load(key){
+ if(!docs[key])key='overview';
+ Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b){b.classList.toggle('active',b.dataset.key===key)});
+ var label=docs[key][0],file=docs[key][1];statusEl.textContent=label;content.innerHTML='<p class="loading">Cargando…</p>';raw.href=file;download.href=file;
+ try{
+   var response=await fetch(file,{cache:'no-cache'});var src=await response.text();var p=protectMath(src);
+   content.innerHTML=restoreMath(marked.parse(p.src),p.stash);document.title=label+' · Inverse Reality Laboratory';
+   if(window.MathJax&&MathJax.typesetPromise)await MathJax.typesetPromise([content]);
+ }catch(e){content.innerHTML='<p>No fue posible cargar el documento.</p><pre>'+String(e)+'</pre>'}
+}
+var initial=(location.hash||'#overview').slice(1);load(initial);
+window.addEventListener('hashchange',function(){load((location.hash||'#overview').slice(1))});
+</script></body></html>
