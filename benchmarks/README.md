@@ -1,23 +1,30 @@
 # IRL Benchmarks
 
-## IRL-Bench 001 — Golden Gate Bridge
+Five positive-control experiments are now available.
 
-Tests suspension-bridge causal structure, temporary aerial access, cable formation and suspended-deck erection.
+| ID | Structure | Dominant inverse problem | Key recovered latent/process class |
+|---|---|---|---|
+| 001 | Golden Gate Bridge | suspension / accessibility | temporary aerial catwalk topology |
+| 002 | Eiffel Tower | modular closure / precision | temporary supports, jacks, provisional fasteners |
+| 003 | Hoover Dam | hydraulics / mass concrete / heat | diversion topology + sacrificial cooling network |
+| 004 | Empire State Building | vertical industrial pipeline | JIT staging + jumping derricks + trade overlap |
+| 005 | Sydney Opera House | generative geometry / segmental shells | common geometric generator + erection arch + post-tensioning |
 
-[Open benchmark](golden-gate/BENCHMARK.md)
+## Current common observation
 
-## IRL-Bench 002 — Torre Eiffel
+Across five radically different structures, allowing conventional **latent process ontology** drives the unexplained-force residual toward zero:
 
-Tests modular assembly, parallel branches, closure constraints, temporary supports, geometric adjustment, temporary fasteners and self-advancing lifting.
+\[
+\mathbf F_X^\star\approx0.
+\]
 
-[Open benchmark](eiffel-tower/BENCHMARK.md)
+So far, no benchmark requires a gravity-control or exotic-force term.
 
-## Rule emerging from the controls
+The controls increasingly suggest that apparent “force mysteries” often arise when the inverse model is missing one of four things:
 
-[
-oxed{
-	ext{No new physics before latent process exhaustion.}
-}
-]
+1. temporary topology;
+2. modular decomposition;
+3. logistics/pipeline structure;
+4. state-changing physical processes such as cooling, prestressing or adjustment.
 
-Before assigning any unexplained-force residual to new physics, IRL must search for missing temporary topology, modular decomposition, access infrastructure and conventional mechanisms.
+This is an empirical pattern from the benchmark series, not yet a theorem.
