@@ -374,6 +374,9 @@ The transfer to IRL is purely mathematical: **critical accessibility boundaries*
 | [CONTRIBUTIONS.md](CONTRIBUTIONS.md) | Contribution candidates, conjectures and boundaries |
 | [DISCOVERY_LOG.md](DISCOVERY_LOG.md) | Scientific evolution of the ideas and corrections |
 | [RESEARCH_PROGRAM.md](RESEARCH_PROGRAM.md) | Validation roadmap and first publishable experiments |
+| [VARIABLES.md](VARIABLES.md) | Full variable registry: geometry, lithology, substrate, climate, damage, blocks, voids |
+| [SIMULATION_SPEC.md](SIMULATION_SPEC.md) | Exact equations and numerical assumptions implemented by the UI |
+| [EPISTEMIC_STATUS.md](EPISTEMIC_STATUS.md) | Established vs derived vs proposed vs unknown claim ledger |
 | [REFERENCES.md](REFERENCES.md) | Evidence and reference base |
 | [paper/main.tex](paper/main.tex) | Full LaTeX paper source |
 | [paper/PAPER.pdf](paper/PAPER.pdf) | Compiled paper |
