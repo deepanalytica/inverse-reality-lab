@@ -64,7 +64,9 @@ frente a diez superficies arbitrarias.
 
 ### Revelación histórica
 
-Arup/Sydney Opera House documentan que se estudiaron doce esquemas y finalmente las diez velas se derivaron de **segmentos de una misma esfera de 75 m de diámetro**.
+Arup/Sydney Opera House documentan que se estudiaron doce esquemas y finalmente las diez velas se derivaron de **segmentos de una misma esfera**.
+
+> **Nota de control de fuentes:** las páginas institucionales consultadas no son uniformes al expresar el parámetro métrico de esa esfera (algunas descripciones institucionales hablan de ~75 m de diámetro, mientras literatura técnica secundaria ampliamente citada usa ~75 m de radio). Como este benchmark todavía no usa el point cloud 3D original, IRL-Bench 005 **no utiliza ese valor numérico para puntuar la inferencia**. La conclusión robusta aquí es la existencia de un generador esférico común, no el valor exacto de su radio.
 
 **Resultado:** el terminal posee una compresión geométrica que apunta directamente hacia una familia de fabricación reutilizable.
 
