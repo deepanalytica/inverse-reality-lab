@@ -20,12 +20,11 @@
     "stage_two_completion": "2,194th precast shell segment installed 17 Jan 1967"
   },
   "derived": {
-    "sphere_radius_m_from_75m_diameter": 37.5,
-    "gaussian_curvature_inverse_m2": 0.0007111111111111111,
     "chevrons_per_bed_average": 162.6153846153846,
     "tiles_per_chevron_average": 249.76490066225165,
     "segments_per_sail_average": 219.4
   },
   "residual_force": "approximately zero after conventional geometric-production and temporary-support ontology",
-  "key_result": "terminal geometry can encode a manufacturing algorithm, not only a structural chronology"
+  "key_result": "terminal geometry can encode a manufacturing algorithm, not only a structural chronology",
+  "source_quality_note": "Exact sphere radius/diameter excluded from scoring until a primary geometric dataset resolves inconsistent institutional summaries; shared spherical generator remains the robust inference target."
 }
