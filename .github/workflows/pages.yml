@@ -30,7 +30,12 @@ jobs:
           root_file: paper/main.tex
 
       - name: Publish compiled PDF inside the site
-        run: cp paper/main.pdf paper/PAPER.pdf
+        shell: bash
+        run: |
+          PDF_PATH="$(find . -type f -name 'main.pdf' | head -n 1)"
+          test -n "$PDF_PATH"
+          echo "Compiled paper: $PDF_PATH"
+          cp "$PDF_PATH" paper/PAPER.pdf
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
