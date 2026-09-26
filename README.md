@@ -455,3 +455,14 @@ First positive-control experiment for the inverse-construction framework.
 - [Result snapshot](benchmarks/golden-gate/result.json)
 
 The coarse terminal ontology reduces 7 major-component serial orders from 5,040 to 3 admissible linear extensions (99.9405% reduction), predicts a latent temporary aerial-access class before cable formation, and recovers mechanism classes consistent with climbing tower lifting, aerial cable spinning and balanced suspended-deck erection. At this resolution, conventional mechanics yields an unexplained-force residual approximately equal to zero.
+
+
+## IRL-Bench 002 — Torre Eiffel
+
+Second positive-control benchmark. Tests modularity, temporary support topology, geometric closure, provisional fastening and self-advancing lifting.
+
+- [Benchmark report](benchmarks/eiffel-tower/BENCHMARK.md)
+- [Reproducible calculations](benchmarks/eiffel-tower/benchmark.py)
+- [Result snapshot](benchmarks/eiffel-tower/result.json)
+
+The coarse 15-node support ontology reduces 15! serial orders to 60,480 admissible linear extensions (99.999995% reduction). The inverse model predicts classes corresponding to modular prefabrication, climbing lifting, temporary first-floor support, adjustable alignment and temporary fastening. The historical record documents precisely those process classes. At this resolution, the unexplained-force residual remains approximately zero under conventional mechanics.
