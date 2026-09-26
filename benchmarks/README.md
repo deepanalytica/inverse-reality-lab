@@ -28,3 +28,26 @@ The controls increasingly suggest that apparent “force mysteries” often aris
 4. state-changing physical processes such as cooling, prestressing or adjustment.
 
 This is an empirical pattern from the benchmark series, not yet a theorem.
+
+
+## Adversarial Study 001 — Identifiability Under Evidence Ablation
+
+The positive controls are now accompanied by a self-falsification study.
+
+- [Results](adversarial-identifiability/RESULTS.md)
+- [Epistemic corrections](adversarial-identifiability/CORRECTIONS.md)
+- [Reproducible ablation engine](adversarial-identifiability/ablation.py)
+- [Result snapshot](adversarial-identifiability/result.json)
+
+Key finding:
+
+[
+oxed{
+	ext{missing evidence}
+
+otRightarrow
+	ext{unknown force}
+}
+]
+
+The study shows that terminal geometry alone is insufficient for most process classes and that several earlier mechanism matches were only identifiable after adding site, schedule, precision or logistics constraints.
