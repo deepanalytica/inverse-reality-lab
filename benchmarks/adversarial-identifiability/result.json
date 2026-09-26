@@ -1,0 +1,81 @@
+{
+  "study": "IRL Adversarial Study 001 — Identifiability Under Evidence Ablation",
+  "status": "deterministic ontology ablation / self-falsification study",
+  "process_classes": 25,
+  "score_definition": {
+    "0": "not recoverable",
+    "1": "favored / partially constrained",
+    "2": "recoverable by current rule set at functional-class level"
+  },
+  "tiers": {
+    "T0_geometry_only": {
+      "recoverable": 1,
+      "favored": 0,
+      "unknown": 24,
+      "normalized_score_percent": 4
+    },
+    "T1_full_terminal": {
+      "recoverable": 4,
+      "favored": 11,
+      "unknown": 10,
+      "normalized_score_percent": 38
+    },
+    "T2_site_access_domain_physics": {
+      "recoverable": 10,
+      "favored": 9,
+      "unknown": 6,
+      "normalized_score_percent": 58
+    },
+    "T3_schedule_precision_logistics": {
+      "recoverable": 25,
+      "favored": 0,
+      "unknown": 0,
+      "normalized_score_percent": 100,
+      "warning": "T3 is not terminal-only inference; it includes construction objectives and contextual priors."
+    }
+  },
+  "leave_one_out_score_drop": {
+    "geometry": 32,
+    "microstructure": 22,
+    "logistics": 13,
+    "structure": 11,
+    "environment": 9,
+    "material": 7,
+    "precision": 7,
+    "schedule": 5,
+    "access": 4,
+    "thermal": 4,
+    "hydrology": 2
+  },
+  "random_ablation": {
+    "drop_0.10": {
+      "mean_recoverable": 18.65,
+      "mean_unknown": 4.36,
+      "probability_all_25_recoverable": 0.312
+    },
+    "drop_0.25": {
+      "mean_recoverable": 11.22,
+      "mean_unknown": 10.26,
+      "probability_all_25_recoverable": 0.041
+    },
+    "drop_0.50": {
+      "mean_recoverable": 3.88,
+      "mean_unknown": 17.73,
+      "probability_all_25_recoverable": 0.0005
+    }
+  },
+  "false_residual_examples": {
+    "golden_gate_tower_monolithic_MN": 197.1,
+    "golden_gate_main_cable_monolithic_MN": 106.8,
+    "eiffel_total_metal_monolithic_MN": 71.6,
+    "empire_state_total_structural_steel_monolithic_MN": 563.7
+  },
+  "major_corrections": [
+    "terminal geometry alone is generally insufficient",
+    "Empire State JIT/pipeline/jumping derricks require site/schedule/logistics and were previously over-interpreted",
+    "Hoover active cooling is schedule-dependent rather than uniquely terminal-identifiable",
+    "exact historical mechanisms are rarely identifiable from terminal state alone",
+    "missing evidence must produce NON-IDENTIFIABLE, not UNKNOWN FORCE"
+  ],
+  "recommended_gate": "CHECK_IDENTIFIABILITY -> INFER_CAUSAL_ORDER -> INFER_TEMPORARY_ONTOLOGY -> EXHAUST_CONVENTIONAL_PROCESSES -> COMPUTE_RESIDUAL"
+}
