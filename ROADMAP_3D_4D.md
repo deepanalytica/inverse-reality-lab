@@ -6,7 +6,19 @@ Estado: producción.
 
 Incluye visor 3D paramétrico de Khufu, espacios internos, Big Void, North Face Corridor, cursos, bloques proxy, fuerzas, muografía, slider causal 4D, hipótesis, evidencia, anomalías, comparativa y revisión académica.
 
-## v1.2 — Geometría de investigación
+## v1.2 — Formalización matemática y topológica
+
+Estado: **producción**
+
+- homología relativa;
+- filtración por despeje;
+- zigzag persistence;
+- politopo de orden;
+- grafo topológico interactivo;
+- validación semántica automática;
+- paper v1.2.
+
+## v1.3 — Geometría de investigación
 
 - importar malla o point cloud con licencia compatible;
 - registrar Digital Giza como referencia geométrica;
@@ -14,7 +26,7 @@ Incluye visor 3D paramétrico de Khufu, espacios internos, Big Void, North Face 
 - ajustar parámetros a surveys AERA/Petrie/Dash;
 - incorporar superficies interiores con incertidumbre explícita.
 
-## v1.3 — Mecánica
+## v1.4 — Mecánica
 
 - red de contactos;
 - transferencia de carga;
@@ -23,7 +35,7 @@ Incluye visor 3D paramétrico de Khufu, espacios internos, Big Void, North Face 
 - sensibilidad a densidad y fricción;
 - comparación entre secuencias.
 
-## v1.4 — Muografía y anomalías
+## v1.5 — Muografía y anomalías
 
 - volumen 3D de likelihood;
 - forward model de densidad;
@@ -31,11 +43,11 @@ Incluye visor 3D paramétrico de Khufu, espacios internos, Big Void, North Face 
 - posterior espacial de vacíos;
 - Expected Information Gain para nuevas posiciones de detector.
 
-## v1.5 — Bloque-a-bloque
+## v1.6 — Bloque-a-bloque
 
 Cada bloque podrá almacenar identidad, geometría real cuando exista dato, litología, masa, origen, ruta, evento de colocación, contactos, carga e incertidumbre.
 
-## v1.6 — Comparativa arqueológica
+## v1.7 — Comparativa arqueológica
 
 Orden propuesto: Khafre, Menkaure, Pirámide Acodada, Pirámide Roja y Stonehenge.
 

@@ -36,3 +36,17 @@ El Big Void y el North Face Corridor se muestran como volúmenes de evidencia in
 ## Bloques
 
 El dashboard utiliza bloques proxy para demostrar el esquema bloque-a-bloque y calcular masa estimada. Un inventario geométrico completo de cada bloque real se incorporará cuando exista un dataset de levantamiento adecuado y reutilizable.
+
+
+## Fundamentos matemáticos v1.2
+
+| ID | Referencia | Función |
+|---|---|---|
+| M1 | Carlsson & de Silva (2010), *Zigzag Persistence* | persistencia cuando la familia temporal cambia en ambos sentidos |
+| M2 | Cohen-Steiner, Edelsbrunner & Harer (2007), *Stability of persistence diagrams* | estabilidad frente a perturbaciones |
+| M3 | Stanley (1986), *Two Poset Polytopes* | politopo de orden y extensiones lineales |
+| M4 | LaValle (2006), *Planning Algorithms* | espacio de configuraciones y accesibilidad |
+| M5 | Alexanderian (2021), Bayesian optimal experimental design | Expected Information Gain y diseño de mediciones |
+| M6 | Dey & Wang (2022), *Computational Topology for Data Analysis* | homología, persistencia y Reeb graphs |
+
+Los metadatos y enlaces están versionados en data/sources.json.

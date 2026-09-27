@@ -112,5 +112,64 @@
     "title": "IRL-Bench 005 — Sydney Opera House",
     "url": "benchmarks/sydney-opera-house/BENCHMARK.md",
     "relevance": "Geometría generativa, prefabricación y soporte temporal."
+  },
+  {
+    "id": "M1",
+    "type": "mathematics",
+    "title": "Zigzag Persistence",
+    "year": 2010,
+    "publisher": "Foundations of Computational Mathematics",
+    "url": "https://link.springer.com/article/10.1007/s10208-010-9066-0",
+    "doi": "10.1007/s10208-010-9066-0",
+    "relevance": "Fundamento para seguir rasgos topológicos cuando la familia temporal no es monótona."
+  },
+  {
+    "id": "M2",
+    "type": "mathematics",
+    "title": "Stability of persistence diagrams",
+    "year": 2007,
+    "publisher": "Discrete & Computational Geometry",
+    "url": "https://doi.org/10.1007/s00454-006-1276-5",
+    "doi": "10.1007/s00454-006-1276-5",
+    "relevance": "Teorema de estabilidad de diagramas de persistencia."
+  },
+  {
+    "id": "M3",
+    "type": "mathematics",
+    "title": "Two Poset Polytopes",
+    "year": 1986,
+    "publisher": "Discrete & Computational Geometry",
+    "url": "https://math.mit.edu/~rstan/pubs/pubfiles/66.pdf",
+    "doi": "10.1007/BF02187680",
+    "relevance": "Politopo de orden y relación entre volumen y extensiones lineales de un poset."
+  },
+  {
+    "id": "M4",
+    "type": "mathematics",
+    "title": "Planning Algorithms — Configuration Space",
+    "year": 2006,
+    "publisher": "Cambridge University Press",
+    "url": "https://www.cambridge.org/core/books/abs/planning-algorithms/configuration-space/E35B57514BA148042FDA97640DBEB046",
+    "doi": "10.1017/CBO9780511546877.006",
+    "relevance": "Espacios de configuración para accesibilidad y motion planning."
+  },
+  {
+    "id": "M5",
+    "type": "inverse-problems",
+    "title": "Optimal experimental design for infinite-dimensional Bayesian inverse problems governed by PDEs: a review",
+    "year": 2021,
+    "publisher": "Inverse Problems",
+    "url": "https://doi.org/10.1088/1361-6420/abe10c",
+    "doi": "10.1088/1361-6420/abe10c",
+    "relevance": "Diseño experimental bayesiano y reducción de incertidumbre."
+  },
+  {
+    "id": "M6",
+    "type": "mathematics",
+    "title": "Computational Topology for Data Analysis",
+    "year": 2022,
+    "publisher": "Cambridge University Press",
+    "url": "https://www.cambridge.org/core/books/computational-topology-for-data-analysis/9B54F18A58408DAAC1B8A63F704A8F1E",
+    "relevance": "Homología, persistencia, Reeb graphs y topología computacional moderna."
   }
 ]

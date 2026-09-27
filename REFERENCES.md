@@ -117,3 +117,26 @@ The following remain project proposals and should be cited as such:
 - typed inverse admissible frontier;
 - complement-defined accessibility abstraction;
 - PRAXIOS forward/inverse/counterfactual architecture.
+
+
+---
+
+# E. Formalización matemática incorporada en v1.2
+
+1. **Carlsson, G. & de Silva, V. (2010).** *Zigzag Persistence.* Foundations of Computational Mathematics 10, 367–405. DOI: 10.1007/s10208-010-9066-0.  
+   Base para persistencia en familias donde las inclusiones cambian de dirección.
+
+2. **Cohen-Steiner, D., Edelsbrunner, H. & Harer, J. (2007).** *Stability of persistence diagrams.* Discrete & Computational Geometry 37, 103–120. DOI: 10.1007/s00454-006-1276-5.  
+   Resultado de estabilidad utilizado para justificar robustez frente a perturbaciones geométricas bajo las hipótesis del teorema.
+
+3. **Stanley, R. P. (1986).** *Two Poset Polytopes.* Discrete & Computational Geometry 1, 9–23. DOI: 10.1007/BF02187680.  
+   Politopo de orden y relación entre volumen y extensiones lineales.
+
+4. **LaValle, S. M. (2006).** *Planning Algorithms.* Cambridge University Press.  
+   Espacios de configuración y planificación de movimiento.
+
+5. **Alexanderian, A. (2021).** *Optimal experimental design for infinite-dimensional Bayesian inverse problems governed by PDEs: a review.* Inverse Problems 37, 043001. DOI: 10.1088/1361-6420/abe10c.  
+   Diseño experimental bayesiano y reducción de incertidumbre.
+
+6. **Dey, T. K. & Wang, Y. (2022).** *Computational Topology for Data Analysis.* Cambridge University Press.  
+   Homología, persistencia, Reeb graphs y topología computacional.

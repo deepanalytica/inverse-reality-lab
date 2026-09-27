@@ -1,4 +1,4 @@
-# Ontología de Realidad Inversa — Preprint v1.0
+# Ontología de Realidad Inversa — Preprint v1.2
 
 **Alexis Brian Reyes Saavedra · Deep Analytica · Chile**
 
@@ -117,4 +117,9 @@ El paper conserva modelos de compensación gravitatoria \(\alpha(\mathbf x,t)\) 
 
 ## Estado
 
-Preprint v1.0. El próximo paso científico es pasar de benchmarks retrospectivos a experimentos prospectivos con reglas congeladas y ground truth oculto.
+Preprint v1.2. El próximo paso científico es pasar de benchmarks retrospectivos a experimentos prospectivos con reglas congeladas y ground truth oculto.
+
+
+## Formalización v1.2
+
+La versión actual corrige la terminología topológica: la familia temporal se modela con zigzag persistence cuando las inclusiones cambian de dirección. También incorpora homología relativa respecto del exterior y politopos de orden para cronologías parciales.

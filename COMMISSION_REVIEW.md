@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Esta versión del repositorio está organizada para una revisión equivalente a una comisión doctoral multidisciplinaria.
+La versión v1.2 del repositorio está organizada para una revisión equivalente a una comisión doctoral multidisciplinaria.
 
 ## Ruta sugerida de 45–60 minutos
 
@@ -27,7 +27,9 @@ La página review.html permite puntuar de 0 a 10:
 7. identificabilidad;
 8. validación y falsabilidad;
 9. reproducibilidad computacional;
-10. contribución metodológica.
+10. contribución metodológica;
+11. topología computacional;
+12. calibración epistemológica.
 
 ## Disciplinas
 
@@ -53,3 +55,30 @@ Computación y visualización: trazabilidad, reproducibilidad, capas epistemoló
 ## Estado de la entrega
 
 La versión actual es un marco de investigación implementado con cinco controles retrospectivos y un estudio adversarial. La siguiente exigencia académica es validación prospectiva con reglas congeladas y ground truth oculto.
+
+
+## Controles añadidos en v1.2
+
+La comisión puede auditar además:
+
+- ADVANCED_MATHEMATICS.md;
+- TOPOLOGY.md;
+- VALIDATION_PROTOCOL.md;
+- AI_REVIEW_GUIDE.md;
+- scripts/validate_data.mjs;
+- data/topology.json.
+
+### Preguntas específicas de topología
+
+1. ¿El exterior \(E_\tau\) está definido de forma adecuada para usar \(H_k(V_\tau,E_\tau)\)?
+2. ¿La filtración en \(r\) cumple inclusiones?
+3. ¿La evolución temporal necesita zigzag?
+4. ¿Las cantidades del dashboard están etiquetadas como proxies de grafo?
+5. ¿Qué dataset volumétrico permitiría pasar a homología cubical 3D?
+
+### Preguntas específicas de inferencia
+
+1. ¿El modelo conserva historias observacionalmente equivalentes?
+2. ¿Las métricas descriptivas están separadas de probabilidades?
+3. ¿Existe una vía para calibrar posteriores?
+4. ¿El EIG conduce a mediciones ejecutables?

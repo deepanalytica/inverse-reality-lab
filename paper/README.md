@@ -1,4 +1,4 @@
-# Paper canónico — Preprint v1.0
+# Paper canónico — Preprint v1.2
 
 La versión académica canónica del proyecto es:
 
@@ -41,7 +41,7 @@ El paper está dividido en archivos LaTeX independientes dentro de paper/section
 
 ## Estado científico
 
-**Preprint v1.0 / marco de investigación.**
+**Preprint v1.2 / marco de investigación.**
 
 El paper distingue explícitamente:
 
@@ -54,3 +54,8 @@ El paper distingue explícitamente:
 - estados no identificables.
 
 No afirma haber resuelto el método histórico de construcción de Khufu ni presenta los campos gravitatorios hipotéticos como evidencia física.
+
+
+## Extensión v1.2
+
+El paper incorpora una sección formal de topología computacional e identificabilidad: homología relativa, filtración por despeje, zigzag persistence, persistencia multiparámetro, grafos de Reeb, politopos de orden y Expected Information Gain.

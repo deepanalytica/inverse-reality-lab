@@ -241,7 +241,7 @@ El estudio adversarial de los cinco benchmarks mostró que geometría, microestr
 
 ## Dashboard 3D/4D
 
-La versión v1.1 incorpora un visor interactivo de Khufu que combina:
+La versión v1.2 incorpora un visor interactivo de Khufu que combina:
 
 - envolvente 3D paramétrica;
 - cámaras y corredores publicados;
@@ -268,6 +268,9 @@ El slider representa estados de reconstrucción y sus condiciones necesarias. No
 **Visor:** [dashboard.html](dashboard.html)  
 **Especificación:** [DASHBOARD_SPEC.md](DASHBOARD_SPEC.md)  
 **Datos:** [DATA_SCHEMA.md](DATA_SCHEMA.md)  
+**Matemática avanzada:** [ADVANCED_MATHEMATICS.md](ADVANCED_MATHEMATICS.md)  
+**Topología:** [TOPOLOGY.md](TOPOLOGY.md)  
+**Validación:** [VALIDATION_PROTOCOL.md](VALIDATION_PROTOCOL.md)  
 **Fuentes:** [SOURCE_REGISTRY.md](SOURCE_REGISTRY.md)  
 **Roadmap:** [ROADMAP_3D_4D.md](ROADMAP_3D_4D.md)
 
@@ -304,6 +307,43 @@ El estudio de ablación posterior estableció una regla operativa:
 \]
 
 En lenguaje directo: primero se comprueba qué permiten afirmar los datos; luego se reconstruyen dependencias y procesos temporales; después se agotan los mecanismos constructivos conocidos; finalmente se analiza cualquier fuerza que continúe sin explicación.
+
+---
+
+## Topología e identificabilidad v1.2
+
+La versión v1.2 distingue tres niveles topológicos:
+
+1. **grafo de conectividad**, útil para inspección inmediata;
+2. **filtración por despeje**, que estudia qué conexiones sobreviven al aumentar la escala;
+3. **homología volumétrica y persistencia**, especificadas como siguiente nivel numérico.
+
+Para un estado \(\tau\) y radio \(r\):
+
+\[
+V_{\tau,r}
+=
+\{
+x\in V_\tau:
+d_M(x,\tau)\ge r
+\}.
+\]
+
+La evolución constructiva puede abrir y cerrar conexiones, por lo que la dimensión temporal se formula mediante **zigzag persistence** cuando no existe monotonicidad de inclusiones.
+
+La cronología parcial utiliza además el politopo de orden:
+
+\[
+\mathcal O(P)
+=
+\{
+\mathbf t\in[0,1]^n:
+t_i\le t_j
+\text{ si }e_i\prec e_j
+\}.
+\]
+
+Esto permite medir de manera continua cuánto restringen las precedencias el espacio de cronologías compatibles.
 
 ---
 
@@ -354,7 +394,7 @@ El protocolo los sitúa después del análisis de identificabilidad, la ontolog�
 
 ## Estado del proyecto
 
-**Preprint v1.0 · marco de investigación en fase de validación.**
+**Preprint v1.2 · marco de investigación en fase de validación.**
 
 La versión actual incluye:
 

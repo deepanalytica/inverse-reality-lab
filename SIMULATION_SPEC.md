@@ -1,4 +1,4 @@
-# Simulation Specification
+# Especificación de simulación — v1.2
 
 This document describes the mathematics actually implemented in the public interactive laboratory. These simulations are pedagogical/research prototypes, not final scientific solvers.
 
@@ -344,3 +344,42 @@ Priority upgrades:
 8. muography forward operator;
 9. posterior sampling over construction histories;
 10. active measurement selection via expected information gain.
+
+
+---
+
+# Topología interactiva v1.2
+
+El dashboard incorpora un grafo de conectividad de espacios internos.
+
+Para un radio proxy \(r\), una arista \(e\) permanece activa cuando:
+
+\[
+r\le c_e,
+\]
+
+con \(c_e\) radio de despeje de trabajo.
+
+El número de componentes del grafo es:
+
+\[
+\beta_0^{graph}=c,
+\]
+
+y su rango de ciclos:
+
+\[
+\beta_1^{graph}=|E|-|V|+c.
+\]
+
+Estas cantidades describen el grafo y se muestran como proxies pedagógicos. La siguiente implementación utilizará complejos cubicales y homología volumétrica.
+
+# Validación automática
+
+El workflow ejecuta:
+
+- node --check sobre JavaScript;
+- validación JSON;
+- scripts/validate_data.mjs;
+- compilación LaTeX;
+- despliegue Pages.

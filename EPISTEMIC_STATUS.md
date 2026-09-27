@@ -1,10 +1,10 @@
-# Epistemic Status Ledger — v1.0
+# Epistemic Status Ledger — v1.2
 
 Este archivo resume el estatus epistemológico autoritativo después de los cinco benchmarks y del estudio adversarial de identificabilidad.
 
 La síntesis académica principal es [paper/PAPER.pdf](paper/PAPER.pdf).
 
-| Elemento | Estado v1.0 | Interpretación |
+| Elemento | Estado v1.2 | Interpretación |
 |---|---|---|
 | \(V=a^2H/3\) | **ESTABLISHED** | geometría elemental |
 | centro de masa de pirámide uniforme en \(H/4\) | **ESTABLISHED** | mecánica elemental |
@@ -81,4 +81,21 @@ F_X\neq0
 }
 \]
 
-Los archivos de benchmarks previos se conservan como registro de las corridas exploratorias. [CORRECTIONS.md](benchmarks/adversarial-identifiability/CORRECTIONS.md) y el paper v1.0 contienen la interpretación corregida.
+Los archivos de benchmarks previos se conservan como registro de las corridas exploratorias. [CORRECTIONS.md](benchmarks/adversarial-identifiability/CORRECTIONS.md) y el paper v1.2 contienen la interpretación corregida.
+
+
+## Extensiones formales incorporadas en v1.2
+
+| Elemento | Estado | Función |
+|---|---|---|
+| \(H_k(V_\tau,E_\tau)\) | **ESTABLISHED MATHEMATICS / IRL APPLICATION** | homología relativa respecto del exterior |
+| filtración \(V_{\tau,r}\) en \(r\) | **DERIVED APPLICATION** | estudiar identidad de espacios a distintas escalas |
+| zigzag temporal | **ESTABLISHED MATHEMATICS / IRL APPLICATION** | seguir rasgos cuando construcción abre/cierra conexiones |
+| politopo \(\mathcal O(P)\) | **ESTABLISHED MATHEMATICS / IRL APPLICATION** | representar cronologías continuas compatibles |
+| \(C_P=1-e(P)/n!\) | **IRL DESCRIPTIVE METRIC** | compresión causal del poset seleccionado |
+| \(I_{\mathrm{IRL}}\) basado en entropía | **IRL DESCRIPTIVE METRIC** | resumir concentración posterior; acompaña distribución completa |
+| grafo topológico del dashboard | **DERIVED PROXY** | visualización de conectividad; no equivale a homología volumétrica |
+
+### Precisión terminológica
+
+La familia \((\tau,r)\mapsto V_{\tau,r}\) se denomina **familia de dos parámetros** de forma general. El término **bifiltración** se reserva para casos donde se demuestran las inclusiones monotónicas necesarias.

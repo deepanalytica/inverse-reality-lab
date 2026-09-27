@@ -1,9 +1,13 @@
-# Inverse Reality Ontology — Full Theory
+# Teoría completa — Inverse Reality Laboratory v1.2
 
-> **Status:** proposed research framework.  
-> **Primary laboratory:** Great Pyramid of Khufu.  
-> **Comparative mathematical laboratories:** Vaidya collapse and Kerr null-geodesic accessibility.  
-> **Important:** the framework does **not** claim antigravity, physical negative mass, literal backward evolution of nature, or physical equivalence between pyramids and black holes.
+**Objeto de estudio:** reconstrucción de historias físicas y constructivas a partir de estados terminales.  
+**Laboratorio principal:** Gran Pirámide de Khufu.  
+**Controles:** cinco estructuras modernas documentadas.  
+**Formalización v1.2:** homología relativa, persistencia, zigzag persistence, politopos de orden, inferencia bayesiana y diseño experimental.
+
+Para una lectura matemática consolidada: [ADVANCED_MATHEMATICS.md](ADVANCED_MATHEMATICS.md). Para topología: [TOPOLOGY.md](TOPOLOGY.md).
+
+El marco distingue física establecida, derivaciones, inferencias, hipótesis y escenarios contrafactuales.
 
 ---
 

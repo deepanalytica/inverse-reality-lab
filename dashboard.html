@@ -6,6 +6,8 @@
 <title>Dashboard 3D/4D · Inverse Reality Laboratory</title>
 <meta name="description" content="Dashboard 3D/4D de Khufu: geometría, espacios internos, evidencia, hipótesis, fuerzas y reconstrucción causal inversa.">
 <link rel="stylesheet" href="assets/dashboard.css">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:"global"}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"}}
 </script>
@@ -15,12 +17,13 @@
   <header class="topbar">
     <div>
       <div class="brand">Inverse Reality <span>Laboratory</span></div>
-      <div class="subtitle">Khufu · visor 3D/4D · evidencia + mecánica + hipótesis</div>
+      <div class="subtitle">v1.2 · Khufu · geometría + topología + mecánica + inferencia</div>
     </div>
     <div class="toplinks">
       <a href="index.html">Inicio</a>
       <a href="library.html#start">Biblioteca</a>
       <a href="paper/PAPER.pdf">Paper</a>
+      <a href="ADVANCED_MATHEMATICS.md">Matemática avanzada</a>
       <a href="review.html">Revisión académica</a>
       <a class="primary" href="https://giza.fas.harvard.edu/giza3d/" target="_blank" rel="noopener">Referencia Digital Giza ↗</a>
     </div>
@@ -95,6 +98,8 @@
         <button class="active" data-tab="state">Estado</button>
         <button data-tab="hypotheses">Hipótesis</button>
         <button data-tab="evidence">Evidencia</button>
+        <button data-tab="topology">Topología</button>
+        <button data-tab="math">Matemática</button>
         <button data-tab="anomalies">Búsqueda</button>
         <button data-tab="compare">Comparativa</button>
       </div>
@@ -114,6 +119,43 @@
       <div class="tab" id="tab-evidence">
         <div class="entity-title"><div class="kicker">Registro de fuentes</div><span class="source-counter" id="source-count"></span></div>
         <div id="evidence-list"></div>
+      </div>
+
+
+      <div class="tab" id="tab-topology">
+        <div class="kicker">Espacio negativo · proxy de conectividad</div>
+        <p class="small">El grafo representa conexiones conocidas entre espacios. El control de despeje elimina conexiones menores que el radio seleccionado y permite observar cambios de componentes y ciclos.</p>
+        <label class="small" for="clearance"><b>Radio de despeje r</b> · <span id="clearance-value">0.00 m</span></label>
+        <input id="clearance" type="range" min="0" max="0.65" step="0.01" value="0">
+        <div class="metric-grid" style="margin-top:10px">
+          <div class="metric"><div class="v" id="topo-b0">—</div><div class="l">β₀ grafo</div></div>
+          <div class="metric"><div class="v" id="topo-b1">—</div><div class="l">β₁ grafo</div></div>
+          <div class="metric"><div class="v" id="topo-exterior">—</div><div class="l">alcanzables exterior</div></div>
+          <div class="metric"><div class="v" id="topo-separated">—</div><div class="l">separados</div></div>
+        </div>
+        <svg id="topology-graph" class="topology-graph" viewBox="0 0 320 300" aria-label="Grafo topológico de espacios internos"></svg>
+        <div class="note">Estos β describen el grafo de conectividad de v1.2. La homología volumétrica 3D, la homología relativa y zigzag persistence están especificadas como siguiente nivel numérico.</div>
+        <div class="controls-row" style="margin-top:10px"><a class="mini-btn" href="TOPOLOGY.md">Topología completa</a><a class="mini-btn" href="ADVANCED_MATHEMATICS.md">Formalismo</a></div>
+      </div>
+
+      <div class="tab" id="tab-math">
+        <div class="kicker">Formalismo v1.2</div>
+        <div class="card">
+          <h3>Problema inverso</h3>
+          <p>\[p(H,\Theta\mid Y)\propto p(Y\mid H,\Theta)p(H,\Theta)\]</p>
+          <h3>Politopo de cronologías</h3>
+          <p>\[\mathcal O(P)=\{\mathbf t\in[0,1]^n:t_i\le t_j\;\text{si}\;e_i\prec e_j\}\]</p>
+          <h3>Espacio negativo a escala r</h3>
+          <p>\[V_{\tau,r}=\{x\in V_\tau:d_M(x,\tau)\ge r\}\]</p>
+          <h3>Homología relativa</h3>
+          <p>\[H_k(V_\tau,E_\tau)\]</p>
+          <h3>Tiempo topológico zigzag</h3>
+          <p>\[H_k(V_0)\leftrightarrow H_k(V_1)\leftrightarrow\cdots\leftrightarrow H_k(V_n)\]</p>
+          <h3>Diseño experimental</h3>
+          <p>\[d^\star=\arg\max_d\operatorname{EIG}(d)\]</p>
+        </div>
+        <div class="note">Cada objeto matemático se documenta con significado, dominio, estatus epistemológico y función dentro del laboratorio.</div>
+        <div class="controls-row" style="margin-top:10px"><a class="mini-btn" href="ADVANCED_MATHEMATICS.md">Abrir matemática avanzada</a><a class="mini-btn" href="VALIDATION_PROTOCOL.md">Validación</a></div>
       </div>
 
       <div class="tab" id="tab-anomalies">

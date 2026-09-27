@@ -1,4 +1,4 @@
-# Research Program and Validation Roadmap
+# Programa de investigación y validación — v1.2
 
 ## Goal
 
@@ -301,3 +301,19 @@ A stronger first result would be:
 > Given a high-resolution model of the King's Chamber subsystem, demonstrate that the coupled structural/access/topological inverse model excludes a measurable fraction of otherwise geometrically plausible construction sequences.
 
 That is falsifiable, tractable and scientifically defensible.
+
+
+---
+
+# Fase topológica v1.2–v1.4
+
+1. construir datasets sintéticos con Betti numbers conocidos;
+2. voxelizar geometría de Khufu con resolución documentada;
+3. calcular \(H_k(V,E)\) mediante complejos cubicales;
+4. calcular persistencia por despeje;
+5. aplicar zigzag persistence a estados de apertura/cierre;
+6. comparar resultados con el grafo proxy del dashboard;
+7. medir sensibilidad a resolución y ruido;
+8. integrar densidad muográfica como segundo parámetro.
+
+Gate de avance: las invariantes topológicas deben recuperar ground truth en casos sintéticos antes de interpretarse arqueológicamente.

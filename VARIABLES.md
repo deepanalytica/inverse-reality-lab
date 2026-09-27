@@ -1,4 +1,4 @@
-# Variable Registry — Inverse Reality Laboratory
+# Registro de variables — Inverse Reality Laboratory v1.2
 
 This registry defines the variables that can enter the inverse reconstruction. The purpose is to prevent the model from silently collapsing geology, geometry, architecture, chronology and evidence into one generic state.
 
@@ -585,3 +585,25 @@ Examples:
 - counterfactual: predicted muon signature under candidate history.
 
 This hierarchy is essential for Meta-Harness auditability.
+
+
+---
+
+# Variables topológicas v1.2
+
+- \(K_\tau^+\): complejo material;
+- \(K_\tau^-\): complejo de espacio negativo;
+- \(E_\tau\): subespacio exterior;
+- \(H_k(V_\tau,E_\tau)\): homología relativa;
+- \(\beta_k\): números de Betti;
+- \(d_M(x,\tau)\): distancia a materia;
+- \(V_{\tau,r}\): espacio negativo con despeje mínimo \(r\);
+- \(D_k\): diagrama de persistencia;
+- \(\mathcal R_f\): grafo de Reeb de una función \(f\);
+- \(\mathcal O(P)\): politopo de orden;
+- \(e(P)\): número de extensiones lineales;
+- \(C_P\): compresión causal descriptiva;
+- \(\mathsf H(H\mid Y)\): entropía posterior;
+- \(\operatorname{EIG}(d)\): ganancia esperada de información.
+
+Cada variable debe conservar dominio, unidades cuando correspondan, fuente, incertidumbre y versión del modelo.

@@ -38,7 +38,7 @@ El control temporal representa una secuencia de estados de reconstrucción. Se i
 
 ## Modelo bloque-a-bloque
 
-La versión v1.1 implementa bloques proxy paramétricos para probar masa, selección, acceso y fuerzas.
+La versión v1.2 implementa bloques proxy paramétricos para probar masa, selección, acceso y fuerzas.
 
 \[
 B_i=\{G_i,\rho_i,m_i,z_i,\text{curso},\text{estatus}\}
@@ -66,3 +66,17 @@ Para cualquier entidad, el dashboard debe responder:
 - qué condiciones habilitan la transición siguiente;
 - qué evidencia sostiene la afirmación;
 - qué medición futura reduciría la incertidumbre.
+
+
+## Capa topológica v1.2
+
+El dashboard añade una pestaña Topología con:
+
+- grafo de conectividad de espacios conocidos;
+- control de radio de despeje;
+- cálculo de \(\beta_0^{graph}\);
+- cálculo de \(\beta_1^{graph}=|E|-|V|+\beta_0\);
+- alcanzabilidad desde el exterior;
+- separación explícita entre proxy de grafo y homología volumétrica.
+
+La pestaña Matemática expone el problema inverso, politopo de orden, homología relativa, familia de despeje, zigzag y diseño experimental.

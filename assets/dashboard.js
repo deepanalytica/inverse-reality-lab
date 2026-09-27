@@ -12,11 +12,12 @@ async function readJSON(path){
   return r.json();
 }
 
-const [khufu,hypotheses,sources,monuments]=await Promise.all([
+const [khufu,hypotheses,sources,monuments,topology]=await Promise.all([
   readJSON("data/khufu.json"),
   readJSON("data/hypotheses.json"),
   readJSON("data/sources.json"),
-  readJSON("data/monuments.json")
+  readJSON("data/monuments.json"),
+  readJSON("data/topology.json")
 ]);
 const sourceMap=new Map(sources.map(s=>[s.id,s]));
 
@@ -373,7 +374,9 @@ const anomalyEntities=[
 ];
 qs("#anomaly-list").innerHTML=anomalyEntities.map(a=>
   '<div class="card"><div class="entity-title"><h3>'+a.label+'</h3>'+badge(a.status)+'</div>'+
-  '<p>'+a.explanation+'</p>'+sourceLinks(a.evidence||[])+'</div>'
+  '<p>'+a.explanation+'</p>'+
+  (a.nextMeasurement?'<h3>Medición prioritaria</h3><p>'+a.nextMeasurement+'</p>':'')+
+  sourceLinks(a.evidence||[])+'</div>'
 ).join("");
 
 qs("#monument-list").innerHTML=monuments.map(m=>
@@ -382,6 +385,64 @@ qs("#monument-list").innerHTML=monuments.map(m=>
   (m.url?'<a class="mini-btn" target="_blank" rel="noopener" href="'+m.url+'">Referencia ↗</a>':'')+
   '</div>'
 ).join("");
+
+
+function graphComponents(nodes,edges){
+  const adj=new Map(nodes.map(n=>[n.id,[]]));
+  edges.forEach(e=>{adj.get(e.a)?.push(e.b);adj.get(e.b)?.push(e.a)});
+  const seen=new Set(),components=[];
+  for(const n of nodes){
+    if(seen.has(n.id)) continue;
+    const stack=[n.id],comp=[];seen.add(n.id);
+    while(stack.length){
+      const x=stack.pop();comp.push(x);
+      for(const y of adj.get(x)||[]) if(!seen.has(y)){seen.add(y);stack.push(y)}
+    }
+    components.push(comp);
+  }
+  return {components,adj};
+}
+
+function renderTopology(clearance=0){
+  const nodes=topology.nodes;
+  const activeEdges=topology.edges.filter(e=>clearance<=e.proxyClearanceRadiusM+1e-9);
+  const {components,adj}=graphComponents(nodes,activeEdges);
+  const beta0=components.length;
+  const beta1=Math.max(0,activeEdges.length-nodes.length+beta0);
+  const reachable=new Set();
+  const stack=["exterior"];reachable.add("exterior");
+  while(stack.length){
+    const x=stack.pop();
+    for(const y of adj.get(x)||[]) if(!reachable.has(y)){reachable.add(y);stack.push(y)}
+  }
+  const separated=nodes.filter(n=>!reachable.has(n.id)).length;
+  qs("#topo-b0").textContent=beta0;
+  qs("#topo-b1").textContent=beta1;
+  qs("#topo-exterior").textContent=reachable.size;
+  qs("#topo-separated").textContent=separated;
+  qs("#clearance-value").textContent=clearance.toFixed(2)+" m";
+
+  const svg=qs("#topology-graph");
+  const positions={
+    exterior:[160,24],descending:[160,72],subterranean:[58,258],ascending:[160,116],
+    "grand-gallery":[160,158],"queen-horizontal":[82,190],queen:[45,230],
+    antechamber:[226,192],king:[265,230],"well-shaft":[245,112]
+  };
+  const edgeEls=topology.edges.map(e=>{
+    const a=positions[e.a],b=positions[e.b],active=activeEdges.includes(e);
+    return '<line class="topology-edge '+(active?'active':'')+'" x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'"><title>'+e.a+' ↔ '+e.b+' · r≤'+e.proxyClearanceRadiusM+' m</title></line>';
+  }).join("");
+  const nodeEls=nodes.map(n=>{
+    const p=positions[n.id]||[160,150];
+    const active=reachable.has(n.id);
+    return '<g opacity="'+(active?1:.42)+'"><circle class="topology-node '+n.kind+'" cx="'+p[0]+'" cy="'+p[1]+'" r="8"><title>'+n.label+'</title></circle>'+
+      '<text class="topology-label" x="'+(p[0]+10)+'" y="'+(p[1]+3)+'">'+n.label+'</text></g>';
+  }).join("");
+  svg.innerHTML=edgeEls+nodeEls;
+}
+
+qs("#clearance").addEventListener("input",e=>renderTopology(Number(e.target.value)));
+renderTopology(0);
 
 qsa(".tabs button").forEach(btn=>btn.addEventListener("click",()=>{
   qsa(".tabs button").forEach(b=>b.classList.remove("active"));
@@ -449,9 +510,13 @@ renderer.setAnimationLoop(()=>{
   renderer.render(scene,camera);
 });
 
-console.info("IRL Dashboard v1.1",{
+if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise().catch(()=>{});}
+
+console.info("IRL Dashboard v1.2",{
   dataVersion:khufu.meta.version,
   sourceCount:sources.length,
   hypotheses:hypotheses.length,
-  causalStates:khufu.causalStates.length
+  causalStates:khufu.causalStates.length,
+  topologyNodes:topology.nodes.length,
+  topologyEdges:topology.edges.length
 });

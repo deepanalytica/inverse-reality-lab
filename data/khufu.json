@@ -2,10 +2,10 @@
   "meta": {
     "id": "khufu",
     "title": "Gran Pirámide de Khufu",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "updated": "2026-09-26",
     "coordinateSystem": "Marco local IRL: x=este-oeste, y=vertical, z=norte-sur; origen en el centro aproximado de la base.",
-    "geometryPolicy": "La envolvente y los espacios internos son una reconstrucción paramétrica para análisis. Las geometrías publicadas conservan su fuente y nivel de certeza; el campo global bloque-a-bloque es aproximado."
+    "geometryPolicy": "Modelo paramétrico de investigación con procedencia explícita. Las entidades publicadas conservan sus fuentes; pasajes y volúmenes se simplifican para visualización; los bloques son proxies hasta disponer de levantamiento individual."
   },
   "dimensions": {
     "baseOriginalMeanM": 230.36,
@@ -57,6 +57,91 @@
         "S8"
       ],
       "explanation": "Espacio excavado en el lecho rocoso. Su posición ayuda a separar procesos de excavación de procesos de mampostería."
+    },
+    {
+      "id": "descending-passage",
+      "label": "Pasaje descendente",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; eje 3D simplificado desde planos históricos",
+      "geometry": {
+        "shape": "inclinedBox",
+        "center": [
+          6.8,
+          3,
+          -56
+        ],
+        "size": [
+          1.1,
+          1.25,
+          95
+        ],
+        "rotationDeg": [
+          -26.5,
+          0,
+          0
+        ]
+      },
+      "evidence": [
+        "S4",
+        "S8"
+      ],
+      "explanation": "Pasaje inclinado desde la cara norte hacia el sistema subterráneo. Restringe accesibilidad y cronología de excavación."
+    },
+    {
+      "id": "ascending-passage",
+      "label": "Pasaje ascendente",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; eje 3D simplificado desde planos históricos",
+      "geometry": {
+        "shape": "inclinedBox",
+        "center": [
+          6.8,
+          16,
+          -31
+        ],
+        "size": [
+          1.1,
+          1.25,
+          40
+        ],
+        "rotationDeg": [
+          26,
+          0,
+          0
+        ]
+      },
+      "evidence": [
+        "S4",
+        "S8"
+      ],
+      "explanation": "Conecta el sistema bajo con la Gran Galería. Su apertura y cierre condicionan secuencias locales."
+    },
+    {
+      "id": "horizontal-passage",
+      "label": "Pasaje horizontal a la Cámara de la Reina",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; representación 3D esquemática",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          20.5,
+          -8
+        ],
+        "size": [
+          1.1,
+          1.25,
+          32
+        ]
+      },
+      "evidence": [
+        "S4",
+        "S8"
+      ],
+      "explanation": "Conecta la zona de la Gran Galería con la Cámara de la Reina y añade una restricción topológica de circulación."
     },
     {
       "id": "queen",
@@ -406,7 +491,8 @@
           180
         ]
       },
-      "explanation": "Volumen de búsqueda para integrar en el futuro geofísica o tomografía bajo la pirámide. El dashboard no asigna una anomalía positiva a este volumen."
+      "explanation": "Volumen de búsqueda para integrar en el futuro geofísica o tomografía bajo la pirámide. El dashboard no asigna una anomalía positiva a este volumen.",
+      "nextMeasurement": "Integrar GPR/ERT u otra geofísica con geometría y resolución documentadas; calcular posterior espacial antes de definir una anomalía."
     },
     {
       "id": "nfc-continuation",
@@ -428,7 +514,8 @@
       "explanation": "La publicación de 2023 indica que una continuación de sección inferior a 1 × 1 m no quedaba completamente excluida por las estadísticas disponibles.",
       "evidence": [
         "S2"
-      ]
+      ],
+      "nextMeasurement": "Aumentar cobertura muográfica desde posiciones que mejoren la sensibilidad al extremo sur del NFC."
     }
   ],
   "parametricBlocks": {
@@ -442,5 +529,6 @@
       "densityKgM3": 2600
     },
     "countVisual": 240
-  }
+  },
+  "topologyModel": "data/topology.json"
 }

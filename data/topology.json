@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "version": "1.2.0",
+    "title": "IRL negative-space topology graph",
+    "status": "derived-proxy",
+    "purpose": "Conectividad simplificada de espacios internos para visualizar filtración por despeje y cambios topológicos.",
+    "caveat": "Este grafo no sustituye una homología volumétrica de la pirámide. Los radios de despeje son parámetros de trabajo para el laboratorio y deben reemplazarse por geometría medida."
+  },
+  "nodes": [
+    {
+      "id": "exterior",
+      "label": "Exterior",
+      "kind": "exterior",
+      "status": "published",
+      "evidence": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "id": "descending",
+      "label": "Pasaje descendente",
+      "kind": "corridor",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "subterranean",
+      "label": "Cámara subterránea",
+      "kind": "chamber",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "ascending",
+      "label": "Pasaje ascendente",
+      "kind": "corridor",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "grand-gallery",
+      "label": "Gran Galería",
+      "kind": "gallery",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "queen-horizontal",
+      "label": "Pasaje horizontal",
+      "kind": "corridor",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "queen",
+      "label": "Cámara de la Reina",
+      "kind": "chamber",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "antechamber",
+      "label": "Antecámara",
+      "kind": "chamber",
+      "status": "published",
+      "evidence": [
+        "S5",
+        "S8"
+      ]
+    },
+    {
+      "id": "king",
+      "label": "Cámara del Rey",
+      "kind": "chamber",
+      "status": "published",
+      "evidence": [
+        "S5",
+        "S8"
+      ]
+    },
+    {
+      "id": "well-shaft",
+      "label": "Pozo / Well Shaft",
+      "kind": "shaft",
+      "status": "published",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "a": "exterior",
+      "b": "descending",
+      "relation": "portal",
+      "proxyClearanceRadiusM": 0.52
+    },
+    {
+      "a": "descending",
+      "b": "subterranean",
+      "relation": "corridor",
+      "proxyClearanceRadiusM": 0.52
+    },
+    {
+      "a": "descending",
+      "b": "ascending",
+      "relation": "junction",
+      "proxyClearanceRadiusM": 0.48
+    },
+    {
+      "a": "ascending",
+      "b": "grand-gallery",
+      "relation": "corridor",
+      "proxyClearanceRadiusM": 0.52
+    },
+    {
+      "a": "grand-gallery",
+      "b": "queen-horizontal",
+      "relation": "junction",
+      "proxyClearanceRadiusM": 0.5
+    },
+    {
+      "a": "queen-horizontal",
+      "b": "queen",
+      "relation": "corridor",
+      "proxyClearanceRadiusM": 0.5
+    },
+    {
+      "a": "grand-gallery",
+      "b": "antechamber",
+      "relation": "upper-access",
+      "proxyClearanceRadiusM": 0.55
+    },
+    {
+      "a": "antechamber",
+      "b": "king",
+      "relation": "portal",
+      "proxyClearanceRadiusM": 0.52
+    },
+    {
+      "a": "grand-gallery",
+      "b": "well-shaft",
+      "relation": "shaft-access",
+      "proxyClearanceRadiusM": 0.32
+    },
+    {
+      "a": "well-shaft",
+      "b": "descending",
+      "relation": "shaft-access",
+      "proxyClearanceRadiusM": 0.28
+    }
+  ],
+  "formalObjects": {
+    "matter": "K_plus(tau)",
+    "negativeSpace": "K_minus(tau)",
+    "exteriorRelativeHomology": "H_k(V_tau,E_tau)",
+    "clearanceFamily": "V_tau,r = {x in V_tau : d(x,M_tau) >= r}",
+    "zigzag": "H_k(V_0,r) <-> H_k(V_1,r) <-> ... <-> H_k(V_n,r)",
+    "graphCycleRank": "beta1_graph = |E| - |V| + beta0_graph"
+  }
+}

@@ -1,140 +1,148 @@
-# Ontology Specification
+# Ontología de Inverse Reality Laboratory v1.2
 
-## 1. Purpose
+## Qué significa ontología en IRL
 
-The ontology must represent not only *what the pyramid contains*, but also:
+Una ontología es el modelo explícito de las entidades que existen en el problema, sus propiedades y las relaciones permitidas entre ellas.
 
-- what it deliberately does not contain;
-- when each material or negative-space entity begins to exist;
-- what depends on what;
-- which relationships are observed versus inferred;
-- which construction histories remain admissible.
+Su función es evitar que geometría, materia, cronología y evidencia queden mezcladas en una representación genérica.
 
-The central design principle is:
+El estado conceptual es:
 
 \[
 \boxed{
-\text{Object}
+\text{objeto}
 =
-\text{entities}
+\text{entidades}
 +
-\text{relations}
+\text{relaciones}
 +
-\text{time}
+\text{tiempo}
 +
-\text{evidence}
+\text{evidencia}
 +
-\text{uncertainty}.
+\text{incertidumbre}.
 }
 \]
 
 ---
 
-# 2. Core entity classes
+## 1. Entidades materiales
 
-## 2.1 MaterialEntity
+Ejemplos:
 
-Examples:
+- bloque;
+- revestimiento;
+- viga de granito;
+- junta;
+- lecho rocoso;
+- piso;
+- muro;
+- elemento de cubierta.
 
-- CoreBlock
-- CasingBlock
-- GraniteBeam
-- MortarJoint
-- BedrockElement
-- FloorElement
-- WallElement
-- GableElement
-- TemporarySupport (hypothetical unless evidenced)
-
-Required attributes:
+Atributos:
 
 \[
 \{
 id,
-geometry,
-pose,
+G,
+q,
 material,
-density,
-mass,
+\rho,
+m,
 provenance,
 damage,
 evidence
 \}.
 \]
 
-## 2.2 NegativeEntity
+---
 
-Examples:
+## 2. Entidades de espacio negativo
 
-- Chamber
-- Corridor
-- Shaft
-- Gallery
-- Void
-- TemporaryConstructionVoid
-- UnknownDensityAnomaly
+Ejemplos:
 
-Attributes:
+- cámara;
+- corredor;
+- galería;
+- shaft;
+- vacío;
+- volumen temporal;
+- anomalía de densidad.
+
+Atributos:
 
 \[
 \{
-volume,
-boundary,
+V,
+\partial V,
 portals,
 clearance,
-topological\ signature,
+topology,
 m^\ominus,
-identity\ state
+identity,
+evidence
 \}.
 \]
 
-## 2.3 Event
+La identidad de una cámara incluye su geometría y su relación con fronteras y accesos.
 
-Examples:
+---
 
-- ExtractionEvent
-- DressingEvent
-- TransportEvent
-- PlacementEvent
-- BoundaryEmergenceEvent
-- ClosureEvent
-- EncapsulationEvent
-- DamageEvent
-- CasingRemovalEvent
-- RestorationEvent
+## 3. Eventos
 
-## 2.4 Process
+- extracción;
+- labrado;
+- transporte;
+- colocación;
+- aparición de frontera;
+- cierre;
+- encapsulamiento;
+- daño;
+- remoción;
+- restauración.
 
-Examples:
+Los eventos forman el conjunto \(E\) del poset constructivo.
 
-- Quarrying
-- RiverTransport
-- LandTransport
-- RampTransport
-- Placement
-- Surveying
-- Weathering
-- SaltCrystallization
-- HumanRemoval
+---
 
-## 2.5 Evidence
+## 4. Procesos
 
-Evidence is never represented as unqualified truth.
+- cantería;
+- transporte terrestre;
+- transporte fluvial;
+- elevación;
+- colocación;
+- medición;
+- intemperismo;
+- alteración humana.
 
-Evidence classes:
+Un proceso puede generar múltiples eventos.
+
+---
+
+## 5. Entidades temporales latentes
 
 \[
-\boxed{
-Observed,
-Reported,
-Derived,
-Inferred,
-Hypothetical,
-Counterfactual.
-}
+\mathcal T
 \]
 
-Each Evidence node contains:
+representa infraestructura que existió durante la obra y luego desapareció:
+
+- rampas;
+- andamios;
+- pasarelas;
+- moldes;
+- soportes;
+- gatos;
+- sistemas de izado.
+
+Su función es evitar falsos problemas de fuerza o acceso.
+
+---
+
+## 6. Evidencia
+
+Cada evidencia contiene:
 
 \[
 \{
@@ -149,297 +157,168 @@ citation
 \}.
 \]
 
----
+Estados:
 
-# 3. Relation vocabulary
-
-## Structural relations
-
-- supports
-- supportedBy
-- transfersLoadTo
-- contacts
-- overlapsLoadCone
-- stabilizes
-
-## Geometric relations
-
-- above
-- below
-- adjacentTo
-- intersects
-- encloses
-- containedIn
-- alignedWith
-
-## Negative-space relations
-
-- bounds
-- portalTo
-- connectedBy
-- mergesWith
-- separatesFrom
-- reserves
-- excludesMaterialFrom
-
-## Chronological relations
-
-- precedes
-- follows
-- overlapsInTime
-- mustPrecede
-- possiblyPrecedes
-- contemporaneousWith
-
-## Provenance relations
-
-- extractedFrom
-- lithologicallyCompatibleWith
-- transportedFrom
-- processedAt
-
-## Epistemic relations
-
-- supportedByEvidence
-- contradictedByEvidence
-- inferredFrom
-- predictedBy
-- falsifiedBy
-- unresolvedAgainst
+- OBSERVED;
+- PUBLISHED;
+- DERIVED;
+- INFERRED;
+- HYPOTHESIS;
+- COUNTERFACTUAL;
+- UNKNOWN.
 
 ---
 
-# 4. Lifecycle of a negative architectural object
+## 7. Relaciones estructurales
 
-For negative object \(N\), define state machine:
+- supports;
+- supportedBy;
+- transfersLoadTo;
+- contacts;
+- stabilizes.
 
-\[
-\boxed{
-\text{unassigned}
-\rightarrow
-\text{reserved}
-\rightarrow
-\text{emergent}
-\rightarrow
-\text{bounded}
-\rightarrow
-\text{structurally complete}
-\rightarrow
-\text{encapsulated}.
-}
-\]
+## 8. Relaciones geométricas
 
-Inverse traversal:
+- above;
+- below;
+- adjacentTo;
+- intersects;
+- encloses;
+- containedIn;
+- alignedWith.
 
-\[
-\boxed{
-\text{encapsulated}
-\rightarrow
-\text{structurally exposed}
-\rightarrow
-\text{unbounded}
-\rightarrow
-\text{merged}
-\rightarrow
-\text{unassigned}.
-}
-\]
+## 9. Relaciones de espacio negativo
 
-A chamber's volume may remain empty in the geometric sense while its architectural identity has already disappeared.
+- bounds;
+- portalTo;
+- connectedBy;
+- mergesWith;
+- separatesFrom;
+- reserves;
+- excludesMaterialFrom.
 
----
+## 10. Relaciones cronológicas
 
-# 5. King's Chamber first-subgraph specification
+- precedes;
+- mustPrecede;
+- possiblyPrecedes;
+- contemporaneousWith;
+- overlapsInTime.
 
-The King's Chamber research subgraph should eventually include at least:
+## 11. Procedencia
 
-- floor;
-- four wall systems;
-- entrance/antechamber relation;
-- ceiling beams;
-- relieving compartments;
-- upper gabled system;
-- shafts and interfaces;
-- neighboring core masonry;
-- access paths required to place granite elements;
-- probable source/provenance nodes for granite;
-- later overburden/load descendants.
+- extractedFrom;
+- lithologicallyCompatibleWith;
+- transportedFrom;
+- processedAt.
 
-The ontology does **not** assume a unique construction sequence. Instead it stores constraints such as
+## 12. Relaciones epistemológicas
 
-\[
-e_i\prec e_j
-\]
-
-with an EvidenceRef and uncertainty for each relation.
+- supportedByEvidence;
+- contradictedByEvidence;
+- inferredFrom;
+- predictedBy;
+- falsifiedBy;
+- unresolvedAgainst.
 
 ---
 
-# 6. Positive and negative time fields
+## 13. Ontología topológica
 
-For material:
+IRL v1.2 añade objetos explícitos:
 
-\[
-T_b^+(\mathbf x)
-=
-\text{time at which material at }\mathbf x\text{ becomes part of the object}.
-\]
-
-For negative-space reservation:
+### TopologicalSpace
 
 \[
-T_b^-(\mathbf x)
-=
-\text{time at which }\mathbf x\text{ becomes intentionally constrained to remain non-material}.
-\]
-
-For identity:
-
-\[
-T_I(N)
-=
-[t_{\mathrm{birth}},t_{\mathrm{death}}]
-\]
-
-under a specified identity criterion.
-
-These fields make it possible for a chamber to begin existing **before** its final roof exists.
-
----
-
-# 7. Evidence-aware graph edge
-
-Every inferred edge should be a structured object:
-
-\[
-e_{ij}
-=
-(
-i,j,
-type,
-p,
-E^+,
-E^-,
-assumptions,
-model
-).
-\]
-
-Where:
-
-- \(p\): posterior/provisional probability;
-- \(E^+\): supporting evidence;
-- \(E^-\): contradictory evidence.
-
-No construction dependency should exist only because an LLM narrated it.
-
----
-
-# 8. Multi-scale negative-space topology
-
-Because rooms and corridors may belong to one connected free-space component, topology is evaluated at scale.
-
-Define
-
-\[
-V_{\tau,r}
-=
 \{
-x:
-x\notin M_\tau,
-\ d(x,M_\tau)\ge r
+domain,
+boundary,
+exterior,
+complex,
+resolution
 \}.
 \]
 
-Then track:
+### HomologyState
 
-- connected components \(\beta_0\);
-- loops \(\beta_1\);
-- cavities \(\beta_2\);
-- merge-tree nodes;
-- Reeb graph nodes;
-- persistence intervals.
+\[
+\{
+H_0,H_1,H_2,\beta_0,\beta_1,\beta_2
+\}.
+\]
 
-The intended result is an identity system in which “King's Chamber”, “Grand Gallery” and “corridor” emerge as geometrically persistent negative cells rather than arbitrary semantic labels.
+### PersistenceFeature
+
+\[
+\{
+dimension,
+birth,
+death,
+generator,
+confidence
+\}.
+\]
+
+### ReebNode / ReebEdge
+
+Representan eventos de ramificación o fusión de conjuntos de nivel.
+
+### ZigzagState
+
+Registra inclusiones o mapas entre estados topológicos sucesivos.
 
 ---
 
-# 9. Ontological distinction: unknown void vs designed void
+## 14. Hipótesis
 
-A density anomaly is not automatically a chamber.
-
-Define:
+Una hipótesis contiene:
 
 \[
-\text{DensityAnomaly}
-\neq
-\text{ArchitecturalVoid}.
+H=
+\{
+statement,
+evidence,
+deductions,
+predictions,
+discriminators,
+status
+\}.
 \]
 
-A proposed promotion path is:
-
-\[
-\text{anomaly}
-\rightarrow
-\text{geometric void candidate}
-\rightarrow
-\text{bounded negative cell}
-\rightarrow
-\text{architectural interpretation}.
-\]
-
-Each transition requires separate evidence.
+Una hipótesis útil debe producir al menos una predicción y una observación discriminante.
 
 ---
 
-# 10. Ontological distinction: causal dependency vs physical support
+## 15. Claim
 
-If \(A\) supports \(B\), then often
-
-\[
-A\prec B,
-\]
-
-but construction precedence can exist without final support, and final support can sometimes be modified by temporary works.
-
-Therefore:
+Cada afirmación pública puede representarse como:
 
 \[
-\boxed{
-\text{supports}
-\neq
-\text{mustPrecede}.
-}
-\]
-
-The ontology deliberately keeps them separate.
-
----
-
-# 11. State of knowledge
-
-For any Claim node:
-
-\[
-K(c)
-=
-[
-class,
-support,
-contradiction,
+C=
+\{
+text,
+epistemicClass,
+sources,
 uncertainty,
 identifiability,
-falsifiers
-].
+falsifiers,
+modelVersion
+\}.
 \]
 
-Recommended classes:
+Esto permite que Meta-Harness audite afirmaciones antes de publicarlas.
 
-- OBSERVED
-- DERIVED
-- INFERRED
-- HYPOTHESIS
-- COUNTERFACTUAL
-- UNKNOWN
+---
 
-This allows the UI to show researchers exactly where the model stops being evidence and begins being inference.
+## 16. Regla de resolución
+
+La ontología debe ser tan detallada como la evidencia permita y tan simple como el problema requiera.
+
+Una entidad sólo se subdivide cuando la subdivisión cambia:
+
+- una restricción;
+- una predicción;
+- una relación causal;
+- una carga;
+- una accesibilidad;
+- una conclusión.

@@ -1,351 +1,185 @@
-# Contributions, Novelty Candidates and Boundaries
+# Contribuciones propuestas y alcance — IRL v1.2
 
-This document is intentionally conservative. It distinguishes:
+## Criterio
 
-1. established mathematics and physics used by the project;
-2. integrations that may be original as a framework;
-3. project-specific mathematical objects/operators that require formal study;
-4. claims that **must not** be presented as discoveries until validated.
+IRL separa fundamentos existentes de integraciones propuestas.
 
----
-
-# 1. Established foundations
-
-The laboratory relies on mature areas:
-
-- inverse problems;
-- Bayesian inference;
-- graph theory and partial orders;
-- rigid-body configuration spaces;
-- structural/contact mechanics;
-- optimal transport;
-- persistent homology;
-- Reeb/merge-tree ideas;
-- relativistic causal geometry;
-- Vaidya and Kerr metrics.
-
-None of these are claimed as invented here.
+La revisión de novedad debe comparar el proyecto con problemas inversos, arqueología computacional, Harris matrices, 4D BIM, assembly planning, topological data analysis, digital twins y modelado probabilístico.
 
 ---
 
-# 2. Framework-level contribution candidate
+## C1. Reconstrucción terminal multimodal
 
-## 2.1 Terminal-state construction inversion
-
-The first contribution candidate is the integration:
+Integración:
 
 \[
-\boxed{
-\text{terminal physical object}
+\text{objeto terminal}
 \rightarrow
-\text{typed predecessor-state distribution}
+\text{historias compatibles}
 \rightarrow
-\text{construction poset}
-\rightarrow
-\text{design constraints}.
-}
+\text{predicciones}.
 \]
 
-The emphasis is not on visual reconstruction but on evidence-constrained inference over admissible histories.
-
-Potential novelty must be evaluated against:
-
-- inverse procedural modeling;
-- 4D BIM;
-- archaeological Harris matrices;
-- Bayesian chronological modeling;
-- assembly/disassembly planning;
-- computational archaeology;
-- digital twins.
+El aporte propuesto es la coordinación de evidencia geométrica, física, topológica, logística y arqueológica dentro del mismo problema inverso.
 
 ---
 
-# 3. Positive/negative coupled construction ontology
-
-The project proposes modeling a constructed object as
+## C2. Ontología dual materia / espacio negativo
 
 \[
-\boxed{
-\mathcal A(t)
+\mathcal A_\tau
 =
-(
-\mathcal K^+(t),
-\mathcal K^-(t)
-)
-}
+(K_\tau^+,K_\tau^-).
 \]
 
-where positive material and deliberately preserved negative space have equal ontological status.
-
-The negative object has its own:
-
-- birth;
-- boundary;
-- portals;
-- topology;
-- mass deficit relative to reference;
-- dependencies;
-- evidence.
-
-This is stronger than simply storing holes in a mesh.
+La propuesta trata cámaras y corredores como entidades con genealogía, fronteras, portales y evidencia.
 
 ---
 
-# 4. Counterfactual absent mass
-
-The project-specific quantity
+## C3. Campos de nacimiento
 
 \[
-\boxed{
+T_b^+(x)
+\]
+
+representa incorporación material y:
+
+\[
+T_b^-(x)
+\]
+
+reserva o consolidación de espacio negativo.
+
+---
+
+## C4. Masa ausente de referencia
+
+\[
 m^\ominus(V)
 =
--\int_V\rho_{\mathrm{ref}}\,dV
-}
+-\int_V\rho_{\mathrm{ref}}\,dV.
 \]
 
-is proposed as an interface variable between architectural negative space and density-based observations.
-
-It is explicitly **not** physical negative mass.
-
-Research questions:
-
-- Is the variable mathematically useful beyond ordinary density residuals?
-- Does it simplify multimodal inference with muography?
-- What reference fields are scientifically defensible?
-- How should uncertainty in \(\rho_{\mathrm{ref}}\) propagate?
+Funciona como variable de interfaz entre arquitectura negativa y mediciones de densidad.
 
 ---
 
-# 5. Inverse gravitational ledger
-
-The project proposes retaining normal gravity while defining a signed reverse energy ledger:
+## C5. Frente inverso admisible
 
 \[
-\boxed{
-\Delta U^-
-=
--\Delta U^+.
-}
-\]
-
-The possible contribution is not the equation itself, which is trivial, but its use as a **state variable in construction-history inversion** coupled to mass, access and topology.
-
----
-
-# 6. Construction/void birth fields
-
-Proposed paired fields:
-
-\[
-\boxed{
-T_b^+(\mathbf x),
-\qquad
-T_b^-(\mathbf x).
-}
-\]
-
-\(T_b^+\) records material incorporation; \(T_b^-\) records the moment a spatial region becomes constrained to remain negative space.
-
-This distinction is central because the future chamber may begin to exist as a **constraint** before it exists as a closed room.
-
----
-
-# 7. Negative-space bifiltration
-
-One of the strongest mathematical contribution candidates is
-
-\[
-\boxed{
-(\tau,r)\mapsto
-V_{\tau,r}
-=
-\{x\notin M_\tau:d(x,M_\tau)\ge r\}.
-}
-\]
-
-This combines:
-
-- inverse construction state \(\tau\);
-- morphological/clearance scale \(r\).
-
-The goal is to track architectural negative objects through time and scale simultaneously.
-
-Potential tools:
-
-- 2-parameter persistence;
-- fibered barcodes;
-- rank invariants;
-- Reeb graphs;
-- merge trees.
-
-This should be compared carefully with existing multiparameter persistent homology and shape-analysis literature before any novelty claim.
-
----
-
-# 8. Typed inverse admissible frontier
-
-The proposed operator
-
-\[
-\boxed{
 \mathcal A^-(X)
 =
 \{
 e\in\operatorname{Max}(P):
-\mathrm{Stable}
-\land
-\mathrm{Accessible}
-\land
-\mathrm{EvidenceCompatible}
-\}
-}
+G_eS_eA_eM_eE_e=1
+\}.
 \]
 
-combines a construction poset with mechanics, configuration-space access and evidence.
-
-Its scientific value would come from showing that it eliminates historical sequences that remain plausible under any one constraint alone.
+Integra orden parcial, geometría, estabilidad, acceso, mecánica y evidencia.
 
 ---
 
-# 9. Complement-defined accessibility object
+## C6. Familia topológica de construcción
 
-Proposed abstraction:
+IRL utiliza:
 
 \[
-\boxed{
-N_{\mathcal R}(\lambda)
+V_{\tau,r}
 =
-\Omega
-\setminus
-\mathrm{Accessible}_{\mathcal R}(\Omega,\lambda).
-}
+\{
+x\in V_\tau:
+d_M(x,\tau)\ge r
+\}.
 \]
 
-The relation \(\mathcal R\) changes by domain.
+La revisión v1.2 precisa que \(r\) genera una filtración para \(\tau\) fijo, mientras la dimensión constructiva puede requerir zigzag persistence.
 
-This is used to compare:
-
-- architectural exclusion;
-- causal non-escape;
-- geodesic forbidden regions.
-
-The contribution is an ontological/computational abstraction, **not a new physical equivalence**.
+Esta precisión evita llamar bifiltración a una familia que no cumple monotonicidad.
 
 ---
 
-# 10. Cross-domain critical-boundary template
+## C7. Identificabilidad por niveles
 
-The generic condition
+- I0: orden causal grueso;
+- I1: clase funcional;
+- I2: familia de mecanismo;
+- I3: implementación histórica específica.
 
-\[
-\Phi=0,
-\qquad
-\nabla\Phi=0
-\]
-
-is established mathematics in critical-point/bifurcation settings.
-
-The project contribution candidate is using it as a common **interface contract** for detecting accessibility transitions across heterogeneous simulation engines.
+El nivel de una afirmación queda limitado por la evidencia.
 
 ---
 
-# 11. Forward / inverse / counterfactual triad
-
-The architecture explicitly separates
+## C8. Ontología temporal latente
 
 \[
-\mathcal F:
-H\rightarrow Y,
+\mathcal T^\star
 \]
 
-\[
-\mathcal I:
-Y\rightarrow P(H\mid Y),
-\]
-
-and
-
-\[
-\mathcal C:
-H\rightarrow\widehat Y_H.
-\]
-
-The counterfactual engine is not optional: it produces the predictions required to falsify an inverse history.
+representa la clase mínima de infraestructura temporal requerida para hacer admisible una historia bajo un costo declarado.
 
 ---
 
-# 12. Epistemic contribution: non-identifiability as output
-
-A key methodological contribution is refusing to force a unique historical solution when
+## C9. Protocolo de residual
 
 \[
-H_1,H_2,\ldots
+F_X
+=
+F_{\mathrm{req}}
+-
+\sum_kF_{\mathrm{known},k}.
 \]
 
-remain observationally indistinguishable.
-
-The system should report:
-
-- equivalence classes of histories;
-- posterior probabilities;
-- evidence needed to discriminate them.
-
-This is a direct answer to overconfident narrative generation.
+El residual se interpreta después de agotar identificabilidad, ontología, mecanismos y sensibilidad.
 
 ---
 
-# 13. Proposed conjectures
-
-These are **not proven results**.
-
-### Conjecture A — multimodal contraction
-
-Independent evidence modalities should monotonically reduce the admissible history set under correctly specified likelihoods:
+## C10. Diseño activo de evidencia
 
 \[
-\mathcal H_{n+1}
-\subseteq
-\mathcal H_n
+d^\star
+=
+\arg\max_d\operatorname{EIG}(d).
 \]
 
-in a set-valued approximation, except when new evidence reveals prior model misspecification.
-
-### Conjecture B — topological chronology bounds
-
-Persistent negative-space events impose non-trivial lower/upper bounds on construction partial orders that cannot be recovered from elevation alone.
-
-### Conjecture C — evidence-optimal sensing
-
-Expected-information-gain selection of future muographic/geometric measurements should discriminate candidate construction graphs more efficiently than uniform measurement refinement.
-
-### Conjecture D — dual-state sufficiency
-
-For certain architectural reconstruction tasks, the coupled state
-
-\[
-(\mathcal K^+,\mathcal K^-)
-\]
-
-contains substantially more chronological information than material geometry alone.
-
-Each conjecture requires experiment and comparison with baselines.
+IRL incorpora la selección de nuevas mediciones como parte del propio ciclo de inferencia.
 
 ---
 
-# 14. Claims we explicitly do not make
+## C11. Politopo de cronologías
 
-The project does **not** claim:
+El uso del politopo de orden:
 
-- proof of the historical construction method of Khufu;
-- discovery of antigravity;
-- physical negative mass in the pyramid;
-- literal reversal of thermodynamic time;
-- that a chamber is physically equivalent to a black hole;
-- that Kerr or Vaidya dynamics explain ancient construction;
-- that the proposed ontology is mathematically novel before literature review and peer scrutiny.
+\[
+\mathcal O(P)
+\]
 
-The correct phrase is:
+permite expresar el conjunto continuo de cronologías compatibles con precedencias y relacionarlo con extensiones lineales.
 
-> **proposed formalism / research hypothesis / contribution candidate**
+La matemática del politopo es establecida; su integración como métrica de compresión cronológica dentro de IRL es una propuesta del framework.
 
-until validated.
+---
+
+## C12. Dashboard epistemológicamente tipado
+
+Cada volumen, cálculo e hipótesis del visor mantiene:
+
+- estatus;
+- fuente;
+- incertidumbre;
+- función;
+- versión del modelo.
+
+El dashboard forma parte del método de auditoría, no sólo de la presentación.
+
+---
+
+## Estado de novedad
+
+Las contribuciones anteriores se presentan como **candidatas de integración y formalización**.
+
+Una afirmación de novedad requiere:
+
+1. revisión sistemática;
+2. comparación formal con métodos existentes;
+3. benchmark prospectivo;
+4. revisión por pares.

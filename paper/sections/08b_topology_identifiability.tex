@@ -1,0 +1,341 @@
+
+\section{Topología computacional, cronología parcial e identificabilidad}
+
+\subsection{Espacio de estados y complejos duales}
+
+Sea \(D\subset\mathbb R^3\) el dominio espacial de interés. Para un estado inverso \(\tau\), definimos el dominio material
+\[
+M_\tau\subset D
+\]
+y su complemento libre
+\[
+V_\tau=D\setminus M_\tau.
+\]
+
+Una discretización computacional puede representarse mediante complejos cubicales o simpliciales
+\[
+K_\tau^+,\qquad K_\tau^-,
+\]
+asociados respectivamente a materia y espacio negativo. Esta construcción no pretende introducir una nueva noción de homología; la contribución del marco consiste en usar ambos complejos de forma acoplada para restringir historias constructivas.
+
+\subsection{Homología relativa respecto del exterior}
+
+Una dificultad inmediata aparece cuando cámaras y corredores permanecen conectados al exterior. La conectividad ordinaria puede entonces ocultar identidad arquitectónica.
+
+Sea
+\[
+E_\tau\subset V_\tau
+\]
+la componente o subregión exterior distinguida. Consideramos la pareja
+\[
+(V_\tau,E_\tau)
+\]
+y sus grupos de homología relativa
+\[
+\boxed{
+H_k(V_\tau,E_\tau;\mathbb F).
+}
+\]
+
+El objetivo es describir estructura interna respecto del exterior, manteniendo explícitas las condiciones de frontera.
+
+\subsection{Filtración por despeje}
+
+Definimos
+\[
+d_M(x,\tau)
+=
+\operatorname{dist}(x,M_\tau)
+\]
+y, para un radio \(r\ge0\),
+\[
+\boxed{
+V_{\tau,r}
+=
+\{
+x\in V_\tau:
+d_M(x,\tau)\ge r
+\}.
+}
+\]
+
+Para \(\tau\) fijo y \(r_1\le r_2\),
+\[
+V_{\tau,r_2}\subseteq V_{\tau,r_1},
+\]
+de modo que \(r\) sí induce una filtración ordinaria. Esto permite estudiar cuándo conexiones estrechas desaparecen mientras recintos de mayor escala permanecen topológicamente distinguibles \cite{edelsbrunner2010,deywang2022}.
+
+Los números de Betti
+\[
+\beta_k(\tau,r)
+=
+\dim H_k(V_{\tau,r};\mathbb F)
+\]
+resumen componentes, ciclos y cavidades.
+
+\subsection{Estabilidad frente a perturbaciones geométricas}
+
+Para funciones tame adecuadas \(f,g\), la estabilidad de diagramas de persistencia establece
+\[
+\boxed{
+d_B(D(f),D(g))
+\le
+\|f-g\|_\infty,
+}
+\]
+bajo las hipótesis del teorema de estabilidad \cite{cohensteiner2007}. Esta propiedad resulta especialmente relevante para reconstrucciones provenientes de escáneres, nubes de puntos y volúmenes discretizados con ruido.
+
+\subsection{Corrección formal: la coordenada inversa no genera necesariamente una bifiltración}
+
+Una familia \((\tau,r)\mapsto V_{\tau,r}\) sólo constituye una bifiltración clásica cuando existen inclusiones monotónicas en ambos parámetros.
+
+Durante construcción o desmontaje, un espacio puede abrirse, cerrarse, fusionarse con el exterior o separarse. Por tanto, en general,
+\[
+V_{\tau_i,r}
+\nsubseteq
+V_{\tau_{i+1},r}
+\]
+y tampoco necesariamente ocurre la inclusión inversa.
+
+En consecuencia, IRL adopta una formulación zigzag para la dimensión temporal:
+\[
+\boxed{
+V_{0,r}
+\leftrightarrow
+V_{1,r}
+\leftrightarrow
+\cdots
+\leftrightarrow
+V_{n,r}.
+}
+\]
+
+Aplicando homología:
+\[
+H_k(V_{0,r})
+\leftrightarrow
+H_k(V_{1,r})
+\leftrightarrow
+\cdots
+\leftrightarrow
+H_k(V_{n,r}),
+\]
+lo cual se inscribe en el marco de zigzag persistence \cite{carlssondesilva2010}. Esta precisión corrige una formulación anterior del proyecto: \((\tau,r)\mapsto V_{\tau,r}\) se denomina ahora \emph{familia de dos parámetros} salvo que se demuestre monotonicidad suficiente para hablar de bifiltración.
+
+\subsection{Persistencia multiparámetro}
+
+Cuando se utilizan dos parámetros monotónicos, por ejemplo despeje \(r\) y umbral de densidad \(\rho_c\), puede definirse
+\[
+\mathcal V_{r,\rho_c}
+=
+\{
+x:
+d_M(x)\ge r,\;
+\rho(x)\le\rho_c
+\}.
+\]
+
+Bajo una orientación coherente de inclusiones,
+\[
+(r,\rho_c)
+\mapsto
+H_k(\mathcal V_{r,\rho_c})
+\]
+forma un módulo de persistencia multiparámetro. Este régimen conecta naturalmente geometría y muografía, aunque sus invariantes son más complejos que un barcode unidimensional \cite{carlssonzomorodian2009}.
+
+\subsection{Grafos de Reeb y transiciones críticas}
+
+Para una función
+\[
+f:X\rightarrow\mathbb R,
+\]
+el grafo de Reeb identifica puntos que pertenecen a una misma componente conexa de un conjunto de nivel. Puede utilizarse con altura, distancia al exterior, despeje, densidad o posterior espacial de vacío \cite{biasotti2008,deywang2022}.
+
+En un modelo suave, candidatos a transición topológica aparecen en puntos críticos:
+\[
+\nabla f(x^\star)=0.
+\]
+
+En una formulación implícita:
+\[
+\boxed{
+\Phi(x^\star;\lambda^\star)=0,
+\qquad
+\nabla_x\Phi(x^\star;\lambda^\star)=0.
+}
+\]
+
+IRL utiliza esta estructura como detector de estados donde cambia la clase de accesibilidad.
+
+\subsection{Orden parcial y politopo de cronologías}
+
+Sea
+\[
+P=(E,\prec)
+\]
+el poset constructivo. Una historia serial compatible es una extensión lineal
+\[
+\pi\in\mathcal L(P).
+\]
+
+Asignando a cada evento un tiempo normalizado
+\[
+\mathbf t=(t_1,\ldots,t_n)\in[0,1]^n,
+\]
+se define el politopo de orden de Stanley
+\[
+\boxed{
+\mathcal O(P)
+=
+\{
+\mathbf t\in[0,1]^n:
+t_i\le t_j
+\text{ si }e_i\prec e_j
+\}.
+}
+\]
+
+Para un poset finito de \(n\) elementos,
+\[
+\boxed{
+\operatorname{Vol}(\mathcal O(P))
+=
+\frac{e(P)}{n!},
+}
+\]
+donde \(e(P)=|\mathcal L(P)|\) \cite{stanley1986}. Esto proporciona una medida geométrica del grado en que las precedencias reducen el espacio de cronologías normalizadas.
+
+Definimos como métrica descriptiva del modelo:
+\[
+C_P
+=
+1-\frac{e(P)}{n!}.
+\]
+
+\(C_P\) cuantifica compresión causal dentro del poset elegido y no debe interpretarse como probabilidad histórica.
+
+\subsection{Accesibilidad en espacio de configuraciones}
+
+Para una pieza rígida con configuración
+\[
+q=(R,p)\in SE(3),
+\]
+el espacio libre es
+\[
+\mathcal C_{\mathrm{free}}(t)
+=
+\{
+q:
+B(q)\cap M(t)=\varnothing
+\}.
+\]
+
+La colocación exige una curva continua
+\[
+\gamma:[0,1]\rightarrow\mathcal C_{\mathrm{free}}(t)
+\]
+y, en el marco IRL, restricciones adicionales:
+\[
+\gamma(s)
+\in
+\mathcal C_{\mathrm{free}}
+\cap
+\mathcal C_{\mathrm{force}}
+\cap
+\mathcal C_{\mathrm{support}}.
+\]
+
+La abstracción de espacio de configuraciones es estándar en motion planning \cite{lavalle2006}; su función aquí es transformar geometría de acceso en restricciones cronológicas constructivas.
+
+\subsection{Reducción del espacio de historias}
+
+Sea \(\mathcal H_0\) la familia inicial de historias y
+\[
+\mathcal H_j
+=
+\{
+H\in\mathcal H_{j-1}:g_j(H)=1
+\}
+\]
+el conjunto superviviente después de un gate.
+
+Para una medida \(\mu\),
+\[
+\boxed{
+R_j
+=
+1-
+\frac{\mu(\mathcal H_j)}
+{\mu(\mathcal H_{j-1})}.
+}
+\]
+
+\(\mu\) puede ser conteo, volumen del politopo, masa posterior o medida Monte Carlo. Esta cantidad convierte una pregunta cualitativa en un objetivo experimental: medir cuánto restringe cada modalidad el espacio de historias.
+
+\subsection{Entropía posterior y métrica descriptiva de identificabilidad}
+
+Para historias discretas \(H_i\) con probabilidades posteriores \(p_i\),
+\[
+\mathsf H(H\mid Y)
+=
+-\sum_i p_i\log p_i.
+\]
+
+Como resumen descriptivo se propone
+\[
+\boxed{
+I_{\mathrm{IRL}}
+=
+1-
+\frac{\mathsf H(H\mid Y)}
+{\log n}.
+}
+\]
+
+Esta cantidad se reporta junto con la distribución completa: es una métrica de comunicación del proyecto, no un sustituto de análisis formal de identificabilidad.
+
+\subsection{Diseño experimental óptimo}
+
+Para un diseño de medición \(d\), la ganancia esperada de información es
+\[
+\boxed{
+\operatorname{EIG}(d)
+=
+\mathbb E_{Y_d}
+\left[
+D_{\mathrm{KL}}
+\left(
+p(H,\Theta\mid Y,Y_d,d)
+\|
+p(H,\Theta\mid Y)
+\right)
+\right].
+}
+\]
+
+La siguiente medición puede elegirse mediante
+\[
+d^\star
+=
+\arg\max_d
+\operatorname{EIG}(d),
+\]
+sujeto a costo, seguridad y viabilidad \cite{alexanderian2021}. En Khufu, este formalismo puede comparar nuevas posiciones muográficas, escaneo geométrico, caracterización litológica o geofísica subsuperficial.
+
+\subsection{Implicación para el dashboard}
+
+La implementación v1.2 distingue tres niveles:
+
+\begin{enumerate}
+\item grafo de conectividad como aproximación explicativa;
+\item familia de despeje como modelo morfológico;
+\item homología volumétrica/persistente como objetivo numérico siguiente.
+\end{enumerate}
+
+Los valores \(\beta_0^{\mathrm{graph}}\) y
+\[
+\beta_1^{\mathrm{graph}}
+=
+|E|-|V|+\beta_0^{\mathrm{graph}}
+\]
+mostrados en la interfaz describen el grafo, no la homología 3D completa del monumento.

@@ -53,3 +53,16 @@ Las entidades del visor sólo citan identificadores presentes en el registro de 
 ## Próxima extensión
 
 El esquema está preparado para mallas por bloque, tensor de tensiones, contactos, litología, cronología posterior, muografía volumétrica, radar/ERT/GPR, posterior bayesiano espacial y persistencia topológica.
+
+
+## Esquema topológico v1.2
+
+El archivo data/topology.json define:
+
+\[
+T=\{nodes,edges,formalObjects\}.
+\]
+
+Cada arista contiene un radio de despeje proxy \(c_e\). Para un valor \(r\), permanece activa si \(r\le c_e\).
+
+El dataset distingue expresamente grafo de conectividad de complejo volumétrico. El segundo se incorporará en una versión posterior.
