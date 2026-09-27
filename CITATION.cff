@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-title: "Inverse Reality Laboratory: Chrono-Causal Reconstruction of Physical Objects"
-message: "If you use this research prototype, please cite this repository and contact the author for collaboration."
+title: "Ontología de Realidad Inversa: reconstrucción cronocausal, topológica y físicamente restringida de historias constructivas"
+message: "Si utiliza este preprint o el laboratorio, cite el repositorio y la versión v1.0."
 type: software
-version: "0.2"
+version: "1.0"
 date-released: 2026-09-26
 authors:
   - family-names: "Reyes Saavedra"
@@ -28,3 +28,7 @@ keywords:
   - Vaidya spacetime
   - Kerr geodesics
   - PRAXIOS
+
+  - identifiability
+  - construction physics
+  - latent temporary ontology
