@@ -268,7 +268,9 @@ export class PraxiosRuntime {
       status: "PENDING",
       requestedBy: actor,
       decidedBy: null,
-      reason: null
+      reason: null,
+      consumed: false,
+      consumedBy: null
     };
     this.state.actions.push({ ...action, status: "AWAITING_AUTHORIZATION" });
     this.state.authorizations.push(request);
@@ -304,6 +306,15 @@ export class PraxiosRuntime {
       const existing = this.state.actions.find(item => item.id === action.id);
       if (existing) existing.status = "BLOCKED";
       throw new Error("Meta-Harness blocked action " + action.id);
+    }
+
+    if (authorization) {
+      authorization.consumed = true;
+      authorization.consumedBy = actor;
+      await this.emit("AUTHORIZATION_CONSUMED", {
+        authorizationId: authorization.id,
+        actionId: action.id
+      }, actor);
     }
 
     const registration = action.executor ? this.executors.get(action.executor) : null;

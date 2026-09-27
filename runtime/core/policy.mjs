@@ -98,6 +98,9 @@ export class PolicyEngine {
     if (authorization.status !== "APPROVED") {
       return { id: "AUTHORIZATION", status: STATUS.BLOCK, reason: "Authorization is not approved." };
     }
+    if (authorization.consumed) {
+      return { id: "AUTHORIZATION", status: STATUS.BLOCK, reason: "Authorization has already been consumed." };
+    }
     if (authorization.actionId !== action.id) {
       return { id: "AUTHORIZATION", status: STATUS.BLOCK, reason: "Authorization does not match the requested action." };
     }

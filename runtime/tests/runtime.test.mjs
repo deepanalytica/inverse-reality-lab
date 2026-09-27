@@ -77,6 +77,14 @@ test("effectful action is structurally blocked until human authorization", async
     actor: "praxios"
   });
   assert.deepEqual(result.output, { artifactId: "A1", value: { ok: true } });
+
+  await assert.rejects(
+    runtime.executeAction(action, {
+      authorizationId: request.id,
+      actor: "praxios"
+    }),
+    /Meta-Harness blocked action/
+  );
 });
 
 test("scheduler respects dependencies", async () => {
