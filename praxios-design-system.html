@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRAXIOS Design System</title>
+<meta name="description" content="Sistema de diseño para PRAXIOS OS, Meta-Harness y Decision Room.">
+<link rel="stylesheet" href="assets/praxios.css">
+</head>
+<body>
+<main class="px-ds">
+  <section class="px-ds-hero">
+    <div class="px-logo"><div class="px-mark"></div><div class="px-brand">PRAXIOS <em>OS</em><small>Design System · v0.1</small></div></div>
+    <h1>Una interfaz para operar, verificar y decidir.</h1>
+    <p>El sistema visual separa ejecución, assurance y autoridad humana sin fragmentar la sesión. El color comunica función y estado; la jerarquía evita convertir una sala de control en un dashboard saturado.</p>
+    <div class="px-top-actions" style="margin-top:16px"><a class="px-btn primary" href="praxios.html">Abrir Control Room</a><a class="px-btn" href="index.html">Volver a IRL</a></div>
+  </section>
+
+  <h2>Principios</h2>
+  <div class="px-component-grid">
+    <div class="px-component"><h3>1 · State first</h3><p>La UI representa estados canónicos y transiciones, no sólo mensajes.</p></div>
+    <div class="px-component"><h3>2 · Evidence visible</h3><p>Claims y decisiones pueden rastrearse hasta evidencia y artefactos.</p></div>
+    <div class="px-component"><h3>3 · Human authority</h3><p>Los checkpoints humanos ocupan una posición visual distinta de los agentes.</p></div>
+    <div class="px-component"><h3>4 · Calm density</h3><p>Alta densidad informativa con jerarquía, contraste y espacio.</p></div>
+    <div class="px-component"><h3>5 · Semantic status</h3><p>Verde confirma, ámbar exige revisión, rojo bloquea y cian representa ejecución.</p></div>
+    <div class="px-component"><h3>6 · Provider agnostic</h3><p>El diseño muestra roles y capacidades antes que marcas de modelos.</p></div>
+  </div>
+
+  <h2>Color tokens</h2>
+  <div class="px-ds-grid">
+    <div class="px-swatch"><div class="color" style="background:#05090d"></div><div class="meta"><b>Background 0</b><span>#05090D</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#101c28"></div><div class="meta"><b>Raised surface</b><span>#101C28</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#d7ed00"></div><div class="meta"><b>Authority accent</b><span>#D7ED00</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#56d5ff"></div><div class="meta"><b>Execution</b><span>#56D5FF</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#63d89b"></div><div class="meta"><b>PASS</b><span>#63D89B</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#ffbe63"></div><div class="meta"><b>REVIEW</b><span>#FFBE63</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#ff7676"></div><div class="meta"><b>BLOCK</b><span>#FF7676</span></div></div>
+    <div class="px-swatch"><div class="color" style="background:#b79cff"></div><div class="meta"><b>Hypothesis</b><span>#B79CFF</span></div></div>
+  </div>
+
+  <h2>Typography</h2>
+  <div class="px-component">
+    <div class="px-type-sample"><b style="font-size:34px;letter-spacing:-.04em">Control & Decision Room</b><span>Display / 34 / -4%</span></div>
+    <div class="px-type-sample"><b style="font-size:18px">Orquestación de sesión</b><span>Heading / 18</span></div>
+    <div class="px-type-sample"><b style="font-size:12px">Claim C-0142 · hypothesis</b><span>Component heading / 12</span></div>
+    <div class="px-type-sample"><span style="font-size:10px;color:var(--text-1)">La evidencia actual mantiene múltiples historias compatibles.</span><span>Body compact / 10</span></div>
+    <div class="px-type-sample"><code style="font-family:var(--font-mono);font-size:9px;color:var(--cyan)">12:41:07 GATE Meta-Harness review</code><span>Ledger mono / 9</span></div>
+  </div>
+
+  <h2>Status language</h2>
+  <div class="px-component">
+    <span class="px-badge running">running</span>
+    <span class="px-badge pass">pass</span>
+    <span class="px-badge review">review</span>
+    <span class="px-badge block">block</span>
+    <span class="px-badge info">hypothesis</span>
+    <p>Los estados usan texto + color. El color nunca es el único portador de significado.</p>
+  </div>
+
+  <h2>Core components</h2>
+  <div class="px-component-grid">
+    <div class="px-component"><h3>Gate row</h3><div class="px-gate"><div><b>Evidence</b><small>2 independent sources</small></div><span class="px-badge pass">PASS</span></div></div>
+    <div class="px-component"><h3>Claim card</h3><div class="px-card"><strong>C-0142 · NFC continuation</strong><p>Class: hypothesis · identifiability: low</p></div></div>
+    <div class="px-component"><h3>Human checkpoint</h3><button class="px-btn primary">Approve</button> <button class="px-btn danger">Reject</button></div>
+    <div class="px-component"><h3>Model slot</h3><div class="px-model"><b>Verifier slot</b>independent review · tools off</div></div>
+    <div class="px-component"><h3>Ledger event</h3><div class="px-ledger-row review"><span>12:42</span><span class="kind">REVIEW</span><span>Identifiability gate</span></div></div>
+    <div class="px-component"><h3>Primary action</h3><button class="px-btn primary">Run session</button></div>
+  </div>
+
+  <h2>Three lenses, one state</h2>
+  <div class="px-component-grid">
+    <div class="px-component"><h3 style="color:var(--cyan)">OPERATE · PRAXIOS</h3><p>Tasks, agents, models, tools, dependencies, retries, artifacts and execution state.</p></div>
+    <div class="px-component"><h3 style="color:var(--amber)">ASSURE · META-HARNESS</h3><p>Claims, evidence, contradictions, uncertainty, gates, policies and audit.</p></div>
+    <div class="px-component"><h3 style="color:var(--accent)">DECIDE · DECISION ROOM</h3><p>Situation, findings, unknowns, scenarios, options, human checkpoint, decision and outcome.</p></div>
+  </div>
+</main>
+</body>
+</html>
