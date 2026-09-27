@@ -1,0 +1,179 @@
+
+\section{Ontología dual: materia positiva y arquitectura negativa}
+
+Sea \(D\subset\R^3\) el dominio de construcción y \(M(t)\subseteq D\) el dominio material. El espacio libre es
+
+\begin{equation}
+V(t)=D\setminus M(t).
+\end{equation}
+
+IRL modela simultáneamente
+
+\begin{equation}
+\boxed{
+\mathcal A(t)
+=
+\left(
+\Kp(t),
+\Kn(t)
+\right),
+}
+\end{equation}
+
+donde \(\Kp\) es el complejo material y \(\Kn\) el complejo arquitectónico negativo.
+
+\begin{definition}[Objeto negativo arquitectónico]
+Un objeto negativo \(N_j\) se representa mediante
+\begin{equation}
+N_j
+=
+\left(
+V_j,
+\partial_sV_j,
+P_j,
+\mathcal H_j,
+m_j^\ominus,
+\eta_j,
+I_j,
+\mathcal E_j
+\right),
+\end{equation}
+donde \(V_j\) es volumen, \(\partial_sV_j\) frontera estructural, \(P_j\) portales, \(\mathcal H_j\) firma topológica, \(m_j^\ominus\) déficit de masa de referencia, \(\eta_j\) grado de realización de frontera, \(I_j\) estado de identidad y \(\mathcal E_j\) evidencia.
+\end{definition}
+
+Una cámara no es sólo aire: es una región cuya no-ocupación tuvo que preservarse mientras se construían sus límites y dependencias.
+
+\section{Masa ausente contrafactual}
+
+Sea \(\rho_{\mathrm{ref}}(\mathbf x)\) una densidad de referencia explícita.
+
+\begin{definition}[Masa ausente contrafactual]
+\begin{equation}
+\boxed{
+m_C^\ominus
+=
+-\int_{V_C}
+\rho_{\mathrm{ref}}(\mathbf x)\,dV.
+}
+\end{equation}
+\end{definition}
+
+\(m_C^\ominus\) no es masa física negativa ni produce antigravedad. Es un déficit firmado respecto de una hipótesis de relleno.
+
+Definimos también
+
+\begin{equation}
+\delta\rho(\mathbf x)
+=
+\rho_{\mathrm{obs}}(\mathbf x)
+-
+\rho_{\mathrm{ref}}(\mathbf x).
+\end{equation}
+
+La muografía restringe integrales de densidad a lo largo de trayectorias,
+
+\begin{equation}
+\Sigma_\mu(\gamma)
+=
+\int_\gamma \rho(\mathbf x)\,ds,
+\end{equation}
+
+por lo que una anomalía de densidad puede incorporarse al modelo sin promoverla automáticamente a cámara arquitectónica \cite{morishima2017,procureur2023}.
+
+\section{Genealogía del vacío y campos de nacimiento}
+
+Una cámara puede atravesar al menos cinco eventos:
+
+\begin{enumerate}[label=(\roman*)]
+\item reserva del volumen futuro \(t_R\);
+\item emergencia de fronteras \(t_B\);
+\item cierre espacial \(t_C\);
+\item completitud estructural \(t_S\);
+\item encapsulamiento \(t_E\).
+\end{enumerate}
+
+Con
+
+\begin{equation}
+t_R\le t_B\le t_C\le t_S\le t_E.
+\end{equation}
+
+Se proponen dos campos:
+
+\begin{equation}
+\boxed{
+T_b^+(\mathbf x)
+=
+\text{instante de incorporación material}
+}
+\end{equation}
+
+y
+
+\begin{equation}
+\boxed{
+T_b^-(\mathbf x)
+=
+\text{instante de reserva del espacio negativo}.
+}
+\end{equation}
+
+La consecuencia es
+
+\begin{equation}
+\boxed{
+\text{vacío geométrico}
+\neq
+\text{identidad topológica}
+\neq
+\text{identidad arquitectónica}.
+}
+\end{equation}
+
+\section{Bifiltración del espacio negativo}
+
+La conectividad ordinaria no distingue una cámara de un corredor conectado.
+
+Sea
+
+\begin{equation}
+d_M(\mathbf x,\tau)
+=
+\operatorname{dist}
+(\mathbf x,M_\tau).
+\end{equation}
+
+Para un radio de despeje \(r\),
+
+\begin{equation}
+\boxed{
+V_{\tau,r}
+=
+\left\{
+\mathbf x\in D\setminus M_\tau:
+d_M(\mathbf x,\tau)\ge r
+\right\}.
+}
+\end{equation}
+
+El mapa
+
+\begin{equation}
+(\tau,r)\mapsto V_{\tau,r}
+\end{equation}
+
+forma una bifiltración propuesta. A \(\tau\) fijo, aumentar \(r\) elimina conexiones estrechas antes que grandes recintos. A \(r\) fijo, aumentar \(\tau\) recorre estados inversos.
+
+Pueden analizarse
+
+\begin{equation}
+H_k(V_{\tau,r}),
+\qquad
+\beta_k(\tau,r),
+\end{equation}
+
+además de merge trees, grafos de Reeb y persistencia multiparamétrica \cite{edelsbrunner2010,carlsson2009,carlssonzomorodian2009}.
+
+\begin{conjecture}[Cronología topológica]
+Eventos persistentes de espacio negativo pueden imponer cotas cronológicas no recuperables únicamente desde elevación.
+\end{conjecture}
