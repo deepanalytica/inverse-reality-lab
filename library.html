@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Research Library · Inverse Reality Laboratory</title>
-<meta name="description" content="Complete theory, ontology, variables, mathematical derivations, discoveries and research program for Inverse Reality Laboratory.">
+<title>Biblioteca de investigación · Inverse Reality Laboratory</title>
+<meta name="description" content="Guía, conceptos, teoría, matemáticas, ontología, experimentos y programa de investigación de Inverse Reality Laboratory.">
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},svg:{fontCache:'global'}};</script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -14,7 +14,7 @@
 </head>
 <body><div class="shell">
 <aside class="side">
-<div class="brand">Inverse Reality Laboratory</div><div class="sub">Research Library · LaTeX/MathJax</div>
+<div class="brand">Inverse Reality Laboratory</div><div class="sub">Biblioteca de investigación · matemáticas en LaTeX</div>
 <a class="primary" href="./">← Volver al laboratorio</a>
 <nav id="nav"></nav>
 <hr style="border:0;border-top:1px solid #273244;margin:16px 0">
@@ -26,7 +26,9 @@
 </main></div>
 <script>
 var docs={
-overview:["Resumen / README","README.md"],
+start:["Guía rápida","START_HERE.md"],
+glossary:["Glosario","GLOSSARY.md"],
+overview:["Resumen del proyecto","README.md"],
 theory:["Teoría completa","THEORY.md"],
 math:["Modelo matemático","MATHEMATICAL_MODEL.md"],
 ontology:["Ontología","ONTOLOGY.md"],
@@ -64,6 +66,6 @@ async function load(key){
    if(window.MathJax&&MathJax.typesetPromise)await MathJax.typesetPromise([content]);
  }catch(e){content.innerHTML='<p>No fue posible cargar el documento.</p><pre>'+String(e)+'</pre>'}
 }
-var initial=(location.hash||'#overview').slice(1);load(initial);
-window.addEventListener('hashchange',function(){load((location.hash||'#overview').slice(1))});
+var initial=(location.hash||'#start').slice(1);load(initial);
+window.addEventListener('hashchange',function(){load((location.hash||'#start').slice(1))});
 </script></body></html>
