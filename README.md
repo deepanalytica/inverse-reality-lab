@@ -8,7 +8,7 @@ Research architecture: **PRAXIOS + Meta-Harness**.
 > It does not claim to have solved the construction of Khufu, nor does it claim antigravity, physical negative mass or physical equivalence between ancient architecture and black-hole physics.
 
 🌐 **Interactive laboratory:** https://deepanalytica.github.io/inverse-reality-lab/  
-📄 **Paper PDF:** [paper/PAPER.pdf](paper/PAPER.pdf)  
+📄 **Paper canónico v1.0:** [paper/PAPER.pdf](paper/PAPER.pdf) · [LaTeX modular](paper/main.tex)  
 🧮 **Mathematics:** [MATHEMATICAL_MODEL.md](MATHEMATICAL_MODEL.md)  
 🧩 **Ontology:** [ONTOLOGY.md](ONTOLOGY.md)  
 🧠 **Theory:** [THEORY.md](THEORY.md)
@@ -454,7 +454,7 @@ First positive-control experiment for the inverse-construction framework.
 - [Reproducible calculations](benchmarks/golden-gate/benchmark.py)
 - [Result snapshot](benchmarks/golden-gate/result.json)
 
-The coarse terminal ontology reduces 7 major-component serial orders from 5,040 to 3 admissible linear extensions (99.9405% reduction), predicts a latent temporary aerial-access class before cable formation, and recovers mechanism classes consistent with climbing tower lifting, aerial cable spinning and balanced suspended-deck erection. At this resolution, conventional mechanics yields an unexplained-force residual approximately equal to zero.
+The coarse terminal ontology reduces 5,040 serial orders to 3 admissible linear extensions. After the adversarial study, the defensible claim is narrower: terminal + site/access constraints can recover a functional class of temporary aerial access, while the exact historical catwalk or machinery is not uniquely identifiable from the terminal object alone. Conventional mechanisms drive the coarse residual force toward zero.
 
 
 ## IRL-Bench 002 — Torre Eiffel
@@ -465,7 +465,7 @@ Second positive-control benchmark. Tests modularity, temporary support topology,
 - [Reproducible calculations](benchmarks/eiffel-tower/benchmark.py)
 - [Result snapshot](benchmarks/eiffel-tower/result.json)
 
-The coarse 15-node support ontology reduces 15! serial orders to 60,480 admissible linear extensions (99.999995% reduction). The inverse model predicts classes corresponding to modular prefabrication, climbing lifting, temporary first-floor support, adjustable alignment and temporary fastening. The historical record documents precisely those process classes. At this resolution, the unexplained-force residual remains approximately zero under conventional mechanics.
+The coarse 15-node support ontology reduces 15! serial orders to 60,480 admissible linear extensions. The adversarial interpretation distinguishes strong modularity constraints from process classes that require precision/logistics context; exact jacks, cranes or provisional fasteners are not terminal-state deductions. At this resolution conventional mechanics remains sufficient.
 
 
 ## IRL-Bench 003–005 — Three additional controls
@@ -475,3 +475,35 @@ The coarse 15-node support ontology reduces 15! serial orders to 60,480 admissib
 - [IRL-Bench 005 — Sydney Opera House](benchmarks/sydney-opera-house/BENCHMARK.md): common geometric generator, precast rib production, temporary erection arches and post-tensioning.
 
 [Open the complete benchmark index](benchmarks/README.md)
+
+
+## Adversarial correction and canonical interpretation
+
+The five positive controls were followed by an explicit self-falsification / evidence-ablation study.
+
+- [Adversarial results](benchmarks/adversarial-identifiability/RESULTS.md)
+- [Epistemic corrections](benchmarks/adversarial-identifiability/CORRECTIONS.md)
+
+The principal correction is:
+
+[
+oxed{
+	ext{terminal object}
+
+eq
+	ext{complete construction history}
+}
+]
+
+and:
+
+[
+oxed{
+	ext{missing evidence}
+
+otRightarrow
+	ext{unknown force}.
+}
+]
+
+The **authoritative academic synthesis** is the Spanish PhD-level [Preprint v1.0](paper/PAPER.pdf), whose LaTeX source is modularized under [paper/sections/](paper/sections/).
