@@ -1,20 +1,20 @@
-# Discovery and Reasoning Log
+# Registro de descubrimientos y razonamiento científico
 
-This file records the conceptual route that produced the current research architecture. It is not a private chain-of-thought record; it is a concise scientific reconstruction of the ideas, assumptions and corrections that matter for reproducibility.
+Este documento reconstruye la ruta conceptual que produjo la arquitectura actual de Inverse Reality Laboratory. No es una transcripción de razonamiento privado: resume las decisiones, correcciones y cambios de modelo relevantes para la reproducibilidad científica.
 
 ---
 
-## Stage 1 — From “how was it built?” to terminal-state inversion
+## Etapa 1 — De “¿cómo se construyó?” a la inversión desde el estado terminal
 
-Initial question:
+Pregunta inicial:
 
-> How could the Great Pyramid have been built?
+> ¿Cómo pudo construirse la Gran Pirámide?
 
-Reformulated question:
+Reformulación:
 
-> If the pyramid already exists in completed form, what had to be true immediately before that state?
+> Si la pirámide ya existe terminada, ¿qué tenía que ser verdadero inmediatamente antes de ese estado?
 
-This converts narrative archaeology into an inverse problem:
+Esto convierte la narrativa en un problema inverso:
 
 \[
 X_T
@@ -24,18 +24,11 @@ P(X_{T-\Delta t}\mid X_T,E).
 
 ---
 
-## Stage 2 — Realization that the modern pyramid is not the terminal construction state
+## Etapa 2 — La pirámide actual no es el estado terminal original
 
-The present pyramid has undergone:
+El monumento presente ha sufrido pérdida de revestimiento, erosión, fracturas, sales, excavaciones y alteraciones humanas.
 
-- casing loss;
-- erosion;
-- fractures;
-- salt/weather effects;
-- excavation;
-- human alteration.
-
-Therefore reconstruction needs:
+Por tanto hay dos inversiones:
 
 \[
 Y_{\mathrm{now}}
@@ -43,152 +36,115 @@ Y_{\mathrm{now}}
 X_{\mathrm{as-built}}
 \]
 
-before attempting
+y después:
 
 \[
 X_{\mathrm{as-built}}
 \rightarrow
-\text{construction history}.
+\text{historia constructiva}.
 \]
-
-This produced the two-stage inverse architecture.
 
 ---
 
-## Stage 3 — Height cannot be used as historical time
+## Etapa 3 — La altura no es tiempo histórico
 
-The first reverse animation suggested removing horizontal layers.
-
-That exposed a problem:
+Una primera animación inversa por capas horizontales mostró que:
 
 \[
-z
-\neq
-t.
+z\neq t.
 \]
 
-A local construction surface
+Se necesita una superficie local:
 
 \[
 h(x,y,t)
 \]
 
-and eventual birth-time field
+y finalmente un campo de nacimiento:
 
 \[
-T_b(x,y,z)
+T_b(x,y,z),
 \]
 
-are required because different work fronts could evolve simultaneously.
+porque frentes distintos pudieron avanzar simultáneamente.
 
 ---
 
-## Stage 4 — The King's Chamber creates a partial-order problem
+## Etapa 4 — La Cámara del Rey produce un orden parcial
 
-A chamber at an internal elevation cannot simply disappear when the reverse front reaches its floor.
+Una cámara no puede “desaparecer” simplemente cuando el frente inverso alcanza su piso. Antes deben retirarse las estructuras posteriores que dependen de ella.
 
-Before the chamber can be inversely dismantled, later structures that depend on it must be undone.
-
-This produced:
-
-- causal/dependency cones;
-- typed precedence edges;
-- inverse maximal elements;
-- partial-order rather than linear chronology.
+Esto introdujo conos de dependencia, aristas tipadas, máximos inversos y cronologías como órdenes parciales.
 
 ---
 
-## Stage 5 — Empty space is an object
+## Etapa 5 — El vacío también es un objeto
 
-A chamber is not only an absence.
+Una cámara es una región que tuvo que permanecer libre de material mientras se construía su entorno.
 
-It is a spatial region that had to remain unfilled while surrounding matter accumulated.
-
-This produced the dual ontology:
+Surge la ontología dual:
 
 \[
 \mathcal K^+
-\quad\text{and}\quad
+\quad\text{y}\quad
 \mathcal K^-.
 \]
 
-Matter and designed non-matter become first-class entities.
+Materia y no-materia diseñada pasan a ser entidades de primer nivel.
 
 ---
 
-## Stage 6 — Counterfactual absent mass
+## Etapa 6 — Masa ausente contrafactual
 
-To connect negative architecture with density observations, the project introduced
+Para vincular espacios negativos con densidad se definió:
 
 \[
 m^\ominus
 =
--\int_V\rho_{\mathrm{ref}}dV.
+-\int_V\rho_{\mathrm{ref}}\,dV.
 \]
 
-Important correction:
-
-This is **not** physical negative mass. It is a signed deficit relative to a chosen solid reference.
+No es masa física negativa. Es un déficit respecto de un sólido de referencia.
 
 ---
 
-## Stage 7 — Inverse gravity was corrected
+## Etapa 7 — Corrección de “gravedad inversa”
 
-The phrase “reverse gravity” initially risked implying
+La expresión inicial podía sugerir:
 
 \[
 \mathbf g\rightarrow-\mathbf g.
 \]
 
-That is unnecessary and physically misleading.
-
-The correct reconstruction variable is:
+La corrección fue mantener la gravedad ordinaria y usar sólo contabilidad inversa:
 
 \[
-\Delta U^-
-=
--\Delta U^+,
+\Delta U^-=-\Delta U^+.
 \]
-
-while
-
-\[
-\mathbf g
-\]
-
-remains unchanged.
-
-Thus the framework uses reverse **accounting of gravitational potential/work**, not antigravity.
 
 ---
 
-## Stage 8 — Friction prevents literal microscopic time reversal
+## Etapa 8 — La fricción impide invertir literalmente la dinámica
 
-Real construction dissipates energy.
+La construcción real disipa energía. La reconstrucción inversa no reproduce la dinámica microscópica hacia atrás.
 
-Therefore inverse reconstruction cannot mean physically replaying the microscopic dynamics backward.
+La pregunta pasa a ser:
 
-The inverse engine instead asks:
-
-> Which predecessor states, evolved forward under normal physics, are compatible with the terminal state?
-
-This is a Bayesian/constraint inversion, not a thermodynamic reversal.
+> ¿Qué estados predecesores, evolucionados hacia adelante bajo física normal, son compatibles con el terminal?
 
 ---
 
-## Stage 9 — Ordinary topology is insufficient for chambers connected by corridors
+## Etapa 9 — La topología ordinaria no basta
 
-The King's Chamber is connected to other internal spaces.
+Una cámara conectada por corredores pertenece al mismo componente conexo del vacío.
 
-Therefore connected-component topology alone cannot define chamber identity.
-
-This motivated a clearance field
+Se introduce:
 
 \[
 d_M(x)=\operatorname{dist}(x,M)
 \]
 
-and filtration
+y:
 
 \[
 V_{\tau,r}
@@ -198,93 +154,83 @@ x:d_M(x,\tau)\ge r
 \}.
 \]
 
-Large chambers persist at scales where narrow corridors disappear.
-
-This produced the negative-space bifiltration.
+Las cámaras grandes pueden persistir cuando conexiones estrechas desaparecen.
 
 ---
 
-## Stage 10 — Structural mechanics becomes a historical filter
+## Etapa 10 — La mecánica se convierte en filtro histórico
 
-Final geometry alone permits many sequences.
-
-But intermediate states must satisfy:
+Los estados intermedios deben satisfacer:
 
 \[
 \nabla\cdot\sigma+\rho g=0
 \]
 
-and contact/stability constraints.
+además de contacto y estabilidad.
 
-A historically proposed sequence can therefore be eliminated because its intermediate structure would not stand.
+Una secuencia geométricamente posible puede ser eliminada por inviabilidad estructural.
 
 ---
 
-## Stage 11 — Access must live in configuration space
+## Etapa 11 — El acceso vive en espacio de configuraciones
 
-Blocks are rigid bodies.
-
-A placement requires a path in
+Una pieza rígida necesita una trayectoria en:
 
 \[
 SE(3),
 \]
 
-not merely a line through 3D space.
+no sólo una línea en 3D.
 
-This introduced configuration-space accessibility as another precedence generator.
+Esto convierte accesibilidad y orientación en generadores de precedencia.
 
 ---
 
-## Stage 12 — Lithology allows the object to point back toward its quarry
+## Etapa 12 — La litología permite inferir procedencia
 
-Block composition and orientation can produce source posteriors
+Las propiedades de un bloque pueden producir:
 
 \[
 P(q_j\mid\ell_i).
 \]
 
-Coupled with quarry volume and transport networks, terminal material distributions constrain source geography and logistics.
+Combinadas con canteras, rutas y capacidad logística, las distribuciones terminales restringen fuentes posibles.
 
 ---
 
-## Stage 13 — The pyramid becomes a network-flow system
+## Etapa 13 — La construcción es también una red de flujo
 
-A construction mechanism must scale.
-
-The distinction emerged:
+Se distingue:
 
 \[
-\text{possible}
+\text{posible}
 \neq
-\text{scalable}.
+\text{escalable}.
 \]
 
-This introduced flow capacities, buffers, bottlenecks and global throughput as historical constraints.
+Aparecen capacidades, buffers, cuellos de botella y throughput global.
 
 ---
 
-## Stage 14 — Vaidya introduced local/global accessibility
+## Etapa 14 — Vaidya introduce accesibilidad local/global
 
-In Vaidya collapse, apparent and event horizons illustrate that a global terminal/future condition can constrain an earlier causal boundary.
+Los horizontes de Vaidya muestran que una condición global puede restringir una frontera causal anterior.
 
-The project did **not** transfer black-hole physics to archaeology. It extracted a methodological lesson:
+No se trasladó física de agujeros negros a arqueología. La lección fue metodológica:
 
-> global accessibility can contain information unavailable to local state variables.
+> la accesibilidad global puede contener información no disponible localmente.
 
 ---
 
-## Stage 15 — Kerr introduced accessibility bifurcation
+## Etapa 15 — Kerr introduce bifurcaciones de accesibilidad
 
-For equatorial null geodesics,
+Para geodésicas nulas ecuatoriales:
 
 \[
-R(r;b)\ge0
+R(r;b)\ge0.
 \]
 
-defines allowed radial states.
-
-At
+En la condición crítica:
 
 \[
 R=0,
@@ -292,15 +238,13 @@ R=0,
 \partial_rR=0,
 \]
 
-a critical separatrix appears.
-
-This suggested treating topological changes in admissible state spaces through generic critical-boundary conditions.
+aparece una separatriz que puede cambiar la conectividad del conjunto permitido.
 
 ---
 
-## Stage 16 — Complement-defined object
+## Etapa 16 — Objeto definido por complemento
 
-The common abstraction became
+La abstracción común pasa a ser:
 
 \[
 N_{\mathcal R}
@@ -310,15 +254,13 @@ N_{\mathcal R}
 \mathrm{Accessible}_{\mathcal R}(\Omega).
 \]
 
-This allowed architectural, causal and phase-space complements to share a computational interface without asserting equal physics.
+Esto permite compartir una interfaz matemática sin afirmar equivalencia física entre dominios.
 
 ---
 
-## Stage 17 — Counterfactual engine becomes mandatory
+## Etapa 17 — El motor contrafactual se vuelve obligatorio
 
-Inverse inference alone can generate convincing stories.
-
-Scientific reconstruction requires each history \(H\) to produce predicted evidence:
+Cada historia candidata debe producir evidencia predicha:
 
 \[
 H
@@ -326,66 +268,190 @@ H
 \widehat Y_H.
 \]
 
-The hypothesis is useful only if \(\widehat Y_H\) can disagree with reality.
+Una historia sólo gana valor científico si puede entrar en conflicto con observaciones reales.
 
 ---
 
-## Stage 18 — Non-identifiability becomes an explicit answer
+## Etapa 18 — La no-identificabilidad pasa a ser una respuesta válida
 
-If multiple histories survive every current constraint, the correct result is
+Si múltiples historias sobreviven:
 
 \[
 P(H_1,H_2,\ldots\mid Y),
 \]
 
-not forced certainty.
+el resultado correcto es mantenerlas, no forzar una única narración.
 
-The next scientific question becomes:
-
-> What new measurement would maximally discriminate the surviving histories?
-
-This introduced expected information gain and active experiment design.
+La siguiente pregunta es qué medición maximiza la discriminación entre ellas.
 
 ---
 
-## Current synthesis
+## Etapa 19 — Los benchmarks revelan ontologías temporales desaparecidas
 
-The project now treats the finished object as:
+Golden Gate, Torre Eiffel, Hoover Dam, Empire State Building y Sydney Opera House mostraron que una reconstrucción puede necesitar entidades que ya no sobreviven en el objeto final.
+
+Esto motivó:
+
+\[
+\mathcal T
+\]
+
+como ontología temporal latente.
+
+---
+
+## Etapa 20 — El estudio adversarial corrige las primeras interpretaciones
+
+Las primeras corridas tendían a presentar algunas coincidencias como recuperación del mecanismo histórico exacto.
+
+La ablación mostró que eso era demasiado fuerte.
+
+Sobre 25 clases de proceso:
+
+- geometría sola recupera 1;
+- terminal completo recupera 4 y favorece 11;
+- + sitio/acceso/física de dominio recupera 10 y favorece 9;
+- sólo al añadir schedule, precisión y logística las 25 resultan recuperables bajo las reglas actuales.
+
+Se introduce la jerarquía:
+
+\[
+I0\rightarrow I1\rightarrow I2\rightarrow I3,
+\]
+
+desde orden causal grueso hasta implementación histórica exacta.
+
+Y la regla:
 
 \[
 \boxed{
-\text{geometry}
-+
-\text{matter}
-+
-\text{negative space}
-+
-\text{loads}
-+
-\text{contacts}
-+
-\text{provenance}
-+
-\text{accessibility}
-+
-\text{post-history}
-+
-\text{evidence}
+\text{evidencia faltante}
+\not\Rightarrow
+\text{fuerza desconocida}.
 }
 \]
 
-and seeks:
+---
+
+## Etapa 21 — La fuerza residual pasa a ser una variable posterior
+
+Se formaliza:
+
+\[
+\mathbf F_X
+=
+\mathbf F_{\mathrm{req}}
+-
+\sum_k\mathbf F_{\mathrm{known},k}.
+\]
+
+Pero un residuo puede provenir de ontología gruesa, modularidad omitida, infraestructura temporal faltante, parámetros incorrectos o evidencia insuficiente.
+
+Por tanto:
+
+\[
+\boxed{
+\mathbf F_X\neq0
+\not\Rightarrow
+\text{nueva física}.
+}
+\]
+
+---
+
+## Etapa 22 — Compensación gravitatoria y campo elástico-helicoidal quedan como controles contrafactuales
+
+Se introduce:
+
+\[
+\mathbf g_{\mathrm{eff}}
+=
+-(1-\alpha)g\hat{\mathbf z}
+\]
+
+para cuantificar una compensación gravitatoria hipotética si un residual robusto sobreviviera.
+
+Y una familia elástico-helicoidal:
+
+\[
+\xi(r,\phi,z)
+=
+r-r_0-b\phi+\lambda z,
+\]
+
+\[
+U_{\mathrm{SE}}
+=
+\frac12k\xi^2,
+\]
+
+\[
+\mathbf F_{\mathrm{SE}}
+=
+-\nabla U_{\mathrm{SE}}.
+\]
+
+Estos modelos no son explicaciones históricas. Permanecen como familias contrafactuales falsables.
+
+---
+
+## Síntesis actual
+
+IRL trata el objeto terminado como:
+
+\[
+\boxed{
+\text{geometría}
++
+\text{materia}
++
+\text{espacio negativo}
++
+\text{cargas}
++
+\text{contactos}
++
+\text{procedencia}
++
+\text{accesibilidad}
++
+\text{historia posterior}
++
+\text{contexto}
++
+\text{evidencia}
+}
+\]
+
+y busca:
 
 \[
 \boxed{
 P(
-\text{construction histories}
+\text{historias constructivas}
 \mid
-\text{terminal object},
-\text{evidence},
-\text{laws}
+\text{objeto terminal},
+\text{evidencia},
+\text{leyes},
+\text{contexto}
 ).
 }
 \]
 
-The Great Pyramid is the primary falsifiable laboratory for this program.
+El protocolo final es:
+
+\[
+\boxed{
+\text{CHECK IDENTIFIABILITY}
+\rightarrow
+\text{CAUSAL ORDER}
+\rightarrow
+\text{TEMPORARY ONTOLOGY}
+\rightarrow
+\text{CONVENTIONAL PROCESSES}
+\rightarrow
+\text{RESIDUAL}.
+}
+\]
+
+La Gran Pirámide sigue siendo el laboratorio arqueológico principal, pero el objetivo no es producir una narración única: es eliminar historias, conservar alternativas cuando los datos no discriminan y proponer nuevas observaciones que reduzcan la incertidumbre.
