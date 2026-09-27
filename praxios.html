@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRAXIOS Control Room · Prototype</title>
+<meta name="description" content="Prototipo interactivo de PRAXIOS OS, Meta-Harness y Decision Room.">
+<link rel="stylesheet" href="assets/praxios.css">
+</head>
+<body>
+<div class="px-app">
+<header class="px-topbar">
+  <div class="px-logo">
+    <div class="px-mark"></div>
+    <div class="px-brand">PRAXIOS <em>OS</em><small>Control & Decision Room</small></div>
+  </div>
+  <div class="px-session-chip"><span class="px-dot"></span><span>DEMO SESSION · IRL-042</span></div>
+  <div class="px-mode-switch" aria-label="Modo">
+    <button class="active" data-mode="operate">Operate</button>
+    <button data-mode="assure">Assure</button>
+    <button data-mode="decide">Decide</button>
+  </div>
+  <div class="px-top-actions">
+    <a class="px-btn" href="praxios-design-system.html">Design system</a>
+    <button class="px-btn" id="reset-demo">Reset</button>
+    <button class="px-btn primary" id="run-demo">Run demo</button>
+  </div>
+</header>
+
+<main class="px-main">
+  <aside class="px-rail">
+    <div class="px-rail-title">Control plane</div>
+    <nav class="px-nav">
+      <button class="active"><span class="px-nav-icon">S</span>Session</button>
+      <button><span class="px-nav-icon">A</span>Agents</button>
+      <button><span class="px-nav-icon">M</span>Models</button>
+      <button><span class="px-nav-icon">T</span>Tools</button>
+    </nav>
+    <div class="px-rail-title">Assurance</div>
+    <nav class="px-nav">
+      <button><span class="px-nav-icon">E</span>Evidence</button>
+      <button><span class="px-nav-icon">C</span>Claims</button>
+      <button><span class="px-nav-icon">G</span>Gates</button>
+      <button><span class="px-nav-icon">P</span>Policies</button>
+    </nav>
+    <div class="px-rail-title">Authority</div>
+    <nav class="px-nav">
+      <button><span class="px-nav-icon">D</span>Decisions</button>
+      <button><span class="px-nav-icon">L</span>Ledger</button>
+      <button><span class="px-nav-icon">B</span>Benchmarks</button>
+    </nav>
+    <div class="px-rail-card">
+      <strong>Human authority</strong>
+      <p>La sesión puede investigar y proponer. Las acciones externas de alto impacto requieren aprobación explícita.</p>
+    </div>
+  </aside>
+
+  <section class="px-center">
+    <div class="px-canvas-head">
+      <div class="px-heading">
+        <div class="eyebrow" id="mode-eyebrow">PRAXIOS · runtime view</div>
+        <h1 id="mode-title">Orquestación de sesión</h1>
+      </div>
+      <div class="px-canvas-tools">
+        <div class="px-stat"><b id="stat-agents">4</b><span>workers</span></div>
+        <div class="px-stat"><b id="stat-claims">3</b><span>claims</span></div>
+        <div class="px-stat"><b id="stat-gates">5/7</b><span>gates</span></div>
+      </div>
+    </div>
+
+    <svg id="session-graph" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid meet" aria-label="Grafo de sesión PRAXIOS">
+      <path id="e1" class="edge" d="M142 150 C220 150,220 130,292 130"/>
+      <path id="e2" class="edge" d="M142 150 C220 150,220 242,292 242"/>
+      <path id="e3" class="edge" d="M142 150 C220 150,220 354,292 354"/>
+      <path id="e4" class="edge" d="M412 130 C490 130,485 242,548 242"/>
+      <path id="e5" class="edge" d="M412 242 C490 242,490 242,548 242"/>
+      <path id="e6" class="edge" d="M412 354 C490 354,485 242,548 242"/>
+      <path id="e7" class="edge" d="M668 242 C725 242,730 242,776 242"/>
+      <path id="e8" class="edge" d="M836 282 C836 340,720 386,668 386"/>
+      <path id="e9" class="edge" d="M548 386 C490 386,445 430,382 430"/>
+
+      <g class="node selected" data-node="planner" transform="translate(42 112)">
+        <rect width="100" height="76"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Planner</text><text class="sub" x="14" y="39">goal → tasks</text><text class="sub" x="14" y="55">provider slot</text>
+      </g>
+      <g class="node" data-node="researcher" transform="translate(292 92)">
+        <rect width="120" height="76"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Researcher</text><text class="sub" x="14" y="39">evidence search</text><text class="sub" x="14" y="55">web / files</text>
+      </g>
+      <g class="node" data-node="simulator" transform="translate(292 204)">
+        <rect width="120" height="76"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Simulator</text><text class="sub" x="14" y="39">math / python</text><text class="sub" x="14" y="55">artifacts</text>
+      </g>
+      <g class="node" data-node="reviewer" transform="translate(292 316)">
+        <rect width="120" height="76"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Reviewer</text><text class="sub" x="14" y="39">adversarial pass</text><text class="sub" x="14" y="55">independent</text>
+      </g>
+      <g class="node harness" data-node="harness" transform="translate(548 204)">
+        <rect width="120" height="76"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Meta-Harness</text><text class="sub" x="14" y="39">claims + gates</text><text class="sub" x="14" y="55">PASS / REVIEW / BLOCK</text>
+      </g>
+      <g class="node human" data-node="human" transform="translate(776 204)">
+        <rect width="90" height="76"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Human</text><text class="sub" x="14" y="39">authority</text><text class="sub" x="14" y="55">checkpoint</text>
+      </g>
+      <g class="node decision" data-node="decision" transform="translate(548 350)">
+        <rect width="120" height="72"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">Decision Room</text><text class="sub" x="14" y="39">options → action</text><text class="sub" x="14" y="55">outcome</text>
+      </g>
+      <g class="node" data-node="ledger" transform="translate(262 394)">
+        <rect width="120" height="72"/><circle class="status-dot" cx="14" cy="16" r="4"/>
+        <text class="label" x="25" y="20">The Ledger</text><text class="sub" x="14" y="39">append-only trace</text><text class="sub" x="14" y="55">state + evidence</text>
+      </g>
+    </svg>
+
+    <div class="px-stage-legend">
+      <span class="px-tag"><strong>Proposer</strong> ≠ verifier</span>
+      <span class="px-tag"><strong>State</strong> outside model</span>
+      <span class="px-tag"><strong>Side effects</strong> gated</span>
+      <span class="px-tag"><strong>Demo</strong> simulated orchestration</span>
+    </div>
+  </section>
+
+  <aside class="px-inspector">
+    <div class="px-inspector-head">
+      <div><div class="eyebrow" id="inspector-kind">NODE · PLANNER</div><h2 id="inspector-title">Planner</h2></div>
+      <span class="px-badge running" id="inspector-status">ready</span>
+    </div>
+    <div id="inspector-content"></div>
+  </aside>
+</main>
+
+<footer class="px-bottom">
+  <section>
+    <h3>Orchestrator</h3>
+    <div class="px-command">
+      <input id="command" value="Valida la hipótesis del NFC y propone la siguiente medición." aria-label="Comando de demo">
+      <button class="px-btn primary" id="send-command">Queue</button>
+    </div>
+    <div class="px-progress"><span id="progress"></span></div>
+  </section>
+  <section>
+    <h3>Ledger · append-only session trace</h3>
+    <div class="px-ledger" id="ledger"></div>
+  </section>
+  <section>
+    <h3>Model registry · capability routing</h3>
+    <div class="px-models">
+      <div class="px-model"><b>Planner slot</b>reasoning · tools</div>
+      <div class="px-model"><b>Research slot</b>search · long context</div>
+      <div class="px-model"><b>Verifier slot</b>independent review</div>
+      <div class="px-model"><b>Local slot</b>private extraction</div>
+    </div>
+  </section>
+</footer>
+</div>
+<div class="px-toast" id="toast"></div>
+<script src="assets/praxios.js"></script>
+</body>
+</html>
