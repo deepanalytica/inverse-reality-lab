@@ -1,0 +1,174 @@
+
+\section{Procedencia, transporte y logística}
+
+Sea \(\bm\ell_i\) el vector petrográfico o geoquímico de un elemento y \(q_j\) una fuente candidata.
+
+\begin{equation}
+\boxed{
+P(q_j\mid\bm\ell_i)
+\propto
+P(\bm\ell_i\mid q_j)P(q_j).
+}
+\end{equation}
+
+Un prior de transporte puede expresarse mediante
+
+\begin{equation}
+\gamma^\star
+=
+\arg\min_{\gamma\in\Pi(\mu_Q,\mu_P)}
+\int c(q,p,t)\,d\gamma(q,p),
+\end{equation}
+
+con restricciones de capacidad y cronología. No se asume optimización histórica global; se utiliza como modelo nulo.
+
+Para una red logística \(\mathcal N(t)=(V_N,E_N)\),
+
+\begin{equation}
+0\le f_e(t)\le c_e(t)
+\end{equation}
+
+y
+
+\begin{equation}
+\frac{dS_v}{dt}
+=
+\sum_{e\in\mathrm{in}(v)}f_e
+-
+\sum_{e\in\mathrm{out}(v)}f_e.
+\end{equation}
+
+\begin{principle}[Jerarquía de viabilidad]
+\begin{equation}
+\boxed{
+\text{posible}
+\rightarrow
+\text{factible}
+\rightarrow
+\text{escalable}
+\rightarrow
+\text{históricamente compatible}.
+}
+\end{equation}
+\end{principle}
+
+\section{Inferencia bayesiana e identificabilidad}
+
+Sea
+
+\begin{equation}
+Z=
+(X_T,P,T_b^+,T_b^-,Q,R,W,D,C,\mathcal T,\ldots)
+\end{equation}
+
+el estado latente.
+
+Entonces
+
+\begin{equation}
+\boxed{
+P(Z\mid Y,\mathcal L)
+\propto
+P(Y\mid Z,\mathcal L)P(Z).
+}
+\end{equation}
+
+Cuando una independencia condicional aproximada sea defendible,
+
+\begin{equation}
+P(Y\mid Z)
+=
+\prod_m
+P(Y_m\mid Z),
+\end{equation}
+
+donde las modalidades pueden incluir geometría, muografía, litología, contactos, daño, hidrología y textos \cite{kaipio2005,tarantola2005,gelman2013}.
+
+\begin{definition}[No identificabilidad observacional]
+Dos historias \(H_1,H_2\) son no identificables bajo \(Y\) si
+\begin{equation}
+P(Y\mid H_1)
+\approx
+P(Y\mid H_2).
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+Si dos historias poseen igual prior y generan exactamente la misma distribución de observaciones, sus odds posteriores permanecen iguales.
+\end{proposition}
+
+La consecuencia es
+
+\begin{equation}
+\boxed{
+\text{evidencia faltante}
+\not\Rightarrow
+\text{fuerza desconocida}.
+}
+\end{equation}
+
+Debe producir el estado
+
+\begin{equation}
+\boxed{
+\text{NON-IDENTIFIABLE}.
+}
+\end{equation}
+
+\section{Diseño activo de nuevas observaciones}
+
+Para una medición futura \(m\),
+
+\begin{equation}
+\boxed{
+\mathrm{EIG}(m)
+=
+\E_m
+\left[
+\KL
+\left(
+P(H\mid Y,m)
+\|
+P(H\mid Y)
+\right)
+\right].
+}
+\end{equation}
+
+Esto permite priorizar muografía, fotogrametría, muestreo litológico o geofísica por su capacidad esperada de discriminar historias.
+
+\section{Motores directo, inverso y contrafactual}
+
+El sistema separa tres operadores:
+
+\begin{align}
+\forward &: H\rightarrow \widehat Y_H,\\
+\inverse &: Y\rightarrow P(H\mid Y),\\
+\counter &: H\rightarrow \text{predicciones falsables}.
+\end{align}
+
+Para una historia \(H\),
+
+\begin{equation}
+\boxed{
+\widehat Y_H
+=
+\obs
+\circ
+\post
+\circ
+\build(H).
+}
+\end{equation}
+
+Un funcional de discrepancia multimodal puede escribirse
+
+\begin{equation}
+J(H)
+=
+\sum_m
+\lambda_m
+d_m(Y_m,\widehat Y_{H,m}).
+\end{equation}
+
+Una historia que no genera observaciones potencialmente falsables no constituye todavía una reconstrucción científica fuerte.
