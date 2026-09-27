@@ -124,8 +124,10 @@ paths:
           in: path
           required: true
           schema: { type: string }
+        - $ref: '#/components/parameters/HumanAuthority'
       responses:
         '200': { description: Authorization decision recorded }
+        '403': { description: Separate human authority credential required }
   /api/sessions/{sessionId}/actions/execute:
     post:
       summary: Execute a Meta-Harness-cleared action
@@ -145,8 +147,10 @@ paths:
           in: path
           required: true
           schema: { type: string }
+        - $ref: '#/components/parameters/HumanAuthority'
       responses:
         '200': { description: Decision selected }
+        '403': { description: Separate human authority credential required }
   /api/sessions/{sessionId}/audit:
     get:
       summary: Verify ledger and canonical-state checkpoint
@@ -180,6 +184,12 @@ components:
       in: path
       required: true
       schema: { type: string }
+    HumanAuthority:
+      name: x-praxios-human-authorization
+      in: header
+      required: true
+      schema: { type: string, writeOnly: true }
+      description: Separate human-authority credential. Never supplied to model providers.
   schemas:
     Evidence:
       type: object

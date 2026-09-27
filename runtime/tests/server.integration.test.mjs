@@ -86,6 +86,16 @@ test("server enforces auth and executes an approved action end-to-end", { timeou
     assert.equal(authRequestResponse.status, 201);
     const authRequest = await authRequestResponse.json();
 
+    const machineOnlyApproval = await fetch(
+      baseUrl + "/api/sessions/integration-session/authorizations/" + authRequest.request.id,
+      {
+        method: "POST",
+        headers: auth,
+        body: JSON.stringify({ approved: true, actor: "machine" })
+      }
+    );
+    assert.equal(machineOnlyApproval.status, 403);
+
     const approve = await fetch(
       baseUrl + "/api/sessions/integration-session/authorizations/" + authRequest.request.id,
       {

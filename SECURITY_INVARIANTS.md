@@ -20,7 +20,7 @@ If any structural wall matches an action, authorization cannot make the action e
 
 ## I-05 Human authorization
 
-Configured effectful actions require an APPROVED authorization produced through the human-authority API boundary.
+Configured effectful actions require an APPROVED authorization produced through the human-authority API boundary. In production, runtime authentication and human authority use separate credentials.
 
 ## I-06 Exact action binding
 

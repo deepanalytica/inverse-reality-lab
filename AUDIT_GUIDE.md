@@ -34,6 +34,7 @@ From the repository root:
 - cyclic task DAG;
 - unknown dependency;
 - action without authorization;
+- approval attempted with runtime credential but without human-authority credential;
 - action mutated after approval;
 - authorization replay;
 - disabled executor;

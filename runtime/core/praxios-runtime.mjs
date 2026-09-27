@@ -388,12 +388,15 @@ export class PraxiosRuntime {
       authorization,
       claims: this.state.claims
     });
-    await this.emit("ACTION_GATE_EVALUATED", { actionId: action.id, ...evaluation }, actor);
     if (evaluation.verdict === STATUS.BLOCK) {
       const existing = this.state.actions.find(item => item.id === action.id);
-      if (existing) existing.status = "BLOCKED";
+      if (existing && !["COMPLETED", "FAILED"].includes(existing.status)) {
+        existing.status = "BLOCKED";
+      }
+      await this.emit("ACTION_GATE_EVALUATED", { actionId: action.id, ...evaluation }, actor);
       throw new Error("Meta-Harness blocked action " + action.id);
     }
+    await this.emit("ACTION_GATE_EVALUATED", { actionId: action.id, ...evaluation }, actor);
 
     if (authorization) {
       authorization.consumed = true;
