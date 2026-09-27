@@ -22,7 +22,7 @@
 <a href="paper/PAPER.pdf">Paper PDF</a><a href="paper/main.tex">Fuente LaTeX</a><a href="mathematics.html">Vista matemática</a><a href="review.html">Revisión académica</a>
 </aside>
 <main class="main">
-<div class="toolbar"><a id="raw" href="#">Ver fuente</a><a id="download" href="#" download>Descargar Markdown</a><a href="mailto:contacto@deepanalytica.cl">Contactar autor</a></div>
+<div class="toolbar"><a id="raw" href="#" target="_blank" rel="noopener">Ver Markdown original</a><a id="download" href="#" download>Descargar fuente .md</a><a href="paper/PAPER.pdf">Paper PDF</a><a href="mailto:contacto@deepanalytica.cl">Contactar autor</a></div>
 <div class="paper"><div class="status" id="status">Research document</div><article id="content"><p class="loading">Cargando…</p></article></div>
 </main></div>
 <script>
@@ -69,16 +69,98 @@ function restoreMath(html,stash){
    return x[0]==='display'?'\\['+x[1]+'\\]':'\\('+x[1]+'\\)';
  });
 }
-async function load(key){
- if(!docs[key])key='overview';
- Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b){b.classList.toggle('active',b.dataset.key===key)});
- var label=docs[key][0],file=docs[key][1];statusEl.textContent=label;content.innerHTML='<p class="loading">Cargando…</p>';raw.href=file;download.href=file;
- try{
-   var response=await fetch(file,{cache:'no-cache'});var src=await response.text();var p=protectMath(src);
-   content.innerHTML=restoreMath(marked.parse(p.src),p.stash);document.title=label+' · Inverse Reality Laboratory';
-   if(window.MathJax&&MathJax.typesetPromise)await MathJax.typesetPromise([content]);
- }catch(e){content.innerHTML='<p>No fue posible cargar el documento.</p><pre>'+String(e)+'</pre>'}
+function docKeyForFile(file){
+ var clean=(file||'').split('#')[0].split('?')[0].replace(/^\.\//,'');
+ var keys=Object.keys(docs);
+ for(var i=0;i<keys.length;i++){
+   if(docs[keys[i]][1]===clean)return keys[i];
+ }
+ return null;
 }
-var initial=(location.hash||'#start').slice(1);load(initial);
+function safeMarkdownPath(file){
+ var clean=(file||'').split('#')[0].split('?')[0].replace(/^\.\//,'');
+ if(!/\.md$/i.test(clean))return null;
+ if(clean.indexOf('..')!==-1)return null;
+ if(/^[a-z]+:\/\//i.test(clean))return null;
+ return clean;
+}
+function routeForFile(file){
+ var key=docKeyForFile(file);
+ return key ? key : 'file:'+encodeURIComponent(file);
+}
+function parseRoute(route){
+ if(route&&route.indexOf('file:')===0){
+   var file=safeMarkdownPath(decodeURIComponent(route.slice(5)));
+   if(file)return {key:null,label:file.split('/').pop().replace(/\.md$/i,'').replace(/[-_]/g,' '),file:file};
+ }
+ var key=docs[route]?route:'start';
+ return {key:key,label:docs[key][0],file:docs[key][1]};
+}
+function rewriteInternalMarkdownLinks(){
+ content.querySelectorAll('a[href]').forEach(function(a){
+   var href=a.getAttribute('href');
+   if(!href||href.charAt(0)==='#'||href.indexOf('mailto:')===0)return;
+   var safe=safeMarkdownPath(href);
+   if(!safe)return;
+   a.setAttribute('href','#'+routeForFile(safe));
+   a.dataset.renderedDoc='true';
+ });
+}
+async function ensureMathJax(){
+ if(window.MathJax&&MathJax.startup&&MathJax.startup.promise){
+   try{await MathJax.startup.promise}catch(_){}
+ }
+}
+async function load(route){
+ var info=parseRoute(route);
+ Array.prototype.forEach.call(document.querySelectorAll('#nav button'),function(b){
+   b.classList.toggle('active',!!info.key&&b.dataset.key===info.key)
+ });
+ statusEl.textContent=info.label;
+ content.innerHTML='<p class="loading">Cargando y renderizando…</p>';
+ raw.href=info.file;
+ download.href=info.file;
+ try{
+   var response=await fetch(info.file,{cache:'no-cache'});
+   if(!response.ok)throw new Error('HTTP '+response.status+' al cargar '+info.file);
+   var src=await response.text();
+   var p=protectMath(src);
+   if(!window.marked||!marked.parse)throw new Error('El renderer Markdown no está disponible.');
+   content.innerHTML=restoreMath(marked.parse(p.src),p.stash);
+   rewriteInternalMarkdownLinks();
+   document.title=info.label+' · Inverse Reality Laboratory';
+   await ensureMathJax();
+   if(window.MathJax&&MathJax.typesetClear)MathJax.typesetClear([content]);
+   if(window.MathJax&&MathJax.typesetPromise)await MathJax.typesetPromise([content]);
+   window.scrollTo({top:0,behavior:'instant'});
+ }catch(e){
+   content.innerHTML='<h2>No fue posible renderizar el documento</h2><p>La fuente permanece disponible desde el enlace superior.</p><pre>'+String(e)+'</pre>';
+ }
+}
+content.addEventListener('click',function(ev){
+ var a=ev.target.closest&&ev.target.closest('a[data-rendered-doc="true"]');
+ if(!a)return;
+ ev.preventDefault();
+ var route=(a.getAttribute('href')||'').replace(/^#/,'');
+ if(location.hash.slice(1)===route)load(route);
+ else location.hash=route;
+});
+Object.keys(docs).forEach(function(k){
+ var b=[].find.call(document.querySelectorAll('#nav button'),function(x){return x.dataset.key===k});
+ if(b)b.onclick=function(){
+   if(location.hash.slice(1)===k)load(k);
+   else location.hash=k;
+ };
+});
+function initialRender(){
+ var route=(location.hash||'#start').slice(1);
+ load(route);
+}
 window.addEventListener('hashchange',function(){load((location.hash||'#start').slice(1))});
+if(document.readyState==='loading'){
+ document.addEventListener('DOMContentLoaded',initialRender,{once:true});
+}else{
+ initialRender();
+}
+
 </script></body></html>
