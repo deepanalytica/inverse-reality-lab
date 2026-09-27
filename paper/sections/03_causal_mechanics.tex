@@ -1,0 +1,184 @@
+
+\section{Historia constructiva como orden parcial tipado}
+
+Sea
+
+\begin{equation}
+P=(E,\prec)
+\end{equation}
+
+un poset de entidades y eventos.
+
+Las dependencias se dividen en
+
+\begin{equation}
+\mathcal E
+=
+\mathcal E_S
+\cup
+\mathcal E_G
+\cup
+\mathcal E_A
+\cup
+\mathcal E_L
+\cup
+\mathcal E_V
+\cup
+\mathcal E_P
+\cup
+\mathcal E_Q,
+\end{equation}
+
+para soporte estructural, geometría, acceso, carga, preservación de vacíos, procedimiento y procedencia.
+
+Una cronología total es una extensión lineal \(\pi\in\mathcal L(P)\), pero el objeto fundamental sigue siendo parcialmente ordenado. Esta perspectiva es compatible con la tradición de matrices estratigráficas, aunque aquí se añaden relaciones mecánicas y de accesibilidad \cite{harris1989}.
+
+\section{Frente inverso admisible}
+
+Los máximos del poset son candidatos de desmontaje:
+
+\begin{equation}
+\operatorname{Max}(P_\tau)
+=
+\left\{
+e:
+\nexists f\text{ tal que }e\prec f
+\right\}.
+\end{equation}
+
+\begin{definition}[Frente inverso admisible]
+\begin{equation}
+\boxed{
+\Ainv(X_\tau)
+=
+\left\{
+e\in\operatorname{Max}(P_\tau):
+S_e\land A_e\land G_e\land E_e
+\right\},
+}
+\end{equation}
+donde \(S_e\) es estabilidad, \(A_e\) accesibilidad, \(G_e\) compatibilidad geométrica y \(E_e\) compatibilidad con evidencia.
+\end{definition}
+
+El operador inverso devuelve
+
+\begin{equation}
+\Rinv(X_\tau)
+=
+P(X_{\tau+\Delta\tau}\mid X_\tau,Y,\mathcal L),
+\end{equation}
+
+no un único estado.
+
+\section{Mecánica estructural y de contacto}
+
+En aproximación cuasiestática,
+
+\begin{equation}
+\boxed{
+\nabla\cdot\bm\sigma
++
+\rho\mathbf g
+=
+0.
+}
+\end{equation}
+
+Para contacto unilateral,
+
+\begin{equation}
+g_n\ge0,
+\qquad
+\lambda_n\ge0,
+\qquad
+g_n\lambda_n=0.
+\end{equation}
+
+Con fricción de Coulomb,
+
+\begin{equation}
+\|\bm\lambda_t\|
+\le
+\mu\lambda_n.
+\end{equation}
+
+Una historia puede respetar la geometría final y requerir un estado intermedio mecánicamente imposible. En tal caso debe descartarse \cite{wriggers2006}.
+
+\section{Accesibilidad rígida en \texorpdfstring{\(\SE(3)\)}{SE(3)}}
+
+Una pieza rígida posee pose
+
+\begin{equation}
+q=(\mathbf x,R)\in\SE(3).
+\end{equation}
+
+Definimos
+
+\begin{equation}
+\boxed{
+\mathcal C_{\mathrm{free}}(t)
+=
+\left\{
+q\in\SE(3):
+B(q)\cap M(t)=\varnothing
+\right\}.
+}
+\end{equation}
+
+Una colocación requiere una curva continua
+
+\begin{equation}
+\gamma:[0,1]\rightarrow\mathcal C_{\mathrm{free}}(t),
+\end{equation}
+
+más restricciones de fuerza, herramienta, pendiente y apoyo \cite{lavalle2006}.
+
+Esto permite inferir precedencias no visibles en elevación: si una pieza sólo puede alcanzar su pose mientras una región siga abierta, el cierre debe ocurrir después.
+
+\section{Trabajo, rampas y libro gravitatorio inverso}
+
+Para un bloque de masa \(m\), rampa de ángulo \(\theta\) y fricción \(\mu\),
+
+\begin{equation}
+F
+=
+mg(\sin\theta+\mu\cos\theta).
+\end{equation}
+
+Para ganar altura \(h\),
+
+\begin{equation}
+L=\frac{h}{\sin\theta},
+\end{equation}
+
+y
+
+\begin{equation}
+\boxed{
+W
+=
+mgh
++
+\mu mgh\cot\theta.
+}
+\end{equation}
+
+La gravedad conserva su dirección. Para una elevación directa
+
+\begin{equation}
+\Delta U_i^+
+=
+m_i g(z_{f,i}-z_{s,i}),
+\end{equation}
+
+el libro inverso registra
+
+\begin{equation}
+\boxed{
+\Delta U_i^-
+=
+-\Delta U_i^+.
+}
+\end{equation}
+
+La utilidad es contable e inferencial; no introduce una fuerza gravitatoria inversa.
