@@ -1,6 +1,6 @@
 # Registro de descubrimientos y razonamiento científico
 
-Este documento reconstruye la ruta conceptual que produjo la arquitectura actual de Inverse Reality Laboratory. No es una transcripción de razonamiento privado: resume las decisiones, correcciones y cambios de modelo relevantes para la reproducibilidad científica.
+Este documento presenta la evolución conceptual de Inverse Reality Laboratory. Resume las preguntas que dieron origen al proyecto, los modelos que se incorporaron, las correcciones realizadas y las decisiones que permiten seguir y reproducir el desarrollo científico.
 
 ---
 
@@ -104,7 +104,7 @@ m^\ominus
 -\int_V\rho_{\mathrm{ref}}\,dV.
 \]
 
-No es masa física negativa. Es un déficit respecto de un sólido de referencia.
+Representa un déficit de masa respecto de un sólido de referencia y se utiliza para relacionar espacios vacíos con mediciones de densidad.
 
 ---
 
@@ -126,9 +126,9 @@ La corrección fue mantener la gravedad ordinaria y usar sólo contabilidad inve
 
 ## Etapa 8 — La fricción impide invertir literalmente la dinámica
 
-La construcción real disipa energía. La reconstrucción inversa no reproduce la dinámica microscópica hacia atrás.
+La construcción real disipa energía. La reconstrucción inversa se formula como búsqueda de estados anteriores compatibles con la física ordinaria.
 
-La pregunta pasa a ser:
+La pregunta operativa pasa a ser:
 
 > ¿Qué estados predecesores, evolucionados hacia adelante bajo física normal, son compatibles con el terminal?
 
@@ -216,7 +216,7 @@ Aparecen capacidades, buffers, cuellos de botella y throughput global.
 
 Los horizontes de Vaidya muestran que una condición global puede restringir una frontera causal anterior.
 
-No se trasladó física de agujeros negros a arqueología. La lección fue metodológica:
+La comparación con Vaidya se utiliza como herramienta metodológica para estudiar accesibilidad local y global:
 
 > la accesibilidad global puede contener información no disponible localmente.
 
@@ -254,7 +254,7 @@ N_{\mathcal R}
 \mathrm{Accessible}_{\mathcal R}(\Omega).
 \]
 
-Esto permite compartir una interfaz matemática sin afirmar equivalencia física entre dominios.
+Esto permite compartir una interfaz matemática entre dominios físicos distintos y conservar las leyes propias de cada uno.
 
 ---
 
@@ -391,7 +391,7 @@ U_{\mathrm{SE}}
 -\nabla U_{\mathrm{SE}}.
 \]
 
-Estos modelos no son explicaciones históricas. Permanecen como familias contrafactuales falsables.
+Estos modelos se mantienen como familias contrafactuales falsables para cuantificar escenarios hipotéticos cuando exista un residual físico bien caracterizado.
 
 ---
 
