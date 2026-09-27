@@ -54,6 +54,7 @@ jobs:
         shell: bash
         run: |
           node --check assets/dashboard.js
+          node --check assets/praxios.js
           python -m json.tool data/khufu.json >/dev/null
           python -m json.tool data/hypotheses.json >/dev/null
           python -m json.tool data/sources.json >/dev/null
