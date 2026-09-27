@@ -1,0 +1,446 @@
+{
+  "meta": {
+    "id": "khufu",
+    "title": "Gran Pirámide de Khufu",
+    "version": "1.1.0",
+    "updated": "2026-09-26",
+    "coordinateSystem": "Marco local IRL: x=este-oeste, y=vertical, z=norte-sur; origen en el centro aproximado de la base.",
+    "geometryPolicy": "La envolvente y los espacios internos son una reconstrucción paramétrica para análisis. Las geometrías publicadas conservan su fuente y nivel de certeza; el campo global bloque-a-bloque es aproximado."
+  },
+  "dimensions": {
+    "baseOriginalMeanM": 230.36,
+    "originalHeightM": 146.6,
+    "currentHeightM": 139,
+    "volumeM3": 2590000,
+    "densityBaselineKgM3": 2600,
+    "densityRangeKgM3": [
+      2400,
+      2700
+    ],
+    "sourceIds": [
+      "S2",
+      "S6",
+      "S7"
+    ]
+  },
+  "statusLegend": {
+    "observed": "Medido o documentado directamente",
+    "published": "Publicado en fuente académica o institucional",
+    "derived": "Calculado a partir de datos publicados",
+    "inferred": "Inferido por el modelo",
+    "hypothesis": "Hipótesis abierta",
+    "counterfactual": "Escenario hipotético de prueba",
+    "unknown": "Información pendiente"
+  },
+  "interior": [
+    {
+      "id": "subterranean",
+      "label": "Cámara subterránea",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; geometría 3D del dashboard simplificada",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          -27,
+          8
+        ],
+        "size": [
+          8,
+          4,
+          14
+        ]
+      },
+      "evidence": [
+        "S4",
+        "S8"
+      ],
+      "explanation": "Espacio excavado en el lecho rocoso. Su posición ayuda a separar procesos de excavación de procesos de mampostería."
+    },
+    {
+      "id": "queen",
+      "label": "Cámara de la Reina",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; dimensiones del dashboard aproximadas desde bibliografía histórica",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          21,
+          -3
+        ],
+        "size": [
+          5.75,
+          6.1,
+          5.23
+        ]
+      },
+      "evidence": [
+        "S4",
+        "S8"
+      ],
+      "explanation": "Recinto interior conectado al sistema de pasajes. Se utiliza para estudiar genealogía del vacío y accesibilidad."
+    },
+    {
+      "id": "king",
+      "label": "Cámara del Rey",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; dimensiones del dashboard aproximadas desde Petrie y planos de Digital Giza",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          43.2,
+          5
+        ],
+        "size": [
+          10.47,
+          5.85,
+          5.23
+        ]
+      },
+      "evidence": [
+        "S5",
+        "S8",
+        "S9"
+      ],
+      "explanation": "Recinto de granito utilizado como laboratorio principal para dependencias estructurales, cargas, cierre espacial y secuencia de las cámaras superiores."
+    },
+    {
+      "id": "relieving",
+      "label": "Cámaras superiores de descarga",
+      "kind": "void-system",
+      "status": "published",
+      "confidence": "alta para existencia; representación volumétrica simplificada",
+      "geometry": {
+        "shape": "stack",
+        "center": [
+          6.8,
+          53.5,
+          5
+        ],
+        "size": [
+          11.5,
+          16,
+          6.5
+        ],
+        "count": 5
+      },
+      "evidence": [
+        "S4",
+        "S5"
+      ],
+      "explanation": "Sistema de cinco cámaras sobre la Cámara del Rey. Su relación vertical y estructural impone dependencias útiles para el orden parcial."
+    },
+    {
+      "id": "grand-gallery",
+      "label": "Gran Galería",
+      "kind": "void",
+      "status": "published",
+      "confidence": "alta para existencia; sección y posición representadas de forma paramétrica",
+      "geometry": {
+        "shape": "inclinedBox",
+        "center": [
+          6.8,
+          31,
+          -15
+        ],
+        "size": [
+          2.1,
+          8.6,
+          46.6
+        ],
+        "rotationDeg": [
+          26,
+          0,
+          0
+        ]
+      },
+      "evidence": [
+        "S4",
+        "S8"
+      ],
+      "explanation": "Gran corredor ascendente. Funciona como restricción geométrica, topológica y de acceso."
+    },
+    {
+      "id": "nfc",
+      "label": "North Face Corridor",
+      "kind": "muography-void",
+      "status": "observed",
+      "confidence": "alta; dimensiones publicadas por muografía, ubicación del visor simplificada a marco local",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          22,
+          -103
+        ],
+        "size": [
+          2.1,
+          2,
+          9.1
+        ]
+      },
+      "evidence": [
+        "S2"
+      ],
+      "explanation": "Corredor detrás del Chevron norte. La publicación de 2023 lo caracteriza con unos 9 m de longitud y sección cercana a 2 × 2 m."
+    },
+    {
+      "id": "big-void",
+      "label": "ScanPyramids Big Void",
+      "kind": "muography-void",
+      "status": "observed",
+      "confidence": "alta para existencia; geometría exacta y función abiertas",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          48,
+          -13
+        ],
+        "size": [
+          5,
+          5,
+          30
+        ]
+      },
+      "evidence": [
+        "S1",
+        "S2"
+      ],
+      "explanation": "Vacío detectado con tres tecnologías de muones. La longitud mínima publicada es de 30 m; el volumen mostrado es una envolvente de trabajo, no una reconstrucción exacta."
+    }
+  ],
+  "detectors": [
+    {
+      "id": "D1",
+      "label": "Detector muográfico interior A",
+      "center": [
+        6.8,
+        17,
+        -67
+      ],
+      "status": "schematic",
+      "evidence": [
+        "S2"
+      ]
+    },
+    {
+      "id": "D2",
+      "label": "Detector muográfico interior B",
+      "center": [
+        6.8,
+        12,
+        -76
+      ],
+      "status": "schematic",
+      "evidence": [
+        "S2"
+      ]
+    },
+    {
+      "id": "D3",
+      "label": "Detector exterior",
+      "center": [
+        -40,
+        3,
+        -135
+      ],
+      "status": "schematic",
+      "evidence": [
+        "S1",
+        "S2"
+      ]
+    }
+  ],
+  "causalStates": [
+    {
+      "id": "T0",
+      "p": 0,
+      "title": "Estado terminal de referencia",
+      "visibleHeightFraction": 1,
+      "epistemic": "derived",
+      "immediatelyBefore": "La envolvente superior y los cierres finales aún no estaban completamente integrados.",
+      "required": [
+        "estructura portante inferior estable",
+        "cámaras y corredores ya preservados como espacios negativos",
+        "rutas finales de acceso compatibles con los cierres pendientes"
+      ],
+      "next": "Retirar primero elementos máximos del grafo causal que sigan siendo mecánicamente removibles.",
+      "evidence": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "id": "T1",
+      "p": 0.18,
+      "title": "Desmontaje de la envolvente superior",
+      "visibleHeightFraction": 0.82,
+      "epistemic": "inferred",
+      "immediatelyBefore": "La masa por encima del sistema de la Cámara del Rey era menor y seguían abiertos más grados de libertad de acceso.",
+      "required": [
+        "soporte de las estructuras inferiores",
+        "compatibilidad con la geometría de los cursos",
+        "ausencia de dependencia estructural desde elementos ya retirados"
+      ],
+      "next": "Al aproximarse al sistema superior de la Cámara del Rey, el orden causal pasa a dominar sobre la simple altura.",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "T2",
+      "p": 0.42,
+      "title": "Exposición del sistema superior de la Cámara del Rey",
+      "visibleHeightFraction": 0.64,
+      "epistemic": "inferred",
+      "immediatelyBefore": "Las cámaras superiores y sus elementos de cubierta estaban parcialmente abiertos al frente de obra.",
+      "required": [
+        "preservar el vacío de la Cámara del Rey",
+        "mantener estabilidad de vigas y muros",
+        "retener una ruta de colocación para elementos de gran masa"
+      ],
+      "next": "La cámara puede pasar de encapsulada a expuesta cuando se eliminan sus descendientes causales.",
+      "evidence": [
+        "S4",
+        "S5",
+        "S9"
+      ]
+    },
+    {
+      "id": "T3",
+      "p": 0.58,
+      "title": "Cámara del Rey estructuralmente abierta",
+      "visibleHeightFraction": 0.51,
+      "epistemic": "inferred",
+      "immediatelyBefore": "La cubierta y los elementos superiores todavía no habían cerrado completamente el recinto.",
+      "required": [
+        "muros laterales y piso en posición",
+        "espacio libre interior reservado",
+        "acceso compatible con la colocación de la cubierta",
+        "capacidad de manipulación de elementos de granito"
+      ],
+      "next": "El siguiente retroceso afecta la Gran Galería y los pasajes que condicionaban acceso y circulación.",
+      "evidence": [
+        "S5",
+        "S8"
+      ]
+    },
+    {
+      "id": "T4",
+      "p": 0.72,
+      "title": "Sistema de Gran Galería y pasajes",
+      "visibleHeightFraction": 0.38,
+      "epistemic": "inferred",
+      "immediatelyBefore": "El núcleo alrededor de los corredores estaba menos cerrado y los espacios de circulación tenían mayor continuidad con el exterior.",
+      "required": [
+        "geometría de pasajes preservada",
+        "transiciones de carga compatibles",
+        "secuencia de cierre posterior al uso de accesos"
+      ],
+      "next": "El modelo entra en la fase de crecimiento del núcleo inferior.",
+      "evidence": [
+        "S4",
+        "S8"
+      ]
+    },
+    {
+      "id": "T5",
+      "p": 0.88,
+      "title": "Núcleo inferior y plataforma",
+      "visibleHeightFraction": 0.2,
+      "epistemic": "inferred",
+      "immediatelyBefore": "La plataforma, el lecho rocoso y las primeras unidades de mampostería definían la geometría de referencia.",
+      "required": [
+        "nivelación y replanteo de la base",
+        "extracción y transporte de piedra",
+        "red logística capaz de alimentar varios frentes"
+      ],
+      "next": "El límite final del retroceso constructivo es la preparación del terreno y la extracción inicial.",
+      "evidence": [
+        "S6",
+        "S7",
+        "S8"
+      ]
+    },
+    {
+      "id": "T6",
+      "p": 1,
+      "title": "Preparación del sitio",
+      "visibleHeightFraction": 0.02,
+      "epistemic": "inferred",
+      "immediatelyBefore": "El sitio estaba en fase de replanteo, excavación, preparación del lecho y organización logística.",
+      "required": [
+        "referencia geométrica de la base",
+        "fuentes de material disponibles",
+        "capacidad humana y logística organizada"
+      ],
+      "next": "Desde aquí comienza la simulación directa de construcción.",
+      "evidence": [
+        "S6",
+        "S7"
+      ]
+    }
+  ],
+  "searchDomains": [
+    {
+      "id": "subsurface",
+      "label": "Dominio subsuperficial",
+      "status": "unknown",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          0,
+          -18,
+          0
+        ],
+        "size": [
+          180,
+          34,
+          180
+        ]
+      },
+      "explanation": "Volumen de búsqueda para integrar en el futuro geofísica o tomografía bajo la pirámide. El dashboard no asigna una anomalía positiva a este volumen."
+    },
+    {
+      "id": "nfc-continuation",
+      "label": "Continuación pequeña al sur del NFC",
+      "status": "hypothesis",
+      "geometry": {
+        "shape": "box",
+        "center": [
+          6.8,
+          22,
+          -94
+        ],
+        "size": [
+          0.9,
+          0.9,
+          8
+        ]
+      },
+      "explanation": "La publicación de 2023 indica que una continuación de sección inferior a 1 × 1 m no quedaba completamente excluida por las estadísticas disponibles.",
+      "evidence": [
+        "S2"
+      ]
+    }
+  ],
+  "parametricBlocks": {
+    "enabled": true,
+    "scope": "proxies",
+    "explanation": "IRL genera bloques proxy en la superficie para probar masa, acceso y fuerzas. No representan un inventario exacto bloque-a-bloque del monumento.",
+    "nominal": {
+      "widthM": 1.4,
+      "depthM": 1.2,
+      "heightM": 0.75,
+      "densityKgM3": 2600
+    },
+    "countVisual": 240
+  }
+}

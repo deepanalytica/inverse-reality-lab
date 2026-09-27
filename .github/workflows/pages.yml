@@ -50,6 +50,15 @@ jobs:
             echo "Compiled PDF already matches tracked file."
           fi
 
+      - name: Validate dashboard assets
+        shell: bash
+        run: |
+          node --check assets/dashboard.js
+          python -m json.tool data/khufu.json >/dev/null
+          python -m json.tool data/hypotheses.json >/dev/null
+          python -m json.tool data/sources.json >/dev/null
+          python -m json.tool data/monuments.json >/dev/null
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 

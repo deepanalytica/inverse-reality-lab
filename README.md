@@ -2,13 +2,15 @@
 
 **Laboratorio de reconstrucción inversa de procesos físicos y constructivos.**
 
-🌐 **Laboratorio interactivo:** https://deepanalytica.github.io/inverse-reality-lab/  
+🌐 **Laboratorio:** https://deepanalytica.github.io/inverse-reality-lab/  
+🧭 **Dashboard 3D/4D:** https://deepanalytica.github.io/inverse-reality-lab/dashboard.html  
 📘 **Guía rápida:** [START_HERE.md](START_HERE.md)  
 📖 **Glosario:** [GLOSSARY.md](GLOSSARY.md)  
 📄 **Paper canónico v1.0:** [paper/PAPER.pdf](paper/PAPER.pdf)  
 🧾 **Fuente LaTeX:** [paper/main.tex](paper/main.tex)  
 🧪 **Benchmarks:** [benchmarks/README.md](benchmarks/README.md)  
-📚 **Biblioteca:** https://deepanalytica.github.io/inverse-reality-lab/library.html
+📚 **Biblioteca:** https://deepanalytica.github.io/inverse-reality-lab/library.html  
+🎓 **Revisión académica:** https://deepanalytica.github.io/inverse-reality-lab/review.html
 
 ---
 
@@ -234,6 +236,40 @@ IRL distingue:
 \]
 
 El estudio adversarial de los cinco benchmarks mostró que geometría, microestructura, contexto, accesibilidad, precisión, duración y logística aportan información diferente. Esta separación permite saber qué afirmaciones están respaldadas y qué medición conviene realizar después.
+
+---
+
+## Dashboard 3D/4D
+
+La versión v1.1 incorpora un visor interactivo de Khufu que combina:
+
+- envolvente 3D paramétrica;
+- cámaras y corredores publicados;
+- ScanPyramids Big Void y North Face Corridor;
+- líneas de visión muográficas esquemáticas;
+- cursos y bloques proxy;
+- fuerzas y magnitudes mecánicas de baseline;
+- dominios de búsqueda;
+- hipótesis con evidencia, deducciones, predicciones y observaciones discriminantes;
+- slider 4D de estados causales.
+
+En este contexto:
+
+\[
+\text{4D}
+=
+\text{3D}
++
+\text{estado causal/inferencial}.
+\]
+
+El slider representa estados de reconstrucción y sus condiciones necesarias. No funciona como una fecha histórica automática.
+
+**Visor:** [dashboard.html](dashboard.html)  
+**Especificación:** [DASHBOARD_SPEC.md](DASHBOARD_SPEC.md)  
+**Datos:** [DATA_SCHEMA.md](DATA_SCHEMA.md)  
+**Fuentes:** [SOURCE_REGISTRY.md](SOURCE_REGISTRY.md)  
+**Roadmap:** [ROADMAP_3D_4D.md](ROADMAP_3D_4D.md)
 
 ---
 

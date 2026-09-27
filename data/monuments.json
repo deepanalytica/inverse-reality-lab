@@ -1,0 +1,47 @@
+[
+  {
+    "id": "khufu",
+    "label": "Khufu",
+    "status": "active",
+    "site": "Giza, Egypt",
+    "purpose": "Caso arqueológico principal",
+    "source": "S3"
+  },
+  {
+    "id": "khafre",
+    "label": "Khafre",
+    "status": "planned",
+    "site": "Giza, Egypt",
+    "purpose": "Comparación de arquitectura interna y canteras",
+    "url": "https://giza.fas.harvard.edu/giza3d/"
+  },
+  {
+    "id": "menkaure",
+    "label": "Menkaure",
+    "status": "planned",
+    "site": "Giza, Egypt",
+    "purpose": "Comparación de escala, material y templos",
+    "url": "https://giza.fas.harvard.edu/3dmodels/87569/full/"
+  },
+  {
+    "id": "bent",
+    "label": "Pirámide Acodada",
+    "status": "planned",
+    "site": "Dahshur, Egypt",
+    "purpose": "Cambio geométrico durante construcción y estabilidad"
+  },
+  {
+    "id": "red",
+    "label": "Pirámide Roja",
+    "status": "planned",
+    "site": "Dahshur, Egypt",
+    "purpose": "Comparación de geometría y cámaras"
+  },
+  {
+    "id": "stonehenge",
+    "label": "Stonehenge",
+    "status": "planned",
+    "site": "Wiltshire, UK",
+    "purpose": "Transporte, erección y secuenciación megalítica"
+  }
+]

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "S1",
+    "type": "peer-reviewed",
+    "title": "Discovery of a big void in Khufu’s Pyramid by observation of cosmic-ray muons",
+    "year": 2017,
+    "publisher": "Nature",
+    "url": "https://www.nature.com/articles/nature24647",
+    "doi": "10.1038/nature24647",
+    "relevance": "Big Void; longitud mínima publicada de 30 m; tres tecnologías independientes de muones."
+  },
+  {
+    "id": "S2",
+    "type": "peer-reviewed",
+    "title": "Precise characterization of a corridor-shaped structure in Khufu’s Pyramid by observation of cosmic-ray muons",
+    "year": 2023,
+    "publisher": "Nature Communications",
+    "url": "https://www.nature.com/articles/s41467-023-36351-0",
+    "doi": "10.1038/s41467-023-36351-0",
+    "relevance": "North Face Corridor; unos 9 m de longitud; sección cercana a 2 × 2 m; geometría y detectores."
+  },
+  {
+    "id": "S3",
+    "type": "institutional",
+    "title": "Digital Giza — Giza 3D",
+    "year": 2026,
+    "publisher": "Giza Project at Harvard University",
+    "url": "https://giza.fas.harvard.edu/giza3d/",
+    "relevance": "Modelo 3D y tours del plateau, incluida la Pirámide de Khufu."
+  },
+  {
+    "id": "S4",
+    "type": "archive",
+    "title": "Khufu Pyramid, Sections",
+    "publisher": "Giza Project at Harvard University",
+    "url": "https://giza.fas.harvard.edu/mapsandplans/53527/full/",
+    "relevance": "Secciones de Khufu y cinco cámaras superiores sobre la Cámara del Rey."
+  },
+  {
+    "id": "S5",
+    "type": "archive",
+    "title": "Khufu Pyramid, Plan and section of king’s chamber",
+    "publisher": "Giza Project at Harvard University",
+    "url": "https://giza.fas.harvard.edu/mapsandplans/53525/full/",
+    "relevance": "Planta y sección de la Cámara del Rey."
+  },
+  {
+    "id": "S6",
+    "type": "archaeology",
+    "title": "The Great Pyramid Quarry",
+    "publisher": "Ancient Egypt Research Associates",
+    "url": "https://aeraweb.org/great-pyramid-quarry/",
+    "relevance": "Cantera de Khufu; volumen estimado de la pirámide y cantera; extracción y bloques."
+  },
+  {
+    "id": "S7",
+    "type": "survey",
+    "title": "Cole’s Great Pyramid Measurements / AERA survey context",
+    "publisher": "Ancient Egypt Research Associates",
+    "url": "https://aeraweb.org/wp-content/uploads/2022/08/aeragram13_2.pdf",
+    "relevance": "Mediciones de lados, orientación y discusión de surveys históricos."
+  },
+  {
+    "id": "S8",
+    "type": "historical-survey",
+    "title": "The Pyramids and Temples of Gizeh",
+    "year": 1883,
+    "publisher": "Digital Giza / W. M. Flinders Petrie",
+    "url": "https://giza.fas.harvard.edu/pubdocs/551/full/",
+    "relevance": "Mediciones y documentación histórica de Giza."
+  },
+  {
+    "id": "S9",
+    "type": "peer-reviewed",
+    "title": "Material characterization of stone surfaces in the inner chambers of the Khufu Pyramid",
+    "year": 2026,
+    "publisher": "Scientific Reports",
+    "url": "https://www.nature.com/articles/s41598-026-48805-8",
+    "relevance": "Caracterización no destructiva y conservación de superficies interiores de Khufu."
+  },
+  {
+    "id": "B1",
+    "type": "benchmark",
+    "title": "IRL-Bench 001 — Golden Gate Bridge",
+    "url": "benchmarks/golden-gate/BENCHMARK.md",
+    "relevance": "Acceso aéreo temporal y precedencias."
+  },
+  {
+    "id": "B2",
+    "type": "benchmark",
+    "title": "IRL-Bench 002 — Torre Eiffel",
+    "url": "benchmarks/eiffel-tower/BENCHMARK.md",
+    "relevance": "Modularidad, ajuste y fijación temporal."
+  },
+  {
+    "id": "B3",
+    "type": "benchmark",
+    "title": "IRL-Bench 003 — Hoover Dam",
+    "url": "benchmarks/hoover-dam/BENCHMARK.md",
+    "relevance": "Hidráulica, segmentación y control térmico."
+  },
+  {
+    "id": "B4",
+    "type": "benchmark",
+    "title": "IRL-Bench 004 — Empire State Building",
+    "url": "benchmarks/empire-state/BENCHMARK.md",
+    "relevance": "Pipeline vertical, logística y schedule."
+  },
+  {
+    "id": "B5",
+    "type": "benchmark",
+    "title": "IRL-Bench 005 — Sydney Opera House",
+    "url": "benchmarks/sydney-opera-house/BENCHMARK.md",
+    "relevance": "Geometría generativa, prefabricación y soporte temporal."
+  }
+]

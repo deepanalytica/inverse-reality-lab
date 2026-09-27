@@ -1,0 +1,132 @@
+[
+  {
+    "id": "H1",
+    "title": "Acceso exterior progresivo con arrastre y elevación modular",
+    "family": "Construcción convencional",
+    "epistemic": "hypothesis",
+    "summary": "Familia de procesos donde las piedras se desplazan por redes exteriores temporales y se colocan en frentes de obra progresivos.",
+    "evidence": [
+      "S6",
+      "S8"
+    ],
+    "modelDeductions": [
+      "la masa total debe descomponerse en unidades transportables",
+      "la red de acceso debe crecer con la altura",
+      "el throughput debe sostener varios frentes y fuentes de material"
+    ],
+    "predictions": [
+      "huellas arqueológicas o geomorfológicas compatibles con infraestructuras temporales",
+      "patrones de curso compatibles con cambios de logística",
+      "gradientes de procedencia coherentes con rutas de suministro"
+    ],
+    "discriminators": [
+      "cartografía de canteras y rellenos",
+      "modelos de acceso por pendiente",
+      "distribución litológica por curso"
+    ]
+  },
+  {
+    "id": "H2",
+    "title": "Acceso mixto y secuencias locales de cierre",
+    "family": "Construcción convencional",
+    "epistemic": "hypothesis",
+    "summary": "Familia donde distintos subsistemas utilizan soluciones temporales diferentes y los accesos cambian a medida que la estructura se cierra.",
+    "evidence": [
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "modelDeductions": [
+      "la altura global no basta como reloj histórico",
+      "las cámaras internas generan dependencias locales",
+      "algunos accesos deben cerrarse después de cumplir su función"
+    ],
+    "predictions": [
+      "eventos de cierre detectables en el grafo causal",
+      "zonas donde la geometría final conserva indicios de fases temporales distintas",
+      "diferencias entre cronología de masa y cronología de vacíos"
+    ],
+    "discriminators": [
+      "microgeometría de juntas",
+      "análisis estructural de estados intermedios",
+      "accesibilidad SE(3)"
+    ]
+  },
+  {
+    "id": "H3",
+    "title": "Construcción condicionada por la preservación de cámaras y corredores",
+    "family": "Ontología del espacio negativo",
+    "epistemic": "inferred",
+    "summary": "El sistema interno actúa como conjunto de volúmenes que deben permanecer libres mientras se construye materia a su alrededor.",
+    "evidence": [
+      "S4",
+      "S5",
+      "S1",
+      "S2"
+    ],
+    "modelDeductions": [
+      "cada vacío tiene una genealogía de reserva, frontera, cierre y encapsulamiento",
+      "la remoción inversa debe retirar descendientes causales antes de afectar la identidad del recinto",
+      "las anomalías de densidad deben compararse con un sólido de referencia"
+    ],
+    "predictions": [
+      "eventos topológicos diferenciables en la bifiltración del espacio negativo",
+      "zonas de alta sensibilidad donde una pequeña abertura cambia la conectividad",
+      "relación entre muografía y volumen contrafactual ausente"
+    ],
+    "discriminators": [
+      "muografía adicional",
+      "escaneo geométrico interior",
+      "persistencia topológica"
+    ]
+  },
+  {
+    "id": "H4",
+    "title": "Soportes, fijaciones y grados de libertad temporales",
+    "family": "Ontología temporal",
+    "epistemic": "hypothesis",
+    "summary": "El estado final puede requerir herramientas o estructuras temporales que desaparecen una vez completado el montaje.",
+    "evidence": [
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5"
+    ],
+    "modelDeductions": [
+      "un cierre de precisión puede requerir ajuste antes de la fijación final",
+      "un elemento inestable durante el montaje puede necesitar soporte provisional",
+      "la ausencia de infraestructura temporal en el objeto final no elimina su necesidad funcional"
+    ],
+    "predictions": [
+      "soluciones temporales de mínima complejidad reducen falsos residuos de fuerza",
+      "la ablación de estas entidades aumenta estados aparentemente imposibles"
+    ],
+    "discriminators": [
+      "comparación con benchmarks prospectivos",
+      "marcas de apoyo o montaje",
+      "simulación incremental"
+    ]
+  },
+  {
+    "id": "H5",
+    "title": "Compensación efectiva de peso",
+    "family": "Control contrafactual",
+    "epistemic": "counterfactual",
+    "summary": "Escenario matemático utilizado para cuantificar cuánto tendría que cambiar el peso efectivo si quedara un residual mecánico robusto.",
+    "evidence": [],
+    "modelDeductions": [
+      "el parámetro α modifica la demanda gravitatoria efectiva",
+      "α=0 reproduce gravedad ordinaria",
+      "su utilidad actual es comparar escalas de fuerza y sensibilidad"
+    ],
+    "predictions": [
+      "cualquier α distinto de cero debería producir efectos independientes medibles",
+      "el parámetro pierde necesidad cuando mecanismos convencionales explican el estado"
+    ],
+    "discriminators": [
+      "residual mecánico robusto",
+      "evidencia independiente de una interacción adicional"
+    ]
+  }
+]

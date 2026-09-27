@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard 3D/4D · Inverse Reality Laboratory</title>
+<meta name="description" content="Dashboard 3D/4D de Khufu: geometría, espacios internos, evidencia, hipótesis, fuerzas y reconstrucción causal inversa.">
+<link rel="stylesheet" href="assets/dashboard.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.167.1/examples/jsm/"}}
+</script>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <div class="brand">Inverse Reality <span>Laboratory</span></div>
+      <div class="subtitle">Khufu · visor 3D/4D · evidencia + mecánica + hipótesis</div>
+    </div>
+    <div class="toplinks">
+      <a href="index.html">Inicio</a>
+      <a href="library.html#start">Biblioteca</a>
+      <a href="paper/PAPER.pdf">Paper</a>
+      <a href="review.html">Revisión académica</a>
+      <a class="primary" href="https://giza.fas.harvard.edu/giza3d/" target="_blank" rel="noopener">Referencia Digital Giza ↗</a>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar">
+      <section class="section">
+        <div class="kicker">Modelo activo</div>
+        <h2>Gran Pirámide de Khufu</h2>
+        <p class="small">Modelo paramétrico auditable. Las capas distinguen datos publicados, cálculos, inferencias e hipótesis.</p>
+      </section>
+
+      <section class="section">
+        <div class="kicker">Capas</div>
+        <label class="layer"><input id="layer-shell" type="checkbox" checked><span><b>Envolvente</b><span>Geometría exterior paramétrica</span></span></label>
+        <label class="layer"><input id="layer-courses" type="checkbox" checked><span><b>Cursos</b><span>Secciones horizontales de referencia</span></span></label>
+        <label class="layer"><input id="layer-interior" type="checkbox" checked><span><b>Interiores</b><span>Cámaras, galería y sistema superior</span></span></label>
+        <label class="layer"><input id="layer-muon" type="checkbox" checked><span><b>Muografía</b><span>Big Void, NFC y líneas de visión esquemáticas</span></span></label>
+        <label class="layer"><input id="layer-force" type="checkbox" checked><span><b>Fuerzas</b><span>Gravedad y transferencia de carga simplificada</span></span></label>
+        <label class="layer"><input id="layer-blocks" type="checkbox"><span><b>Bloques proxy</b><span>Unidades paramétricas seleccionables</span></span></label>
+        <label class="layer"><input id="layer-search" type="checkbox"><span><b>Dominios de búsqueda</b><span>Volúmenes donde faltan datos o quedan alternativas</span></span></label>
+      </section>
+
+      <section class="section">
+        <div class="kicker">Magnitudes del estado</div>
+        <div class="metric-grid">
+          <div class="metric"><div class="v" id="mass-mt">—</div><div class="l">Masa visible</div></div>
+          <div class="metric"><div class="v" id="pressure-mpa">—</div><div class="l">Presión media base</div></div>
+          <div class="metric"><div class="v" id="height-m">—</div><div class="l">Altura visible</div></div>
+          <div class="metric"><div class="v" id="removed-pct">—</div><div class="l">Masa retirada</div></div>
+        </div>
+        <p class="small" style="margin-top:8px">Cálculos sobre el baseline volumétrico del modelo; densidad ajustable en el dataset.</p>
+      </section>
+
+      <section class="section">
+        <div class="kicker">Selección</div>
+        <div id="selected" class="card">
+          <h3>Haz clic en una entidad 3D</h3>
+          <p>Cámaras, vacíos muográficos y bloques proxy muestran su procedencia y función dentro del modelo.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="kicker">Vista</div>
+        <div class="controls-row">
+          <button class="mini-btn" data-view="iso">Isométrica</button>
+          <button class="mini-btn" data-view="north">Norte</button>
+          <button class="mini-btn" data-view="section">Sección</button>
+          <button class="mini-btn" id="reset-camera">Reiniciar</button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="viewport-wrap">
+      <div id="scene"></div>
+      <div class="viewport-tools">
+        <div class="pill"><strong>4D</strong> = 3D + estado causal</div>
+        <div class="pill" id="state-pill">T0 · estado terminal</div>
+        <div class="pill"><strong>Click</strong> para inspeccionar</div>
+      </div>
+      <div class="legend">
+        <div class="pill"><span class="dot" style="background:#67d391"></span>observado</div>
+        <div class="pill"><span class="dot" style="background:#56d5ff"></span>publicado</div>
+        <div class="pill"><span class="dot" style="background:#ffb45d"></span>inferido</div>
+        <div class="pill"><span class="dot" style="background:#b89cff"></span>hipótesis</div>
+      </div>
+    </section>
+
+    <aside class="inspector">
+      <div class="tabs">
+        <button class="active" data-tab="state">Estado</button>
+        <button data-tab="hypotheses">Hipótesis</button>
+        <button data-tab="evidence">Evidencia</button>
+        <button data-tab="anomalies">Búsqueda</button>
+        <button data-tab="compare">Comparativa</button>
+      </div>
+
+      <div class="tab active" id="tab-state">
+        <div class="kicker">Reconstrucción inversa</div>
+        <div id="state-card"></div>
+        <div class="note">El slider representa estados inferenciales. Una transición requiere compatibilidad causal, geométrica, mecánica y evidencial.</div>
+      </div>
+
+      <div class="tab" id="tab-hypotheses">
+        <div class="kicker">Historias compatibles</div>
+        <select id="hypothesis-select" class="hyp-select"></select>
+        <div id="hypothesis-card"></div>
+      </div>
+
+      <div class="tab" id="tab-evidence">
+        <div class="entity-title"><div class="kicker">Registro de fuentes</div><span class="source-counter" id="source-count"></span></div>
+        <div id="evidence-list"></div>
+      </div>
+
+      <div class="tab" id="tab-anomalies">
+        <div class="kicker">Vacíos y dominios abiertos</div>
+        <div class="note warning">Una región de búsqueda expresa incertidumbre o falta de cobertura. Una anomalía positiva requiere evidencia instrumental o estructural específica.</div>
+        <div id="anomaly-list"></div>
+      </div>
+
+      <div class="tab" id="tab-compare">
+        <div class="kicker">Programa comparativo</div>
+        <p class="small">Khufu está implementado. Los demás monumentos se incorporarán con el mismo esquema de evidencia, hipótesis y validación.</p>
+        <div id="monument-list"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="timeline">
+    <div>
+      <div class="kicker">Estado 4D</div>
+      <h3 id="timeline-title">Estado terminal</h3>
+      <p>Arrastra hacia la derecha para retroceder por estados compatibles.</p>
+    </div>
+    <div>
+      <input id="time" type="range" min="0" max="100" value="0" step="1">
+      <div class="time-labels"><span>terminado</span><span>cámara Rey</span><span>galería</span><span>núcleo</span><span>sitio</span></div>
+    </div>
+    <div class="time-state">
+      <strong id="timeline-code">T0</strong>
+      <span id="timeline-sub">progreso inferencial 0%</span>
+    </div>
+  </footer>
+</div>
+
+<script type="module" src="assets/dashboard.js"></script>
+</body>
+</html>
