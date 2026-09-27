@@ -1,0 +1,244 @@
+
+\section{Programa de benchmarks}
+
+Antes de aplicar el marco a Khufu se utilizaron cinco estructuras con historias constructivas bien documentadas. Los benchmarks son retrospectivos y pseudo-ciegos: se separó una capa de entrada terminal de una capa de revelación histórica, pero las reglas fueron concebidas con conocimiento general de ingeniería. Por tanto miden consistencia de representación, no rendimiento fuera de muestra.
+
+\subsection{IRL-Bench 001: Golden Gate Bridge}
+
+Un grafo grueso usa siete entidades: cimentaciones \(P\), anclajes \(A\), torres \(T\), cables principales \(M\), suspensores \(S\), deck \(D\) y roadway \(R\).
+
+Las precedencias seleccionadas son
+
+\begin{equation}
+P\prec T,
+\quad
+A\prec M,
+\quad
+T\prec M,
+\quad
+M\prec S,
+\quad
+S\prec D,
+\quad
+D\prec R.
+\end{equation}
+
+Sin restricciones existen
+
+\begin{equation}
+7!=5040
+\end{equation}
+
+órdenes seriales. El poset permite tres extensiones lineales, una reducción de
+
+\begin{equation}
+\boxed{
+99.9405\%.
+}
+\end{equation}
+
+El benchmark sugirió que la formación de los cables requería alguna topología aérea temporal previa al cable definitivo. La documentación histórica contiene catwalks antes del cable spinning \cite{ggbconstruction,ggbtowers,ggbcables,ggbdeck}.
+
+La interpretación corregida por la ablación es:
+
+\begin{quote}
+terminal + sitio + accesibilidad permiten recuperar la clase funcional acceso aéreo temporal; no identifican de forma única el catwalk histórico.
+\end{quote}
+
+Con modularidad y lifting convencional,
+
+\begin{equation}
+\Fres^\star\approx0.
+\end{equation}
+
+\subsection{IRL-Bench 002: Torre Eiffel}
+
+El modelo grueso emplea 15 macroentidades: cuatro fundaciones, cuatro ramas inferiores, primer cierre, cuatro tramos superiores, segundo cierre y superestructura.
+
+Sin restricciones:
+
+\begin{equation}
+15!
+=
+1\,307\,674\,368\,000.
+\end{equation}
+
+El poset definido permite
+
+\begin{equation}
+60\,480
+\end{equation}
+
+extensiones lineales, una reducción de
+
+\begin{equation}
+\boxed{
+99.9999954\%.
+}
+\end{equation}
+
+La estructura terminal contiene aproximadamente 18\,038 piezas de hierro y 2.5 millones de remaches, con masa metálica del orden de 7\,300 t \cite{eiffelhistory,eiffelconstruction,eiffelrapid,eiffelstats}.
+
+La escala media agregada por pieza es
+
+\begin{equation}
+\bar m
+\approx
+\frac{7.3\times10^6}{18\,038}
+\approx405\ {\rm kg}.
+\end{equation}
+
+Frente a un cuerpo monolítico de peso aproximado
+
+\begin{equation}
+W_{\mathrm{mono}}
+\approx71.6\ {\rm MN},
+\end{equation}
+
+la microestructura terminal favorece ensamblaje modular.
+
+El cierre de cuatro ramas también favorece una clase de soporte y ajuste temporal cuando se incluye precisión geométrica. La historia documenta andamios, dispositivos de ajuste y fijaciones provisionales.
+
+La conclusión defendible es recuperación de clases funcionales, no identificación única del dispositivo histórico.
+
+\subsection{IRL-Bench 003: Hoover Dam}
+
+Hoover prueba un régimen diferente: hormigón masivo, río activo, cañón y disipación térmica.
+
+El dominio final de la presa intersecta el cauce. Para construir la fundación en seco se necesita una fase donde
+
+\begin{equation}
+\Omega_R(t)\cap\Omega_D\approx\varnothing.
+\end{equation}
+
+Con sitio e hidrología, IRL favorece una clase de bypass y aislamiento temporal. Históricamente existieron túneles de desvío y cofferdams \cite{hooverhistory,hooverconcrete,hoovertunnels,hoovercoffer}.
+
+El calor de hidratación se aproxima mediante
+
+\begin{equation}
+\rho c_p
+\frac{\partial T}{\partial t}
+=
+k\nabla^2T
++
+\dot q_{\mathrm{hyd}}
+-
+q_{\mathrm{cool}}.
+\end{equation}
+
+Una escala de difusión
+
+\begin{equation}
+t_d
+\sim
+\frac{L^2}{\alpha_T}
+\end{equation}
+
+con \(L=60\) m y \(\alpha_T=8.5\times10^{-7}\) m\(^2\)/s produce aproximadamente 134 años, del mismo orden que la escala histórica publicada para una colada masiva continua.
+
+La corrección adversarial es importante: la necesidad de control térmico surge de material + geometría + física; las cooling pipes concretas se vuelven fuertemente favorecidas al incorporar una restricción de duración. No son identificables desde el terminal aislado.
+
+\subsection{IRL-Bench 004: Empire State Building}
+
+El modelo pipeline utiliza una fundación y cinco zonas de acero \(S_i\) con cinco zonas de cierre \(C_i\), con
+
+\begin{equation}
+F\prec S_1\prec\cdots\prec S_5,
+\end{equation}
+
+\begin{equation}
+C_1\prec\cdots\prec C_5,
+\qquad
+S_i\prec C_i.
+\end{equation}
+
+De
+
+\begin{equation}
+11!=39\,916\,800
+\end{equation}
+
+órdenes, las intercalaciones compatibles de las dos cadenas son
+
+\begin{equation}
+C_5
+=
+\frac1{6}{10\choose5}
+=
+42.
+\end{equation}
+
+La reducción serial es
+
+\begin{equation}
+99.9998948\%.
+\end{equation}
+
+Éste fue el benchmark donde el estudio adversarial encontró la sobreinterpretación más clara: JIT, pipeline extremo y jumping derricks no son deducciones del terminal. Requieren restricciones de sitio, duración, logística y accesibilidad \cite{esbhistory,locempire,skyscrapermuseum,smithsonianderrick}.
+
+La formulación correcta es
+
+\begin{equation}
+\boxed{
+X_T
++
+\text{sitio}
++
+\text{schedule}
++
+\text{logística}
+\Rightarrow
+\text{pipeline concurrente favorecido}.
+}
+\end{equation}
+
+\subsection{IRL-Bench 005: Sydney Opera House}
+
+Sydney introduce un problema de geometría generativa.
+
+Para puntos \(\mathbf x_{jk}\) de múltiples shells, una hipótesis esférica común minimiza
+
+\begin{equation}
+\boxed{
+\min_{\mathbf c,R}
+\sum_{j,k}
+\left(
+\|\mathbf x_{jk}-\mathbf c\|-R
+\right)^2.
+}
+\end{equation}
+
+Un residuo bajo favorece un generador común frente a superficies independientes. La historia documenta el desarrollo de una solución esférica común que permitió racionalizar la fabricación \cite{sydneysphere,arupsydney,heritagesydney,istructesydney}.
+
+El benchmark también favorece, bajo estructura y accesibilidad, una clase de soporte temporal curvo para ribs incompletos. Históricamente existió un erection arch telescópico.
+
+No se utiliza en la puntuación el valor exacto de radio o diámetro de la esfera porque resúmenes institucionales consultados no fueron uniformes. La inferencia robusta es la existencia del generador común.
+
+\subsection{Síntesis}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+Control & Problema dominante & Clase funcional históricamente compatible \\
+\midrule
+Golden Gate & suspensión y acceso & acceso aéreo temporal; formación incremental de cable \\
+Eiffel & cierre y modularidad & soporte/ajuste temporal; fijación provisional \\
+Hoover & hidráulica y térmica & bypass; segmentación; control térmico \\
+Empire State & pipeline vertical & modularidad; concurrencia condicionada por sitio y schedule \\
+Sydney Opera & geometría generativa & generador común; prefabricación; soporte temporal de ribs \\
+\bottomrule
+\end{tabularx}
+\caption{Resumen de los cinco controles. La coincidencia se evalúa a nivel de clase funcional, no de implementación histórica exacta.}
+\end{table}
+
+En los cinco, después de introducir procesos convencionales adecuados,
+
+\begin{equation}
+\boxed{
+\Fres^\star\approx0
+}
+\end{equation}
+
+a la resolución gruesa empleada.
