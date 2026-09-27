@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -36,6 +36,19 @@ jobs:
           test -n "$PDF_PATH"
           echo "Compiled paper: $PDF_PATH"
           cp "$PDF_PATH" paper/PAPER.pdf
+
+      - name: Sync compiled PDF back to repository
+        shell: bash
+        run: |
+          if ! git diff --quiet -- paper/PAPER.pdf; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add paper/PAPER.pdf
+            git commit -m "Update compiled preprint PDF v1.0 [skip ci]"
+            git push
+          else
+            echo "Compiled PDF already matches tracked file."
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
