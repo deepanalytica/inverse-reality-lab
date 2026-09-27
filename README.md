@@ -1,33 +1,28 @@
 # Inverse Reality Laboratory (IRL)
 
-**Terminal-state, evidence-constrained reconstruction of physical objects.**  
-Primary archaeological laboratory: **Great Pyramid of Khufu, Giza**.  
-Research architecture: **PRAXIOS + Meta-Harness**.
+**Laboratorio de reconstrucción inversa de procesos físicos y constructivos.**
 
-> **Scientific status:** research prototype and falsifiable formal framework.  
-> It does not claim to have solved the construction of Khufu, nor does it claim antigravity, physical negative mass or physical equivalence between ancient architecture and black-hole physics.
-
-🌐 **Interactive laboratory:** https://deepanalytica.github.io/inverse-reality-lab/  
+🌐 **Laboratorio interactivo:** https://deepanalytica.github.io/inverse-reality-lab/  
+📘 **Guía rápida:** [START_HERE.md](START_HERE.md)  
+📖 **Glosario:** [GLOSSARY.md](GLOSSARY.md)  
 📄 **Paper canónico v1.0:** [paper/PAPER.pdf](paper/PAPER.pdf) · [LaTeX modular](paper/main.tex)  
-🧮 **Mathematics:** [MATHEMATICAL_MODEL.md](MATHEMATICAL_MODEL.md)  
-🧩 **Ontology:** [ONTOLOGY.md](ONTOLOGY.md)  
-🧠 **Theory:** [THEORY.md](THEORY.md)
+🧮 **Modelo matemático:** [MATHEMATICAL_MODEL.md](MATHEMATICAL_MODEL.md)  
+🧩 **Ontología:** [ONTOLOGY.md](ONTOLOGY.md)  
+🧠 **Teoría:** [THEORY.md](THEORY.md)
 
 ---
 
-# Resumen en español
+# Qué es
 
-El proyecto parte de una pregunta distinta a la habitual.
+Inverse Reality Laboratory estudia cómo reconstruir la historia de formación de un objeto a partir de lo que podemos observar en su estado actual.
 
-En lugar de:
+El laboratorio principal es la **Gran Pirámide de Khufu**. Antes de aplicarlo allí, el método se prueba con estructuras cuya construcción está documentada: Golden Gate Bridge, Torre Eiffel, Hoover Dam, Empire State Building y Sydney Opera House.
 
-> **¿Cómo pudieron construir la Gran Pirámide?**
+La pregunta central es:
 
-pregunta:
+> **Dado un objeto terminado, ¿qué historias de construcción son compatibles con su geometría, materiales, estructura, accesos, entorno y evidencia disponible?**
 
-> **Si comenzamos exactamente desde la pirámide terminada y retrocedemos estado por estado, ¿qué estados anteriores son físicamente, topológicamente, arqueológicamente y logísticamente compatibles con el objeto final?**
-
-El resultado buscado no es una narración única, sino
+El resultado se expresa como un conjunto de historias compatibles y su grado de soporte:
 
 \[
 \boxed{
@@ -36,34 +31,124 @@ P(
 \mid
 \text{objeto terminal},
 \text{evidencia},
-\text{leyes físicas}
-).
+\text{leyes físicas},
+\text{contexto}
+)
 }
 \]
 
-El objeto terminado se trata simultáneamente como:
+---
+
+# Qué hace el laboratorio
+
+IRL combina distintas fuentes de información y las convierte en restricciones sobre la historia constructiva.
+
+Trabaja con:
+
+- geometría;
+- materiales;
+- cámaras, corredores y otros espacios vacíos;
+- relaciones de soporte y carga;
+- accesibilidad de piezas;
+- procedencia;
+- logística;
+- evidencia arqueológica, documental e instrumental;
+- incertidumbre.
+
+Cada historia candidata debe ser compatible con esos datos.
+
+Cuando varias historias siguen siendo compatibles, el laboratorio conserva las alternativas y mide qué información adicional ayudaría a distinguirlas.
+
+---
+
+# Cuál es el aporte
+
+El proyecto propone una forma integrada de estudiar la construcción desde el objeto terminado.
+
+En términos simples:
 
 \[
 \boxed{
-\text{geometría}
-+
-\text{materia}
-+
-\text{espacio negativo}
-+
-\text{cargas}
-+
-\text{contactos}
-+
-\text{procedencia}
-+
-\text{acceso}
-+
-\text{daño}
-+
-\text{evidencia}.
+\text{objeto terminado}
+\rightarrow
+\text{restricciones}
+\rightarrow
+\text{historias compatibles}
+\rightarrow
+\text{predicciones comprobables}
 }
 \]
+
+El aporte está en reunir dentro de un mismo sistema:
+
+- problemas inversos;
+- mecánica estructural;
+- teoría de grafos;
+- topología;
+- espacios de configuración;
+- inferencia bayesiana;
+- procedencia material;
+- logística;
+- simulación contrafactual;
+- control explícito de identificabilidad.
+
+La finalidad es distinguir tres situaciones que suelen mezclarse:
+
+1. una historia físicamente posible;
+2. una historia compatible con la evidencia disponible;
+3. una historia realmente identificable frente a sus alternativas.
+
+---
+
+# Cómo funciona en una frase
+
+IRL empieza desde el resultado, reconstruye estados anteriores posibles, elimina los que contradicen física o evidencia y calcula qué observaciones permitirían discriminar las historias que todavía sobreviven.
+
+---
+
+# Conceptos esenciales
+
+**Estado terminal:** el objeto cuando la construcción quedó terminada.
+
+**As-built:** cómo quedó realmente construido.
+
+**Problema inverso:** partir del resultado observado para inferir qué procesos pudieron producirlo.
+
+**Ontología:** catálogo estructurado de entidades y relaciones del problema: bloques, cámaras, eventos, fuentes, rutas, evidencias.
+
+**Topología:** estudio de conexiones, cavidades y cambios de conectividad.
+
+**Espacio negativo:** volumen diseñado para permanecer libre de material, como una cámara o corredor.
+
+**Orden parcial:** cronología donde algunas acciones tienen precedencia obligatoria y otras pueden ocurrir en paralelo.
+
+**Identificabilidad:** grado en que los datos permiten distinguir una explicación de otra.
+
+**Ontología temporal latente:** estructuras temporales usadas durante la obra y ausentes en el objeto final, como andamios, rampas, moldes o pasarelas.
+
+**Fuerza residual:** fuerza todavía sin explicar después de incorporar mecanismos conocidos; funciona como diagnóstico del modelo.
+
+Para definiciones más completas: **[GLOSSARY.md](GLOSSARY.md)**.
+
+---
+
+# Por qué Khufu
+
+La Gran Pirámide reúne varias fuentes de evidencia que pueden restringirse entre sí:
+
+- geometría exterior e interior;
+- cámaras y corredores;
+- diferencias entre caliza y granito;
+- canteras;
+- lecho rocoso;
+- fracturas;
+- anomalías de densidad;
+- muografía;
+- rutas de transporte;
+- paleohidrología;
+- evidencia arqueológica.
+
+Esto permite estudiar la construcción como un problema multimodal y medir cuánto reduce cada fuente el espacio de historias posibles.
 
 ---
 
