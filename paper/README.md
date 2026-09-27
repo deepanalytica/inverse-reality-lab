@@ -1,17 +1,56 @@
-# Paper
+# Paper canónico — Preprint v1.0
 
-The canonical academic source is:
+La versión académica canónica del proyecto es:
 
-- **LaTeX:** [main.tex](main.tex)
-- **Compiled public PDF:** [PAPER.pdf](PAPER.pdf)
-- **Web mathematics:** [../mathematics.html](../mathematics.html)
+- **Fuente principal:** [main.tex](main.tex)
+- **Secciones modulares:** [sections/](sections/)
+- **PDF compilado por GitHub Actions:** [PAPER.pdf](PAPER.pdf)
+- **Vista matemática web:** [../mathematics.html](../mathematics.html)
+- **Biblioteca web:** [../library.html](../library.html)
 
-The PDF is compiled automatically by GitHub Actions from \`main.tex\` before the GitHub Pages artifact is deployed. This keeps the downloadable paper synchronized with the equations and formalism.
+## Idioma y alcance
 
-## Typography
+El paper canónico está escrito en **español**, con abstract adicional en inglés. Integra:
 
-The paper uses LaTeX with Libertinus text/math fonts, AMS mathematics, theorem environments, equation numbering and hyperlinked references.
+- teoría de inversión terminal;
+- ontología positiva/negativa;
+- masa ausente contrafactual;
+- campos \(T_b^+\) y \(T_b^-\);
+- bifiltración \((\tau,r)\);
+- orden parcial y frente inverso admisible;
+- mecánica, contacto y acceso en \(SE(3)\);
+- Bayes, identificabilidad y Expected Information Gain;
+- ontología temporal latente;
+- residual de fuerza;
+- extensiones contrafactuales de compensación gravitatoria y campo elástico-helicoidal;
+- cinco benchmarks documentados;
+- estudio adversarial de ablación;
+- correcciones epistemológicas;
+- conjeturas, criterios de falsificación y programa Khufu.
 
-## Scientific status
+## Compilación reproducible
 
-Working paper / research framework. Contribution candidates are explicitly separated from established mathematics and archaeological evidence.
+Cada push a main ejecuta GitHub Actions:
+
+1. compila paper/main.tex;
+2. genera el PDF;
+3. copia el resultado a paper/PAPER.pdf;
+4. publica el sitio completo en GitHub Pages.
+
+El paper está dividido en archivos LaTeX independientes dentro de paper/sections/ para facilitar revisión por pares, versionado y correcciones.
+
+## Estado científico
+
+**Preprint v1.0 / marco de investigación.**
+
+El paper distingue explícitamente:
+
+- matemática/física establecida;
+- derivaciones internas;
+- formalismos propuestos;
+- hipótesis contrafactuales;
+- observaciones publicadas;
+- resultados de benchmark;
+- estados no identificables.
+
+No afirma haber resuelto el método histórico de construcción de Khufu ni presenta los campos gravitatorios hipotéticos como evidencia física.
