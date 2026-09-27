@@ -1,0 +1,170 @@
+
+\section{Planteamiento científico}
+
+La pregunta tradicional sobre una estructura histórica suele formularse en sentido directo: qué mecanismo podría haber producido el objeto observado. Ese enfoque es legítimo, pero muchas historias diferentes pueden ser físicamente plausibles y producir estados terminales semejantes. La plausibilidad no equivale a identificación histórica.
+
+Sea \(X_T\) el estado terminal \emph{as-built}, \(Y_{\mathrm{now}}\) el conjunto de observaciones modernas y \(\mathcal L\) la familia de leyes físicas y modelos admisibles. El objetivo de IRL es inferir
+
+\begin{equation}
+\boxed{
+P(H,\Theta\mid Y_{\mathrm{now}},\mathcal L)
+}
+\end{equation}
+
+donde \(H\) representa historias constructivas discretas o parcialmente ordenadas y \(\Theta\) reúne variables continuas como fechas, densidades, rutas, fuerzas, tolerancias, parámetros materiales y geometrías latentes.
+
+\begin{principle}[No unicidad por defecto]
+Si dos o más historias permanecen observacionalmente indistinguibles bajo los operadores de observación y la evidencia disponible, el resultado correcto es una clase de equivalencia o una distribución posterior, no una narración única.
+\end{principle}
+
+La Gran Pirámide de Khufu constituye el laboratorio arqueológico principal por combinar geometría monumental, diferencias litológicas, cámaras y corredores, canteras, lecho rocoso, problemas de transporte, estructura interna, observaciones muográficas y una cronología constructiva no directamente observada \cite{petrie1883,arnold1991,lehner1997,morishima2017,procureur2023,aeraquarry,ghoneim2024}.
+
+\section{Dos problemas inversos encadenados}
+
+La pirámide observable hoy no es idéntica al objeto que existía al finalizar su construcción. Pérdida de revestimiento, erosión, fracturas, extracción de piedra, excavación y reparaciones alteraron el sistema.
+
+Definimos
+
+\begin{equation}
+X_{\mathrm{now}}
+=
+\post(X_T;\Theta_{\mathrm{post}})
+\end{equation}
+
+y
+
+\begin{equation}
+Y_{\mathrm{now}}
+=
+\obs[X_{\mathrm{now}}]+\varepsilon.
+\end{equation}
+
+El estado terminal construido surge de
+
+\begin{equation}
+X_T
+=
+\build(C,D,\Gamma;\Theta_{\mathrm{build}}),
+\end{equation}
+
+donde \(C\) representa restricciones de concepción, \(D\) información de diseño y \(\Gamma\) la historia constructiva.
+
+Por tanto,
+
+\begin{align}
+\mathcal I_{\mathrm{post}} &: 
+Y_{\mathrm{now}}
+\rightarrow
+P(X_T\mid Y_{\mathrm{now}}),\\
+\mathcal I_{\mathrm{build}} &: 
+X_T
+\rightarrow
+P(\Gamma,D,C\mid X_T,E,\mathcal L).
+\end{align}
+
+Esta separación evita atribuir al proceso original propiedades que pertenecen a la historia postconstructiva.
+
+\section{Tiempo inverso: coordenada inferencial}
+
+Sea \(t\in[0,T]\) el tiempo constructivo directo. Definimos
+
+\begin{equation}
+\boxed{\tau=T-t.}
+\end{equation}
+
+Entonces
+
+\begin{equation}
+\frac{d}{d\tau}
+=
+-\frac{d}{dt},
+\qquad
+\frac{d^2}{d\tau^2}
+=
+\frac{d^2}{dt^2}.
+\end{equation}
+
+La segunda igualdad no implica reversibilidad termodinámica. Fricción, daño y disipación destruyen información microscópica. IRL reconstruye antecedentes que, evolucionados hacia adelante bajo física ordinaria, son compatibles con el estado observado.
+
+\begin{remark}
+El desmontaje inverso es un algoritmo de inferencia y un orden de estados candidatos. No afirma que un proceso histórico pueda reproducirse físicamente al revés.
+\end{remark}
+
+\section{Geometría ideal y relojes no equivalentes}
+
+Consideremos una pirámide cuadrada ideal de lado de base \(a\), altura \(H\), coordenada vertical \(z\) y altura normalizada \(u=z/H\).
+
+El área de una sección horizontal es
+
+\begin{equation}
+A(z)
+=
+a^2
+\left(1-\frac{z}{H}\right)^2.
+\end{equation}
+
+\begin{proposition}[Volumen ideal]
+\begin{equation}
+\boxed{
+V=\frac{a^2H}{3}.
+}
+\end{equation}
+\end{proposition}
+
+Bajo densidad uniforme, la fracción de masa situada por encima de una cota \(u\) es
+
+\begin{equation}
+\boxed{
+\Gamma_M(u)
+=
+(1-u)^3.
+}
+\end{equation}
+
+Así,
+
+\begin{equation}
+\Gamma_M(1/2)=1/8=12.5\%.
+\end{equation}
+
+La energía potencial respecto de la base es
+
+\begin{equation}
+U
+=
+\rho g
+\int_0^H zA(z)\,dz
+=
+\frac14MgH.
+\end{equation}
+
+La fracción de potencial situada por encima de \(u\) es
+
+\begin{equation}
+\boxed{
+\Gamma_G(u)
+=
+1-6u^2+8u^3-3u^4.
+}
+\end{equation}
+
+En \(u=1/2\),
+
+\begin{equation}
+\Gamma_G(1/2)=5/16=31.25\%.
+\end{equation}
+
+\begin{principle}[No equivalencia de relojes]
+\begin{equation}
+\boxed{
+\tau
+\neq
+z/H
+\neq
+\Gamma_M
+\neq
+\Gamma_G.
+}
+\end{equation}
+La cronología no puede sustituirse por una sola variable geométrica.
+\end{principle}
