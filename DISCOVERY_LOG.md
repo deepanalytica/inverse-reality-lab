@@ -1,6 +1,6 @@
-# Registro de descubrimientos y razonamiento científico
+# Desarrollo del modelo
 
-Este documento presenta la evolución conceptual de Inverse Reality Laboratory. Resume las preguntas que dieron origen al proyecto, los modelos que se incorporaron, las correcciones realizadas y las decisiones que permiten seguir y reproducir el desarrollo científico.
+Este documento presenta cómo evolucionó Inverse Reality Laboratory desde la pregunta inicial hasta el modelo actual. Cada etapa resume el problema identificado, la herramienta incorporada y la función que cumple dentro del laboratorio.
 
 ---
 
@@ -258,7 +258,7 @@ Esto permite compartir una interfaz matemática entre dominios físicos distinto
 
 ---
 
-## Etapa 17 — El motor contrafactual se vuelve obligatorio
+## Etapa 17 — Se incorpora el motor contrafactual
 
 Cada historia candidata debe producir evidencia predicha:
 
@@ -272,7 +272,7 @@ Una historia sólo gana valor científico si puede entrar en conflicto con obser
 
 ---
 
-## Etapa 18 — La no-identificabilidad pasa a ser una respuesta válida
+## Etapa 18 — Se incorpora la no-identificabilidad como resultado
 
 Si múltiples historias sobreviven:
 
