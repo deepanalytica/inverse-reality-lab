@@ -1,53 +1,67 @@
 # IRL Benchmarks
 
-Five positive-control experiments are now available.
+El programa de validación contiene cinco controles positivos retrospectivos y un estudio adversarial de identificabilidad.
 
-| ID | Structure | Dominant inverse problem | Key recovered latent/process class |
+| ID | Estructura | Problema dominante | Conclusión defendible |
 |---|---|---|---|
-| 001 | Golden Gate Bridge | suspension / accessibility | temporary aerial catwalk topology |
-| 002 | Eiffel Tower | modular closure / precision | temporary supports, jacks, provisional fasteners |
-| 003 | Hoover Dam | hydraulics / mass concrete / heat | diversion topology + sacrificial cooling network |
-| 004 | Empire State Building | vertical industrial pipeline | JIT staging + jumping derricks + trade overlap |
-| 005 | Sydney Opera House | generative geometry / segmental shells | common geometric generator + erection arch + post-tensioning |
+| 001 | Golden Gate Bridge | suspensión / accesibilidad | con sitio y acceso se recupera la clase funcional de acceso aéreo temporal |
+| 002 | Torre Eiffel | cierre / modularidad / precisión | microestructura favorece montaje modular; precisión añade ajuste temporal |
+| 003 | Hoover Dam | hidráulica / hormigón masivo / térmica | hidrología exige control del río; física térmica favorece segmentación |
+| 004 | Empire State Building | producción vertical / logística | el terminal favorece modularidad; JIT/pipeline requieren sitio, schedule y logística |
+| 005 | Sydney Opera House | geometría generativa / shells segmentales | geometría precisa puede recuperar un generador común; soporte exacto requiere más modalidades |
 
-## Current common observation
+## Observación común de los controles
 
-Across five radically different structures, allowing conventional **latent process ontology** drives the unexplained-force residual toward zero:
+Cuando se admiten mecanismos convencionales, modularidad y ontologías temporales adecuadas, el residual de fuerza puede llevarse a aproximadamente:
 
 \[
-\mathbf F_X^\star\approx0.
+\mathbf F_X^\star\approx0
 \]
 
-So far, no benchmark requires a gravity-control or exotic-force term.
+a la resolución gruesa de los cinco benchmarks.
 
-The controls increasingly suggest that apparent “force mysteries” often arise when the inverse model is missing one of four things:
-
-1. temporary topology;
-2. modular decomposition;
-3. logistics/pipeline structure;
-4. state-changing physical processes such as cooling, prestressing or adjustment.
-
-This is an empirical pattern from the benchmark series, not yet a theorem.
-
+Esto **no** demuestra que IRL pueda reconstruir automáticamente la historia exacta de una obra. Los benchmarks son retrospectivos y pseudo-ciegos.
 
 ## Adversarial Study 001 — Identifiability Under Evidence Ablation
 
-The positive controls are now accompanied by a self-falsification study.
+- [Resultados](adversarial-identifiability/RESULTS.md)
+- [Correcciones epistemológicas](adversarial-identifiability/CORRECTIONS.md)
+- [Motor reproducible de ablación](adversarial-identifiability/ablation.py)
+- [Snapshot de resultados](adversarial-identifiability/result.json)
 
-- [Results](adversarial-identifiability/RESULTS.md)
-- [Epistemic corrections](adversarial-identifiability/CORRECTIONS.md)
-- [Reproducible ablation engine](adversarial-identifiability/ablation.py)
-- [Result snapshot](adversarial-identifiability/result.json)
+El resultado central es:
 
-Key finding:
-
-[
-oxed{
-	ext{missing evidence}
-
-otRightarrow
-	ext{unknown force}
+\[
+\boxed{
+\text{missing evidence}
+\not\Rightarrow
+\text{unknown force}
 }
-]
+\]
 
-The study shows that terminal geometry alone is insufficient for most process classes and that several earlier mechanism matches were only identifiable after adding site, schedule, precision or logistics constraints.
+De 25 clases de proceso del formalismo actual:
+
+- geometría sola recupera 1;
+- terminal completo recupera 4 y favorece 11;
+- terminal + sitio/acceso/física de dominio recupera 10 y favorece 9;
+- sólo al añadir schedule, precisión y logística las 25 resultan recuperables bajo las reglas actuales.
+
+Por tanto, la versión autoritativa del programa distingue:
+
+\[
+\boxed{
+\text{clase funcional recuperable}
+\neq
+\text{mecanismo histórico exacto}.
+}
+\]
+
+## Documentos por benchmark
+
+- [001 — Golden Gate](golden-gate/BENCHMARK.md)
+- [002 — Torre Eiffel](eiffel-tower/BENCHMARK.md)
+- [003 — Hoover Dam](hoover-dam/BENCHMARK.md)
+- [004 — Empire State Building](empire-state/BENCHMARK.md)
+- [005 — Sydney Opera House](sydney-opera-house/BENCHMARK.md)
+
+El paper v1.0 integra estas correcciones y debe usarse como interpretación académica principal.
