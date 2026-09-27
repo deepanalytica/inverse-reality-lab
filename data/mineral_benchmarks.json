@@ -1,0 +1,333 @@
+{
+  "schema_version": "0.1.0",
+  "benchmark": "IRL-Mineral-Genesis-3",
+  "protocol": {
+    "task": "Infer a causal mineral-system graph from standardized observations without reading deposit-specific ground_truth.",
+    "mode": "retrospective pseudo-blind control",
+    "warning": "This is not a prospectivity or resource estimate. Deposit identity is known to the curator; true blind spatial validation requires independently masked raw datasets.",
+    "metrics": [
+      "edge_precision",
+      "edge_recall",
+      "edge_f1",
+      "rule_trace",
+      "porphyry_system_support"
+    ],
+    "modes": {
+      "reconstruction": "Uses the standardized observation set, while withholding the causal graph.",
+      "exploration_proxy": "Ablates direct ore/mineral-stage observations to estimate how much causal recovery survives with sparser exploration-style evidence."
+    },
+    "exploration_proxy_ablation": [
+      "sulfides_in_brecciation",
+      "quartz_moly_veins",
+      "main_stage_veins",
+      "fault_adjacent_main_stage",
+      "late_high_sulfidation_minerals",
+      "sulfide_cemented_breccias",
+      "high_sulfidation_veins",
+      "chalcocite_blanket",
+      "central_pipe_ore_destruction",
+      "late_hydrothermal_stage",
+      "hydrothermal_magnetic_reset"
+    ]
+  },
+  "sources": {
+    "USGS_PCD_2008": {
+      "title": "Preliminary Model of Porphyry Copper Deposits",
+      "url": "https://pubs.usgs.gov/of/2008/1321/"
+    },
+    "CHUQUI_OSSANDON_2001": {
+      "title": "Geology of the Chuquicamata Mine: A Progress Report",
+      "url": "https://pangea.stanford.edu/research/ODEX/EG/papers/Abs96-2_files/ossandon.pdf",
+      "doi": "10.2113/96.2.249"
+    },
+    "CHUQUI_ASTUDILLO_2008": {
+      "title": "Mineralogía magnética y paleomagnetismo en los megayacimientos tipo pórfido cuprífero Chuquicamata y El Teniente, Chile",
+      "url": "https://repositorio.uchile.cl/tesis/uchile/2008/astudillo_nl/html/index.html"
+    },
+    "ESCONDIDA_PADILLA_2001": {
+      "title": "Geology of the Escondida Porphyry Copper Deposit, Antofagasta Region, Chile",
+      "url": "https://doi.org/10.2113/gsecongeo.96.2.307",
+      "doi": "10.2113/gsecongeo.96.2.307"
+    },
+    "ESCONDIDA_BHP_2022": {
+      "title": "SEC Technical Report Summary – Minera Escondida Limitada",
+      "url": "https://www.sec.gov/Archives/edgar/data/811809/000119312523228105/d430164dex961.pdf"
+    },
+    "ESCONDIDA_MAG_2014": {
+      "title": "Magnetic properties related to hydrothermal alteration processes at the Escondida porphyry copper deposit",
+      "url": "https://www.researchgate.net/publication/262948465_Magnetic_properties_related_to_hydrothermal_alteration_processes_at_the_Escondida_porphyry_copper_deposit_northern_Chile"
+    },
+    "TENIENTE_CANNELL_2005": {
+      "title": "Geology, Mineralization, Alteration, and Structural Evolution of the El Teniente Porphyry Cu-Mo Deposit",
+      "url": "https://doi.org/10.2113/gsecongeo.100.5.979",
+      "doi": "10.2113/gsecongeo.100.5.979"
+    },
+    "TENIENTE_ASTUDILLO_2010": {
+      "title": "Magnetic polarity zonation within the El Teniente copper–molybdenum porphyry deposit, central Chile",
+      "url": "https://repositorio.uchile.cl/handle/2250/125397"
+    }
+  },
+  "deposits": [
+    {
+      "id": "CTRL-CHUQUI",
+      "label": "Control A",
+      "public_name": "Chuquicamata",
+      "observation_set": [
+        {
+          "tag": "arc_magmatism",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "multiphase_porphyry_intrusions",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "regional_transcurrent_fault",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "intrusive_alignment_with_fault",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "potassic_alteration",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "quartz_kfeldspar_veinlets",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "cataclastic_brecciation",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "sulfides_in_brecciation",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "quartz_moly_veins",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "main_stage_veins",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "fault_adjacent_main_stage",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "sericitic_overprint",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "late_high_sulfidation_minerals",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "leached_cap",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "chalcocite_blanket",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "postmineral_fault_offset",
+          "source": "CHUQUI_OSSANDON_2001"
+        },
+        {
+          "tag": "alteration_magnetic_contrast",
+          "source": "CHUQUI_ASTUDILLO_2008"
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          "structure_localizes_intrusion",
+          "intrusion_precedes_potassic",
+          "brecciation_focuses_sulfides",
+          "quartz_moly_precedes_main_stage",
+          "fault_zone_focuses_main_stage",
+          "potassic_precedes_sericitic_overprint",
+          "main_stage_precedes_late_high_sulfidation",
+          "hypogene_precedes_supergene",
+          "mineralization_precedes_postmineral_faulting",
+          "alteration_modifies_magnetic_properties",
+          "early_ductile_precedes_cataclastic_deformation",
+          "dextral_main_stage_precedes_late_sinistral_opening",
+          "erosion_precedes_supergene_enrichment"
+        ]
+      }
+    },
+    {
+      "id": "CTRL-ESCONDIDA",
+      "label": "Control B",
+      "public_name": "Escondida",
+      "observation_set": [
+        {
+          "tag": "arc_magmatism",
+          "source": "ESCONDIDA_PADILLA_2001"
+        },
+        {
+          "tag": "multiphase_porphyry_intrusions",
+          "source": "ESCONDIDA_PADILLA_2001"
+        },
+        {
+          "tag": "regional_transcurrent_fault",
+          "source": "ESCONDIDA_PADILLA_2001"
+        },
+        {
+          "tag": "dilational_intrusive_site",
+          "source": "ESCONDIDA_PADILLA_2001"
+        },
+        {
+          "tag": "intrusive_alignment_with_fault",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "potassic_alteration",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "chlorite_sericite_overprint",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "quartz_sericite_overprint",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "advanced_argillic_lithocap",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "high_sulfidation_veins",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "magmatic_hydrothermal_breccias",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "sulfide_cemented_breccias",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "leached_cap",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "chalcocite_blanket",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "arid_uplift_weathering",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "nw_structural_supergene_control",
+          "source": "ESCONDIDA_BHP_2022"
+        },
+        {
+          "tag": "alteration_magnetic_contrast",
+          "source": "ESCONDIDA_MAG_2014"
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          "structure_localizes_intrusion",
+          "dilation_localizes_intrusion",
+          "intrusion_precedes_potassic",
+          "potassic_precedes_chlorite_sericite",
+          "chlorite_sericite_precedes_quartz_sericite",
+          "advanced_argillic_hosts_late_high_sulfidation",
+          "brecciation_focuses_sulfides",
+          "hypogene_precedes_supergene",
+          "structures_control_supergene_geometry",
+          "alteration_modifies_magnetic_properties",
+          "early_porphyry_precedes_intermineral_intrusions",
+          "dextral_intrusion_stage_precedes_late_sinistral_stage",
+          "sericite_precedes_advanced_argillic_overprint"
+        ]
+      }
+    },
+    {
+      "id": "CTRL-TENIENTE",
+      "label": "Control C",
+      "public_name": "El Teniente",
+      "observation_set": [
+        {
+          "tag": "arc_magmatism",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "multiphase_felsic_intrusions",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "mafic_host_complex",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "potassic_alteration",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "quartz_anhydrite_stockwork",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "principal_phyllic_stage",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "late_hydrothermal_stage",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "radial_concentric_veins",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "central_breccia_pipe",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "central_pipe_ore_destruction",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "late_ne_faults",
+          "source": "TENIENTE_CANNELL_2005"
+        },
+        {
+          "tag": "alteration_magnetic_contrast",
+          "source": "TENIENTE_ASTUDILLO_2010"
+        },
+        {
+          "tag": "hydrothermal_magnetic_reset",
+          "source": "TENIENTE_ASTUDILLO_2010"
+        }
+      ],
+      "ground_truth": {
+        "edges": [
+          "intrusion_precedes_potassic",
+          "stockwork_records_late_magmatic_stage",
+          "late_magmatic_precedes_principal_hydrothermal",
+          "principal_precedes_late_hydrothermal",
+          "intrusion_stress_controls_radial_concentric_veins",
+          "hydrothermal_pressure_precedes_breccia_pipe",
+          "breccia_pipe_modifies_central_ore",
+          "hydrothermal_precedes_late_ne_faulting",
+          "alteration_modifies_magnetic_properties",
+          "hydrothermal_event_resets_magnetic_record",
+          "dacite_intrusion_coeval_late_magmatic_ore",
+          "subsidence_precedes_resurgence",
+          "resurgence_reactivates_concentric_structures",
+          "mineralization_cooling_records_short_interval"
+        ]
+      }
+    }
+  ]
+}

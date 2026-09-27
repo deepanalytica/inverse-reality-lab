@@ -466,3 +466,13 @@ El workflow valida datos, referencias, estados causales, topología, estructura 
 ### Benchmark topológico sintético
 
 IRL incluye un control con cuatro complejos voxelizados de topología conocida. El objetivo es comprobar el cálculo de \(\beta_0\), \(\beta_1\) y \(\beta_2\) antes de interpretar geometría arqueológica. Ver [resultados](benchmarks/topology-synthetic/RESULTS.md) y [script](scripts/topology_synthetic.py).
+
+
+## IRL Mineral Systems
+
+El laboratorio incorpora un benchmark de sistemas minerales con tres controles retrospectivos: **Chuquicamata, Escondida y El Teniente**. El motor recibe observaciones estandarizadas, reconstruye un grafo causal y compara después contra un ground truth segregado. También ejecuta un modo `exploration_proxy` que elimina señales directas de mena para medir cuánto de la arquitectura causal sobrevive con evidencia más escasa.
+
+**Benchmark público:** https://deepanalytica.github.io/inverse-reality-lab/mineral-systems.html  
+**Método:** [MINERAL_SYSTEMS_BENCHMARK.md](MINERAL_SYSTEMS_BENCHMARK.md)  
+**Dataset:** [data/mineral_benchmarks.json](data/mineral_benchmarks.json)  
+**Motor reproducible:** [scripts/mineral_inverse_benchmark.mjs](scripts/mineral_inverse_benchmark.mjs)

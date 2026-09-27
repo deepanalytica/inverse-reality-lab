@@ -71,6 +71,10 @@ jobs:
           node --check runtime/providers/fixture.mjs
           node --check runtime/storage/file-store.mjs
           node --check runtime/storage/encrypted-file-store.mjs
+          node --check scripts/mineral_inverse_benchmark.mjs
+          node scripts/mineral_inverse_benchmark.mjs
+          python -m json.tool data/mineral_benchmarks.json >/dev/null
+          python -m json.tool data/mineral_benchmark_results.json >/dev/null
           python -m json.tool data/khufu.json >/dev/null
           python -m json.tool data/hypotheses.json >/dev/null
           python -m json.tool data/sources.json >/dev/null

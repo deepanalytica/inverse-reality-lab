@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRL · Mineral Systems Benchmark</title>
+<meta name="description" content="Benchmark inverso de sistemas minerales en Chuquicamata, Escondida y El Teniente.">
+<style>
+:root{--bg:#071019;--surface:#0d1822;--surface2:#111f2c;--line:#263b4d;--text:#eef4f8;--muted:#92a5b5;--accent:#d7ed00;--cyan:#55d5ff;--green:#63d89b;--amber:#ffbe63}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,rgba(85,213,255,.09),transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}
+main{max-width:1180px;margin:auto;padding:28px 20px 80px}a{color:inherit}.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.brand span{color:var(--accent)}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav a{border:1px solid var(--line);padding:8px 10px;border-radius:8px;text-decoration:none;font-size:10px;color:var(--muted)}
+.hero{margin-top:24px;border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(145deg,#10202c,#09121a)}.eyebrow{font-size:9px;color:var(--cyan);font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:38px;letter-spacing:-.04em;margin:7px 0 10px}h2{font-size:18px;margin:34px 0 12px}p{color:#c9d4dc;line-height:1.65;font-size:13px;max-width:900px}
+.notice{border-left:3px solid var(--amber);padding:9px 12px;background:rgba(255,190,99,.06);font-size:11px;color:#d8c5a2;margin-top:15px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.metric{border:1px solid var(--line);background:var(--surface);padding:14px;border-radius:12px}.metric b{font-size:26px;display:block}.metric span{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:16px}.card h3{margin:4px 0 12px;font-size:16px}.score-row{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:10px;padding:6px 0;border-bottom:1px solid rgba(38,59,77,.55)}.score-row:last-child{border:0}.score-row span{color:var(--muted)}.score-row b{font-family:ui-monospace,monospace}
+.bar{height:5px;background:#182b3a;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:var(--accent)}
+.edge-list{display:grid;gap:6px;margin-top:12px}.edge{border:1px solid var(--line);border-radius:8px;padding:7px 8px;font:9px ui-monospace,monospace;color:#b9c8d4;background:#09141d}
+.edge.miss{border-color:rgba(255,190,99,.4);color:#e3c28f}.tabs{display:flex;gap:6px;margin:12px 0}.tabs button{border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:7px 10px;border-radius:8px;cursor:pointer;font-size:10px}.tabs button.active{color:#071019;background:var(--accent);border-color:var(--accent);font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:11px;background:var(--surface);border:1px solid var(--line)}th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.08em}
+@media(max-width:850px){.grid,.metrics{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}h1{font-size:31px}}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><div class="brand">Inverse Reality <span>Laboratory</span> · Mineral Systems</div><nav><a href="index.html">IRL</a><a href="dashboard.html">3D/4D</a><a href="praxios.html">PRAXIOS</a><a href="library.html#mineralsystems">Método</a></nav></div>
+<section class="hero">
+<div class="eyebrow">IRL-Mineral-Genesis-3 · calibration controls</div>
+<h1>Chuquicamata · Escondida · El Teniente</h1>
+<p>Experimento reproducible de inferencia causal: el motor recibe observaciones geológicas estandarizadas y reconstruye un grafo de procesos. El grafo publicado como ground truth queda fuera de la función de inferencia y se usa sólo después para puntuar.</p>
+<div class="notice">Estos tres yacimientos son controles retrospectivos de calibración. Los resultados no equivalen a una validación ciega de descubrimiento ni a una estimación de recursos.</div>
+<div class="metrics" id="aggregate"></div>
+</section>
+<h2>Resultados por control</h2>
+<div class="tabs"><button class="active" data-mode="reconstruction">Reconstruction</button><button data-mode="exploration_proxy">Exploration proxy</button></div>
+<div class="grid" id="cards"></div>
+<h2>Comparación</h2>
+<div id="table"></div>
+<h2>Lectura científica</h2>
+<p>La caída entre Reconstruction y Exploration proxy es deliberada: al retirar señales directas de mena y cronología, el sistema conserva parte de la arquitectura magmático-estructural e hidrotermal, pero pierde capacidad para recuperar etapas específicas. El siguiente benchmark debe congelar este motor y trabajar con grids espaciales crudos antes de revelar geometría de mena o sondajes.</p>
+</main>
+<script type="module">
+const fmt=n=>Number(n).toFixed(3);
+let mode="reconstruction",data=null;
+const esc=s=>String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+async function load(){
+ const [r,b]=await Promise.all([fetch("data/mineral_benchmark_results.json",{cache:"no-store"}),fetch("data/mineral_benchmarks.json",{cache:"no-store"})]);
+ data=await r.json(); const bench=await b.json(); data.truth=new Map(bench.deposits.map(d=>[d.id,new Set(d.ground_truth.edges)])); render();
+}
+function render(){
+ const a=data.aggregate[mode];
+ document.querySelector("#aggregate").innerHTML=
+  '<div class="metric"><b>'+fmt(a.mean_precision)+'</b><span>mean precision</span></div>'+
+  '<div class="metric"><b>'+fmt(a.mean_recall)+'</b><span>mean recall</span></div>'+
+  '<div class="metric"><b>'+fmt(a.mean_f1)+'</b><span>mean F1</span></div>';
+ document.querySelector("#cards").innerHTML=data.results.map(item=>{
+   const m=item[mode],truth=data.truth.get(item.id),miss=[...truth].filter(e=>!m.inferred_edges.includes(e));
+   return '<article class="card"><div class="eyebrow">'+esc(item.label)+'</div><h3>'+esc(item.public_name)+'</h3>'+
+   '<div class="score-row"><span>Observations</span><b>'+m.observations+'</b></div>'+
+   '<div class="score-row"><span>Precision</span><b>'+fmt(m.score.precision)+'</b></div>'+
+   '<div class="score-row"><span>Recall</span><b>'+fmt(m.score.recall)+'</b></div>'+
+   '<div class="score-row"><span>F1</span><b>'+fmt(m.score.f1)+'</b></div>'+
+   '<div class="bar"><i style="width:'+(m.score.f1*100)+'%"></i></div>'+
+   '<div class="edge-list">'+m.inferred_edges.map(e=>'<div class="edge">'+esc(e)+'</div>').join("")+
+   miss.map(e=>'<div class="edge miss">unrecovered · '+esc(e)+'</div>').join("")+'</div></article>';
+ }).join("");
+ const rows=data.results.map(item=>'<tr><td>'+esc(item.public_name)+'</td><td>'+fmt(item.reconstruction.score.f1)+'</td><td>'+fmt(item.exploration_proxy.score.f1)+'</td><td>'+fmt(item.reconstruction.porphyry_system_support)+'</td></tr>').join("");
+ document.querySelector("#table").innerHTML='<table><thead><tr><th>Control</th><th>Reconstruction F1</th><th>Proxy F1</th><th>Porphyry support</th></tr></thead><tbody>'+rows+'</tbody></table>';
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("active",x===b));render();});
+load().catch(err=>{document.querySelector("#cards").innerHTML='<div class="card">Resultado no disponible: '+esc(err.message)+'</div>';});
+</script>
+</body>
+</html>

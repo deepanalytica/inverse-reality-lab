@@ -1,13 +1,13 @@
 import fs from "node:fs";
 
 const required=[
-  "index.html","dashboard.html","library.html","review.html","praxios.html","praxios-design-system.html",
+  "index.html","dashboard.html","library.html","review.html","praxios.html","praxios-design-system.html","mineral-systems.html",
   "ADVANCED_MATHEMATICS.md","TOPOLOGY.md","VALIDATION_PROTOCOL.md",
   "AI_REVIEW_GUIDE.md","PROOF_OBLIGATIONS.md","ASSUMPTIONS_AND_LIMITS.md",
   "REPRODUCIBILITY.md","PRAXIOS_UI_SPEC.md","PRAXIOS_DESIGN_SYSTEM.md","PRAXIOS_RUNTIME.md","META_HARNESS_RUNTIME.md",
-  "PRAXIOS_ARCHITECTURE.md","DECISION_ROOM_RUNTIME.md","MODEL_PROVIDER_CONTRACT.md","THREAT_MODEL.md","SECURITY_INVARIANTS.md","AUDIT_GUIDE.md","DEPLOYMENT.md",
+  "PRAXIOS_ARCHITECTURE.md","DECISION_ROOM_RUNTIME.md","MODEL_PROVIDER_CONTRACT.md","THREAT_MODEL.md","SECURITY_INVARIANTS.md","AUDIT_GUIDE.md","DEPLOYMENT.md","MINERAL_SYSTEMS_BENCHMARK.md",
   "paper/main.tex","paper/PAPER.pdf",
-  "data/khufu.json","data/topology.json","scripts/validate_data.mjs",
+  "data/khufu.json","data/topology.json","data/mineral_benchmarks.json","data/mineral_benchmark_results.json","scripts/validate_data.mjs","scripts/mineral_inverse_benchmark.mjs",
   "runtime/core/ledger.mjs","runtime/core/policy.mjs","runtime/core/meta-harness.mjs","runtime/core/scheduler.mjs","runtime/core/praxios-runtime.mjs","runtime/core/orchestrator.mjs",
   "runtime/providers/openai.mjs","runtime/providers/anthropic.mjs","runtime/providers/fixture.mjs","runtime/storage/file-store.mjs","runtime/storage/encrypted-file-store.mjs",
   "runtime/core/contracts.mjs","runtime/core/budget.mjs","runtime/core/decision-room.mjs","runtime/server.mjs","runtime/package.json","runtime/openapi.yaml","runtime/Dockerfile","railway.json",
@@ -25,7 +25,7 @@ for(const token of ["tab-topology","tab-math","assets/dashboard.js"]){
 }
 
 const library=fs.readFileSync("library.html","utf8");
-for(const token of ["ADVANCED_MATHEMATICS.md","TOPOLOGY.md","VALIDATION_PROTOCOL.md","AI_REVIEW_GUIDE.md"]){
+for(const token of ["ADVANCED_MATHEMATICS.md","TOPOLOGY.md","VALIDATION_PROTOCOL.md","AI_REVIEW_GUIDE.md","MINERAL_SYSTEMS_BENCHMARK.md"]){
   if(!library.includes(token)) errors.push("library: falta "+token);
 }
 
@@ -53,6 +53,16 @@ for(const token of ["PRAXIOS_SERVER_TOKEN","PRAXIOS_HUMAN_TOKEN","PRAXIOS_DATA_K
 const publicClient=fs.readFileSync("assets/praxios.js","utf8");
 for(const token of ["PraxiosApiClient","connectRemote","runRemoteSession","escape"]){
   if(!publicClient.includes(token) && token!=="escape") errors.push("public control room: falta "+token);
+}
+
+const mineralPage=fs.readFileSync("mineral-systems.html","utf8");
+for(const token of ["mineral_benchmark_results.json","Chuquicamata","Escondida","El Teniente","exploration_proxy"]){
+  if(!mineralPage.includes(token)) errors.push("mineral-systems: falta "+token);
+}
+const mineralResults=JSON.parse(fs.readFileSync("data/mineral_benchmark_results.json","utf8"));
+if((mineralResults.results||[]).length!==3) errors.push("mineral benchmark: se esperaban 3 controles");
+for(const item of mineralResults.results||[]){
+  if(!item.reconstruction||!item.exploration_proxy) errors.push("mineral benchmark: modos incompletos en "+item.id);
 }
 
 const paper=fs.readFileSync("paper/main.tex","utf8");
