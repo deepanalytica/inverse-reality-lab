@@ -1,0 +1,142 @@
+
+\section{Estudio adversarial de identificabilidad}
+
+Para intentar hacer fallar el propio marco se definieron 25 clases de proceso entre los cinco benchmarks y cuatro niveles de evidencia:
+
+\begin{description}
+\item[T0:] geometría únicamente;
+\item[T1:] geometría + microestructura + estructura + material;
+\item[T2:] T1 + entorno + hidrología + térmica + acceso;
+\item[T3:] T2 + duración + precisión + logística.
+\end{description}
+
+Cada proceso recibe
+
+\begin{equation}
+s(p,E)\in\{0,1,2\},
+\end{equation}
+
+donde 0 significa no recuperable, 1 favorecido pero no identificado y 2 recuperable a nivel de clase funcional bajo las reglas actuales.
+
+Los resultados fueron:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Evidencia & Recuperables & Favorecidas & No recuperables & Score normalizado \\
+\midrule
+T0 & 1 & 0 & 24 & 4\% \\
+T1 & 4 & 11 & 10 & 38\% \\
+T2 & 10 & 9 & 6 & 58\% \\
+T3 & 25 & 0 & 0 & 100\% \\
+\bottomrule
+\end{tabular}
+\caption{Ablación determinista del formalismo actual. T3 no es inferencia terminal pura: incorpora objetivos y contexto constructivo.}
+\end{table}
+
+La conclusión es
+
+\begin{equation}
+\boxed{
+X_T\ \text{aislado no identifica la mayoría de los procesos}.
+}
+\end{equation}
+
+\section{Sensibilidad por modalidad}
+
+En un análisis leave-one-modality-out desde T3, la caída de score fue:
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Modalidad eliminada & Caída de score \\
+\midrule
+Geometría & 32 \\
+Microestructura & 22 \\
+Logística & 13 \\
+Estructura & 11 \\
+Entorno & 9 \\
+Material & 7 \\
+Precisión & 7 \\
+Schedule/duración & 5 \\
+Accesibilidad & 4 \\
+Térmica & 4 \\
+Hidrología & 2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Estas cifras pertenecen al formalismo y conjunto de casos actuales; no son constantes universales.
+
+Una ablación aleatoria exploratoria mostró la misma fragilidad multimodal: con probabilidad 25\% de eliminar cada modalidad, el número medio de clases plenamente recuperables cayó aproximadamente a 11 de 25.
+
+\section{Falsos residuos de fuerza}
+
+Una ontología demasiado gruesa puede transformar procesos modulares convencionales en aparentes fuerzas imposibles.
+
+Escalas artificiales de peso monolítico:
+
+\begin{align}
+\text{torre Golden Gate} &\sim197\ {\rm MN},\\
+\text{cable principal Golden Gate} &\sim107\ {\rm MN},\\
+\text{estructura metálica Eiffel} &\sim71.6\ {\rm MN},\\
+\text{acero estructural Empire State} &\sim563.7\ {\rm MN}.
+\end{align}
+
+Ninguna de estas magnitudes demuestra una interacción desconocida.
+
+\begin{principle}[Residual ontológico]
+\begin{equation}
+\boxed{
+\Fres\neq0
+\not\Rightarrow
+\text{nueva física}.
+}
+\end{equation}
+Debe demostrarse que el residuo sobrevive a refinamiento ontológico, procesos temporales, mecanismos convencionales e incertidumbre.
+\end{principle}
+
+\section{Correcciones epistemológicas derivadas}
+
+El estudio adversarial obliga a corregir varias formulaciones iniciales:
+
+\begin{itemize}
+\item Golden Gate: se recupera la clase acceso aéreo temporal bajo sitio/acceso; no el catwalk exacto.
+\item Eiffel: la modularidad es fuerte; jacks, sandboxes y grúa concreta requieren información adicional.
+\item Hoover: el control térmico es fuerte; cooling pipes exactas requieren además un schedule exigente.
+\item Empire State: JIT, pipeline extremo y jumping derricks no son inferencias terminales puras.
+\item Sydney: el generador geométrico común es fuerte; erection arch y fábrica concreta requieren estructura, acceso y logística.
+\end{itemize}
+
+La consecuencia metodológica es
+
+\begin{equation}
+\boxed{
+\text{clase funcional recuperable}
+\neq
+\text{mecanismo histórico exacto}.
+}
+\end{equation}
+
+\section{Protocolo operativo de Meta-Harness}
+
+El orden recomendado es
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+&\text{CHECK IDENTIFIABILITY}\\
+&\rightarrow
+\text{INFER CAUSAL ORDER}\\
+&\rightarrow
+\text{INFER TEMPORARY ONTOLOGY}\\
+&\rightarrow
+\text{EXHAUST CONVENTIONAL PROCESSES}\\
+&\rightarrow
+\text{COMPUTE RESIDUAL}.
+\end{aligned}
+}
+\end{equation}
+
+Cada claim debe adjuntar clase epistemológica, evidencia, incertidumbre, contradicciones, identificabilidad, falsificadores y procedencia del modelo.
