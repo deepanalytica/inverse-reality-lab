@@ -410,3 +410,18 @@ Su función es generar restricciones como:
 > para que el recinto \(C\) tenga esta identidad topológica en el estado \(t\), determinadas fronteras y conexiones deben existir o haber dejado de existir.
 
 Eso se traduce en precedencias adicionales del poset constructivo.
+
+
+# 18. Benchmark cubical sintético
+
+Antes de aplicar homología a Khufu, IRL prueba el procedimiento sobre complejos voxelizados con resultados conocidos.
+
+El benchmark cubre:
+
+\[
+(1,0,0),\quad(2,0,0),\quad(1,0,1),\quad(1,1,0),
+\]
+
+correspondientes a una bola, dos componentes, una shell con cavidad y un toro sólido.
+
+El cálculo está en scripts/topology_synthetic.py y los resultados esperados en benchmarks/topology-synthetic/RESULTS.md.
