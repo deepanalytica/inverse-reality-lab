@@ -1,54 +1,49 @@
-# Working Paper — Web Synopsis
+# Ontología de Realidad Inversa — Preprint v1.0
 
-**Canonical source:** [main.tex](main.tex)  
-**Compiled PDF on GitHub Pages:** [PAPER.pdf](PAPER.pdf)  
-**Mathematical web view:** [../mathematics.html](../mathematics.html)
+**Alexis Brian Reyes Saavedra · Deep Analytica · Chile**
 
-# Inverse Reality Ontology
+- [PDF canónico](PAPER.pdf)
+- [Fuente LaTeX](main.tex)
+- [Secciones del paper](sections/)
+- [Vista matemática](../mathematics.html)
+- [Biblioteca completa](../library.html)
 
-**Alexis Brian Reyes Saavedra — Deep Analytica, Chile**  
-contacto@deepanalytica.cl · https://deepanalytica.cl
+## Tesis central
 
-## Core thesis
-
-The project asks:
+IRL busca inferir:
 
 \[
 \boxed{
 P(
-\text{construction histories}
+\text{historias constructivas}
 \mid
-\text{terminal object},
-\text{evidence},
-\text{laws}
+\text{objeto terminal},
+\text{evidencia},
+\text{leyes},
+\text{contexto}
 )
 }
 \]
 
-rather than choosing one historical construction narrative and proving only that it is possible.
+sin forzar una historia única cuando los datos no la identifican.
 
-The Great Pyramid of Khufu is the primary archaeological laboratory.
-
-## Main formal objects
+## Formalismos principales
 
 \[
 \mathcal A(t)
 =
-(
-\mathcal K^+(t),
-\mathcal K^-(t)
-)
+(\mathcal K^+(t),\mathcal K^-(t))
 \]
 
-positive material and negative architectural structure;
+materia positiva y arquitectura negativa;
 
 \[
 m^\ominus(V)
 =
--\int_V\rho_{\rm ref}dV
+-\int_V\rho_{\rm ref}\,dV
 \]
 
-counterfactual absent mass;
+masa ausente contrafactual;
 
 \[
 T_b^+(\mathbf x),
@@ -56,18 +51,18 @@ T_b^+(\mathbf x),
 T_b^-(\mathbf x)
 \]
 
-material and negative-space birth fields;
+campos de incorporación material y reserva de espacio negativo;
 
 \[
 V_{\tau,r}
 =
 \{
-x\notin M_\tau:
-d(x,M_\tau)\ge r
+\mathbf x\notin M_\tau:
+d(\mathbf x,M_\tau)\ge r
 \}
 \]
 
-negative-space bifiltration;
+bifiltración del espacio negativo;
 
 \[
 \mathcal A^-(X)
@@ -82,56 +77,44 @@ e\in\operatorname{Max}(P):
 \}
 \]
 
-inverse admissible frontier.
+frente inverso admisible.
 
-## Ideal pyramid derivations
+## Resultado metodológico de los benchmarks
 
-For base side \(a\), height \(H\), and \(u=z/H\):
+Cinco controles —Golden Gate, Torre Eiffel, Hoover Dam, Empire State Building y Sydney Opera House— muestran que procesos convencionales y ontologías temporales pueden reducir el residual de fuerza a aproximadamente cero a la resolución gruesa estudiada.
 
-\[
-V=\frac{a^2H}{3},
-\]
+El estudio adversarial corrige una interpretación demasiado fuerte: **el terminal aislado no identifica la mayoría de los mecanismos**.
 
-\[
-\Gamma_M(u)=(1-u)^3,
-\]
+La regla final es:
 
 \[
-U=\frac14MgH,
+\boxed{
+\text{missing evidence}
+\not\Rightarrow
+\text{unknown force}
+}
 \]
+
+y el protocolo pasa a ser:
 
 \[
-\Gamma_G(u)
-=
-1-6u^2+8u^3-3u^4.
+\boxed{
+\text{CHECK IDENTIFIABILITY}
+\rightarrow
+\text{CAUSAL ORDER}
+\rightarrow
+\text{TEMPORARY ONTOLOGY}
+\rightarrow
+\text{CONVENTIONAL PROCESSES}
+\rightarrow
+\text{RESIDUAL}
+}
 \]
 
-These are geometric/mechanical baselines, not historical chronology.
+## Física contrafactual
 
-## Falsifiability
+El paper conserva modelos de compensación gravitatoria \(\alpha(\mathbf x,t)\) y un campo elástico-helicoidal como **extensiones falsables**, no como explicaciones históricas ni como física establecida.
 
-Every candidate history \(H\) must generate predicted evidence:
+## Estado
 
-\[
-\widehat Y_H
-=
-\mathcal O
-\circ
-\mathcal D_{\rm post}
-\circ
-\mathcal B(H).
-\]
-
-A history that cannot produce testable consequences is not a useful scientific reconstruction.
-
-## Comparative systems
-
-Vaidya and Kerr are used only as mathematical comparison systems for accessibility, global/local boundaries and critical separatrices.
-
-They are not archaeological explanations.
-
-## Read the full version
-
-The full paper is maintained in LaTeX because it provides cleaner mathematics, theorem environments, equation numbering and a reproducible PDF build.
-
-See [main.tex](main.tex) and [PAPER.pdf](PAPER.pdf).
+Preprint v1.0. El próximo paso científico es pasar de benchmarks retrospectivos a experimentos prospectivos con reglas congeladas y ground truth oculto.
