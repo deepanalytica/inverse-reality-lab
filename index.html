@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Inverse Reality Laboratory · PRAXIOS</title>
-<meta name="description" content="Interactive research laboratory for inverse causal reconstruction of the Great Pyramid of Khufu, negative topological spaces, Vaidya collapse and Kerr geodesic accessibility.">
+<meta name="description" content="Laboratorio de investigación para reconstruir historias constructivas a partir de objetos terminados, con Khufu como caso arqueológico principal y benchmarks de ingeniería documentada.">
 <meta name="keywords" content="Egyptology,Egyptian archaeology,Great Pyramid of Giza,Khufu,pyramid construction,inverse archaeology,computational archaeology,archaeological inference,muography,ScanPyramids,topology,persistent homology,4D reconstruction,inverse problems,Vaidya,Kerr,PRAXIOS,Meta-Harness">
 <meta name="author" content="Alexis Brian Reyes Saavedra, Deep Analytica">
 <link rel="canonical" href="https://deepanalytica.github.io/inverse-reality-lab/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Inverse Reality Laboratory · Khufu · PRAXIOS">
-<meta property="og:description" content="Interactive research laboratory for inverse causal reconstruction of the Great Pyramid of Khufu, negative topological spaces, Vaidya collapse and Kerr geodesic accessibility.">
+<meta property="og:description" content="Reconstrucción inversa de procesos constructivos mediante geometría, mecánica, topología, evidencia, logística e identificabilidad.">
 <meta property="og:url" content="https://deepanalytica.github.io/inverse-reality-lab/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
@@ -19,7 +19,7 @@
   "name":"Inverse Reality Laboratory",
   "alternateName":"IRL",
   "url":"https://deepanalytica.github.io/inverse-reality-lab/",
-  "description":"Evidence-constrained inverse causal reconstruction laboratory using the Great Pyramid of Khufu as the primary archaeological case study.",
+  "description":"Laboratorio de reconstrucción inversa de procesos constructivos. Integra geometría, mecánica, topología, evidencia, logística e identificabilidad, con la Gran Pirámide de Khufu como caso arqueológico principal.",
   "keywords":["Egyptology","Egyptian archaeology","Great Pyramid of Giza","Khufu","inverse archaeology","computational archaeology","muography","ScanPyramids","topology","persistent homology","inverse problems","causal reconstruction","PRAXIOS"],
   "founder":{"@type":"Person","name":"Alexis Brian Reyes Saavedra","email":"mailto:contacto@deepanalytica.cl","url":"https://deepanalytica.cl"},
   "parentOrganization":{"@type":"Organization","name":"Deep Analytica","url":"https://deepanalytica.cl"},
@@ -32,11 +32,13 @@
 </style>
 </head>
 <body><div class="wrap">
-<div class="eyebrow">Deep Analytica · PRAXIOS Research Laboratory</div>
+<div class="eyebrow">Deep Analytica · laboratorio de investigación</div>
 <h1>Inverse Reality Laboratory</h1>
-<p class="lead">Laboratorio experimental de reconstrucción causal inversa: Gran Pirámide de Khufu, espacios topológicos negativos, masa contrafactual ausente, dinámica Vaidya y accesibilidad geodésica Kerr.</p>
+<p class="lead">IRL reconstruye historias de construcción a partir de objetos terminados. Combina geometría, materiales, mecánica, topología, accesibilidad, logística y evidencia para determinar qué secuencias siguen siendo compatibles y qué información adicional permitiría distinguirlas.</p>
 <div class="actions">
-<a class="btn primary" href="paper/PAPER.pdf" download>Descargar paper PDF</a>
+<a class="btn primary" href="library.html#start">Entender el proyecto</a>
+<a class="btn" href="paper/PAPER.pdf" download>Descargar paper PDF</a>
+<a class="btn" href="library.html#glossary">Glosario</a>
 <a class="btn" href="library.html">Biblioteca completa</a><a class="btn" href="mathematics.html">Matemáticas · LaTeX/MathJax</a>
 <a class="btn" href="paper/main.tex" download>Fuente LaTeX</a>
 <a class="btn" href="library.html#theory">Teoría completa</a>
@@ -52,9 +54,9 @@
 <a class="btn" href="mailto:contacto@deepanalytica.cl">Contactar autor</a>
 </div>
 <div class="card" style="margin:0 0 14px 0">
-  <div class="eyebrow">Research library</div>
-  <h2 style="margin:.25em 0 .35em">El proceso completo queda documentado y versionado</h2>
-  <p class="lead" style="font-size:15px;margin:0;max-width:none">La matemática establecida está separada de los formalismos propuestos. El paper canónico se escribe en LaTeX y GitHub Actions lo recompila en cada despliegue. La vista matemática usa MathJax para renderizar ecuaciones vectoriales, integrales, posets, topología persistente, mecánica, Bayes, Vaidya y Kerr con tipografía científica legible.</p>
+  <div class="eyebrow">Cómo leer el laboratorio</div>
+  <h2 style="margin:.25em 0 .35em">Del objeto terminado a historias constructivas comprobables</h2>
+  <p class="lead" style="font-size:15px;margin:0;max-width:none">La guía rápida explica el propósito y los conceptos básicos. El paper desarrolla el modelo formal. Los benchmarks muestran cómo se prueba el método con estructuras documentadas. La biblioteca conserva las ecuaciones, la ontología, las variables, las referencias y el registro de desarrollo del proyecto.</p>
 </div>
 <div class="grid"><main class="card">
 <div class="tabs"><button class="tab active" data-tab="pyr">Pirámide</button><button class="tab" data-tab="vai">Vaidya</button><button class="tab" data-tab="ker">Kerr</button><button class="tab" data-tab="uni">Unificado</button></div>
@@ -63,7 +65,7 @@
 <label>Retroceso geométrico τh: <b id="pTauV"></b></label><input id="pTau" type="range" min="0" max="100" step=".5" value="0">
 <div class="metric"><div>Frente z<br><b id="pZ"></b></div><div>Masa retirada*<br><b id="pM"></b></div><div>ΔUg descargada*<br><b id="pU"></b></div><div>m⊖ Cámara*<br><b id="pN"></b></div></div>
 <div class="call"><b id="pState"></b><div id="pDetail" class="small"></div></div>
-<p class="small">Modelo geométrico ideal: H=146,6 m; Cámara del Rey aproximada 10,5×5,2×5,8 m, piso ~43 m, techo ~48,8 m y superestructura ~64,5 m. m⊖ es masa contrafactual ausente, no masa física negativa.</p>
+<p class="small">Modelo geométrico ideal: H=146,6 m; Cámara del Rey aproximada 10,5×5,2×5,8 m, piso ~43 m, techo ~48,8 m y superestructura ~64,5 m. m⊖ representa el déficit de masa respecto de un sólido de referencia.</p>
 </div></div></section>
 
 <section id="vai" class="panel"><div class="sim"><svg id="vSvg" viewBox="0 0 560 350"></svg><div>
@@ -82,9 +84,9 @@
 <p class="small">Geodésicas nulas ecuatoriales (Q=0). El conjunto radial permitido es R≥0; la raíz doble R=0, dR/dr=0 actúa como separatriz crítica.</p>
 </div></div></section>
 
-<section id="uni" class="panel"><svg viewBox="0 0 760 270" id="uSvg"></svg><div class="call"><b>Objeto común:</b> <code>N_R(λ)=Ω\Accessible_R(Ω,λ)</code>. La relación R significa conectividad material, escape causal o movimiento geodésico según el sistema. Es una comparación matemática, no equivalencia física.</div></section>
+<section id="uni" class="panel"><svg viewBox="0 0 760 270" id="uSvg"></svg><div class="call"><b>Objeto común:</b> <code>N_R(λ)=Ω\Accessible_R(Ω,λ)</code>. La relación R significa conectividad material, escape causal o movimiento geodésico según el sistema. La comparación se limita a propiedades matemáticas de accesibilidad y fronteras.</div></section>
 </main>
-<aside class="card"><h3>Lectura epistemológica</h3><p id="readout"></p><p class="small"><b>Estado:</b> prototipo de investigación. No resuelve por sí solo el método histórico de construcción de Khufu y no propone nueva gravedad.</p>
+<aside class="card"><h3>Lectura epistemológica</h3><p id="readout"></p><p class="small"><b>Estado:</b> prototipo de investigación. Su función es explorar y contrastar modelos de reconstrucción; el método histórico de Khufu permanece como problema de investigación.</p>
 <p class="small"><b>Paper:</b> <code>paper/main.tex</code> es la fuente canónica; Actions compila y publica <code>paper/PAPER.pdf</code> automáticamente.</p>
 <p class="small"><b>Matemática:</b> la biblioteca <a href="mathematics.html">MathJax</a> muestra las ecuaciones con tipografía LaTeX y enlaza las derivaciones completas.</p><hr><h3>Para investigadores</h3><p class="small">Buscamos colaboración con egiptología, arqueología de campo, arquitectura histórica, geología, ingeniería estructural, muografía, topología computacional y problemas inversos.</p><p><b>Alexis Brian Reyes Saavedra</b><br>Deep Analytica<br><a href="mailto:contacto@deepanalytica.cl">contacto@deepanalytica.cl</a><br><a href="https://deepanalytica.cl">deepanalytica.cl</a></p></aside></div>
 
@@ -117,6 +119,6 @@ function kerr(){let a=+q('#kA').value,b=+q('#kB').value,h=1+Math.sqrt(1-a*a),ph=
 let s=q('#kSvg');clear(s),L=45,R=535,T=28,B=310,X=x=>L+(x-r0)/(r1-r0)*(R-L),mid=170,mx=1e-9,pts=[];for(let i=0;i<=600;i++){let r=r0+(r1-r0)*i/600,v=KR(r,a,b);pts.push([r,v]);mx=Math.max(mx,Math.abs(v))}ln(s,L,mid,R,mid,{'stroke-dasharray':'4 4'});let d='';pts.forEach((p,i)=>d+=(i?' L':'M')+X(p[0])+' '+(mid-cl(p[1]/mx,-1,1)*115));pth(s,d,{stroke:C.c});rr.forEach(x=>ln(s,X(x),T,X(x),B,{stroke:C.a,'stroke-dasharray':'4 4'}));ln(s,X(ph),T,X(ph),B,{stroke:C.v,'stroke-width':2});tx(s,X(ph)+4,48,'rph',{fill:C.v})}
 
 function unified(){let s=q('#uSvg');clear(s),rows=[['Pirámide','conectado exterior','cierre ∂V','cavidad',C.b],['Vaidya','θ+>0','θ+=0','θ+<0',C.c],['Kerr','β0=1','R=0,R′=0','β0=2',C.v]];rows.forEach((r,i)=>{let y=60+i*70;tx(s,20,y,r[0],{'font-size':13,'font-weight':600});ln(s,145,y-5,680,y-5,{'stroke-width':3});s.appendChild(E('circle',{cx:410,cy:y-5,r:7,fill:r[4]}));tx(s,150,y+20,r[1],{fill:C.mut});tx(s,410,y+20,r[2],{'text-anchor':'middle',fill:r[4]});tx(s,675,y+20,r[3],{'text-anchor':'end',fill:C.mut})});tx(s,410,25,'transición crítica de accesibilidad',{'text-anchor':'middle',fill:C.mut})}
-function read(){q('#readout').textContent=active==='pyr'?'El estado terminal restringe el pasado: al desmontar, una cámara conserva identidad mientras su frontera permanezca cerrada. Masa retirada, altura y tiempo no son relojes equivalentes.':active==='vai'?'El horizonte aparente responde a variables locales; el horizonte de eventos depende de la estructura causal global y puede reconstruirse imponiendo una condición futura.':active==='ker'?'En Kerr, una raíz doble del potencial radial crea una separatriz: al cruzar el parámetro crítico puede cambiar la conectividad del espacio permitido.':'Los tres sistemas se comparan por accesibilidad y topología de complementos, no por una supuesta identidad física.'}
+function read(){q('#readout').textContent=active==='pyr'?'El estado terminal restringe el pasado: al desmontar, una cámara conserva identidad mientras su frontera permanezca cerrada. Masa retirada, altura y tiempo describen dimensiones distintas del proceso.':active==='vai'?'El horizonte aparente responde a variables locales; el horizonte de eventos depende de la estructura causal global y puede reconstruirse imponiendo una condición futura.':active==='ker'?'En Kerr, una raíz doble del potencial radial crea una separatriz: al cruzar el parámetro crítico puede cambiar la conectividad del espacio permitido.':'Los tres sistemas se comparan por accesibilidad y topología de complementos, conservando la física propia de cada dominio.'}
 function all(){pyramid();vaidya();kerr();unified();read()}['#pTau','#vT','#vW','#vR','#kA','#kB'].forEach(x=>q(x).oninput=all);all();
 </script></body></html>
