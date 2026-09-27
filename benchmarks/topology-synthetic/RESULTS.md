@@ -35,7 +35,7 @@ Para un conjunto de voxels \(K\):
 
 La implementación de referencia produce PASS en los cuatro casos.
 
-GitHub Actions ejecuta el script en cada deploy.
+El script queda versionado para ejecución reproducible junto con el resto de controles del repositorio.
 
 ## Alcance
 
