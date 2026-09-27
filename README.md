@@ -434,3 +434,8 @@ La versión v1.2 incorpora documentos específicos para revisión rigurosa:
 - [Guía de revisión avanzada](AI_REVIEW_GUIDE.md)
 
 El workflow valida datos, referencias, estados causales, topología, estructura del sitio, JavaScript y compilación LaTeX antes de publicar.
+
+
+### Benchmark topológico sintético
+
+IRL incluye un control con cuatro complejos voxelizados de topología conocida. El objetivo es comprobar el cálculo de \(\beta_0\), \(\beta_1\) y \(\beta_2\) antes de interpretar geometría arqueológica. Ver [resultados](benchmarks/topology-synthetic/RESULTS.md) y [script](scripts/topology_synthetic.py).
