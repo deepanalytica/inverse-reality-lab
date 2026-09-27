@@ -3,6 +3,8 @@
 **Laboratorio de reconstrucción inversa de procesos físicos y constructivos.**
 
 🌐 **Laboratorio:** https://deepanalytica.github.io/inverse-reality-lab/  
+🧭 **PRAXIOS Control Room:** https://deepanalytica.github.io/inverse-reality-lab/praxios.html  
+🎛️ **PRAXIOS Design System:** https://deepanalytica.github.io/inverse-reality-lab/praxios-design-system.html  
 🧭 **Dashboard 3D/4D:** https://deepanalytica.github.io/inverse-reality-lab/dashboard.html  
 📘 **Guía rápida:** [START_HERE.md](START_HERE.md)  
 📖 **Glosario:** [GLOSSARY.md](GLOSSARY.md)  
