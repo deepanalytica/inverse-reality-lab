@@ -50,11 +50,20 @@ jobs:
             echo "Compiled PDF already matches tracked file."
           fi
 
-      - name: Validate dashboard assets
+      - name: Validate research site and PRAXIOS runtime
         shell: bash
         run: |
           node --check assets/dashboard.js
           node --check assets/praxios.js
+          node --check runtime/server.mjs
+          node --check runtime/core/ledger.mjs
+          node --check runtime/core/policy.mjs
+          node --check runtime/core/meta-harness.mjs
+          node --check runtime/core/scheduler.mjs
+          node --check runtime/core/praxios-runtime.mjs
+          node --check runtime/core/orchestrator.mjs
+          node --check runtime/providers/openai.mjs
+          node --check runtime/providers/anthropic.mjs
           python -m json.tool data/khufu.json >/dev/null
           python -m json.tool data/hypotheses.json >/dev/null
           python -m json.tool data/sources.json >/dev/null
@@ -62,6 +71,8 @@ jobs:
           python -m json.tool data/topology.json >/dev/null
           node scripts/validate_data.mjs
           node scripts/validate_site.mjs
+          node --test runtime/tests/*.test.mjs
+          python scripts/topology_synthetic.py
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

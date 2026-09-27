@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PRAXIOS Control Room · Prototype</title>
-<meta name="description" content="Prototipo interactivo de PRAXIOS OS, Meta-Harness y Decision Room.">
+<title>PRAXIOS Control Room · Runtime</title>
+<meta name="description" content="Runtime funcional de PRAXIOS OS, Meta-Harness y Decision Room con estado, gates, ledger y autoridad humana.">
 <link rel="stylesheet" href="assets/praxios.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
     <div class="px-mark"></div>
     <div class="px-brand">PRAXIOS <em>OS</em><small>Control & Decision Room</small></div>
   </div>
-  <div class="px-session-chip"><span class="px-dot"></span><span>DEMO SESSION · IRL-042</span></div>
+  <div class="px-session-chip"><span class="px-dot"></span><span>CORE LIVE · IRL-042</span></div>
   <div class="px-mode-switch" aria-label="Modo">
     <button class="active" data-mode="operate">Operate</button>
     <button data-mode="assure">Assure</button>
@@ -23,7 +23,7 @@
   <div class="px-top-actions">
     <a class="px-btn" href="praxios-design-system.html">Design system</a>
     <button class="px-btn" id="reset-demo">Reset</button>
-    <button class="px-btn primary" id="run-demo">Run demo</button>
+    <button class="px-btn primary" id="run-demo">Run governed session</button>
   </div>
 </header>
 
@@ -117,7 +117,7 @@
       <span class="px-tag"><strong>Proposer</strong> ≠ verifier</span>
       <span class="px-tag"><strong>State</strong> outside model</span>
       <span class="px-tag"><strong>Side effects</strong> gated</span>
-      <span class="px-tag"><strong>Demo</strong> simulated orchestration</span>
+      <span class="px-tag"><strong>Core</strong> real state + gates</span><span class="px-tag"><strong>Provider</strong> fixture on public site</span>
     </div>
   </section>
 
@@ -149,12 +149,12 @@
       <div class="px-model"><b>Planner slot</b>reasoning · tools</div>
       <div class="px-model"><b>Research slot</b>search · long context</div>
       <div class="px-model"><b>Verifier slot</b>independent review</div>
-      <div class="px-model"><b>Local slot</b>private extraction</div>
+      <div class="px-model"><b>Local core</b>state · gates · ledger</div><div class="px-model"><b>Server adapters</b>OpenAI · Anthropic</div>
     </div>
   </section>
 </footer>
 </div>
 <div class="px-toast" id="toast"></div>
-<script src="assets/praxios.js"></script>
+<script type="module" src="assets/praxios.js"></script>
 </body>
 </html>

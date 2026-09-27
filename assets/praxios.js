@@ -1,144 +1,392 @@
+import { PraxiosRuntime } from "../runtime/core/praxios-runtime.mjs";
+import { FixtureProvider } from "../runtime/providers/fixture.mjs";
 
-const $=s=>document.querySelector(s);
-const $$=s=>Array.from(document.querySelectorAll(s));
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const modes={
-  operate:{eyebrow:"PRAXIOS · runtime view",title:"Orquestación de sesión",stats:["4","3","5/7"]},
-  assure:{eyebrow:"META-HARNESS · assurance view",title:"Evidencia, claims y gates",stats:["9","3","5/7"]},
-  decide:{eyebrow:"DECISION ROOM · authority view",title:"Opciones, decisión y ejecución",stats:["3","2","1"]}
+const modes = {
+  operate: { eyebrow: "PRAXIOS · runtime real", title: "Orquestación de sesión" },
+  assure: { eyebrow: "META-HARNESS · gates reales", title: "Evidencia, claims y control" },
+  decide: { eyebrow: "DECISION ROOM · human authority", title: "Opciones, autorización y resultado" }
 };
 
-const nodes={
-  planner:{
-    kind:"PRAXIOS · orchestration",title:"Planner",status:"ready",badge:"running",
-    html:'<div class="px-panel"><h3>Responsabilidad</h3><p>Convierte el objetivo de la sesión en trabajos delegables. Propone el plan; PRAXIOS controla estado, permisos y ejecución.</p></div><div class="px-panel"><h3>Contrato</h3><dl class="px-kv"><dt>Input</dt><dd>Goal + state</dd><dt>Output</dt><dd>Task DAG</dd><dt>Authority</dt><dd>Propose only</dd><dt>Side effects</dt><dd>Gated</dd></dl></div><div class="px-panel"><h3>Current plan</h3><ul><li>Buscar evidencia instrumental.</li><li>Ejecutar cálculo.</li><li>Solicitar revisión independiente.</li></ul></div>'
-  },
-  researcher:{
-    kind:"WORKER · evidence",title:"Researcher",status:"queued",badge:"info",
-    html:'<div class="px-panel"><h3>Task</h3><p>Recuperar evidencia relevante para el claim seleccionado y registrar procedencia.</p></div><div class="px-panel"><h3>Tools</h3><dl class="px-kv"><dt>Allowed</dt><dd>Web · Files</dd><dt>Write</dt><dd>Evidence ledger</dd><dt>Policy</dt><dd>Source required</dd></dl></div>'
-  },
-  simulator:{
-    kind:"WORKER · computation",title:"Simulator",status:"queued",badge:"info",
-    html:'<div class="px-panel"><h3>Task</h3><p>Evaluar el modelo cuantitativo y producir un artefacto reproducible.</p></div><div class="px-panel"><h3>Contract</h3><dl class="px-kv"><dt>Input</dt><dd>Versioned data</dd><dt>Output</dt><dd>Result + artifact</dd><dt>Validation</dt><dd>Tests required</dd></dl></div>'
-  },
-  reviewer:{
-    kind:"WORKER · independent verification",title:"Reviewer",status:"queued",badge:"info",
-    html:'<div class="px-panel"><h3>Role separation</h3><p>Busca contradicciones, supuestos no declarados y explicaciones alternativas. No hereda el rol de proposer.</p></div><div class="px-panel"><h3>Review focus</h3><ul><li>Identificabilidad.</li><li>Contradicciones.</li><li>Falsificadores.</li><li>Calidad de evidencia.</li></ul></div>'
-  },
-  harness:{
-    kind:"META-HARNESS · assurance",title:"Meta-Harness",status:"review",badge:"review",
-    html:'<div class="px-panel"><h3>Claim C-0142</h3><p><strong>“El NFC podría continuar hacia el sur mediante una sección menor.”</strong></p><p>Clase: <span class="px-badge review">hypothesis</span></p></div><div class="px-panel"><h3>Gates</h3><div class="px-gate-list"><div class="px-gate"><div><b>Provenance</b><small>source linked</small></div><span class="px-badge pass">PASS</span></div><div class="px-gate"><div><b>Evidence</b><small>published constraint</small></div><span class="px-badge pass">PASS</span></div><div class="px-gate"><div><b>Contradiction</b><small>alternatives remain</small></div><span class="px-badge review">REVIEW</span></div><div class="px-gate"><div><b>Identifiability</b><small>current data insufficient</small></div><span class="px-badge review">REVIEW</span></div><div class="px-gate"><div><b>Physics</b><small>compatible</small></div><span class="px-badge pass">PASS</span></div><div class="px-gate"><div><b>Publish as discovery</b><small>evidence threshold unmet</small></div><span class="px-badge block">BLOCK</span></div></div></div>'
-  },
-  human:{
-    kind:"AUTHORITY · human checkpoint",title:"Human authority",status:"waiting",badge:"review",
-    html:'<div class="px-panel"><h3>Approval request</h3><p>Autorizar una nueva medición. La sesión puede proponer el diseño; la acción externa requiere aprobación humana.</p></div><div class="px-panel"><button class="px-btn primary" id="approve-action">Approve measurement design</button> <button class="px-btn danger" id="reject-action">Reject</button></div>'
-  },
-  decision:{
-    kind:"DECISION ROOM",title:"Decision Room",status:"ready",badge:"pass",
-    html:'<div class="px-panel"><h3>Situation</h3><p>La evidencia actual permite una continuación pequeña del NFC, pero mantiene alternativas.</p></div><div class="px-panel"><h3>Options</h3><div class="px-card"><strong>A · Nueva posición muográfica</strong><p>Mayor capacidad esperada para discriminar continuidad.</p></div><div class="px-card"><strong>B · Mantener estado actual</strong><p>Sin costo inmediato; incertidumbre permanece.</p></div></div><div class="px-panel"><h3>Decision state</h3><p><span class="px-badge review">human decision required</span></p></div>'
-  },
-  ledger:{
-    kind:"CANONICAL STATE",title:"The Ledger",status:"append-only",badge:"pass",
-    html:'<div class="px-panel"><h3>Purpose</h3><p>Registro canónico de eventos, artefactos, claims, evidencia, gates, autorizaciones y resultados.</p></div><div class="px-panel"><h3>Properties</h3><ul><li>Append-only.</li><li>Versioned artifacts.</li><li>Model-independent state.</li><li>Replayable session.</li></ul></div>'
+let runtime = null;
+let activeAction = null;
+let activeAuthorization = null;
+let latestActionEvaluation = null;
+
+const nodeDescriptions = {
+  planner: ["PRAXIOS · orchestration", "Planner", "Convierte el objetivo en trabajo gobernado por estado, dependencias y políticas."],
+  researcher: ["WORKER · evidence", "Researcher", "Trabajo delegado de evidencia ejecutado por el scheduler."],
+  simulator: ["WORKER · computation", "Simulator", "Trabajo delegado de cálculo y producción de artefactos."],
+  reviewer: ["WORKER · verification", "Reviewer", "Actor distinto del proposer. Verifica claims y busca contradicciones."],
+  harness: ["META-HARNESS · assurance", "Meta-Harness", "Aplica gates sobre claims y acciones antes de promover o ejecutar."],
+  human: ["AUTHORITY · checkpoint", "Human authority", "Aprueba o rechaza acciones con efectos."],
+  decision: ["DECISION ROOM", "Decision Room", "Concentra situación, opciones, autorización y outcome."],
+  ledger: ["CANONICAL STATE", "The Ledger", "Cadena SHA-256 append-only que permite auditar y verificar la sesión."]
+};
+
+function badge(status) {
+  const s = String(status || "ready").toLowerCase();
+  const cls = s === "pass" || s === "verified" || s === "completed" || s === "approved" ? "pass"
+    : s === "block" || s === "blocked" || s === "rejected" || s === "failed" ? "block"
+    : s === "review" || s === "pending" || s === "awaiting_authorization" ? "review"
+    : "running";
+  return '<span class="px-badge ' + cls + '">' + String(status || "ready") + '</span>';
+}
+
+function gateRows(gates) {
+  if (!gates || !gates.length) return '<p>Los gates aparecerán cuando exista un claim verificable.</p>';
+  return '<div class="px-gate-list">' + gates.map(g =>
+    '<div class="px-gate"><div><b>' + g.id + '</b><small>' + g.reason + '</small></div>' + badge(g.status) + '</div>'
+  ).join("") + '</div>';
+}
+
+function currentClaim() {
+  if (!runtime) return null;
+  return runtime.state.claims[runtime.state.claims.length - 1] || null;
+}
+
+function currentDecision() {
+  if (!runtime) return null;
+  return runtime.state.decisions[runtime.state.decisions.length - 1] || null;
+}
+
+function currentTask(role) {
+  if (!runtime) return null;
+  return runtime.scheduler.list().find(t => t.role === role) || null;
+}
+
+function inspectorHtml(id) {
+  const desc = nodeDescriptions[id];
+  if (!runtime) {
+    return '<div class="px-panel"><h3>Estado</h3><p>' + desc[2] + '</p><p>Ejecuta una sesión para observar el runtime.</p></div>';
   }
-};
 
-const ledgerSeed=[
-  ["12:41:03","SESSION","IRL-042 created",""],
-  ["12:41:04","GOAL","Validate NFC continuation hypothesis",""],
-  ["12:41:06","PLAN","3 jobs proposed",""],
-  ["12:41:07","POLICY","external actions require human authority","pass"]
-];
+  if (id === "harness") {
+    const claim = currentClaim();
+    if (!claim) return '<div class="px-panel"><h3>Meta-Harness</h3><p>Esperando un claim.</p></div>';
+    return '<div class="px-panel"><h3>' + claim.id + '</h3><p><strong>' + claim.text + '</strong></p>' +
+      '<p>Clase: ' + badge(claim.epistemic) + ' · Verdict: ' + badge(claim.verdict || "PENDING") + '</p></div>' +
+      '<div class="px-panel"><h3>Gates</h3>' + gateRows(claim.gates) + '</div>' +
+      (latestActionEvaluation ? '<div class="px-panel"><h3>Action gates</h3>' + gateRows(latestActionEvaluation.gates) + '</div>' : '');
+  }
 
-function renderLedger(rows){
-  const data=rows||ledgerSeed;
-  $("#ledger").innerHTML=data.map(function(r){
-    return '<div class="px-ledger-row '+(r[3]||"")+'"><span>'+r[0]+'</span><span class="kind">'+r[1]+'</span><span>'+r[2]+'</span></div>';
+  if (id === "human") {
+    const auth = activeAuthorization;
+    if (!auth) return '<div class="px-panel"><h3>Checkpoint</h3><p>No existe una autorización pendiente.</p></div>';
+    const buttons = auth.status === "PENDING"
+      ? '<button class="px-btn primary" id="approve-action">Approve</button> <button class="px-btn danger" id="reject-action">Reject</button>'
+      : badge(auth.status);
+    return '<div class="px-panel"><h3>Authorization request</h3><p><strong>' + auth.action.title + '</strong></p>' +
+      '<dl class="px-kv"><dt>Effect</dt><dd>' + auth.action.effect + '</dd><dt>Requested by</dt><dd>' + auth.requestedBy + '</dd><dt>Status</dt><dd>' + auth.status + '</dd></dl></div>' +
+      '<div class="px-panel">' + buttons + '</div>';
+  }
+
+  if (id === "decision") {
+    const d = currentDecision();
+    return '<div class="px-panel"><h3>Situation</h3><p>La evidencia deja abiertas alternativas. El claim permanece gobernado por sus gates.</p></div>' +
+      '<div class="px-panel"><h3>Decision</h3>' +
+      (d ? '<p><strong>' + (d.selected || "Pendiente") + '</strong></p><p>' + (d.rationale || "Esperando autoridad humana.") + '</p>' : '<p>Esperando checkpoint humano.</p>') +
+      '</div>';
+  }
+
+  if (id === "ledger") {
+    return '<div class="px-panel"><h3>Canonical state</h3><dl class="px-kv"><dt>Revision</dt><dd>' + runtime.state.revision +
+      '</dd><dt>Events</dt><dd>' + runtime.ledger.events.length + '</dd><dt>Head</dt><dd style="word-break:break-all">' +
+      (runtime.ledger.lastHash || "").slice(0, 24) + '…</dd></dl></div><div class="px-panel"><button class="px-btn" id="verify-ledger">Verify hash chain</button></div>';
+  }
+
+  const roleMap = { researcher: "researcher", simulator: "simulator", reviewer: "reviewer" };
+  if (roleMap[id]) {
+    const task = currentTask(roleMap[id]);
+    return '<div class="px-panel"><h3>Task</h3><p>' + desc[2] + '</p>' +
+      (task ? '<dl class="px-kv"><dt>ID</dt><dd>' + task.id + '</dd><dt>Status</dt><dd>' + task.status +
+      '</dd><dt>Provider</dt><dd>' + task.provider + '</dd></dl>' : '<p>Sin task todavía.</p>') + '</div>';
+  }
+
+  return '<div class="px-panel"><h3>Responsabilidad</h3><p>' + desc[2] + '</p></div>' +
+    '<div class="px-panel"><h3>Session</h3><dl class="px-kv"><dt>Phase</dt><dd>' + runtime.state.phase +
+    '</dd><dt>Status</dt><dd>' + runtime.state.status + '</dd><dt>Revision</dt><dd>' + runtime.state.revision + '</dd></dl></div>';
+}
+
+function wireInspectorActions(id) {
+  if (id === "human") {
+    const approve = $("#approve-action");
+    const reject = $("#reject-action");
+    if (approve) approve.onclick = () => decideAuthorization(true);
+    if (reject) reject.onclick = () => decideAuthorization(false);
+  }
+  if (id === "ledger") {
+    const verify = $("#verify-ledger");
+    if (verify) verify.onclick = async () => {
+      const check = await runtime.ledger.verify();
+      toast(check.ok ? "Ledger verified · " + check.count + " events." : "Ledger verification failed.");
+    };
+  }
+}
+
+function selectNode(id) {
+  $$(".node").forEach(n => n.classList.toggle("selected", n.dataset.node === id));
+  const desc = nodeDescriptions[id];
+  $("#inspector-kind").textContent = desc[0];
+  $("#inspector-title").textContent = desc[1];
+  $("#inspector-status").outerHTML = badge(nodeStatus(id)).replace("<span", '<span id="inspector-status"');
+  $("#inspector-content").innerHTML = inspectorHtml(id);
+  wireInspectorActions(id);
+}
+
+function nodeStatus(id) {
+  if (!runtime) return "ready";
+  if (id === "planner") return runtime.state.phase === "REASON" ? "RUNNING" : "PASS";
+  if (id === "researcher") return currentTask("researcher")?.status || "QUEUED";
+  if (id === "simulator") return currentTask("simulator")?.status || "QUEUED";
+  if (id === "reviewer") return currentTask("reviewer")?.status || (currentClaim()?.verdict || "QUEUED");
+  if (id === "harness") return currentClaim()?.verdict || "QUEUED";
+  if (id === "human") return activeAuthorization?.status || "IDLE";
+  if (id === "decision") return currentDecision()?.selected ? "PASS" : "REVIEW";
+  if (id === "ledger") return "PASS";
+  return "ready";
+}
+
+function renderLedger() {
+  const events = runtime ? runtime.ledger.snapshot() : [];
+  $("#ledger").innerHTML = events.slice(-10).map(e => {
+    const time = String(e.timestamp).slice(11, 19);
+    const status = e.type.includes("BLOCK") || e.payload?.verdict === "BLOCK" ? "review"
+      : e.payload?.verdict === "PASS" || e.type.includes("APPROVED") || e.type === "ACTION_EXECUTED" ? "pass"
+      : "";
+    return '<div class="px-ledger-row ' + status + '"><span>' + time + '</span><span class="kind">' +
+      e.type.replaceAll("_", " ").slice(0, 18) + '</span><span>' + e.actor + ' · #' + e.seq + '</span></div>';
   }).join("");
 }
 
-function selectNode(id){
-  $$(".node").forEach(n=>n.classList.toggle("selected",n.dataset.node===id));
-  const n=nodes[id];
-  $("#inspector-kind").textContent=n.kind;
-  $("#inspector-title").textContent=n.title;
-  $("#inspector-status").textContent=n.status;
-  $("#inspector-status").className="px-badge "+n.badge;
-  $("#inspector-content").innerHTML=n.html;
-  const approve=$("#approve-action");
-  const reject=$("#reject-action");
-  if(approve) approve.onclick=function(){toast("Authorization appended to ledger.");};
-  if(reject) reject.onclick=function(){toast("Action blocked by human authority.");};
-}
-
-function setMode(mode){
-  $$(".px-mode-switch button").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
-  $("#mode-eyebrow").textContent=modes[mode].eyebrow;
-  $("#mode-title").textContent=modes[mode].title;
-  $("#stat-agents").textContent=modes[mode].stats[0];
-  $("#stat-claims").textContent=modes[mode].stats[1];
-  $("#stat-gates").textContent=modes[mode].stats[2];
-  if(mode==="operate")selectNode("planner");
-  if(mode==="assure")selectNode("harness");
-  if(mode==="decide")selectNode("decision");
-}
-
-function toast(msg){
-  const t=$("#toast");
-  t.textContent=msg;
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),1800);
-}
-
-const stages=[
-  {node:"planner",edge:null,kind:"PLAN",msg:"Task DAG created",klass:"running"},
-  {node:"researcher",edge:"e1",kind:"JOB",msg:"Researcher retrieving evidence",klass:"running"},
-  {node:"simulator",edge:"e2",kind:"JOB",msg:"Simulator evaluating model",klass:"running"},
-  {node:"reviewer",edge:"e3",kind:"JOB",msg:"Independent review started",klass:"running"},
-  {node:"harness",edges:["e4","e5","e6"],kind:"GATE",msg:"Meta-Harness evaluating claim C-0142",klass:"review"},
-  {node:"human",edge:"e7",kind:"AUTH",msg:"Human checkpoint requested",klass:"review"},
-  {node:"decision",edge:"e8",kind:"DECISION",msg:"Option set prepared",klass:"pass"},
-  {node:"ledger",edge:"e9",kind:"LEDGER",msg:"Session state committed",klass:"pass"}
-];
-
-let timer=null;
-function resetDemo(){
-  if(timer)clearInterval(timer);
-  timer=null;
-  $$(".node").forEach(n=>n.classList.remove("running","pass","review","block"));
-  $$(".edge").forEach(e=>e.classList.remove("active","pass","review","block"));
-  $("#progress").style.width="0";
+function refreshStats() {
+  if (!runtime) return;
+  $("#stat-agents").textContent = runtime.scheduler.list().length;
+  $("#stat-claims").textContent = runtime.state.claims.length;
+  const claim = currentClaim();
+  const gates = claim?.gates || [];
+  $("#stat-gates").textContent = gates.length ? gates.filter(g => g.status === "PASS").length + "/" + gates.length : "0/0";
   renderLedger();
-  setMode("operate");
-}
-function runDemo(){
-  resetDemo();
-  let i=0;
-  const rows=ledgerSeed.map(r=>r.slice());
-  const step=function(){
-    if(i>=stages.length){
-      clearInterval(timer);timer=null;toast("Demo complete: decision package ready.");return;
-    }
-    const s=stages[i];
-    const node=$('[data-node="'+s.node+'"]');
-    if(node)node.classList.add(s.klass);
-    if(s.edge)$("#"+s.edge).classList.add("active",s.klass);
-    (s.edges||[]).forEach(e=>$("#"+e).classList.add("active",s.klass));
-    const time=new Date().toLocaleTimeString("es-CL",{hour12:false}).slice(0,8);
-    rows.push([time,s.kind,s.msg,s.klass==="pass"?"pass":s.klass==="review"?"review":""]);
-    renderLedger(rows);
-    $("#progress").style.width=((i+1)/stages.length*100)+"%";
-    selectNode(s.node);
-    i++;
-  };
-  step();
-  timer=setInterval(step,720);
 }
 
-$$(".node").forEach(n=>n.addEventListener("click",()=>selectNode(n.dataset.node)));
-$$(".px-mode-switch button").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.mode)));
-$("#run-demo").addEventListener("click",runDemo);
-$("#reset-demo").addEventListener("click",function(){resetDemo();toast("Demo reset.");});
-$("#send-command").addEventListener("click",function(){toast("Command queued in demo session.");runDemo();});
-renderLedger();
+function markNode(id, cls) {
+  const n = $('[data-node="' + id + '"]');
+  if (!n) return;
+  n.classList.remove("running", "pass", "review", "block");
+  n.classList.add(cls);
+}
+
+function markEdge(id, cls) {
+  const e = $("#" + id);
+  if (!e) return;
+  e.classList.remove("active", "pass", "review", "block");
+  e.classList.add("active", cls);
+}
+
+function resetVisuals() {
+  $$(".node").forEach(n => n.classList.remove("running", "pass", "review", "block"));
+  $$(".edge").forEach(e => e.classList.remove("active", "pass", "review", "block"));
+  $("#progress").style.width = "0%";
+}
+
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 1900);
+}
+
+function setMode(mode) {
+  $$(".px-mode-switch button").forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+  $("#mode-eyebrow").textContent = modes[mode].eyebrow;
+  $("#mode-title").textContent = modes[mode].title;
+  selectNode(mode === "operate" ? "planner" : mode === "assure" ? "harness" : "decision");
+}
+
+function buildRuntime() {
+  const r = new PraxiosRuntime({
+    sessionId: "IRL-042",
+    onEvent: async () => {
+      refreshStats();
+    }
+  });
+
+  r.registerProvider("fixture", new FixtureProvider(request => {
+    if (request.role === "researcher") return "Evidence constraint recovered with source provenance.";
+    if (request.role === "simulator") return "Counterfactual geometry evaluated; alternatives remain.";
+    if (request.role === "reviewer") return "Independent review: claim is compatible but not uniquely identified.";
+    return "Task completed.";
+  }));
+
+  r.registerExecutor("measurement-design", async action => ({
+    artifactId: "MEASUREMENT-DESIGN-001",
+    status: "CREATED",
+    proposal: action.payload
+  }));
+  return r;
+}
+
+async function runSession() {
+  resetVisuals();
+  runtime = buildRuntime();
+  activeAction = null;
+  activeAuthorization = null;
+  latestActionEvaluation = null;
+  const goal = $("#command").value.trim() || "Validate NFC continuation hypothesis.";
+
+  markNode("planner", "running");
+  await runtime.start(goal, "human");
+  await runtime.setPhase("REASON", "Planner decomposes governed work.");
+  selectNode("planner");
+  $("#progress").style.width = "10%";
+  await sleep(280);
+
+  await runtime.setPhase("PROPOSE", "Register task DAG.");
+  await runtime.delegateTask({ id: "T-RESEARCH", title: "Evidence review", role: "researcher", provider: "fixture", input: goal });
+  await runtime.delegateTask({ id: "T-SIM", title: "Model evaluation", role: "simulator", provider: "fixture", input: goal, dependsOn: ["T-RESEARCH"] });
+  await runtime.delegateTask({ id: "T-REVIEW", title: "Adversarial review", role: "reviewer", provider: "fixture", input: goal, dependsOn: ["T-SIM"] });
+  markEdge("e1", "running"); markEdge("e2", "running"); markEdge("e3", "running");
+  $("#progress").style.width = "28%";
+  await runtime.runTasks();
+  markNode("researcher", "pass"); markNode("simulator", "pass"); markNode("reviewer", "pass");
+  markEdge("e1", "pass"); markEdge("e2", "pass"); markEdge("e3", "pass");
+  $("#progress").style.width = "50%";
+
+  await runtime.addEvidence({
+    id: "S2",
+    kind: "published",
+    summary: "Published measurement constrains the North Face Corridor geometry.",
+    peerReviewed: true,
+    source: {
+      title: "North Face Corridor muography study",
+      uri: "https://www.nature.com/articles/s41467-023-36351-0"
+    },
+    uncertainty: "Continuation beyond the measured region remains incompletely constrained."
+  }, "researcher");
+
+  await runtime.setPhase("VERIFY", "Meta-Harness evaluates claim.");
+  await runtime.proposeClaim({
+    id: "C-0142",
+    text: "The NFC may continue south through a smaller section.",
+    epistemic: "HYPOTHESIS",
+    evidenceIds: ["S2"],
+    method: "inverse constraint analysis",
+    uncertainty: "Alternative geometries remain compatible with current data.",
+    identifiability: "I1",
+    requiredIdentifiability: "I2",
+    requestedUse: "decision",
+    proposerId: "researcher",
+    contradictions: [{
+      id: "ALT-1",
+      text: "The signal can remain compatible with a termination or geometry change.",
+      resolved: false,
+      status: "OPEN"
+    }]
+  }, "researcher");
+
+  const evaluation = await runtime.verifyClaim("C-0142", { verifierId: "reviewer", actor: "reviewer" });
+  markNode("harness", evaluation.verdict === "PASS" ? "pass" : evaluation.verdict === "BLOCK" ? "block" : "review");
+  ["e4","e5","e6"].forEach(id => markEdge(id, evaluation.verdict === "PASS" ? "pass" : "review"));
+  $("#progress").style.width = "72%";
+  selectNode("harness");
+  await sleep(300);
+
+  activeAction = {
+    id: "ACT-001",
+    title: "Create next-measurement design artifact",
+    effect: "write",
+    executor: "measurement-design",
+    payload: {
+      objective: "Maximize discrimination between NFC continuation alternatives.",
+      method: "Expected information gain study"
+    }
+  };
+
+  latestActionEvaluation = await runtime.metaHarness.evaluateAction(activeAction, { authorization: null });
+  activeAuthorization = await runtime.requestAuthorization(activeAction, "praxios");
+  markNode("human", "review");
+  markEdge("e7", "review");
+  await runtime.recordDecision({
+    id: "D-001",
+    title: "NFC next measurement",
+    options: ["Approve measurement design", "Reject and hold"],
+    selected: null,
+    rationale: "Awaiting human authority.",
+    status: "PENDING"
+  }, "praxios");
+  $("#progress").style.width = "86%";
+  selectNode("human");
+  refreshStats();
+}
+
+async function decideAuthorization(approved) {
+  if (!runtime || !activeAuthorization || activeAuthorization.status !== "PENDING") return;
+  activeAuthorization = await runtime.authorize(activeAuthorization.id, {
+    approved,
+    actor: "human",
+    reason: approved ? "Measurement design authorized." : "Measurement design rejected."
+  });
+
+  if (approved) {
+    latestActionEvaluation = (await runtime.executeAction(activeAction, {
+      authorizationId: activeAuthorization.id,
+      actor: "praxios"
+    })).evaluation;
+    runtime.state.decisions = runtime.state.decisions.filter(d => d.id !== "D-001");
+    await runtime.recordDecision({
+      id: "D-001-FINAL",
+      title: "NFC next measurement",
+      options: ["Approve measurement design", "Reject and hold"],
+      selected: "Approve measurement design",
+      rationale: "Human authority approved the gated action.",
+      status: "RECORDED"
+    }, "human");
+    markNode("human", "pass"); markEdge("e7", "pass");
+    markNode("decision", "pass"); markEdge("e8", "pass");
+    markNode("ledger", "pass"); markEdge("e9", "pass");
+    $("#progress").style.width = "100%";
+    toast("Authorized action executed through Meta-Harness.");
+  } else {
+    runtime.state.decisions = runtime.state.decisions.filter(d => d.id !== "D-001");
+    await runtime.recordDecision({
+      id: "D-001-FINAL",
+      title: "NFC next measurement",
+      options: ["Approve measurement design", "Reject and hold"],
+      selected: "Reject and hold",
+      rationale: "Human authority rejected the effectful action.",
+      status: "RECORDED"
+    }, "human");
+    markNode("human", "block"); markEdge("e7", "block");
+    markNode("decision", "review");
+    $("#progress").style.width = "100%";
+    toast("Action remains blocked.");
+  }
+
+  selectNode("decision");
+  refreshStats();
+}
+
+function resetSession() {
+  runtime = null;
+  activeAction = null;
+  activeAuthorization = null;
+  latestActionEvaluation = null;
+  resetVisuals();
+  $("#ledger").innerHTML = "";
+  $("#stat-agents").textContent = "0";
+  $("#stat-claims").textContent = "0";
+  $("#stat-gates").textContent = "0/0";
+  selectNode("planner");
+  toast("Runtime reset.");
+}
+
+$$(".node").forEach(n => n.addEventListener("click", () => selectNode(n.dataset.node)));
+$$(".px-mode-switch button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+$("#run-demo").textContent = "Run governed session";
+$("#run-demo").addEventListener("click", () => runSession().catch(error => toast(error.message)));
+$("#reset-demo").addEventListener("click", resetSession);
+$("#send-command").addEventListener("click", () => runSession().catch(error => toast(error.message)));
 selectNode("planner");

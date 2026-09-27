@@ -8,7 +8,7 @@
 🧭 **Dashboard 3D/4D:** https://deepanalytica.github.io/inverse-reality-lab/dashboard.html  
 📘 **Guía rápida:** [START_HERE.md](START_HERE.md)  
 📖 **Glosario:** [GLOSSARY.md](GLOSSARY.md)  
-📄 **Paper canónico v1.0:** [paper/PAPER.pdf](paper/PAPER.pdf)  
+📄 **Paper canónico v1.2:** [paper/PAPER.pdf](paper/PAPER.pdf)  
 🧾 **Fuente LaTeX:** [paper/main.tex](paper/main.tex)  
 🧪 **Benchmarks:** [benchmarks/README.md](benchmarks/README.md)  
 📚 **Biblioteca:** https://deepanalytica.github.io/inverse-reality-lab/library.html  
@@ -351,16 +351,35 @@ Esto permite medir de manera continua cuánto restringen las precedencias el esp
 
 ## PRAXIOS y Meta-Harness
 
-**PRAXIOS** es la capa de ejecución. Coordina estados, modelos, herramientas, simulaciones y repetición de experimentos.
+PRAXIOS y Meta-Harness cuentan ahora con una implementación funcional dentro de este repositorio.
 
-**Meta-Harness** es la capa de control científico. Mantiene la relación entre una afirmación y:
+**PRAXIOS Runtime** mantiene estado canónico, scheduler, providers, autorizaciones, acciones, decisiones y un ledger hash-chain SHA-256. El ciclo ejecutable es:
 
-- su evidencia;
-- su incertidumbre;
-- sus contradicciones;
-- las alternativas abiertas;
-- su nivel de identificabilidad;
-- las predicciones que permiten contrastarla.
+\[
+OBSERVE
+\rightarrow
+REASON
+\rightarrow
+PROPOSE
+\rightarrow
+VERIFY
+\rightarrow
+AUTHORIZE
+\rightarrow
+EXECUTE
+\rightarrow
+OBSERVE.
+\]
+
+**Meta-Harness Runtime** evalúa claims y acciones mediante gates de clase epistemológica, procedencia, evidencia, contradicción, incertidumbre, identificabilidad, separación proposer/verifier, políticas, autorización y auditoría.
+
+Una acción con efecto configurado no alcanza el executor sin autorización válida.
+
+El runtime incluye adaptadores de servidor para OpenAI y Anthropic, además de un registry extensible para otros providers. La UI pública ejecuta el mismo core en el navegador con un fixture provider para no exponer claves API.
+
+**Runtime:** [PRAXIOS_RUNTIME.md](PRAXIOS_RUNTIME.md)  
+**Meta-Harness:** [META_HARNESS_RUNTIME.md](META_HARNESS_RUNTIME.md)  
+**Servidor y tests:** [runtime/README.md](runtime/README.md)
 
 ---
 
