@@ -5,24 +5,24 @@
 🌐 **Laboratorio interactivo:** https://deepanalytica.github.io/inverse-reality-lab/  
 📘 **Guía rápida:** [START_HERE.md](START_HERE.md)  
 📖 **Glosario:** [GLOSSARY.md](GLOSSARY.md)  
-📄 **Paper canónico v1.0:** [paper/PAPER.pdf](paper/PAPER.pdf) · [LaTeX modular](paper/main.tex)  
-🧮 **Modelo matemático:** [MATHEMATICAL_MODEL.md](MATHEMATICAL_MODEL.md)  
-🧩 **Ontología:** [ONTOLOGY.md](ONTOLOGY.md)  
-🧠 **Teoría:** [THEORY.md](THEORY.md)
+📄 **Paper canónico v1.0:** [paper/PAPER.pdf](paper/PAPER.pdf)  
+🧾 **Fuente LaTeX:** [paper/main.tex](paper/main.tex)  
+🧪 **Benchmarks:** [benchmarks/README.md](benchmarks/README.md)  
+📚 **Biblioteca:** https://deepanalytica.github.io/inverse-reality-lab/library.html
 
 ---
 
-# Qué es
+## Qué es
 
-Inverse Reality Laboratory estudia cómo reconstruir la historia de formación de un objeto a partir de lo que podemos observar en su estado actual.
+Inverse Reality Laboratory estudia cómo reconstruir la historia de formación de un objeto a partir de su estado terminado y de la evidencia disponible.
 
-El laboratorio principal es la **Gran Pirámide de Khufu**. Antes de aplicarlo allí, el método se prueba con estructuras cuya construcción está documentada: Golden Gate Bridge, Torre Eiffel, Hoover Dam, Empire State Building y Sydney Opera House.
+El laboratorio arqueológico principal es la **Gran Pirámide de Khufu**. El método se calibra con estructuras cuya construcción está ampliamente documentada: Golden Gate Bridge, Torre Eiffel, Hoover Dam, Empire State Building y Sydney Opera House.
 
 La pregunta central es:
 
-> **Dado un objeto terminado, ¿qué historias de construcción son compatibles con su geometría, materiales, estructura, accesos, entorno y evidencia disponible?**
+> **Dado un objeto terminado, ¿qué historias de construcción son compatibles con su geometría, materiales, estructura, accesos, entorno y evidencia?**
 
-El resultado se expresa como un conjunto de historias compatibles y su grado de soporte:
+El resultado se representa como:
 
 \[
 \boxed{
@@ -39,33 +39,32 @@ P(
 
 ---
 
-# Qué hace el laboratorio
+## Qué hace
 
-IRL combina distintas fuentes de información y las convierte en restricciones sobre la historia constructiva.
+IRL convierte información del objeto y su contexto en restricciones sobre la historia constructiva.
 
-Trabaja con:
+El sistema estudia:
 
 - geometría;
 - materiales;
 - cámaras, corredores y otros espacios vacíos;
-- relaciones de soporte y carga;
+- cargas y contactos;
 - accesibilidad de piezas;
 - procedencia;
-- logística;
+- rutas y logística;
+- cambios posteriores a la construcción;
 - evidencia arqueológica, documental e instrumental;
-- incertidumbre.
+- incertidumbre e identificabilidad.
 
-Cada historia candidata debe ser compatible con esos datos.
+Cada historia candidata se evalúa con esos criterios.
 
-Cuando varias historias siguen siendo compatibles, el laboratorio conserva las alternativas y mide qué información adicional ayudaría a distinguirlas.
+Cuando varias historias producen observaciones equivalentes, el resultado conserva las alternativas y permite calcular qué nueva medición tendría mayor capacidad para diferenciarlas.
 
 ---
 
-# Cuál es el aporte
+## Cuál es el aporte
 
-El proyecto propone una forma integrada de estudiar la construcción desde el objeto terminado.
-
-En términos simples:
+El proyecto integra en un mismo flujo herramientas que suelen utilizarse por separado:
 
 \[
 \boxed{
@@ -79,516 +78,268 @@ En términos simples:
 }
 \]
 
-El aporte está en reunir dentro de un mismo sistema:
+El marco reúne:
 
 - problemas inversos;
-- mecánica estructural;
-- teoría de grafos;
+- mecánica estructural y de contacto;
+- teoría de grafos y órdenes parciales;
 - topología;
 - espacios de configuración;
 - inferencia bayesiana;
 - procedencia material;
-- logística;
+- logística y throughput;
 - simulación contrafactual;
 - control explícito de identificabilidad.
 
-La finalidad es distinguir tres situaciones que suelen mezclarse:
-
-1. una historia físicamente posible;
-2. una historia compatible con la evidencia disponible;
-3. una historia realmente identificable frente a sus alternativas.
+El aporte metodológico consiste en usar estas herramientas de manera coordinada para **reducir el espacio de historias posibles, medir el nivel de soporte de cada conclusión y generar predicciones que puedan contrastarse con nueva evidencia**.
 
 ---
 
-# Cómo funciona en una frase
+## Ejemplo simple
 
-IRL empieza desde el resultado, reconstruye estados anteriores posibles, elimina los que contradicen física o evidencia y calcula qué observaciones permitirían discriminar las historias que todavía sobreviven.
+En un puente suspendido terminado observamos que:
+
+\[
+\text{tablero}
+\rightarrow
+\text{suspensores}
+\rightarrow
+\text{cables}
+\rightarrow
+\text{torres y anclajes}.
+\]
+
+Esa estructura impone precedencias:
+
+\[
+\text{torres}
+\prec
+\text{cables}
+\prec
+\text{suspensores}
+\prec
+\text{tablero}.
+\]
+
+El símbolo
+
+\[
+a\prec b
+\]
+
+significa que \(a\) debe existir antes que \(b\) dentro de la historia considerada.
+
+El mismo análisis puede revelar que antes del cable definitivo hace falta una clase de acceso o soporte temporal en altura. La historia del Golden Gate permite contrastar esa inferencia con sus catwalks documentados.
 
 ---
 
-# Conceptos esenciales
+## Conceptos principales
 
-**Estado terminal:** el objeto cuando la construcción quedó terminada.
+**Estado terminal:** estado del objeto cuando la construcción quedó funcionalmente terminada.
 
-**As-built:** cómo quedó realmente construido.
+**As-built:** forma en que el objeto quedó realmente construido.
 
-**Problema inverso:** partir del resultado observado para inferir qué procesos pudieron producirlo.
+**Problema inverso:** inferir causas o procesos a partir de sus resultados observables.
 
-**Ontología:** catálogo estructurado de entidades y relaciones del problema: bloques, cámaras, eventos, fuentes, rutas, evidencias.
+**Ontología:** modelo organizado de las entidades y relaciones del problema.
 
 **Topología:** estudio de conexiones, cavidades y cambios de conectividad.
 
-**Espacio negativo:** volumen diseñado para permanecer libre de material, como una cámara o corredor.
+**Espacio negativo:** volumen arquitectónico reservado para permanecer libre de material, como una cámara o corredor.
 
-**Orden parcial:** cronología donde algunas acciones tienen precedencia obligatoria y otras pueden ocurrir en paralelo.
+**Orden parcial:** cronología que representa dependencias obligatorias y permite procesos paralelos.
 
-**Identificabilidad:** grado en que los datos permiten distinguir una explicación de otra.
+**Identificabilidad:** grado en que la evidencia permite distinguir una historia de sus alternativas.
 
-**Ontología temporal latente:** estructuras temporales usadas durante la obra y ausentes en el objeto final, como andamios, rampas, moldes o pasarelas.
+**Ontología temporal latente:** conjunto de estructuras de obra que existieron durante la construcción y luego desaparecieron, como andamios, rampas, moldes, pasarelas o soportes.
 
-**Fuerza residual:** fuerza todavía sin explicar después de incorporar mecanismos conocidos; funciona como diagnóstico del modelo.
+**Fuerza residual:** parte de la demanda mecánica que continúa sin explicación después de incorporar mecanismos conocidos; funciona como variable de diagnóstico.
 
-Para definiciones más completas: **[GLOSSARY.md](GLOSSARY.md)**.
+**Modelo directo:** parte de una historia y calcula qué observaciones produciría.
 
----
+**Modelo inverso:** parte de observaciones y busca historias compatibles.
 
-# Por qué Khufu
+**Modelo contrafactual:** calcula qué ocurriría bajo una condición hipotética.
 
-La Gran Pirámide reúne varias fuentes de evidencia que pueden restringirse entre sí:
-
-- geometría exterior e interior;
-- cámaras y corredores;
-- diferencias entre caliza y granito;
-- canteras;
-- lecho rocoso;
-- fracturas;
-- anomalías de densidad;
-- muografía;
-- rutas de transporte;
-- paleohidrología;
-- evidencia arqueológica.
-
-Esto permite estudiar la construcción como un problema multimodal y medir cuánto reduce cada fuente el espacio de historias posibles.
+Las definiciones ampliadas están en [GLOSSARY.md](GLOSSARY.md).
 
 ---
 
-# Core research question
+## Materia y espacio arquitectónico
 
-Let \(X_T\) be the estimated **as-built terminal state** of a physical object and \(Y\) the available observations.
-
-Infer
+IRL representa el objeto mediante dos componentes:
 
 \[
-\boxed{
-P(
-\mathcal G,
-T_b^+,
-T_b^-,
-Q,
-R,
-D,
-C
-\mid
-X_T,Y,\mathcal L
-)
-}
+\mathcal K^+
 \]
 
-where:
+para la materia construida, y:
 
-- \(\mathcal G\): typed construction dependency graph;
-- \(T_b^+\): material birth-time field;
-- \(T_b^-\): negative-space reservation/birth field;
-- \(Q\): material provenance;
-- \(R\): routes/access;
-- \(D\): design constraints;
-- \(C\): earliest conception constraints;
-- \(\mathcal L\): admissible physical laws/models.
+\[
+\mathcal K^-
+\]
+
+para cámaras, corredores y otros espacios arquitectónicos reservados.
+
+Esta representación permite estudiar cómo nace una cámara, cuándo queda cerrada, qué estructuras dependen de ella y qué observaciones de densidad deberían producirse.
 
 ---
 
-# Why the Great Pyramid?
+## Cronología como orden parcial
 
-Khufu is unusually valuable as an inverse-reconstruction laboratory because independent evidence domains can constrain one another:
+La altura de una pieza aporta información geométrica, mientras la cronología depende también de soporte, acceso, logística y secuencias paralelas.
 
-- global geometry;
-- internal chambers and corridors;
-- granite/limestone material differences;
-- quarry evidence;
-- bedrock and plateau geology;
-- known and unknown density anomalies;
-- ScanPyramids muography;
-- structural load paths;
-- transport landscape and paleohydrology;
-- archaeological/textual evidence.
+IRL utiliza grafos de precedencia:
 
-The method is useful only if combining these constraints removes candidate histories.
+\[
+P=(E,\prec).
+\]
+
+Así puede expresar que una acción requiere otra previa y, al mismo tiempo, conservar ramas de trabajo que pudieron desarrollarse en paralelo.
 
 ---
 
-# Central idea 1 — Positive and negative construction
+## Mecánica y accesibilidad
 
-Traditional models store material.
+Cada historia debe producir estados intermedios físicamente realizables.
 
-IRL models both:
-
-\[
-\boxed{\mathcal K^+}
-\]
-
-the positive material complex, and
+El laboratorio utiliza equilibrio estructural:
 
 \[
-\boxed{\mathcal K^-}
+\nabla\cdot\boldsymbol\sigma+\rho\mathbf g=0
 \]
 
-the negative architectural complex.
-
-A chamber is not merely “air”. It is a region that had to be **kept free of material** while its boundaries and surrounding structure were constructed.
-
-For a reference solid density \(\rho_{\mathrm{ref}}\), the project defines a counterfactual absent-mass variable
+y espacios de configuración en:
 
 \[
-\boxed{
-m^\ominus(V)
-=
--\int_V\rho_{\mathrm{ref}}\,dV.
-}
+SE(3)
 \]
 
-This is a density-reference variable, **not physical negative mass**.
+para estudiar si una pieza rígida puede llegar a una determinada posición con la orientación requerida.
 
 ---
 
-# Central idea 2 — Height is not time
+## Identificabilidad
 
-The historical object cannot be reconstructed with one scalar height \(H(t)\).
+Una explicación físicamente posible puede compartir las mismas observaciones con otras explicaciones.
 
-Instead the unknown chronology is a field:
-
-\[
-\boxed{
-T_b(x,y,z)
-}
-\]
-
-plus a partial order among entities/events.
-
-Different parts of the monument may have advanced concurrently.
-
-Therefore
+IRL distingue:
 
 \[
-z_i=z_j
-\not\Rightarrow
-t_i=t_j.
+\text{posible}
+\rightarrow
+\text{compatible con evidencia}
+\rightarrow
+\text{identificable}.
 \]
+
+El estudio adversarial de los cinco benchmarks mostró que geometría, microestructura, contexto, accesibilidad, precisión, duración y logística aportan información diferente. Esta separación permite saber qué afirmaciones están respaldadas y qué medición conviene realizar después.
 
 ---
 
-# Central idea 3 — Inverse disassembly is a constrained partial order
+## Benchmarks
 
-Let
+El método se ha aplicado de forma retrospectiva a cinco estructuras documentadas:
 
-\[
-P=(E,\prec)
-\]
-
-be a construction poset.
-
-An inverse state may remove only maximal elements that also satisfy mechanics, access and evidence:
-
-\[
-\boxed{
-\mathcal A^-(X)
-=
-\{
-e\in\operatorname{Max}(P):
-\mathrm{Stable}
-\land
-\mathrm{Accessible}
-\land
-\mathrm{EvidenceCompatible}
-\}.
-}
-\]
-
-The result is not “remove every horizontal layer”. It is a physically conditioned inverse state-space search.
-
----
-
-# Central idea 4 — Negative space has topology and genealogy
-
-A chamber connected to a corridor is not a separate connected component of empty space. Therefore the project introduces a clearance-scale filtration:
-
-\[
-\boxed{
-V_{\tau,r}
-=
-\{
-x\notin M_\tau:
-d(x,M_\tau)\ge r
-\}.
-}
-\]
-
-This creates a two-parameter family over:
-
-- inverse construction state \(\tau\);
-- clearance scale \(r\).
-
-Large chambers can remain persistent after narrow corridors disappear at higher \(r\), allowing room identity to be represented by persistent topology / merge-tree / Reeb-style structures.
-
----
-
-# Central idea 5 — Gravity is not reversed
-
-Define reverse inference coordinate
-
-\[
-\tau=T-t.
-\]
-
-Gravity remains
-
-\[
-\mathbf g=(0,0,-g).
-\]
-
-The project only reverses the **accounting** of gravitational potential accumulated during forward construction:
-
-\[
-\boxed{
-\Delta U^-
-=
--\Delta U^+.
-}
-\]
-
-No antigravity is proposed.
-
-For an ideal uniform square pyramid,
-
-\[
-V=\frac{a^2H}{3},
-\qquad
-U=\frac14MgH.
-\]
-
-If \(u=z/H\), the mass geometrically above the reverse front is
-
-\[
-\boxed{
-\Gamma_M(u)=(1-u)^3
-}
-\]
-
-while the gravitational potential contained above it is
-
-\[
-\boxed{
-\Gamma_G(u)
-=
-1-6u^2+8u^3-3u^4.
-}
-\]
-
-Thus mass, height, gravitational potential and historical time are different clocks.
-
----
-
-# Central idea 6 — The finished object must predict its own past
-
-A proposed history \(H\) is not accepted because it sounds plausible.
-
-It must generate predicted evidence:
-
-\[
-\boxed{
-\widehat Y_H
-=
-\mathcal O
-\circ
-\mathcal D_{\mathrm{post}}
-\circ
-\mathcal B(H).
-}
-\]
-
-Then
-
-\[
-\widehat Y_H
-\]
-
-is compared with real observations.
-
-A historical model becomes scientifically useful only when it predicts evidence that could falsify it.
-
----
-
-# Comparative mathematical laboratories
-
-## Vaidya
-
-Used to study local versus global accessibility boundaries in a time-dependent spacetime:
-
-\[
-ds^2
-=
--\left(1-\frac{2m(v)}r\right)dv^2
-+
-2dvdr+r^2d\Omega^2.
-\]
-
-No black-hole physics is used as archaeological evidence.
-
-## Kerr
-
-For equatorial null geodesics,
-
-\[
-R(r;b)
-=
-[r^2+a^2-ab]^2
--
-\Delta(b-a)^2.
-\]
-
-The critical system
-
-\[
-R=0,
-\qquad
-\partial_rR=0
-\]
-
-illustrates a separatrix at which the topology of an allowed-state set can change.
-
-The transfer to IRL is purely mathematical: **critical accessibility boundaries**.
-
----
-
-# Documentation map
-
-| Document | Purpose |
+| Caso | Aspecto principal estudiado |
 |---|---|
-| [THEORY.md](THEORY.md) | Complete conceptual theory and inverse architecture |
-| [MATHEMATICAL_MODEL.md](MATHEMATICAL_MODEL.md) | Detailed derivations and equations |
-| [ONTOLOGY.md](ONTOLOGY.md) | Positive/negative entity ontology and relations |
-| [CONTRIBUTIONS.md](CONTRIBUTIONS.md) | Contribution candidates, conjectures and boundaries |
-| [DISCOVERY_LOG.md](DISCOVERY_LOG.md) | Scientific evolution of the ideas and corrections |
-| [RESEARCH_PROGRAM.md](RESEARCH_PROGRAM.md) | Validation roadmap and first publishable experiments |
-| [VARIABLES.md](VARIABLES.md) | Full variable registry: geometry, lithology, substrate, climate, damage, blocks, voids |
-| [SIMULATION_SPEC.md](SIMULATION_SPEC.md) | Exact equations and numerical assumptions implemented by the UI |
-| [EPISTEMIC_STATUS.md](EPISTEMIC_STATUS.md) | Established vs derived vs proposed vs unknown claim ledger |
-| [REFERENCES.md](REFERENCES.md) | Evidence and reference base |
-| [paper/main.tex](paper/main.tex) | Full LaTeX paper source |
-| [paper/PAPER.pdf](paper/PAPER.pdf) | Compiled paper |
-| [CITATION.cff](CITATION.cff) | Citation metadata |
+| Golden Gate Bridge | precedencias, suspensión y acceso temporal |
+| Torre Eiffel | modularidad, cierre geométrico y precisión |
+| Hoover Dam | hidráulica, hormigón masivo y control térmico |
+| Empire State Building | producción vertical, logística y concurrencia |
+| Sydney Opera House | geometría generativa, prefabricación y soporte temporal |
 
-GitHub renders the equations in the Markdown files using LaTeX math notation. The public laboratory also contains a MathJax mathematics view.
+Los resultados completos están en [benchmarks/README.md](benchmarks/README.md).
 
----
+El estudio de ablación posterior estableció una regla operativa:
 
-# Established vs proposed
+\[
+\boxed{
+\text{CHECK IDENTIFIABILITY}
+\rightarrow
+\text{CAUSAL ORDER}
+\rightarrow
+\text{TEMPORARY ONTOLOGY}
+\rightarrow
+\text{CONVENTIONAL PROCESSES}
+\rightarrow
+\text{RESIDUAL}
+}
+\]
 
-## Established tools used
-
-- solid geometry;
-- classical mechanics;
-- structural/contact mechanics;
-- rigid-body \(SE(3)\) configuration spaces;
-- graph theory and partial orders;
-- Bayesian inference;
-- optimal transport;
-- computational topology and persistent homology;
-- Vaidya/Kerr relativistic geometry.
-
-## Proposed project formalism
-
-- positive/negative coupled construction ontology;
-- counterfactual absent-mass field;
-- inverse gravitational bookkeeping;
-- material and negative-space birth fields;
-- typed inverse admissible frontier;
-- \((\tau,r)\) negative-space bifiltration;
-- complement-defined accessibility object;
-- forward/inverse/counterfactual reconstruction triad.
-
-These are research proposals, not established theorems.
+En lenguaje directo: primero se comprueba qué permiten afirmar los datos; luego se reconstruyen dependencias y procesos temporales; después se agotan los mecanismos constructivos conocidos; finalmente se analiza cualquier fuerza que continúe sin explicación.
 
 ---
 
-# Minimum serious scientific target
+## PRAXIOS y Meta-Harness
 
-The first publishable experiment should **not** claim “we solved the pyramid”.
+**PRAXIOS** es la capa de ejecución. Coordina estados, modelos, herramientas, simulaciones y repetición de experimentos.
 
-A defensible first test is:
+**Meta-Harness** es la capa de control científico. Mantiene la relación entre una afirmación y:
 
-> Build a high-resolution King's Chamber subsystem and quantify how many geometrically possible construction sequences are eliminated when structural mechanics, configuration-space access, negative-space topology and evidence are applied jointly.
-
-That would directly test whether the framework adds scientific information.
-
----
-
-# Discoverability keywords
-
-Egyptology; Egyptian archaeology; Great Pyramid of Giza; Khufu; pyramid construction; construction sequence; inverse archaeology; computational archaeology; archaeological inference; archaeological science; digital archaeology; structural archaeology; muography; ScanPyramids; Giza Plateau; quarry provenance; 4D reconstruction; inverse problems; Bayesian archaeology; causal graphs; partial-order reconstruction; topology; persistent homology; multiparameter persistence; negative space; architectural voids; structural mechanics; configuration space; gravitational potential; Vaidya spacetime; Kerr geodesics; event horizon; trapped surfaces; PRAXIOS; Meta-Harness.
+- su evidencia;
+- su incertidumbre;
+- sus contradicciones;
+- las alternativas abiertas;
+- su nivel de identificabilidad;
+- las predicciones que permiten contrastarla.
 
 ---
 
-# Contact
+## Vaidya y Kerr
+
+Vaidya y Kerr se utilizan como laboratorios matemáticos comparativos.
+
+**Vaidya** permite estudiar la diferencia entre fronteras definidas por información local y global.
+
+**Kerr** permite estudiar separatrices y cambios de conectividad en regiones de movimiento permitido.
+
+Su función en IRL es aportar herramientas matemáticas para estudiar accesibilidad, fronteras y transiciones críticas.
+
+---
+
+## Modelos gravitatorios contrafactuales
+
+El laboratorio incluye un parámetro de compensación gravitatoria:
+
+\[
+\mathbf g_{\mathrm{eff}}
+=
+-(1-\alpha)g\hat{\mathbf z}
+\]
+
+y una familia de campos elástico-helicoidales.
+
+Se utilizan para cuantificar escenarios hipotéticos y comparar qué magnitud de interacción adicional sería necesaria bajo determinadas condiciones.
+
+El protocolo los sitúa después del análisis de identificabilidad, la ontología temporal y los mecanismos constructivos convencionales.
+
+---
+
+## Estado del proyecto
+
+**Preprint v1.0 · marco de investigación en fase de validación.**
+
+La versión actual incluye:
+
+- paper académico en LaTeX;
+- modelo matemático;
+- ontología;
+- laboratorio interactivo;
+- cinco benchmarks retrospectivos;
+- estudio adversarial de identificabilidad;
+- programa experimental para Khufu;
+- criterios de falsificación;
+- código y resultados reproducibles.
+
+La siguiente fase prevista es la validación prospectiva: reglas congeladas, historia de construcción oculta y evaluación definida antes de revelar el ground truth.
+
+---
+
+## Autor y contacto
 
 **Alexis Brian Reyes Saavedra**  
-Deep Analytica — Chile  
-https://deepanalytica.cl  
-contacto@deepanalytica.cl  
-GitHub: https://github.com/deepanalytica
-
-Collaboration is especially welcome from Egyptologists, field archaeologists, architectural historians, geologists, structural engineers, computational archaeologists, muography teams, topologists, inverse-problem researchers and relativists.
-
-
-# Benchmarks
-
-## IRL-Bench 001 — Golden Gate Bridge
-
-First positive-control experiment for the inverse-construction framework.
-
-- [Benchmark report](benchmarks/golden-gate/BENCHMARK.md)
-- [Reproducible calculations](benchmarks/golden-gate/benchmark.py)
-- [Result snapshot](benchmarks/golden-gate/result.json)
-
-The coarse terminal ontology reduces 5,040 serial orders to 3 admissible linear extensions. After the adversarial study, the defensible claim is narrower: terminal + site/access constraints can recover a functional class of temporary aerial access, while the exact historical catwalk or machinery is not uniquely identifiable from the terminal object alone. Conventional mechanisms drive the coarse residual force toward zero.
-
-
-## IRL-Bench 002 — Torre Eiffel
-
-Second positive-control benchmark. Tests modularity, temporary support topology, geometric closure, provisional fastening and self-advancing lifting.
-
-- [Benchmark report](benchmarks/eiffel-tower/BENCHMARK.md)
-- [Reproducible calculations](benchmarks/eiffel-tower/benchmark.py)
-- [Result snapshot](benchmarks/eiffel-tower/result.json)
-
-The coarse 15-node support ontology reduces 15! serial orders to 60,480 admissible linear extensions. The adversarial interpretation distinguishes strong modularity constraints from process classes that require precision/logistics context; exact jacks, cranes or provisional fasteners are not terminal-state deductions. At this resolution conventional mechanics remains sufficient.
-
-
-## IRL-Bench 003–005 — Three additional controls
-
-- [IRL-Bench 003 — Hoover Dam](benchmarks/hoover-dam/BENCHMARK.md): hydraulics, mass-concrete thermodynamics, cooling and canyon logistics.
-- [IRL-Bench 004 — Empire State Building](benchmarks/empire-state/BENCHMARK.md): industrialized vertical pipeline, JIT staging and jumping derricks.
-- [IRL-Bench 005 — Sydney Opera House](benchmarks/sydney-opera-house/BENCHMARK.md): common geometric generator, precast rib production, temporary erection arches and post-tensioning.
-
-[Open the complete benchmark index](benchmarks/README.md)
-
-
-## Adversarial correction and canonical interpretation
-
-The five positive controls were followed by an explicit self-falsification / evidence-ablation study.
-
-- [Adversarial results](benchmarks/adversarial-identifiability/RESULTS.md)
-- [Epistemic corrections](benchmarks/adversarial-identifiability/CORRECTIONS.md)
-
-The principal correction is:
-
-[
-oxed{
-	ext{terminal object}
-
-eq
-	ext{complete construction history}
-}
-]
-
-and:
-
-[
-oxed{
-	ext{missing evidence}
-
-otRightarrow
-	ext{unknown force}.
-}
-]
-
-The **authoritative academic synthesis** is the Spanish PhD-level [Preprint v1.0](paper/PAPER.pdf), whose LaTeX source is modularized under [paper/sections/](paper/sections/).
+Deep Analytica · Chile  
+**Correo:** contacto@deepanalytica.cl  
+**Sitio:** https://deepanalytica.cl  
+**GitHub:** https://github.com/deepanalytica
