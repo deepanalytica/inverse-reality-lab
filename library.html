@@ -42,12 +42,17 @@ var nav=document.getElementById('nav'),content=document.getElementById('content'
 Object.keys(docs).forEach(function(k){var b=document.createElement('button');b.textContent=docs[k][0];b.dataset.key=k;b.onclick=function(){location.hash=k;load(k)};nav.appendChild(b)});
 function protectMath(src){
  var stash=[];
+ src=src.replace(/\\\[([\s\S]*?)\\\]/g,function(_,m){var i=stash.push(['display',m])-1;return '@@MATH'+i+'@@'});
+ src=src.replace(/\\\(([\s\S]*?)\\\)/g,function(_,m){var i=stash.push(['inline',m])-1;return '@@MATH'+i+'@@'});
  src=src.replace(/\$\$([\s\S]*?)\$\$/g,function(_,m){var i=stash.push(['display',m])-1;return '@@MATH'+i+'@@'});
  src=src.replace(/\$([^$\n]+?)\$/g,function(_,m){var i=stash.push(['inline',m])-1;return '@@MATH'+i+'@@'});
  return {src:src,stash:stash};
 }
 function restoreMath(html,stash){
- return html.replace(/@@MATH(\d+)@@/g,function(_,i){var x=stash[+i];return x[0]==='display'?'\\['+x[1]+'\\]':'\\('+x[1]+'\\)'});
+ return html.replace(/@@MATH(\d+)@@/g,function(_,i){
+   var x=stash[+i];
+   return x[0]==='display'?'\\['+x[1]+'\\]':'\\('+x[1]+'\\)';
+ });
 }
 async function load(key){
  if(!docs[key])key='overview';
