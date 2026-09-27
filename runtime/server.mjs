@@ -1,18 +1,36 @@
 import http from "node:http";
+import crypto from "node:crypto";
 import { URL } from "node:url";
 import { PraxiosRuntime } from "./core/praxios-runtime.mjs";
 import { PraxiosOrchestrator, ProviderRegistry } from "./core/orchestrator.mjs";
+import { ContractError } from "./core/contracts.mjs";
+import { BudgetExceededError } from "./core/budget.mjs";
 import { OpenAIProvider } from "./providers/openai.mjs";
 import { AnthropicProvider } from "./providers/anthropic.mjs";
 import { FileSessionStore } from "./storage/file-store.mjs";
+import { EncryptedFileSessionStore } from "./storage/encrypted-file-store.mjs";
 
 const PORT = Number(process.env.PORT || 8787);
 const HOST = process.env.HOST || "127.0.0.1";
 const SERVER_TOKEN = process.env.PRAXIOS_SERVER_TOKEN || "";
-const CORS_ORIGIN = process.env.PRAXIOS_CORS_ORIGIN || "http://127.0.0.1:8000";
+const DATA_KEY = process.env.PRAXIOS_DATA_KEY || "";
+const MAX_BODY_BYTES = Number(process.env.PRAXIOS_MAX_BODY_BYTES || 1_000_000);
+const RATE_LIMIT_PER_MINUTE = Number(process.env.PRAXIOS_RATE_LIMIT_PER_MINUTE || 120);
+const CORS_ORIGINS = new Set(
+  (process.env.PRAXIOS_CORS_ORIGIN || "http://127.0.0.1:8000")
+    .split(",")
+    .map(x => x.trim())
+    .filter(Boolean)
+);
 
-if (!["127.0.0.1", "localhost", "::1"].includes(HOST) && !SERVER_TOKEN) {
+const LOCAL_HOSTS = new Set(["127.0.0.1", "localhost", "::1"]);
+const remoteBinding = !LOCAL_HOSTS.has(HOST);
+
+if (remoteBinding && !SERVER_TOKEN) {
   throw new Error("PRAXIOS_SERVER_TOKEN is required when binding outside localhost.");
+}
+if (remoteBinding && !DATA_KEY) {
+  throw new Error("PRAXIOS_DATA_KEY is required when binding outside localhost.");
 }
 
 const providers = new ProviderRegistry();
@@ -21,46 +39,115 @@ if (process.env.OPENAI_API_KEY) {
   providers.register("openai", new OpenAIProvider({
     apiKey: process.env.OPENAI_API_KEY,
     defaultModel: process.env.PRAXIOS_OPENAI_MODEL || null
-  }));
+  }), {
+    type: "llm",
+    configured: true
+  });
 }
 
 if (process.env.ANTHROPIC_API_KEY) {
   providers.register("anthropic", new AnthropicProvider({
     apiKey: process.env.ANTHROPIC_API_KEY,
     defaultModel: process.env.PRAXIOS_ANTHROPIC_MODEL || null
-  }));
+  }), {
+    type: "llm",
+    configured: true
+  });
 }
 
 const sessions = new Map();
-const store = new FileSessionStore();
+const store = DATA_KEY
+  ? new EncryptedFileSessionStore({ key: DATA_KEY })
+  : new FileSessionStore();
 
-function json(res, status, body) {
-  const payload = JSON.stringify(body);
+const rateBuckets = new Map();
+
+function requestId() {
+  return crypto.randomUUID();
+}
+
+function originAllowed(req) {
+  const origin = req.headers.origin;
+  if (!origin) return true;
+  return CORS_ORIGINS.has(origin);
+}
+
+function responseHeaders(req) {
+  const headers = {
+    "cache-control": "no-store",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "referrer-policy": "no-referrer",
+    "x-praxios-request-id": req.praxiosRequestId || ""
+  };
+  const origin = req.headers.origin;
+  if (origin && CORS_ORIGINS.has(origin)) {
+    headers["access-control-allow-origin"] = origin;
+    headers["vary"] = "Origin";
+    headers["access-control-allow-headers"] = "content-type, authorization";
+    headers["access-control-allow-methods"] = "GET,POST,OPTIONS";
+  }
+  return headers;
+}
+
+function json(req, res, status, body) {
+  const payload = status === 204 ? "" : JSON.stringify(body);
   res.writeHead(status, {
+    ...responseHeaders(req),
     "content-type": "application/json; charset=utf-8",
-    "content-length": Buffer.byteLength(payload),
-    "access-control-allow-origin": CORS_ORIGIN,
-    "access-control-allow-headers": "content-type, authorization",
-    "access-control-allow-methods": "GET,POST,OPTIONS"
+    "content-length": Buffer.byteLength(payload)
   });
   res.end(payload);
 }
 
 async function readJson(req) {
   const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
+  let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > MAX_BODY_BYTES) {
+      const error = new Error("Request body exceeds configured limit.");
+      error.statusCode = 413;
+      throw error;
+    }
+    chunks.push(chunk);
+  }
   if (!chunks.length) return {};
   const raw = Buffer.concat(chunks).toString("utf8");
-  return JSON.parse(raw);
+  try {
+    return JSON.parse(raw);
+  } catch {
+    const error = new Error("Invalid JSON request body.");
+    error.statusCode = 400;
+    throw error;
+  }
 }
 
 function attachBuiltins(runtime) {
-  runtime.registerExecutor("echo", async action => ({ echoed: action.payload ?? null }), { effect: "none" });
-  runtime.registerExecutor("measurement-design", async action => ({
-    artifactId: "artifact-" + Date.now(),
-    type: "measurement-design",
-    payload: action.payload ?? null
-  }), { effect: "write", tags: ["artifact_write"] });
+  runtime.registerExecutor(
+    "echo",
+    async action => ({ echoed: action.payload ?? null }),
+    {
+      effect: "none",
+      riskClass: "low",
+      description: "Returns the supplied payload without an external side effect."
+    }
+  );
+
+  runtime.registerExecutor(
+    "measurement-design",
+    async action => ({
+      artifactId: "artifact-" + Date.now(),
+      type: "measurement-design",
+      payload: action.payload ?? null
+    }),
+    {
+      effect: "write",
+      tags: ["artifact_write"],
+      riskClass: "standard",
+      description: "Creates a versioned measurement-design artifact."
+    }
+  );
   return runtime;
 }
 
@@ -73,6 +160,12 @@ async function getRuntime(id) {
   if (await store.has(id)) {
     const snapshot = await store.load(id);
     const runtime = attachBuiltins(await PraxiosRuntime.fromSnapshot(snapshot));
+    const audit = await runtime.audit();
+    if (!audit.ok) {
+      const error = new Error("Persisted session failed audit and was not loaded.");
+      error.statusCode = 409;
+      throw error;
+    }
     sessions.set(id, runtime);
     return runtime;
   }
@@ -87,26 +180,73 @@ function configuredProviders() {
 
 function authorized(req) {
   if (!SERVER_TOKEN) return true;
+  const prefix = "Bearer ";
   const header = req.headers.authorization || "";
-  return header === "Bearer " + SERVER_TOKEN;
+  if (!header.startsWith(prefix)) return false;
+  const supplied = Buffer.from(header.slice(prefix.length));
+  const expected = Buffer.from(SERVER_TOKEN);
+  if (supplied.length !== expected.length) return false;
+  return crypto.timingSafeEqual(supplied, expected);
+}
+
+function rateLimit(req) {
+  const key = req.socket.remoteAddress || "unknown";
+  const now = Date.now();
+  const bucket = rateBuckets.get(key);
+  if (!bucket || now - bucket.startedAt >= 60_000) {
+    rateBuckets.set(key, { startedAt: now, count: 1 });
+    return { ok: true, remaining: RATE_LIMIT_PER_MINUTE - 1 };
+  }
+  bucket.count += 1;
+  if (bucket.count > RATE_LIMIT_PER_MINUTE) {
+    return { ok: false, remaining: 0, resetMs: 60_000 - (now - bucket.startedAt) };
+  }
+  return { ok: true, remaining: RATE_LIMIT_PER_MINUTE - bucket.count };
 }
 
 async function handle(req, res) {
-  if (req.method === "OPTIONS") return json(res, 204, {});
+  req.praxiosRequestId = requestId();
+
+  if (!originAllowed(req)) {
+    return json(req, res, 403, { error: "origin_not_allowed", requestId: req.praxiosRequestId });
+  }
+
+  if (req.method === "OPTIONS") return json(req, res, 204, {});
+
+  const limit = rateLimit(req);
+  if (!limit.ok) {
+    return json(req, res, 429, {
+      error: "rate_limited",
+      resetMs: limit.resetMs,
+      requestId: req.praxiosRequestId
+    });
+  }
+
   const url = new URL(req.url, "http://" + (req.headers.host || "localhost"));
   const path = url.pathname;
 
   if (req.method === "GET" && path === "/api/health") {
-    return json(res, 200, {
+    return json(req, res, 200, {
       ok: true,
       service: "praxios-runtime",
-      version: "0.1.0",
+      version: "0.2.0",
       providers: configuredProviders(),
-      authRequired: Boolean(SERVER_TOKEN)
+      authRequired: Boolean(SERVER_TOKEN),
+      encryptedPersistence: Boolean(DATA_KEY),
+      requestId: req.praxiosRequestId
     });
   }
 
-  if (!authorized(req)) return json(res, 401, { error: "unauthorized" });
+  if (!authorized(req)) {
+    return json(req, res, 401, { error: "unauthorized", requestId: req.praxiosRequestId });
+  }
+
+  if (req.method === "GET" && path === "/api/providers") {
+    return json(req, res, 200, {
+      providers: configuredProviders(),
+      requestId: req.praxiosRequestId
+    });
+  }
 
   if (req.method === "POST" && path === "/api/sessions") {
     const body = await readJson(req);
@@ -114,12 +254,12 @@ async function handle(req, res) {
     await runtime.start(body.goal, body.actor || "human");
     sessions.set(runtime.sessionId, runtime);
     await persist(runtime);
-    return json(res, 201, runtime.snapshot());
+    return json(req, res, 201, runtime.snapshot());
   }
 
   const sessionMatch = path.match(/^\/api\/sessions\/([^/]+)$/);
   if (req.method === "GET" && sessionMatch) {
-    return json(res, 200, (await getRuntime(sessionMatch[1])).snapshot());
+    return json(req, res, 200, (await getRuntime(sessionMatch[1])).snapshot());
   }
 
   const evidenceMatch = path.match(/^\/api\/sessions\/([^/]+)\/evidence$/);
@@ -128,7 +268,7 @@ async function handle(req, res) {
     const body = await readJson(req);
     const evidence = await runtime.addEvidence(body.evidence, body.actor || "human");
     await persist(runtime);
-    return json(res, 201, { evidence, snapshot: runtime.snapshot() });
+    return json(req, res, 201, { evidence, snapshot: runtime.snapshot() });
   }
 
   const claimMatch = path.match(/^\/api\/sessions\/([^/]+)\/claims$/);
@@ -137,7 +277,20 @@ async function handle(req, res) {
     const body = await readJson(req);
     const claim = await runtime.proposeClaim(body.claim, body.actor || "proposer");
     await persist(runtime);
-    return json(res, 201, { claim, snapshot: runtime.snapshot() });
+    return json(req, res, 201, { claim, snapshot: runtime.snapshot() });
+  }
+
+  const reviewMatch = path.match(/^\/api\/sessions\/([^/]+)\/claims\/([^/]+)\/review$/);
+  if (req.method === "POST" && reviewMatch) {
+    const runtime = await getRuntime(reviewMatch[1]);
+    const body = await readJson(req);
+    const review = await runtime.applyClaimReview(reviewMatch[2], body.review || {}, {
+      verifierId: body.verifierId,
+      verifierModel: body.verifierModel || null,
+      actor: body.actor || body.verifierId
+    });
+    await persist(runtime);
+    return json(req, res, 200, { review, snapshot: runtime.snapshot() });
   }
 
   const verifyMatch = path.match(/^\/api\/sessions\/([^/]+)\/claims\/([^/]+)\/verify$/);
@@ -146,19 +299,24 @@ async function handle(req, res) {
     const body = await readJson(req);
     const evaluation = await runtime.verifyClaim(verifyMatch[2], {
       verifierId: body.verifierId || "verifier",
+      verifierModel: body.verifierModel || null,
       actor: body.actor || body.verifierId || "verifier"
     });
     await persist(runtime);
-    return json(res, 200, { evaluation, snapshot: runtime.snapshot() });
+    return json(req, res, 200, { evaluation, snapshot: runtime.snapshot() });
   }
 
   const authorizationRequestMatch = path.match(/^\/api\/sessions\/([^/]+)\/authorizations$/);
   if (req.method === "POST" && authorizationRequestMatch) {
     const runtime = await getRuntime(authorizationRequestMatch[1]);
     const body = await readJson(req);
-    const request = await runtime.requestAuthorization(body.action, body.actor || "proposer");
-    await persist(runtime);
-    return json(res, 201, { request, snapshot: runtime.snapshot() });
+    let request;
+    try {
+      request = await runtime.requestAuthorization(body.action, body.actor || "proposer");
+    } finally {
+      await persist(runtime);
+    }
+    return json(req, res, 201, { request, snapshot: runtime.snapshot() });
   }
 
   const authorizationDecisionMatch = path.match(/^\/api\/sessions\/([^/]+)\/authorizations\/([^/]+)$/);
@@ -168,61 +326,102 @@ async function handle(req, res) {
     const authorization = await runtime.authorize(authorizationDecisionMatch[2], {
       approved: Boolean(body.approved),
       actor: body.actor || "human",
+      authorityType: "human",
       reason: body.reason || ""
     });
     await persist(runtime);
-    return json(res, 200, { authorization, snapshot: runtime.snapshot() });
+    return json(req, res, 200, { authorization, snapshot: runtime.snapshot() });
   }
 
   const executeMatch = path.match(/^\/api\/sessions\/([^/]+)\/actions\/execute$/);
   if (req.method === "POST" && executeMatch) {
     const runtime = await getRuntime(executeMatch[1]);
     const body = await readJson(req);
-    const result = await runtime.executeAction(body.action, {
-      authorizationId: body.authorizationId || null,
-      actor: body.actor || "praxios"
+    let result;
+    try {
+      result = await runtime.executeAction(body.action, {
+        authorizationId: body.authorizationId || null,
+        actor: body.actor || "praxios"
+      });
+    } finally {
+      await persist(runtime);
+    }
+    return json(req, res, 200, { result, snapshot: runtime.snapshot() });
+  }
+
+  const decisionMatch = path.match(/^\/api\/sessions\/([^/]+)\/decisions\/([^/]+)\/select$/);
+  if (req.method === "POST" && decisionMatch) {
+    const runtime = await getRuntime(decisionMatch[1]);
+    const body = await readJson(req);
+    const decision = await runtime.selectDecision(decisionMatch[2], body.selectedOptionId, {
+      actor: body.actor || "human",
+      authorityType: "human",
+      rationale: body.rationale || ""
     });
     await persist(runtime);
-    return json(res, 200, { result, snapshot: runtime.snapshot() });
+    return json(req, res, 200, { decision, snapshot: runtime.snapshot() });
   }
 
   const auditMatch = path.match(/^\/api\/sessions\/([^/]+)\/audit$/);
   if (req.method === "GET" && auditMatch) {
     const runtime = await getRuntime(auditMatch[1]);
-    return json(res, 200, await runtime.audit());
+    return json(req, res, 200, await runtime.audit());
   }
 
   if (req.method === "POST" && path === "/api/orchestrate") {
     const body = await readJson(req);
-    if (!body.goal) return json(res, 400, { error: "goal is required" });
+    if (!body.goal) return json(req, res, 400, { error: "goal_required", requestId: req.praxiosRequestId });
+
     const runtime = attachBuiltins(new PraxiosRuntime({ sessionId: body.sessionId }));
     sessions.set(runtime.sessionId, runtime);
-    const orchestrator = new PraxiosOrchestrator({ runtime, providers });
-    const result = await orchestrator.runGoal({
-      goal: body.goal,
-      planner: body.planner,
-      workers: body.workers || {},
-      verifier: body.verifier,
-      actor: body.actor || "human"
+
+    const orchestrator = new PraxiosOrchestrator({
+      runtime,
+      providers,
+      budget: body.budget || {},
+      providerTimeoutMs: Number(body.providerTimeoutMs || 60_000)
     });
-    await persist(runtime);
-    return json(res, 200, result);
+
+    let result;
+    try {
+      result = await orchestrator.runGoal({
+        goal: body.goal,
+        planner: body.planner,
+        workers: body.workers || {},
+        verifier: body.verifier,
+        actor: body.actor || "human",
+        decision: body.decision || {}
+      });
+    } finally {
+      await persist(runtime);
+    }
+    return json(req, res, 200, result);
   }
 
-  return json(res, 404, { error: "not_found" });
+  return json(req, res, 404, { error: "not_found", requestId: req.praxiosRequestId });
 }
 
 const server = http.createServer((req, res) => {
   handle(req, res).catch(error => {
-    const status = Number(error.statusCode || 500);
-    json(res, status, {
+    const message = String(error.message || error);
+    const status =
+      Number(error.statusCode) ||
+      (error instanceof ContractError ? 400 : 0) ||
+      (error instanceof BudgetExceededError ? 429 : 0) ||
+      (/Meta-Harness blocked|blocked authorization request/i.test(message) ? 409 : 0) ||
+      (/human authority/i.test(message) ? 403 : 500);
+
+    json(req, res, status, {
       error: error.name || "Error",
-      message: error.message || String(error)
+      message: message.slice(0, 2000),
+      details: error.details || undefined,
+      requestId: req.praxiosRequestId
     });
   });
 });
 
 server.listen(PORT, HOST, () => {
   console.log("PRAXIOS runtime listening on http://" + HOST + ":" + PORT);
-  console.log("Configured providers: " + (configuredProviders().join(", ") || "none"));
+  console.log("Configured providers: " + configuredProviders().map(p => p.name).join(", "));
+  console.log("Encrypted persistence: " + Boolean(DATA_KEY));
 });

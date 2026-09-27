@@ -1,32 +1,12 @@
-# Meta-Harness Runtime v0.1
+# Meta-Harness Runtime v0.2
 
-## Función
+## Definition
 
-Meta-Harness evalúa claims y acciones antes de que sean promovidos o ejecutados.
-
-La implementación está en:
-
-- runtime/core/meta-harness.mjs
-- runtime/core/policy.mjs
+Meta-Harness is the policy decision point between model output and accepted claims or executable actions.
 
 ## Claim gates
 
-Cada claim puede pasar por:
-
-\[
-G=
-\{
-G_E,
-G_P,
-G_C,
-G_U,
-G_I,
-G_R,
-G_A
-\}.
-\]
-
-En términos operativos:
+Current gates:
 
 1. EPISTEMIC_CLASS
 2. PROVENANCE
@@ -35,95 +15,60 @@ En términos operativos:
 5. UNCERTAINTY
 6. IDENTIFIABILITY
 7. ROLE_SEPARATION
-8. PUBLICATION_POLICY, cuando corresponda
-9. AUDIT
+8. REVIEW_COVERAGE
+9. MODEL_INDEPENDENCE
+10. PUBLICATION_POLICY when applicable
+11. AUDIT
 
-## Agregación
+## Verdict aggregation
 
 \[
-\operatorname{Verdict}(G)=
-\begin{cases}
+Verdict(G)=\begin{cases}
 BLOCK & \exists g_i=BLOCK,\\
-REVIEW & \exists g_i=REVIEW\land \nexists BLOCK,\\
+REVIEW & \exists g_i=REVIEW\land\nexists BLOCK,\\
 PASS & \forall g_i=PASS.
 \end{cases}
 \]
 
-## Proposer y verifier
+## Review coverage
 
-La política por defecto exige:
+A claim with requireIndependentReview=true cannot pass without a recorded review from the declared verifier.
 
-\[
-\boxed{
-\text{proposerId}\neq\text{verifierId}
-}
-\]
+## Model independence
 
-Un mismo actor utilizado como proposer y verifier produce BLOCK.
+Different actor identifiers are required structurally. If proposer and verifier still use the same provider/model, Meta-Harness returns REVIEW for MODEL_INDEPENDENCE.
 
-## Identificabilidad
+## Action gates
 
-El motor usa niveles:
+Actions pass through:
 
-\[
-I0<I1<I2<I3.
-\]
-
-Un claim que necesita una resolución mayor que la permitida por la evidencia recibe REVIEW o BLOCK según el uso solicitado.
+- hard walls;
+- required-claim dependencies;
+- exact authorization binding;
+- audit integrity.
 
 ## Walls
 
-Los walls representan operaciones estructuralmente prohibidas.
+Default walls include:
 
-La política por defecto contiene, entre otros:
+- secret export;
+- ledger bypass;
+- disabled executor;
+- unregistered executor.
 
-- WALL_SECRET_EXPORT
-- WALL_BYPASS_LEDGER
+## Authorization
 
-Un wall produce BLOCK antes de llegar al executor.
+Authorization is:
 
-## Autorización
+- explicit;
+- human-bound at the server API boundary;
+- tied to the exact normalized action;
+- single-use.
 
-Las acciones con efectos configurados requieren un objeto de autorización cuyo:
+A changed payload or replay produces BLOCK.
 
-- status sea APPROVED;
-- actionId coincida exactamente.
+## Claim dependency
 
-Sin esa autorización:
+An action can declare requiredClaimIds and claimThreshold=PASS.
 
-\[
-\boxed{
-\text{EXECUTE unavailable}.
-}
-\]
-
-## Auditoría
-
-El ledger utiliza una cadena SHA-256.
-
-Además, PRAXIOS calcula un digest del estado canónico para contrastar el estado persistido con el último checkpoint registrado.
-
-## Alcance
-
-Meta-Harness gobierna la transición entre salida de modelo y acción/afirmación aceptada.
-
-No depende de una marca específica de LLM.
-
-
-## Binding de autorización
-
-La autorización queda vinculada al contenido exacto de la acción. Meta-Harness compara la acción aprobada con la acción presentada al executor.
-
-Una modificación posterior de payload, executor, effect o tags invalida la autorización y produce BLOCK.
-
-## Metadata del executor
-
-PRAXIOS registra metadata de seguridad junto al executor:
-
-- effect;
-- tags;
-- enabled.
-
-La metadata del executor prevalece sobre la declaración del caller. Esto evita que una herramienta de escritura sea reclasificada por el modelo como una acción sin efecto.
-
-Un executor deshabilitado incorpora un wall estructural y no puede ejecutarse aunque exista autorización humana.
+This prevents an action from treating a REVIEW claim as an established premise when the action requires verified claims.

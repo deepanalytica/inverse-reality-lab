@@ -1,142 +1,99 @@
-# PRAXIOS Runtime + Meta-Harness
+# PRAXIOS Runtime + Meta-Harness v0.2
 
-Este directorio contiene el runtime funcional de PRAXIOS y el motor de assurance Meta-Harness.
+This directory contains the executable control plane used by the public Control Room.
 
-## Qué es real en esta implementación
+## Runtime
 
-### PRAXIOS
+PRAXIOS owns canonical state, task scheduling, providers, executors, authorization requests, decisions, persistence and audit events.
 
-El runtime mantiene estado canónico fuera del modelo y ejecuta el ciclo:
+Meta-Harness owns epistemic and action gates.
 
-\[
-OBSERVE
-\rightarrow
-REASON
-\rightarrow
-PROPOSE
-\rightarrow
-VERIFY
-\rightarrow
-AUTHORIZE
-\rightarrow
-EXECUTE
-\rightarrow
-OBSERVE.
-\]
+Decision Room turns governed state into a human decision package.
 
-Incluye:
+## Run locally
 
-- sesión con revisión incremental;
-- scheduler con dependencias;
-- registro de providers;
-- separación proposer / verifier;
-- registro de evidencia;
-- claims tipados;
-- solicitudes de autorización;
-- ejecución bloqueada hasta aprobar efectos;
-- decisiones;
-- ledger hash-chain SHA-256.
+Requires Node.js 20 or later.
 
-### Meta-Harness
+    cd runtime
+    node --test tests/*.test.mjs
+    node server.mjs
 
-Evalúa claims y acciones mediante gates:
+Health:
 
-- epistemic class;
-- provenance;
-- evidence;
-- contradiction;
-- uncertainty;
-- identifiability;
-- role separation;
-- publication policy;
-- walls;
-- authorization;
-- audit integrity.
+    GET http://127.0.0.1:8787/api/health
 
-El resultado agregado es:
+## Production requirements
 
-\[
-PASS,\quad REVIEW,\quad BLOCK.
-\]
+When HOST is not localhost, startup fails unless both are set:
 
-Un BLOCK de autorización o wall impide la ejecución.
+- PRAXIOS_SERVER_TOKEN
+- PRAXIOS_DATA_KEY
 
-## Providers
+PRAXIOS_DATA_KEY must decode to exactly 32 bytes. Production snapshots are encrypted with AES-256-GCM.
 
-La implementación contiene adaptadores para:
+Use runtime/.env.example as the configuration reference.
 
-- OpenAI Responses API;
-- Anthropic Messages API;
-- fixture provider para tests y la UI pública.
+## Model providers
 
-Las claves permanecen en el servidor mediante variables de entorno; la UI estática no solicita ni almacena API keys.
+Built-in server adapters:
 
-## Ejecutar localmente
+- OpenAI
+- Anthropic
+- FixtureProvider for deterministic tests and the public local demonstration.
 
-Requiere Node.js 20 o posterior.
+Provider keys never enter the browser.
 
-~~~bash
-cd runtime
-npm test
-npm start
-~~~
+Planner, worker and verifier use explicit provider/model slots. PRAXIOS validates planner DAGs and worker/verifier contracts before their output is admitted into canonical state.
 
-Health check:
+## Worker / verifier separation
 
-~~~text
-GET http://127.0.0.1:8787/api/health
-~~~
+Workers produce evidence and claims.
 
-## Configurar modelos
+Verifier receives already-registered claims and returns reviews. It does not create replacement claims during verification.
 
-Variables opcionales:
+Claims that require independent review cannot pass REVIEW_COVERAGE without a recorded review from the declared verifier.
 
-~~~text
-OPENAI_API_KEY
-PRAXIOS_OPENAI_MODEL
-ANTHROPIC_API_KEY
-PRAXIOS_ANTHROPIC_MODEL
-PORT
-HOST
-PRAXIOS_CORS_ORIGIN
-~~~
+## Action security
 
-Los nombres de modelo no están fijados por el runtime. Se configuran por slot para que PRAXIOS sea provider-agnostic.
+Executor registry metadata is authoritative for:
 
-## Orquestación multi-modelo
+- effect;
+- tags;
+- enabled state;
+- risk class.
 
-El endpoint POST /api/orchestrate recibe un objeto con goal, planner, workers y verifier.
+Effectful actions require authorization. Authorization is bound to the exact normalized action and is single-use.
 
-El planner propone el DAG. PRAXIOS crea y ejecuta los jobs. El verifier independiente produce claims, evidencia y acciones propuestas. Meta-Harness aplica los gates.
+## Persistence
 
-## Seguridad arquitectónica
+Local development may use FileSessionStore.
 
-Las acciones con efectos write, external, financial o publish requieren autorización explícita.
+Production mode uses EncryptedFileSessionStore when PRAXIOS_DATA_KEY is set.
 
-Los hard walls se evalúan antes de ejecutar. Una acción etiquetada secret_export o bypass_ledger queda estructuralmente bloqueada.
+Snapshots contain:
 
-## UI pública
+- canonical state;
+- task state;
+- ledger.
 
-La página praxios.html ejecuta el mismo core en el navegador con un fixture provider seguro. Eso permite probar estados, gates, ledger, autorización y decisiones sin exponer secretos.
+Restored sessions are audited before the server accepts them.
 
-Para sesiones con modelos externos, se conecta la UI al runtime de servidor.
+## Audit
 
+Each ledger entry contains a previous hash and SHA-256 event hash. Event payloads also contain canonical-state checkpoint hashes.
 
-## Persistencia
+Audit endpoint:
 
-El servidor persiste snapshots de sesión mediante FileSessionStore. Cada snapshot conserva estado, tasks y ledger. PraxiosRuntime.fromSnapshot reconstruye la sesión y vuelve a verificar la cadena.
+    GET /api/sessions/:sessionId/audit
 
-## Autenticación del servidor
+## API
 
-Cuando HOST no es localhost, PRAXIOS_SERVER_TOKEN es obligatorio. Las rutas distintas de /api/health requieren Authorization: Bearer <token> cuando el token está configurado.
+Machine-readable API contract:
 
-## Auditoría de estado
+- runtime/openapi.yaml
 
-Cada evento incorpora un checkpoint SHA-256 del estado canónico, excluyendo metadatos temporales de revisión. El endpoint /api/sessions/:id/audit verifica ledger y correspondencia del estado con el último checkpoint.
+## Deploy
 
+The repository includes runtime/Dockerfile and railway.json.
 
-## Tool / executor policy
-
-Cada executor puede registrar metadata autoritativa de efecto, tags y disponibilidad. El modelo no puede reducir el nivel de efecto declarado por el registro.
-
-Las autorizaciones se vinculan a la acción completa. Si el payload cambia después de aprobarse, Meta-Harness bloquea la ejecución.
+See ../DEPLOYMENT.md.

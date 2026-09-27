@@ -349,38 +349,44 @@ Esto permite medir de manera continua cuánto restringen las precedencias el esp
 
 ---
 
-## PRAXIOS y Meta-Harness
+## PRAXIOS OS, Meta-Harness y Decision Room
 
-PRAXIOS y Meta-Harness cuentan ahora con una implementación funcional dentro de este repositorio.
+El repositorio incluye una implementación ejecutable **v0.2** del control plane.
 
-**PRAXIOS Runtime** mantiene estado canónico, scheduler, providers, autorizaciones, acciones, decisiones y un ledger hash-chain SHA-256. El ciclo ejecutable es:
+**PRAXIOS Runtime** mantiene estado canónico, scheduler, contratos de datos, presupuestos de ejecución, registro de providers/executors, autorizaciones, acciones, decisiones, persistencia y ledger verificable.
+
+**Meta-Harness Runtime** evalúa claims mediante gates de clase epistemológica, procedencia, evidencia, contradicción, incertidumbre, identificabilidad, separación proposer/verifier, cobertura de revisión, independencia de modelo, políticas y auditoría. Las acciones pasan además por walls, dependencias de claims y autorización exacta de un solo uso.
+
+**Decision Room** proyecta el mismo estado canónico en situación, evidencia, hallazgos PASS, incógnitas REVIEW, claims excluidos BLOCK, riesgos, opciones y autoridad humana.
 
 \[
-OBSERVE
-\rightarrow
-REASON
-\rightarrow
-PROPOSE
-\rightarrow
-VERIFY
-\rightarrow
-AUTHORIZE
-\rightarrow
-EXECUTE
-\rightarrow
-OBSERVE.
+\boxed{
+\text{Models}
+\subset
+\text{PRAXIOS}
+\xrightarrow{\text{Meta-Harness}}
+\text{Human Authority}
+}
 \]
 
-**Meta-Harness Runtime** evalúa claims y acciones mediante gates de clase epistemológica, procedencia, evidencia, contradicción, incertidumbre, identificabilidad, separación proposer/verifier, políticas, autorización y auditoría.
+La UI pública tiene dos modos:
 
-Una acción con efecto configurado no alcanza el executor sin autorización válida.
+- **Local governed core:** ejecuta PRAXIOS + Meta-Harness reales con FixtureProvider, sin credenciales externas.
+- **Remote runtime:** se conecta a runtime/server.mjs, donde las claves de proveedores permanecen del lado servidor y planner, workers y verifier pueden usar modelos distintos.
 
-El runtime incluye adaptadores de servidor para OpenAI y Anthropic, además de un registry extensible para otros providers. La UI pública ejecuta el mismo core en el navegador con un fixture provider para no exponer claves API.
+Documentación de auditoría:
 
-**Runtime:** [PRAXIOS_RUNTIME.md](PRAXIOS_RUNTIME.md)  
-**Meta-Harness:** [META_HARNESS_RUNTIME.md](META_HARNESS_RUNTIME.md)  
-**Servidor y tests:** [runtime/README.md](runtime/README.md)
-
+- [Arquitectura](PRAXIOS_ARCHITECTURE.md)
+- [PRAXIOS Runtime](PRAXIOS_RUNTIME.md)
+- [Meta-Harness Runtime](META_HARNESS_RUNTIME.md)
+- [Decision Room Runtime](DECISION_ROOM_RUNTIME.md)
+- [Contrato de providers](MODEL_PROVIDER_CONTRACT.md)
+- [Threat model](THREAT_MODEL.md)
+- [Invariantes de seguridad](SECURITY_INVARIANTS.md)
+- [Guía de auditoría experta](AUDIT_GUIDE.md)
+- [API OpenAPI](runtime/openapi.yaml)
+- [Despliegue](DEPLOYMENT.md)
+- [Servidor, configuración y tests](runtime/README.md)
 ---
 
 ## Vaidya y Kerr

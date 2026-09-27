@@ -16,7 +16,7 @@ export class AnthropicProvider {
     this.fetch = fetchImpl;
   }
 
-  async generate({ model, system = "", input = "" }) {
+  async generate({ model, system = "", input = "", signal = undefined }) {
     const selectedModel = model || this.defaultModel;
     if (!selectedModel) throw new Error("Anthropic model must be specified.");
 
@@ -32,7 +32,8 @@ export class AnthropicProvider {
         max_tokens: this.maxTokens,
         system: system || undefined,
         messages: [{ role: "user", content: input }]
-      })
+      }),
+      signal
     });
 
     const body = await response.json().catch(() => ({}));

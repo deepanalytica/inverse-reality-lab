@@ -1,67 +1,50 @@
-# PRAXIOS Control Room — UI Specification v0.2
+# PRAXIOS Control Room — UI Specification v0.3
 
-## Producto
-
-Una sola aplicación presenta tres lentes sobre el mismo estado canónico:
+## One session, three lenses
 
 \[
-S_t
-\rightarrow
-\{
-\text{Operate},
-\text{Assure},
-\text{Decide}
-\}.
+S_t\rightarrow\{Operate,Assure,Decide\}.
 \]
 
-## Operate / PRAXIOS
+### Operate / PRAXIOS
 
-Muestra el runtime real:
+Displays tasks, dependencies, model slots, execution state, retries and ledger events.
 
-- estado;
-- Task DAG;
-- scheduler;
-- workers;
-- providers;
-- dependencias;
-- ejecución.
+### Assure / Meta-Harness
 
-## Assure / Meta-Harness
+Displays claim class, reviews, provenance, contradictions, uncertainty, identifiability and gate verdicts.
 
-Muestra gates calculados por el motor:
+### Decide / Decision Room
 
-- provenance;
-- evidence;
-- contradiction;
-- uncertainty;
-- identifiability;
-- role separation;
-- policy;
-- audit.
+Displays situation, filtered findings, unknowns, options, human authorization and selected outcome.
 
-## Decide / Decision Room
+## Local mode
 
-Muestra:
+The public page imports the actual PRAXIOS core and Meta-Harness modules and runs them with FixtureProvider.
 
-- situación;
-- opciones;
-- autorización humana;
-- decisión;
-- outcome.
+This mode exercises real state transitions, gates, authorizations, walls and ledger integrity without exposing external provider credentials.
 
-## UI pública
+## Remote mode
 
-La página praxios.html importa directamente:
+Connect backend opens a configuration dialog for:
 
-- runtime/core/praxios-runtime.mjs;
-- runtime/providers/fixture.mjs.
+- API base URL;
+- PRAXIOS bearer token;
+- planner provider/model;
+- research provider/model;
+- math provider/model;
+- verifier provider/model.
 
-Por tanto, la UI pública ejecuta el core real en el navegador.
+The browser sends orchestration requests to runtime/server.mjs. OpenAI and Anthropic keys remain server-side.
 
-El fixture provider sustituye únicamente al modelo externo en el sitio público porque las API keys no deben almacenarse en GitHub Pages.
+## Untrusted rendering
 
-## Runtime con modelos externos
+Model-derived text is escaped before insertion into the DOM.
 
-El servidor runtime/server.mjs mantiene las claves fuera del navegador y expone providers configurables.
+## Human authority
 
-El mismo control plane puede orquestar diferentes modelos sin modificar Meta-Harness.
+Approve and Reject buttons call the server authorization endpoint in remote mode. Approval is not equivalent to execution; execution is a separate governed transition.
+
+## Audit
+
+The Ledger inspector can run local or remote audit and report whether canonical state matches the hash-chain checkpoint.

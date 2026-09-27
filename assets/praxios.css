@@ -49,3 +49,19 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 @media(max-width:1080px){.px-main{grid-template-columns:190px 1fr 290px}.px-bottom{grid-template-columns:220px 1fr 270px}}
 @media(max-width:820px){.px-app{height:auto;min-height:100vh;grid-template-rows:auto auto auto;overflow:auto}.px-topbar{flex-wrap:wrap;padding:9px}.px-logo{min-width:auto}.px-session-chip{display:none}.px-mode-switch{order:3;width:100%;margin:0}.px-mode-switch button{flex:1}.px-main{grid-template-columns:1fr}.px-rail{display:none}.px-center{height:68vh;min-height:520px}.px-inspector{border-left:0;border-top:1px solid var(--line)}.px-bottom{grid-template-columns:1fr}.px-bottom section+section{border-left:0;border-top:1px solid var(--line)}.px-ds-grid,.px-component-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.px-ds-grid,.px-component-grid{grid-template-columns:1fr}}
+
+.px-dialog{border:0;padding:0;background:transparent;color:var(--text-0);max-width:min(760px,calc(100vw - 28px));width:100%}
+.px-dialog::backdrop{background:rgba(0,0,0,.68);backdrop-filter:blur(8px)}
+.px-dialog-card{border:1px solid var(--line-strong);background:#09131d;border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.px-dialog-head{display:flex;align-items:start;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.px-dialog-head h2{font-size:18px;margin:0}
+.px-dialog-copy{font-size:10px;line-height:1.55;color:var(--text-2);margin:12px 0}
+.px-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.px-form-grid label{display:grid;gap:5px}
+.px-form-grid label span{font-size:8px;text-transform:uppercase;letter-spacing:.09em;color:var(--text-2);font-weight:800}
+.px-form-grid input{width:100%;background:#08111a;border:1px solid var(--line);border-radius:8px;color:var(--text-0);padding:9px 10px;font-size:10px}
+.px-form-grid input:focus{border-color:var(--line-strong)}
+.px-dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.px-dialog-status{margin-top:10px;border-top:1px solid var(--line);padding-top:10px;font-size:9px;color:var(--text-2);font-family:var(--font-mono)}
+.px-session-chip.remote .px-dot{background:var(--cyan);box-shadow:0 0 0 4px rgba(86,213,255,.08)}
+@media(max-width:620px){.px-form-grid{grid-template-columns:1fr}}

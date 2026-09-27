@@ -14,7 +14,7 @@
     <div class="px-mark"></div>
     <div class="px-brand">PRAXIOS <em>OS</em><small>Control & Decision Room</small></div>
   </div>
-  <div class="px-session-chip"><span class="px-dot"></span><span>CORE LIVE · IRL-042</span></div>
+  <div class="px-session-chip"><span class="px-dot"></span><span id="runtime-mode-label">LOCAL CORE · FIXTURE PROVIDER</span></div>
   <div class="px-mode-switch" aria-label="Modo">
     <button class="active" data-mode="operate">Operate</button>
     <button data-mode="assure">Assure</button>
@@ -22,6 +22,7 @@
   </div>
   <div class="px-top-actions">
     <a class="px-btn" href="praxios-design-system.html">Design system</a>
+    <button class="px-btn" id="connect-runtime">Connect backend</button>
     <button class="px-btn" id="reset-demo">Reset</button>
     <button class="px-btn primary" id="run-demo">Run governed session</button>
   </div>
@@ -149,11 +150,44 @@
       <div class="px-model"><b>Planner slot</b>reasoning · tools</div>
       <div class="px-model"><b>Research slot</b>search · long context</div>
       <div class="px-model"><b>Verifier slot</b>independent review</div>
-      <div class="px-model"><b>Local core</b>state · gates · ledger</div><div class="px-model"><b>Server adapters</b>OpenAI · Anthropic</div>
+      <div class="px-model"><b>Local core</b>state · gates · ledger</div><div class="px-model" id="provider-status"><b>Server adapters</b>disconnected</div>
     </div>
   </section>
 </footer>
 </div>
+<dialog class="px-dialog" id="runtime-dialog">
+  <form method="dialog" class="px-dialog-card" id="runtime-form">
+    <div class="px-dialog-head">
+      <div>
+        <div class="px-rail-title" style="margin:0 0 4px">Remote runtime</div>
+        <h2>Connect PRAXIOS backend</h2>
+      </div>
+      <button class="px-btn" value="cancel">Close</button>
+    </div>
+    <p class="px-dialog-copy">The public page never stores provider API keys. Enter only the PRAXIOS backend URL and its session token. Model API keys remain on the server.</p>
+    <div class="px-form-grid">
+      <label><span>API base URL</span><input id="api-base" type="url" placeholder="https://your-runtime.example.com" autocomplete="url"></label>
+      <label><span>PRAXIOS bearer token</span><input id="api-token" type="password" placeholder="Session token" autocomplete="off"></label>
+
+      <label><span>Planner provider</span><input id="planner-provider" value="openai"></label>
+      <label><span>Planner model</span><input id="planner-model" placeholder="model id"></label>
+
+      <label><span>Research provider</span><input id="research-provider" value="anthropic"></label>
+      <label><span>Research model</span><input id="research-model" placeholder="model id"></label>
+
+      <label><span>Math provider</span><input id="math-provider" value="openai"></label>
+      <label><span>Math model</span><input id="math-model" placeholder="model id"></label>
+
+      <label><span>Verifier provider</span><input id="verifier-provider" value="anthropic"></label>
+      <label><span>Verifier model</span><input id="verifier-model" placeholder="model id"></label>
+    </div>
+    <div class="px-dialog-actions">
+      <button class="px-btn" type="button" id="disconnect-runtime">Use local core</button>
+      <button class="px-btn primary" type="button" id="save-runtime">Test & connect</button>
+    </div>
+    <div id="runtime-connect-status" class="px-dialog-status">Not connected.</div>
+  </form>
+</dialog>
 <div class="px-toast" id="toast"></div>
 <script type="module" src="assets/praxios.js"></script>
 </body>

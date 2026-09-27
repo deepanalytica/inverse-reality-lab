@@ -1,137 +1,81 @@
-# PRAXIOS Runtime v0.1
+# PRAXIOS Runtime v0.2
 
-## Estado
+## Definition
 
-PRAXIOS ya dispone de una implementación funcional en el repositorio.
+PRAXIOS is the executable control plane that owns canonical state and the transition from a goal to governed work.
 
-El núcleo se encuentra en:
+\[
+OBSERVE\rightarrow REASON\rightarrow PROPOSE\rightarrow VERIFY\rightarrow AUTHORIZE\rightarrow EXECUTE\rightarrow OBSERVE.
+\]
+
+## Implemented modules
 
 - runtime/core/praxios-runtime.mjs
 - runtime/core/scheduler.mjs
-- runtime/core/ledger.mjs
 - runtime/core/orchestrator.mjs
-- runtime/server.mjs
+- runtime/core/contracts.mjs
+- runtime/core/budget.mjs
+- runtime/core/decision-room.mjs
+- runtime/core/ledger.mjs
+- runtime/core/policy.mjs
+- runtime/core/meta-harness.mjs
 
-## Ciclo ejecutable
+## Canonical state
 
-\[
-OBSERVE
-\rightarrow
-REASON
-\rightarrow
-PROPOSE
-\rightarrow
-VERIFY
-\rightarrow
-AUTHORIZE
-\rightarrow
-EXECUTE
-\rightarrow
-OBSERVE.
-\]
-
-Cada transición modifica un estado canónico y registra un evento en el ledger.
-
-## Estado canónico
+Models do not own session state.
 
 \[
-S_t=
-\{
-goal,
-evidence,
-claims,
-tasks,
-authorizations,
-actions,
-decisions,
-artifacts
-\}.
+S_t=\{goal,evidence,claims,tasks,authorizations,actions,decisions,artifacts\}.
 \]
 
-El estado no reside dentro de un modelo. Los modelos reciben sólo el contexto necesario para cada trabajo.
+## Planner / workers / verifier
+
+The planner proposes an acyclic task DAG.
+
+Workers produce evidence and claims.
+
+The verifier reviews existing claims and cannot replace their proposer identity.
+
+PRAXIOS records provider/model metadata and makes model-level independence visible.
+
+## Contracts
+
+Planner, worker, verifier, evidence, claim, task and action structures are validated before admission into canonical state.
+
+## Budgets
+
+ExecutionBudget bounds:
+
+- tasks;
+- provider calls;
+- input characters;
+- output characters;
+- wall-clock duration;
+- per-provider timeout.
 
 ## Scheduler
 
-El scheduler mantiene:
+Tasks execute only after declared dependencies reach COMPLETED. Retries are bounded and deterministic.
 
-- dependencias;
-- QUEUED;
-- RUNNING;
-- COMPLETED;
-- FAILED;
-- BLOCKED.
+## Executors
 
-Una tarea no se ejecuta hasta que sus dependencias terminan correctamente.
+Executors are registered capabilities with authoritative metadata:
 
-## Provider registry
+- effect;
+- tags;
+- enabled state;
+- risk class.
 
-Un provider implementa:
+Unknown and disabled executors are structural walls.
 
-~~~text
-generate(request) -> text
-~~~
+## Persistence
 
-Esto permite registrar cualquier modelo o servicio compatible.
+Local development supports file snapshots. Production supports AES-256-GCM encrypted snapshots.
 
-El repositorio incluye adaptadores de servidor para OpenAI y Anthropic y un fixture provider para tests.
+## Server
 
-## Orquestación multi-modelo
+runtime/server.mjs exposes the controlled API. Non-local binding requires authentication and encrypted persistence.
 
-El planner puede proponer un DAG, pero PRAXIOS crea y controla los trabajos.
+## Public Control Room
 
-\[
-\text{planner output}
-\rightarrow
-\text{scheduler}
-\rightarrow
-\text{workers}
-\rightarrow
-\text{independent verifier}.
-\]
-
-## Ledger
-
-Cada evento contiene:
-
-- secuencia;
-- timestamp;
-- actor;
-- session id;
-- previous hash;
-- payload;
-- SHA-256 hash.
-
-La cadena completa puede verificarse y las sesiones persistidas incluyen un checkpoint del estado.
-
-## Persistencia
-
-El runtime de servidor utiliza FileSessionStore.
-
-Las escrituras son atómicas mediante archivo temporal + rename.
-
-Una sesión puede reconstruirse con:
-
-\[
-\text{snapshot}
-\rightarrow
-\text{PraxiosRuntime.fromSnapshot}.
-\]
-
-## Acciones
-
-Las acciones tienen un campo effect.
-
-Los efectos:
-
-- write;
-- external;
-- financial;
-- publish
-
-requieren autorización explícita de acuerdo con la política activa.
-
-## UI pública
-
-La página praxios.html ejecuta el mismo core de estado, scheduler, Meta-Harness y ledger dentro del navegador.
-
-Para evitar exposición de secretos, el sitio público usa un fixture provider. Los adapters de modelos externos viven en el servidor.
+praxios.html can run the core locally with a fixture provider or connect to the remote runtime. Provider API keys remain on the server.

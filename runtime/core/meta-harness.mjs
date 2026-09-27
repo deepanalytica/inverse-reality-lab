@@ -117,6 +117,62 @@ export class MetaHarness {
     return result("EPISTEMIC_CLASS", STATUS.PASS, "Epistemic class is valid.");
   }
 
+  modelIndependenceGate(claim) {
+    if (!claim.requireIndependentReview) {
+      return result("MODEL_INDEPENDENCE", STATUS.PASS, "Model-level independence is not required for this claim.");
+    }
+    const proposer = claim.proposerModel;
+    const verifier = claim.verifierModel;
+    if (!proposer || !verifier) {
+      return result("MODEL_INDEPENDENCE", STATUS.REVIEW, "Model provenance is incomplete for independence assessment.");
+    }
+    if (proposer.provider === verifier.provider && proposer.model === verifier.model) {
+      return result(
+        "MODEL_INDEPENDENCE",
+        STATUS.REVIEW,
+        "Proposer and verifier are separate actors but use the same provider/model; epistemic independence is weaker.",
+        { proposer, verifier }
+      );
+    }
+    return result("MODEL_INDEPENDENCE", STATUS.PASS, "Verifier uses a different provider/model from the proposer.", { proposer, verifier });
+  }
+
+  reviewCoverageGate(claim, verifierId) {
+    if (!claim.requireIndependentReview) {
+      return result("REVIEW_COVERAGE", STATUS.PASS, "Independent review record is not required for this claim.");
+    }
+    const reviews = claim.reviews || [];
+    const covered = reviews.some(review => review.verifierId === verifierId);
+    if (!covered) {
+      return result("REVIEW_COVERAGE", STATUS.BLOCK, "Claim requires a recorded independent review from the verifier.");
+    }
+    return result("REVIEW_COVERAGE", STATUS.PASS, "Independent review is recorded.");
+  }
+
+  claimDependencyGate(action, claims = []) {
+    const required = action.requiredClaimIds || [];
+    if (!required.length) {
+      return result("CLAIM_DEPENDENCY", STATUS.PASS, "Action has no required claim dependencies.");
+    }
+    const byId = new Map(claims.map(claim => [claim.id, claim]));
+    const missing = required.filter(id => !byId.has(id));
+    if (missing.length) {
+      return result("CLAIM_DEPENDENCY", STATUS.BLOCK, "Action references unknown claims.", { missing });
+    }
+    const blocked = required.filter(id => byId.get(id).verdict === STATUS.BLOCK);
+    if (blocked.length) {
+      return result("CLAIM_DEPENDENCY", STATUS.BLOCK, "Action depends on blocked claims.", { blocked });
+    }
+    const review = required.filter(id => byId.get(id).verdict === STATUS.REVIEW);
+    if (review.length && action.claimThreshold === "PASS") {
+      return result("CLAIM_DEPENDENCY", STATUS.BLOCK, "Action requires PASS claims but some remain under review.", { review });
+    }
+    if (review.length) {
+      return result("CLAIM_DEPENDENCY", STATUS.REVIEW, "Action depends on claims that remain under review.", { review });
+    }
+    return result("CLAIM_DEPENDENCY", STATUS.PASS, "All required claims satisfy the action dependency policy.");
+  }
+
   async auditGate() {
     const check = await this.ledger.verify();
     if (!check.ok) {
@@ -134,16 +190,19 @@ export class MetaHarness {
       this.contradictionGate(claim),
       this.uncertaintyGate(claim),
       this.identifiabilityGate(claim),
-      this.policyEngine.evaluateRoleSeparation({ proposerId, verifierId })
+      this.policyEngine.evaluateRoleSeparation({ proposerId, verifierId }),
+      this.reviewCoverageGate(claim, verifierId),
+      this.modelIndependenceGate(claim)
     ];
     if (claim.requestedUse === "publish") gates.push(this.policyEngine.evaluatePublication(claim));
     gates.push(await this.auditGate());
     return { verdict: verdict(gates), gates };
   }
 
-  async evaluateAction(action, { authorization = null } = {}) {
+  async evaluateAction(action, { authorization = null, claims = [] } = {}) {
     const gates = [
       this.policyEngine.evaluateWall(action),
+      this.claimDependencyGate(action, claims),
       this.policyEngine.evaluateAuthorization(action, authorization),
       await this.auditGate()
     ];

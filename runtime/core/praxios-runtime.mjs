@@ -2,6 +2,8 @@ import { EventLedger, canonicalJson, sha256Hex } from "./ledger.mjs";
 import { PolicyEngine, DEFAULT_POLICY, STATUS } from "./policy.mjs";
 import { MetaHarness } from "./meta-harness.mjs";
 import { TaskScheduler } from "./scheduler.mjs";
+import { DecisionRoom } from "./decision-room.mjs";
+import { validateEvidence, validateClaim, validateAction, validateTask } from "./contracts.mjs";
 
 export const PHASES = Object.freeze([
   "OBSERVE",
@@ -37,6 +39,7 @@ export class PraxiosRuntime {
     this.policyEngine = new PolicyEngine(policy);
     this.metaHarness = new MetaHarness({ policyEngine: this.policyEngine, ledger: this.ledger });
     this.scheduler = new TaskScheduler();
+    this.decisionRoom = new DecisionRoom({ runtime: this });
     this.providers = new Map();
     this.executors = new Map();
     this.state = {
@@ -65,6 +68,7 @@ export class PraxiosRuntime {
     });
     runtime.state = structuredClone(snapshot.state);
     runtime.scheduler = new TaskScheduler();
+    runtime.decisionRoom = new DecisionRoom({ runtime });
     for (const task of snapshot.tasks || []) {
       runtime.scheduler.add(task);
       Object.assign(runtime.scheduler.get(task.id), structuredClone(task));
@@ -127,15 +131,31 @@ export class PraxiosRuntime {
       execute: executor,
       effect: policy.effect || null,
       tags: Array.from(new Set(policy.tags || [])),
-      enabled: policy.enabled !== false
+      enabled: policy.enabled !== false,
+      description: policy.description || "",
+      riskClass: policy.riskClass || "standard"
     });
     return this;
+  }
+
+  listExecutors() {
+    return Array.from(this.executors.entries()).map(([name, value]) => ({
+      name,
+      effect: value.effect || "none",
+      tags: clone(value.tags || []),
+      enabled: value.enabled,
+      description: value.description || "",
+      riskClass: value.riskClass || "standard"
+    }));
   }
 
   normalizeAction(action) {
     const normalized = clone(action || {});
     if (!normalized.id) normalized.id = uid("action");
     const registration = normalized.executor ? this.executors.get(normalized.executor) : null;
+    if (normalized.executor && !registration) {
+      normalized.tags = Array.from(new Set([...(normalized.tags || []), "executor_unregistered"]));
+    }
     if (registration) {
       if (!registration.enabled) {
         normalized.tags = Array.from(new Set([...(normalized.tags || []), "executor_disabled"]));
@@ -166,6 +186,7 @@ export class PraxiosRuntime {
   }
 
   async addEvidence(evidence, actor = this.actor) {
+    validateEvidence(evidence);
     if (!evidence?.id) throw new Error("Evidence requires id.");
     if (this.state.evidence.some(item => item.id === evidence.id)) throw new Error("Duplicate evidence id: " + evidence.id);
     const normalized = {
@@ -184,6 +205,7 @@ export class PraxiosRuntime {
   }
 
   async proposeClaim(claim, actor = this.actor) {
+    validateClaim(claim);
     if (!claim?.id) throw new Error("Claim requires id.");
     if (this.state.claims.some(item => item.id === claim.id)) throw new Error("Duplicate claim id: " + claim.id);
     const normalized = {
@@ -200,19 +222,54 @@ export class PraxiosRuntime {
       requestedUse: claim.requestedUse || "internal",
       proposerId: claim.proposerId || actor,
       verifierId: claim.verifierId || null,
+      proposerModel: claim.proposerModel || null,
+      verifierModel: claim.verifierModel || null,
       status: "PROPOSED",
       verdict: null,
-      gates: []
+      gates: [],
+      reviews: [],
+      requireIndependentReview: Boolean(claim.requireIndependentReview)
     };
     this.state.claims.push(normalized);
     await this.emit("CLAIM_PROPOSED", normalized, actor);
     return clone(normalized);
   }
 
-  async verifyClaim(claimId, { verifierId, actor = verifierId || this.actor } = {}) {
+  async applyClaimReview(claimId, review, { verifierId, verifierModel = null, actor = verifierId || this.actor } = {}) {
+    const claim = this.state.claims.find(item => item.id === claimId);
+    if (!claim) throw new Error("Unknown claim: " + claimId);
+    if (!verifierId) throw new Error("Claim review requires verifierId.");
+    if (claim.proposerId === verifierId) throw new Error("Proposer cannot review its own claim.");
+
+    const rank = { I0: 0, I1: 1, I2: 2, I3: 3 };
+    if (review.identifiability && rank[review.identifiability] < rank[claim.identifiability || "I0"]) {
+      claim.identifiability = review.identifiability;
+    }
+    if (typeof review.uncertainty === "string" && review.uncertainty.trim()) {
+      claim.uncertainty = review.uncertainty.trim();
+    }
+    for (const contradiction of review.contradictions || []) {
+      claim.contradictions.push({ ...clone(contradiction), verifierId });
+    }
+    claim.verifierModel = verifierModel || claim.verifierModel;
+    const record = {
+      verifierId,
+      verifierModel: verifierModel || null,
+      summary: review.summary || "",
+      uncertainty: review.uncertainty || null,
+      identifiability: review.identifiability || null,
+      contradictions: clone(review.contradictions || [])
+    };
+    claim.reviews.push(record);
+    await this.emit("CLAIM_REVIEWED", { claimId, review: record }, actor);
+    return clone(record);
+  }
+
+  async verifyClaim(claimId, { verifierId, verifierModel = null, actor = verifierId || this.actor } = {}) {
     const claim = this.state.claims.find(item => item.id === claimId);
     if (!claim) throw new Error("Unknown claim: " + claimId);
     claim.verifierId = verifierId || claim.verifierId;
+    if (verifierModel) claim.verifierModel = clone(verifierModel);
     const evaluation = await this.metaHarness.evaluateClaim(claim, {
       evidence: this.state.evidence,
       proposerId: claim.proposerId,
@@ -225,12 +282,14 @@ export class PraxiosRuntime {
       claimId,
       verdict: evaluation.verdict,
       gates: evaluation.gates,
-      verifierId: claim.verifierId
+      verifierId: claim.verifierId,
+      verifierModel: claim.verifierModel
     }, actor);
     return clone(evaluation);
   }
 
   async delegateTask(task, actor = this.actor) {
+    validateTask(task);
     const added = this.scheduler.add(task);
     this.state.tasks = this.scheduler.list();
     await this.emit("TASK_DELEGATED", added, actor);
@@ -242,11 +301,19 @@ export class PraxiosRuntime {
     const final = await this.scheduler.run(async task => {
       const provider = this.providers.get(task.provider);
       if (!provider) throw new Error("Provider not registered: " + task.provider);
+      const dependencies = (task.dependsOn || []).map(id => {
+        const dependency = this.scheduler.get(id);
+        return {
+          id,
+          status: dependency?.status || "UNKNOWN",
+          output: dependency?.output ?? null
+        };
+      });
       return provider.generate({
         role: task.role,
         model: task.model,
         input: task.input,
-        metadata: task.metadata,
+        metadata: { ...(task.metadata || {}), dependencies },
         session: this.snapshot()
       });
     }, {
@@ -261,6 +328,22 @@ export class PraxiosRuntime {
 
   async requestAuthorization(action, actor = this.actor) {
     action = this.normalizeAction(action);
+    validateAction(action);
+    const preflight = await this.metaHarness.evaluateAction(action, {
+      authorization: null,
+      claims: this.state.claims
+    });
+    const nonAuthorizationBlocks = preflight.gates.filter(
+      gate => gate.id !== "AUTHORIZATION" && gate.status === STATUS.BLOCK
+    );
+    await this.emit("ACTION_PREFLIGHT_EVALUATED", {
+      actionId: action.id,
+      verdict: nonAuthorizationBlocks.length ? STATUS.BLOCK : STATUS.REVIEW,
+      gates: preflight.gates
+    }, actor);
+    if (nonAuthorizationBlocks.length) {
+      throw new Error("Meta-Harness blocked authorization request for action " + action.id);
+    }
     const request = {
       id: uid("auth"),
       actionId: action.id,
@@ -279,7 +362,8 @@ export class PraxiosRuntime {
     return clone(request);
   }
 
-  async authorize(requestId, { approved, actor = "human", reason = "" } = {}) {
+  async authorize(requestId, { approved, actor = "human", authorityType, reason = "" } = {}) {
+    if (authorityType !== "human") throw new Error("Authorization requires human authority.");
     const request = this.state.authorizations.find(item => item.id === requestId);
     if (!request) throw new Error("Unknown authorization request: " + requestId);
     if (request.status !== "PENDING") throw new Error("Authorization already decided.");
@@ -295,12 +379,15 @@ export class PraxiosRuntime {
     return clone(request);
   }
 
-  async executeAction(action, { authorizationId = null, executor = null, actor = this.actor } = {}) {
+  async executeAction(action, { authorizationId = null, actor = this.actor } = {}) {
     action = this.normalizeAction(action);
     const authorization = authorizationId
       ? this.state.authorizations.find(item => item.id === authorizationId)
       : null;
-    const evaluation = await this.metaHarness.evaluateAction(action, { authorization });
+    const evaluation = await this.metaHarness.evaluateAction(action, {
+      authorization,
+      claims: this.state.claims
+    });
     await this.emit("ACTION_GATE_EVALUATED", { actionId: action.id, ...evaluation }, actor);
     if (evaluation.verdict === STATUS.BLOCK) {
       const existing = this.state.actions.find(item => item.id === action.id);
@@ -319,20 +406,67 @@ export class PraxiosRuntime {
 
     const registration = action.executor ? this.executors.get(action.executor) : null;
     if (registration && !registration.enabled) throw new Error("Executor is disabled: " + action.executor);
-    const exec = executor || registration?.execute;
+    const exec = registration?.execute;
     if (typeof exec !== "function") throw new Error("No executor registered for action: " + (action.executor || action.id));
     await this.setPhase("EXECUTE", "Authorized action execution.");
-    const output = await exec(clone(action), this.snapshot());
-    const existing = this.state.actions.find(item => item.id === action.id);
-    if (existing) {
-      existing.status = "COMPLETED";
-      existing.output = output;
-    } else {
-      this.state.actions.push({ ...action, status: "COMPLETED", output });
+
+    try {
+      const output = await exec(clone(action), this.snapshot());
+      const existing = this.state.actions.find(item => item.id === action.id);
+      if (existing) {
+        existing.status = "COMPLETED";
+        existing.output = clone(output);
+      } else {
+        this.state.actions.push({ ...action, status: "COMPLETED", output: clone(output) });
+      }
+      await this.emit("ACTION_EXECUTED", { actionId: action.id, output }, actor);
+      await this.setPhase("OBSERVE", "Observe action outcome.");
+      return clone({ output, evaluation });
+    } catch (error) {
+      const existing = this.state.actions.find(item => item.id === action.id);
+      if (existing) {
+        existing.status = "FAILED";
+        existing.error = String(error?.message || error).slice(0, 2000);
+      } else {
+        this.state.actions.push({
+          ...action,
+          status: "FAILED",
+          error: String(error?.message || error).slice(0, 2000)
+        });
+      }
+      await this.emit("ACTION_EXECUTION_FAILED", {
+        actionId: action.id,
+        error: error?.name || "Error",
+        message: String(error?.message || error).slice(0, 2000)
+      }, actor);
+      await this.setPhase("OBSERVE", "Observe failed action outcome.");
+      throw error;
     }
-    await this.emit("ACTION_EXECUTED", { actionId: action.id, output }, actor);
-    await this.setPhase("OBSERVE", "Observe action outcome.");
-    return clone({ output, evaluation });
+  }
+
+  async createDecisionPackage(input = {}, actor = this.actor) {
+    const decisionPackage = this.decisionRoom.build({ ...input, actor });
+    this.state.decisions.push(decisionPackage);
+    await this.emit("DECISION_PACKAGE_CREATED", decisionPackage, actor);
+    return clone(decisionPackage);
+  }
+
+  async selectDecision(packageId, selectedOptionId, { actor = "human", authorityType, rationale = "" } = {}) {
+    if (authorityType !== "human") throw new Error("Decision selection requires human authority.");
+    const decisionPackage = this.state.decisions.find(item => item.id === packageId);
+    if (!decisionPackage) throw new Error("Unknown decision package: " + packageId);
+    if (decisionPackage.status !== "AWAITING_HUMAN") throw new Error("Decision package is not awaiting human authority.");
+    const option = this.decisionRoom.validateSelection(decisionPackage, selectedOptionId);
+    decisionPackage.selected = option.id;
+    decisionPackage.rationale = rationale;
+    decisionPackage.decidedBy = actor;
+    decisionPackage.status = "DECIDED";
+    await this.emit("DECISION_SELECTED", {
+      packageId,
+      selectedOptionId: option.id,
+      rationale
+    }, actor);
+    return clone(decisionPackage);
   }
 
   async recordDecision(decision, actor = "human") {
@@ -351,8 +485,8 @@ export class PraxiosRuntime {
   }
 
   async close(actor = "human") {
-    const audit = await this.ledger.verify();
-    if (!audit.ok) throw new Error("Cannot close session with invalid ledger.");
+    const audit = await this.audit();
+    if (!audit.ok) throw new Error("Cannot close session with invalid audit state.");
     this.state.status = "COMPLETED";
     await this.emit("SESSION_CLOSED", { audit }, actor);
     return this.snapshot();

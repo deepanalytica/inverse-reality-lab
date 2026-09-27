@@ -25,6 +25,11 @@ export const DEFAULT_POLICY = Object.freeze({
       id: "WALL_EXECUTOR_DISABLED",
       description: "Disabled executors are structurally unavailable.",
       tags: ["executor_disabled"]
+    },
+    {
+      id: "WALL_EXECUTOR_UNREGISTERED",
+      description: "Actions cannot target an executor that is absent from the trusted registry.",
+      tags: ["executor_unregistered"]
     }
   ],
   publication: {

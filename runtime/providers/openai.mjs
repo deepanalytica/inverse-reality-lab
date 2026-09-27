@@ -7,13 +7,9 @@ export class OpenAIProvider {
     this.fetch = fetchImpl;
   }
 
-  async generate({ model, system = "", input = "" }) {
+  async generate({ model, system = "", input = "", signal = undefined }) {
     const selectedModel = model || this.defaultModel;
     if (!selectedModel) throw new Error("OpenAI model must be specified.");
-    const messages = [];
-    if (system) messages.push({ role: "developer", content: system });
-    messages.push({ role: "user", content: input });
-
     const response = await this.fetch(this.baseUrl + "/responses", {
       method: "POST",
       headers: {
@@ -22,8 +18,10 @@ export class OpenAIProvider {
       },
       body: JSON.stringify({
         model: selectedModel,
-        input: messages
-      })
+        instructions: system || undefined,
+        input
+      }),
+      signal
     });
 
     const body = await response.json().catch(() => ({}));
