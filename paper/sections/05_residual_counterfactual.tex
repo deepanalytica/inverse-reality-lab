@@ -1,0 +1,217 @@
+
+\section{Ontología temporal latente}
+
+Los procesos constructivos utilizan objetos que desaparecen: andamios, rampas, pasarelas temporales, grúas, gatos, ataguías, moldes, soportes de erección y fijaciones provisionales.
+
+Sea \(\mathcal T\) el conjunto de estas entidades.
+
+\begin{definition}[Ontología temporal latente mínima]
+\begin{equation}
+\boxed{
+\mathcal T^\star
+=
+\arg\min_{\mathcal T}
+C(\mathcal T)
+}
+\end{equation}
+sujeto a la existencia de una historia \(H\) realizable mediante física convencional que alcance \(X_T\).
+\end{definition}
+
+La inferencia de \(\mathcal T^\star\) no debe exceder la resolución soportada por la evidencia. El estudio adversarial desarrollado más adelante demuestra que, en numerosos casos, sólo puede recuperarse una \emph{clase funcional} y no el dispositivo histórico exacto.
+
+\section{Jerarquía de identificabilidad}
+
+Los benchmarks sugieren cuatro niveles:
+
+\begin{description}
+\item[I0 --- orden causal grueso:] por ejemplo, cimentación antes de torre.
+\item[I1 --- clase funcional:] por ejemplo, acceso aéreo temporal.
+\item[I2 --- familia de mecanismo:] por ejemplo, formación incremental de cable.
+\item[I3 --- implementación histórica exacta:] tipo de aparato, geometría, fabricante y fecha.
+\end{description}
+
+\begin{principle}[Resolución de la afirmación]
+Ninguna afirmación debe formularse a un nivel de detalle superior al nivel de identificabilidad soportado por las modalidades disponibles.
+\end{principle}
+
+\section{Campo de fuerza residual}
+
+Definimos
+
+\begin{definition}[Fuerza residual]
+\begin{equation}
+\boxed{
+\Fres
+=
+\mathbf F_{\mathrm{req}}
+-
+\sum_k
+\mathbf F_{{\mathrm{known}},k}.
+}
+\end{equation}
+\end{definition}
+
+El problema conjunto puede escribirse como
+
+\begin{equation}
+\boxed{
+\min_{H,\mathcal T,\Fres}
+\left[
+\int
+\|\Fres\|^2\,dV\,dt
++
+\lambda_T C(\mathcal T)
++
+\lambda_H C(H)
+\right]
+}
+\end{equation}
+
+sujeto a estado terminal, equilibrio, accesibilidad, evidencia y restricciones cronológicas.
+
+\begin{principle}[No new physics before latent process exhaustion]
+Una fuerza residual no puede interpretarse como evidencia de nueva física antes de demostrar que sobrevive a:
+\begin{enumerate}
+\item refinamiento ontológico;
+\item descomposición modular;
+\item objetos temporales;
+\item mecanismos convencionales;
+\item chequeos de identificabilidad;
+\item propagación de incertidumbre.
+\end{enumerate}
+\end{principle}
+
+\section{Extensión contrafactual: compensación gravitatoria}
+
+Este apartado define una familia de hipótesis falsables. No constituye evidencia histórica ni física establecida.
+
+Introducimos un campo adimensional \(\alpha(\mathbf x,t)\):
+
+\begin{equation}
+\mathbf g_{\mathrm{eff}}
+=
+-(1-\alpha)g\hat{\mathbf z}.
+\end{equation}
+
+Los regímenes son:
+
+\begin{align}
+\alpha=0 &: \text{gravedad ordinaria},\\
+0<\alpha<1 &: \text{reducción efectiva de peso},\\
+\alpha=1 &: \text{neutralización ideal},\\
+\alpha>1 &: \text{aceleración efectiva ascendente}.
+\end{align}
+
+La energía potencial efectiva uniforme sería
+
+\begin{equation}
+U_{\mathrm{eff}}
+=
+(1-\alpha)mgz.
+\end{equation}
+
+En una rampa,
+
+\begin{equation}
+F_\alpha
+=
+(1-\alpha)mg
+(\sin\theta+\mu\cos\theta),
+\end{equation}
+
+mientras el contacto con la superficie siga siendo válido.
+
+Si existe una fuerza convencional máxima \(F_{\max}\),
+
+\begin{equation}
+\boxed{
+\alpha_{\min}
+=
+1-
+\frac{
+F_{\max}
+}{
+mg(\sin\theta+\mu\cos\theta)
+}.
+}
+\end{equation}
+
+Este parámetro puede utilizarse como \emph{control contrafactual}: si todas las historias físicamente convencionales producen residuo nulo, entonces \(\alpha_{\min}=0\) es suficiente.
+
+\section{Extensión contrafactual: campo elástico-helicoidal}
+
+Para formalizar una interacción restauradora tipo resorte con geometría helicoidal, definimos en coordenadas cilíndricas
+
+\begin{equation}
+\xi(r,\phi,z)
+=
+r-r_0-b\phi+\lambda z
+\end{equation}
+
+y
+
+\begin{equation}
+U_{\mathrm{SE}}
+=
+\frac12k\xi^2.
+\end{equation}
+
+La fuerza conservativa asociada es
+
+\begin{equation}
+\mathbf F_{\mathrm{SE}}
+=
+-\nabla U_{\mathrm{SE}}.
+\end{equation}
+
+Como
+
+\begin{equation}
+\nabla\xi
+=
+\hat{\mathbf e}_r
+-
+\frac{b}{r}\hat{\mathbf e}_\phi
++
+\lambda\hat{\mathbf e}_z,
+\end{equation}
+
+se obtiene
+
+\begin{equation}
+\boxed{
+\mathbf F_{\mathrm{SE}}
+=
+-k\xi\hat{\mathbf e}_r
++
+\frac{kb\xi}{r}\hat{\mathbf e}_\phi
+-
+k\lambda\xi\hat{\mathbf e}_z.
+}
+\end{equation}
+
+Para \(\xi<0\) y \(\lambda>0\), la componente vertical puede apuntar hacia arriba.
+
+Este campo no debe identificarse con gravedad newtoniana. Un campo general puede descomponerse formalmente como
+
+\begin{equation}
+\Fres
+=
+-\nabla\Phi
++
+\nabla\times\mathbf A.
+\end{equation}
+
+La componente rotacional pertenece a una clase de interacción más general.
+
+Para una curva elástica puede utilizarse energía de flexión
+
+\begin{equation}
+E_b
+=
+\frac B2
+\int
+\kappa(s)^2ds.
+\end{equation}
+
+La familia elástico-helicoidal se conserva únicamente como modelo contrafactual a ajustar si apareciera un residuo robusto futuro. Ningún benchmark actual la requiere.
