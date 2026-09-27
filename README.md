@@ -419,3 +419,18 @@ Deep Analytica · Chile
 **Correo:** contacto@deepanalytica.cl  
 **Sitio:** https://deepanalytica.cl  
 **GitHub:** https://github.com/deepanalytica
+
+
+---
+
+## Auditoría formal y reproducibilidad
+
+La versión v1.2 incorpora documentos específicos para revisión rigurosa:
+
+- [Obligaciones de prueba](PROOF_OBLIGATIONS.md)
+- [Supuestos y límites](ASSUMPTIONS_AND_LIMITS.md)
+- [Reproducibilidad](REPRODUCIBILITY.md)
+- [Protocolo de validación](VALIDATION_PROTOCOL.md)
+- [Guía de revisión avanzada](AI_REVIEW_GUIDE.md)
+
+El workflow valida datos, referencias, estados causales, topología, estructura del sitio, JavaScript y compilación LaTeX antes de publicar.

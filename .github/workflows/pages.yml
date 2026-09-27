@@ -60,6 +60,7 @@ jobs:
           python -m json.tool data/monuments.json >/dev/null
           python -m json.tool data/topology.json >/dev/null
           node scripts/validate_data.mjs
+          node scripts/validate_site.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
