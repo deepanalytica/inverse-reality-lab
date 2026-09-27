@@ -1,3 +1,5 @@
+import { canonicalJson } from "./ledger.mjs";
+
 export const STATUS = Object.freeze({
   PASS: "PASS",
   REVIEW: "REVIEW",
@@ -18,6 +20,11 @@ export const DEFAULT_POLICY = Object.freeze({
       id: "WALL_BYPASS_LEDGER",
       description: "Effectful execution cannot bypass the canonical ledger.",
       tags: ["bypass_ledger"]
+    },
+    {
+      id: "WALL_EXECUTOR_DISABLED",
+      description: "Disabled executors are structurally unavailable.",
+      tags: ["executor_disabled"]
     }
   ],
   publication: {
@@ -94,6 +101,9 @@ export class PolicyEngine {
     if (authorization.actionId !== action.id) {
       return { id: "AUTHORIZATION", status: STATUS.BLOCK, reason: "Authorization does not match the requested action." };
     }
-    return { id: "AUTHORIZATION", status: STATUS.PASS, reason: "Explicit authorization matches the action." };
+    if (authorization.action && canonicalJson(authorization.action) !== canonicalJson(action)) {
+      return { id: "AUTHORIZATION", status: STATUS.BLOCK, reason: "Authorized action payload differs from the action being executed." };
+    }
+    return { id: "AUTHORIZATION", status: STATUS.PASS, reason: "Explicit authorization matches the exact action." };
   }
 }

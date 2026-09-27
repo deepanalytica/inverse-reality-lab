@@ -55,12 +55,12 @@ async function readJson(req) {
 }
 
 function attachBuiltins(runtime) {
-  runtime.registerExecutor("echo", async action => ({ echoed: action.payload ?? null }));
+  runtime.registerExecutor("echo", async action => ({ echoed: action.payload ?? null }), { effect: "none" });
   runtime.registerExecutor("measurement-design", async action => ({
     artifactId: "artifact-" + Date.now(),
     type: "measurement-design",
     payload: action.payload ?? null
-  }));
+  }), { effect: "write", tags: ["artifact_write"] });
   return runtime;
 }
 

@@ -133,3 +133,10 @@ Cuando HOST no es localhost, PRAXIOS_SERVER_TOKEN es obligatorio. Las rutas dist
 ## Auditoría de estado
 
 Cada evento incorpora un checkpoint SHA-256 del estado canónico, excluyendo metadatos temporales de revisión. El endpoint /api/sessions/:id/audit verifica ledger y correspondencia del estado con el último checkpoint.
+
+
+## Tool / executor policy
+
+Cada executor puede registrar metadata autoritativa de efecto, tags y disponibilidad. El modelo no puede reducir el nivel de efecto declarado por el registro.
+
+Las autorizaciones se vinculan a la acción completa. Si el payload cambia después de aprobarse, Meta-Harness bloquea la ejecución.

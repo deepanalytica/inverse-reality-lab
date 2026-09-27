@@ -108,3 +108,22 @@ Además, PRAXIOS calcula un digest del estado canónico para contrastar el estad
 Meta-Harness gobierna la transición entre salida de modelo y acción/afirmación aceptada.
 
 No depende de una marca específica de LLM.
+
+
+## Binding de autorización
+
+La autorización queda vinculada al contenido exacto de la acción. Meta-Harness compara la acción aprobada con la acción presentada al executor.
+
+Una modificación posterior de payload, executor, effect o tags invalida la autorización y produce BLOCK.
+
+## Metadata del executor
+
+PRAXIOS registra metadata de seguridad junto al executor:
+
+- effect;
+- tags;
+- enabled.
+
+La metadata del executor prevalece sobre la declaración del caller. Esto evita que una herramienta de escritura sea reclasificada por el modelo como una acción sin efecto.
+
+Un executor deshabilitado incorpora un wall estructural y no puede ejecutarse aunque exista autorización humana.

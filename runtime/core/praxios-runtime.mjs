@@ -121,10 +121,30 @@ export class PraxiosRuntime {
     return this;
   }
 
-  registerExecutor(name, executor) {
+  registerExecutor(name, executor, policy = {}) {
     if (!name || typeof executor !== "function") throw new Error("Executor must be a function.");
-    this.executors.set(name, executor);
+    this.executors.set(name, {
+      execute: executor,
+      effect: policy.effect || null,
+      tags: Array.from(new Set(policy.tags || [])),
+      enabled: policy.enabled !== false
+    });
     return this;
+  }
+
+  normalizeAction(action) {
+    const normalized = clone(action || {});
+    if (!normalized.id) normalized.id = uid("action");
+    const registration = normalized.executor ? this.executors.get(normalized.executor) : null;
+    if (registration) {
+      if (!registration.enabled) {
+        normalized.tags = Array.from(new Set([...(normalized.tags || []), "executor_disabled"]));
+      }
+      if (registration.effect) normalized.effect = registration.effect;
+      normalized.tags = Array.from(new Set([...(normalized.tags || []), ...(registration.tags || [])]));
+    }
+    normalized.effect = normalized.effect || "none";
+    return normalized;
   }
 
   async start(goal, actor = "human") {
@@ -240,7 +260,7 @@ export class PraxiosRuntime {
   }
 
   async requestAuthorization(action, actor = this.actor) {
-    if (!action?.id) action = { ...action, id: uid("action") };
+    action = this.normalizeAction(action);
     const request = {
       id: uid("auth"),
       actionId: action.id,
@@ -274,6 +294,7 @@ export class PraxiosRuntime {
   }
 
   async executeAction(action, { authorizationId = null, executor = null, actor = this.actor } = {}) {
+    action = this.normalizeAction(action);
     const authorization = authorizationId
       ? this.state.authorizations.find(item => item.id === authorizationId)
       : null;
@@ -285,7 +306,9 @@ export class PraxiosRuntime {
       throw new Error("Meta-Harness blocked action " + action.id);
     }
 
-    const exec = executor || this.executors.get(action.executor);
+    const registration = action.executor ? this.executors.get(action.executor) : null;
+    if (registration && !registration.enabled) throw new Error("Executor is disabled: " + action.executor);
+    const exec = executor || registration?.execute;
     if (typeof exec !== "function") throw new Error("No executor registered for action: " + (action.executor || action.id));
     await this.setPhase("EXECUTE", "Authorized action execution.");
     const output = await exec(clone(action), this.snapshot());

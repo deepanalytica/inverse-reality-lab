@@ -126,3 +126,57 @@ test("publication claim is blocked when identifiability is too low", async () =>
   assert.equal(evaluation.verdict, "BLOCK");
   assert.equal(evaluation.gates.find(g => g.id === "IDENTIFIABILITY").status, "BLOCK");
 });
+
+
+test("authorization is bound to the exact action payload", async () => {
+  const runtime = new PraxiosRuntime({
+    sessionId: "auth-binding-test",
+    clock: () => "2026-09-27T00:00:00.000Z"
+  });
+  await runtime.start("Test action binding.");
+  runtime.registerExecutor("write-artifact", async action => ({ ok: true, payload: action.payload }), { effect: "write" });
+
+  const original = {
+    id: "ACT-2",
+    title: "Write artifact",
+    executor: "write-artifact",
+    payload: { value: 1 }
+  };
+  const request = await runtime.requestAuthorization(original, "planner");
+  await runtime.authorize(request.id, { approved: true, actor: "human" });
+
+  const mutated = {
+    ...original,
+    payload: { value: 999 }
+  };
+
+  await assert.rejects(
+    runtime.executeAction(mutated, { authorizationId: request.id }),
+    /Meta-Harness blocked action/
+  );
+});
+
+test("disabled executor is structurally unavailable", async () => {
+  const runtime = new PraxiosRuntime({
+    sessionId: "wall-test",
+    clock: () => "2026-09-27T00:00:00.000Z"
+  });
+  await runtime.start("Test structural wall.");
+  runtime.registerExecutor("disabled-tool", async () => ({ ok: true }), {
+    effect: "write",
+    enabled: false
+  });
+
+  const action = {
+    id: "ACT-3",
+    title: "Disabled tool",
+    executor: "disabled-tool"
+  };
+  const request = await runtime.requestAuthorization(action, "planner");
+  await runtime.authorize(request.id, { approved: true, actor: "human" });
+
+  await assert.rejects(
+    runtime.executeAction(action, { authorizationId: request.id }),
+    /Meta-Harness blocked action|Executor is disabled/
+  );
+});

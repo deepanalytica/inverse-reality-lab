@@ -225,7 +225,7 @@ function buildRuntime() {
     artifactId: "MEASUREMENT-DESIGN-001",
     status: "CREATED",
     proposal: action.payload
-  }));
+  }), { effect: "write", tags: ["artifact_write"] });
   return r;
 }
 
