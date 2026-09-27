@@ -1,52 +1,78 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Revisión académica · IRL</title><link rel="stylesheet" href="assets/review.css"></head><body><main>
-<section class="hero"><div class="muted">Inverse Reality Laboratory · protocolo de evaluación</div>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisión académica v1.2 · Inverse Reality Laboratory</title>
+<link rel="stylesheet" href="assets/review.css">
+</head>
+<body>
+<main>
+<section class="hero">
+<div class="muted">Inverse Reality Laboratory · Preprint v1.2</div>
 <h1>Revisión multidisciplinaria</h1>
-<p>Esta página reúne la ruta de revisión y una rúbrica editable. Las puntuaciones se calculan localmente en el navegador y pueden exportarse como JSON.</p>
-<div class="links"><a href="dashboard.html">Dashboard 3D/4D</a><a href="paper/PAPER.pdf">Paper PDF</a><a href="library.html#start">Biblioteca</a><a href="benchmarks/README.md">Benchmarks</a><a href="COMMISSION_REVIEW.md">Protocolo</a></div></section>
+<p>Ruta de evaluación para arqueología, ingeniería, matemática aplicada, física, ciencias de datos y computación.</p>
+<div class="links">
+<a href="dashboard.html">Dashboard 3D/4D</a>
+<a href="paper/PAPER.pdf">Paper</a>
+<a href="ADVANCED_MATHEMATICS.md">Matemática avanzada</a>
+<a href="TOPOLOGY.md">Topología</a>
+<a href="VALIDATION_PROTOCOL.md">Validación</a>
+<a href="AI_REVIEW_GUIDE.md">Guía de auditoría</a>
+</div>
+</section>
 
 <h2>Rúbrica</h2>
-<div class="grid" id="rubric">
-<div class="head">Dimensión</div><div class="head">0–10</div><div class="head">Comentario</div>
+<div class="panel">
+<table style="width:100%;border-collapse:collapse">
+<thead><tr><th style="text-align:left;padding:8px">Dimensión</th><th style="width:90px;padding:8px">0–10</th><th style="text-align:left;padding:8px">Observación</th></tr></thead>
+<tbody>
+<tr><td>Definición del problema</td><td></td><td></td></tr>
+<tr><td>Claridad conceptual</td><td></td><td></td></tr>
+<tr><td>Consistencia matemática</td><td></td><td></td></tr>
+<tr><td>Topología computacional</td><td></td><td></td></tr>
+<tr><td>Física y mecánica</td><td></td><td></td></tr>
+<tr><td>Integración arqueológica</td><td></td><td></td></tr>
+<tr><td>Evidencia y procedencia</td><td></td><td></td></tr>
+<tr><td>Inferencia e identificabilidad</td><td></td><td></td></tr>
+<tr><td>Validación y falsabilidad</td><td></td><td></td></tr>
+<tr><td>Reproducibilidad computacional</td><td></td><td></td></tr>
+<tr><td>Contribución metodológica</td><td></td><td></td></tr>
+<tr><td>Calibración epistemológica</td><td></td><td></td></tr>
+</tbody>
+</table>
+<p class="muted">Puntuación máxima sugerida: 120 puntos. Cada dimensión debe acompañarse de una justificación técnica.</p>
 </div>
-<div class="panel"><b>Puntuación total:</b> <span class="total" id="total">0.0 / 100</span><p class="muted">La rúbrica evalúa el estado actual del programa de investigación, no una tesis doctoral defendida.</p>
-<button class="btn" id="export">Exportar evaluación JSON</button></div>
 
-<h2>Preguntas para la comisión</h2>
-<div class="panel"><ul>
-<li>¿La formulación inversa mejora la evaluación de hipótesis constructivas frente a una narrativa directa?</li>
-<li>¿La ontología positiva/negativa añade capacidad inferencial medible?</li>
-<li>¿La jerarquía de identificabilidad evita sobreinterpretaciones?</li>
-<li>¿Los cinco benchmarks son suficientes como controles iniciales?</li>
-<li>¿Qué benchmark prospectivo debería congelarse primero?</li>
-<li>¿Qué datos de Khufu producirían mayor ganancia de información?</li>
-</ul></div>
+<h2>Preguntas críticas</h2>
+<div class="panel">
+<ul>
+<li>¿La formulación inversa reduce de forma medible el espacio de historias frente a baselines simples?</li>
+<li>¿La separación entre observado, derivado, inferido, hipótesis y contrafactual es consistente?</li>
+<li>¿La homología relativa respecto del exterior está bien planteada?</li>
+<li>¿Se usa zigzag persistence cuando la evolución deja de ser monótona?</li>
+<li>¿El politopo de orden aporta una medida útil de cronologías compatibles?</li>
+<li>¿Las hipótesis producen predicciones y mediciones discriminantes?</li>
+<li>¿El protocolo prospectivo es suficiente para evaluar generalización?</li>
+<li>¿La geometría paramétrica está separada de la geometría medida?</li>
+<li>¿Qué dato de Khufu produciría mayor ganancia esperada de información?</li>
+</ul>
+</div>
 
 <h2>Entregables auditables</h2>
-<div class="panel"><ul>
-<li>Fuente LaTeX modular y PDF compilado.</li>
-<li>Registro epistemológico.</li>
-<li>Cinco benchmarks con cálculos reproducibles.</li>
-<li>Estudio adversarial de ablación.</li>
-<li>Dashboard 3D/4D con fuentes y estados epistemológicos.</li>
-<li>Datos JSON separados de la presentación.</li>
-<li>Roadmap de validación prospectiva.</li>
-</ul></div>
-
-<script>
-const dims=["Definición del problema","Claridad conceptual","Consistencia matemática","Física y mecánica","Integración arqueológica","Evidencia y procedencia","Identificabilidad","Validación y falsabilidad","Reproducibilidad computacional","Contribución metodológica"];
-const rubric=document.getElementById("rubric");
-dims.forEach((d,i)=>{
-  const a=document.createElement("div");a.textContent=(i+1)+". "+d;
-  const b=document.createElement("div");b.innerHTML='<input type="number" min="0" max="10" step="0.5" data-score="'+i+'" value="0">';
-  const c=document.createElement("div");c.innerHTML='<textarea data-comment="'+i+'" placeholder="Observación de la comisión"></textarea>';
-  rubric.append(a,b,c);
-});
-function calc(){const vals=[...document.querySelectorAll("[data-score]")].map(x=>Math.max(0,Math.min(10,Number(x.value)||0)));const sum=vals.reduce((a,b)=>a+b,0);document.getElementById("total").textContent=sum.toFixed(1)+" / 100";return vals}
-document.addEventListener("input",calc);
-document.getElementById("export").onclick=()=>{
- const scores=calc();const comments=[...document.querySelectorAll("[data-comment]")].map(x=>x.value);
- const data={project:"Inverse Reality Laboratory",version:"1.1",date:new Date().toISOString(),scores:dims.map((dimension,i)=>({dimension,score:scores[i],comment:comments[i]})),total:scores.reduce((a,b)=>a+b,0)};
- const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="irl-review.json";a.click();URL.revokeObjectURL(a.href);
-};
-</script></main></body></html>
+<div class="panel">
+<ul>
+<li>Paper LaTeX modular y PDF compilado.</li>
+<li>Matemática avanzada y topología documentadas.</li>
+<li>Dashboard 3D/4D con trazabilidad.</li>
+<li>Datasets JSON separados de la presentación.</li>
+<li>Validador semántico automático.</li>
+<li>Cinco benchmarks retrospectivos.</li>
+<li>Estudio adversarial de identificabilidad.</li>
+<li>Protocolo prospectivo.</li>
+<li>Registro epistemológico y de fuentes.</li>
+</ul>
+</div>
+</main>
+</body>
+</html>
