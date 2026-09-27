@@ -128,3 +128,15 @@ R
 IRL avanza cuando aumenta poder discriminante o calibración sobre un baseline predefinido.
 
 Una interfaz más compleja no cuenta como validación.
+
+
+## Benchmark topológico sintético
+
+La versión v1.2 incluye cuatro geometrías voxelizadas con tipo topológico conocido:
+
+- bloque sólido: \((1,0,0)\);
+- dos componentes: \((2,0,0)\);
+- shell hueca: \((1,0,1)\);
+- toro sólido: \((1,1,0)\).
+
+El script scripts/topology_synthetic.py calcula característica de Euler y Betti numbers como control previo a la aplicación arqueológica.
