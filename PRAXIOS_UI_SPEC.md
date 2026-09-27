@@ -29,7 +29,8 @@ This mode exercises real state transitions, gates, authorizations, walls and led
 Connect backend opens a configuration dialog for:
 
 - API base URL;
-- PRAXIOS bearer token;
+- PRAXIOS runtime token;
+- separate human-authority token;
 - planner provider/model;
 - research provider/model;
 - math provider/model;

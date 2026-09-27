@@ -113,3 +113,8 @@ The runtime records tasks, evidence, claims, reviews, gates, hashes, model-call 
 - authorization replay -> BLOCK;
 - executor failure -> authorization remains consumed and ACTION_EXECUTION_FAILED is recorded;
 - ledger/state mismatch -> audit BLOCK.
+
+
+## Human authority credential boundary
+
+Production deployments use a separate human-authority credential for approval and decision endpoints. Runtime/model orchestration credentials cannot approve their own effects.

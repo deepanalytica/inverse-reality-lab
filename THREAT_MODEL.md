@@ -59,7 +59,7 @@ Production binding requires a 32-byte PRAXIOS_DATA_KEY. Snapshots use AES-256-GC
 
 ### API authentication
 
-Non-local binding requires PRAXIOS_SERVER_TOKEN. Comparison uses timing-safe equality.
+Non-local binding requires PRAXIOS_SERVER_TOKEN for runtime calls and a separate PRAXIOS_HUMAN_TOKEN for approval and decision endpoints. Comparisons use timing-safe equality. The model-provider path never receives the human-authority credential.
 
 ### Browser isolation
 

@@ -444,8 +444,9 @@ function remoteModelConfig() {
 async function connectRemote() {
   const baseUrl = $("#api-base").value.trim();
   const token = $("#api-token").value;
+  const humanToken = $("#human-token").value;
   if (!baseUrl) throw new Error("API base URL is required.");
-  const candidate = new PraxiosApiClient({ baseUrl, token });
+  const candidate = new PraxiosApiClient({ baseUrl, token, humanToken });
   const health = await candidate.health();
   const providerResult = await candidate.providers();
   const models = remoteModelConfig();
@@ -456,12 +457,12 @@ async function connectRemote() {
     }
   }
   apiClient = candidate;
-  remoteConfig = { baseUrl, token, models };
+  remoteConfig = { baseUrl, token, humanToken, models };
   $("#runtime-mode-label").textContent = "REMOTE RUNTIME · " + baseUrl.replace(/^https?:\/\//, "");
   $(".px-session-chip").classList.add("remote");
   $("#provider-status").innerHTML = "<b>Remote providers</b>" + esc((providerResult.providers || []).map(p => p.name).join(" · "));
   $("#runtime-connect-status").textContent =
-    "Connected · runtime " + esc(health.version) + " · encrypted persistence: " + Boolean(health.encryptedPersistence);
+    "Connected · runtime " + esc(health.version) + " · encrypted persistence: " + Boolean(health.encryptedPersistence) + " · separate human authority: " + Boolean(health.separateHumanAuthority);
   toast("Remote PRAXIOS runtime connected.");
 }
 

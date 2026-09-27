@@ -34,6 +34,7 @@ test("server enforces auth and executes an approved action end-to-end", { timeou
   const port = await freePort();
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), "praxios-server-"));
   const token = "test-token-" + crypto.randomBytes(12).toString("hex");
+  const humanToken = "human-token-" + crypto.randomBytes(12).toString("hex");
   const dataKey = crypto.randomBytes(32).toString("base64");
   const serverPath = path.resolve("runtime/server.mjs");
 
@@ -44,6 +45,7 @@ test("server enforces auth and executes an approved action end-to-end", { timeou
       HOST: "127.0.0.1",
       PORT: String(port),
       PRAXIOS_SERVER_TOKEN: token,
+      PRAXIOS_HUMAN_TOKEN: humanToken,
       PRAXIOS_DATA_KEY: dataKey,
       PRAXIOS_DATA_DIR: directory,
       PRAXIOS_CORS_ORIGIN: "https://example.test"
@@ -88,7 +90,7 @@ test("server enforces auth and executes an approved action end-to-end", { timeou
       baseUrl + "/api/sessions/integration-session/authorizations/" + authRequest.request.id,
       {
         method: "POST",
-        headers: auth,
+        headers: { ...auth, "x-praxios-human-authorization": humanToken },
         body: JSON.stringify({ approved: true, actor: "integration-human" })
       }
     );

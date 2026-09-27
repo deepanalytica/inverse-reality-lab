@@ -9,6 +9,7 @@ The service exposes /api/health and listens on the platform-provided PORT.
 Required production variables:
 
 - PRAXIOS_SERVER_TOKEN
+- PRAXIOS_HUMAN_TOKEN
 - PRAXIOS_DATA_KEY
 - PRAXIOS_CORS_ORIGIN
 - at least one configured model provider key/model pair.
@@ -19,7 +20,7 @@ Recommended:
 - PRAXIOS_DATA_DIR=/data
 - attach a persistent volume mounted at /data.
 
-The runtime refuses to bind to a non-localhost interface if either the server token or encrypted-persistence key is absent.
+The runtime refuses to bind to a non-localhost interface unless runtime authentication, a separate human-authority credential, and encrypted persistence are configured.
 
 ## Frontend connection
 

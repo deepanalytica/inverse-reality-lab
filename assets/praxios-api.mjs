@@ -1,14 +1,16 @@
 export class PraxiosApiClient {
-  constructor({ baseUrl, token = "" } = {}) {
+  constructor({ baseUrl, token = "", humanToken = "" } = {}) {
     if (!baseUrl) throw new Error("PRAXIOS API base URL is required.");
     this.baseUrl = baseUrl.replace(/\/+$/, "");
     this.token = token;
+    this.humanToken = humanToken;
   }
 
-  async request(path, { method = "GET", body = undefined } = {}) {
+  async request(path, { method = "GET", body = undefined, humanAuthority = false } = {}) {
     const headers = { "accept": "application/json" };
     if (body !== undefined) headers["content-type"] = "application/json";
     if (this.token) headers["authorization"] = "Bearer " + this.token;
+    if (humanAuthority && this.humanToken) headers["x-praxios-human-authorization"] = this.humanToken;
 
     const response = await fetch(this.baseUrl + path, {
       method,
@@ -49,7 +51,8 @@ export class PraxiosApiClient {
       "/authorizations/" + encodeURIComponent(authorizationId),
       {
         method: "POST",
-        body: { approved, actor, reason }
+        body: { approved, actor, reason },
+        humanAuthority: true
       }
     );
   }
@@ -70,7 +73,8 @@ export class PraxiosApiClient {
       "/decisions/" + encodeURIComponent(packageId) + "/select",
       {
         method: "POST",
-        body: { selectedOptionId, actor, rationale }
+        body: { selectedOptionId, actor, rationale },
+        humanAuthority: true
       }
     );
   }

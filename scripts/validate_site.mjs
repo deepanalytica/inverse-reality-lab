@@ -47,7 +47,7 @@ for(const token of ["validatePlannerOutput","validateWorkerOutput","validateRevi
   if(!orchestrator.includes(token)) errors.push("orchestrator: falta "+token);
 }
 const server=fs.readFileSync("runtime/server.mjs","utf8");
-for(const token of ["PRAXIOS_SERVER_TOKEN","PRAXIOS_DATA_KEY","EncryptedFileSessionStore","rateLimit","timingSafeEqual"]){
+for(const token of ["PRAXIOS_SERVER_TOKEN","PRAXIOS_HUMAN_TOKEN","PRAXIOS_DATA_KEY","EncryptedFileSessionStore","rateLimit","timingSafeEqual","humanAuthorized"]){
   if(!server.includes(token)) errors.push("server: falta "+token);
 }
 const publicClient=fs.readFileSync("assets/praxios.js","utf8");

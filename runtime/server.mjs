@@ -13,6 +13,7 @@ import { EncryptedFileSessionStore } from "./storage/encrypted-file-store.mjs";
 const PORT = Number(process.env.PORT || 8787);
 const HOST = process.env.HOST || "127.0.0.1";
 const SERVER_TOKEN = process.env.PRAXIOS_SERVER_TOKEN || "";
+const HUMAN_TOKEN = process.env.PRAXIOS_HUMAN_TOKEN || "";
 const DATA_KEY = process.env.PRAXIOS_DATA_KEY || "";
 const MAX_BODY_BYTES = Number(process.env.PRAXIOS_MAX_BODY_BYTES || 1_000_000);
 const RATE_LIMIT_PER_MINUTE = Number(process.env.PRAXIOS_RATE_LIMIT_PER_MINUTE || 120);
@@ -28,6 +29,9 @@ const remoteBinding = !LOCAL_HOSTS.has(HOST);
 
 if (remoteBinding && !SERVER_TOKEN) {
   throw new Error("PRAXIOS_SERVER_TOKEN is required when binding outside localhost.");
+}
+if (remoteBinding && !HUMAN_TOKEN) {
+  throw new Error("PRAXIOS_HUMAN_TOKEN is required when binding outside localhost.");
 }
 if (remoteBinding && !DATA_KEY) {
   throw new Error("PRAXIOS_DATA_KEY is required when binding outside localhost.");
@@ -84,7 +88,7 @@ function responseHeaders(req) {
   if (origin && CORS_ORIGINS.has(origin)) {
     headers["access-control-allow-origin"] = origin;
     headers["vary"] = "Origin";
-    headers["access-control-allow-headers"] = "content-type, authorization";
+    headers["access-control-allow-headers"] = "content-type, authorization, x-praxios-human-authorization";
     headers["access-control-allow-methods"] = "GET,POST,OPTIONS";
   }
   return headers;
@@ -189,6 +193,15 @@ function authorized(req) {
   return crypto.timingSafeEqual(supplied, expected);
 }
 
+function humanAuthorized(req) {
+  if (!HUMAN_TOKEN) return LOCAL_HOSTS.has(HOST);
+  const header = String(req.headers["x-praxios-human-authorization"] || "");
+  const supplied = Buffer.from(header);
+  const expected = Buffer.from(HUMAN_TOKEN);
+  if (supplied.length !== expected.length) return false;
+  return crypto.timingSafeEqual(supplied, expected);
+}
+
 function rateLimit(req) {
   const key = req.socket.remoteAddress || "unknown";
   const now = Date.now();
@@ -232,6 +245,7 @@ async function handle(req, res) {
       version: "0.2.0",
       providers: configuredProviders(),
       authRequired: Boolean(SERVER_TOKEN),
+      separateHumanAuthority: Boolean(HUMAN_TOKEN),
       encryptedPersistence: Boolean(DATA_KEY),
       requestId: req.praxiosRequestId
     });
@@ -321,6 +335,9 @@ async function handle(req, res) {
 
   const authorizationDecisionMatch = path.match(/^\/api\/sessions\/([^/]+)\/authorizations\/([^/]+)$/);
   if (req.method === "POST" && authorizationDecisionMatch) {
+    if (!humanAuthorized(req)) {
+      return json(req, res, 403, { error: "human_authority_required", requestId: req.praxiosRequestId });
+    }
     const runtime = await getRuntime(authorizationDecisionMatch[1]);
     const body = await readJson(req);
     const authorization = await runtime.authorize(authorizationDecisionMatch[2], {
@@ -351,6 +368,9 @@ async function handle(req, res) {
 
   const decisionMatch = path.match(/^\/api\/sessions\/([^/]+)\/decisions\/([^/]+)\/select$/);
   if (req.method === "POST" && decisionMatch) {
+    if (!humanAuthorized(req)) {
+      return json(req, res, 403, { error: "human_authority_required", requestId: req.praxiosRequestId });
+    }
     const runtime = await getRuntime(decisionMatch[1]);
     const body = await readJson(req);
     const decision = await runtime.selectDecision(decisionMatch[2], body.selectedOptionId, {

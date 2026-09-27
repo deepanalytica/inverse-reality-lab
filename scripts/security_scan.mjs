@@ -18,10 +18,11 @@ function scanFile(file) {
   const rules = [
     { name: "OpenAI key-like token", re: /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/g },
     { name: "Anthropic key-like token", re: /\bsk-ant-[A-Za-z0-9_-]{20,}\b/g },
-    { name: "Non-empty OPENAI_API_KEY assignment", re: /OPENAI_API_KEY\s*=\s*[^\s#][^\r\n]*/g },
-    { name: "Non-empty ANTHROPIC_API_KEY assignment", re: /ANTHROPIC_API_KEY\s*=\s*[^\s#][^\r\n]*/g },
-    { name: "Non-empty PRAXIOS_SERVER_TOKEN assignment", re: /PRAXIOS_SERVER_TOKEN\s*=\s*[^\s#][^\r\n]*/g },
-    { name: "Non-empty PRAXIOS_DATA_KEY assignment", re: /PRAXIOS_DATA_KEY\s*=\s*[^\s#][^\r\n]*/g }
+    { name: "Non-empty OPENAI_API_KEY assignment", re: /OPENAI_API_KEY[ \t]*=[ \t]*[^\s#][^\r\n]*/g },
+    { name: "Non-empty ANTHROPIC_API_KEY assignment", re: /ANTHROPIC_API_KEY[ \t]*=[ \t]*[^\s#][^\r\n]*/g },
+    { name: "Non-empty PRAXIOS_SERVER_TOKEN assignment", re: /PRAXIOS_SERVER_TOKEN[ \t]*=[ \t]*[^\s#][^\r\n]*/g },
+    { name: "Non-empty PRAXIOS_HUMAN_TOKEN assignment", re: /PRAXIOS_HUMAN_TOKEN[ \t]*=[ \t]*[^\s#][^\r\n]*/g },
+    { name: "Non-empty PRAXIOS_DATA_KEY assignment", re: /PRAXIOS_DATA_KEY[ \t]*=[ \t]*[^\s#][^\r\n]*/g }
   ];
   for (const rule of rules) {
     const matches = text.match(rule.re) || [];

@@ -27,9 +27,10 @@ Health:
 When HOST is not localhost, startup fails unless both are set:
 
 - PRAXIOS_SERVER_TOKEN
+- PRAXIOS_HUMAN_TOKEN
 - PRAXIOS_DATA_KEY
 
-PRAXIOS_DATA_KEY must decode to exactly 32 bytes. Production snapshots are encrypted with AES-256-GCM.
+PRAXIOS_SERVER_TOKEN authenticates runtime calls. PRAXIOS_HUMAN_TOKEN is a separate credential accepted only by approval and decision endpoints. PRAXIOS_DATA_KEY must decode to exactly 32 bytes. Production snapshots are encrypted with AES-256-GCM.
 
 Use runtime/.env.example as the configuration reference.
 
