@@ -6,12 +6,26 @@ on:
     branches:
       - main
       - feat/executive-entry-portal
+      - feat/executive-portal-v2-llm-discovery
     paths:
       - "index.html"
       - "lab.html"
       - "assets/portal.css"
       - "assets/portal.js"
+      - "assets/portal-three.js"
       - "site-nav.js"
+      - "robots.txt"
+      - "sitemap.xml"
+      - "llms.txt"
+      - "deep-analytica.jsonld"
+      - "dashboard.html"
+      - "library.html"
+      - "mathematics.html"
+      - "mineral-systems.html"
+      - "praxios-design-system.html"
+      - "praxios.html"
+      - "review.html"
+      - "investor/**"
       - "scripts/validate_portal.mjs"
       - ".github/workflows/validate-portal.yml"
 
@@ -23,5 +37,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Validate portal structure and links
+      - name: Validate JavaScript syntax
+        shell: bash
+        run: |
+          node --check assets/portal.js
+          node --check site-nav.js
+          node --input-type=module --check < assets/portal-three.js
+      - name: Validate portal structure, discovery and links
         run: node scripts/validate_portal.mjs
