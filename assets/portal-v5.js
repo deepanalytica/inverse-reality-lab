@@ -132,6 +132,7 @@
     const cellTimes=new Map();
     let keyCol=2,keyRow=2;
     let raf=0;
+    let touchDrawing=false;
 
     const fitCanvas=()=>{
       const rect=stage.getBoundingClientRect();
@@ -204,19 +205,40 @@
     if(!reduced)raf=requestAnimationFrame(draw);
 
     let last=null;
-    stage.addEventListener("pointermove",e=>{
-      if(e.pointerType==="touch")return;
+    const paintPointer=e=>{
+      if(e.pointerType==="touch"&&!touchDrawing)return;
       const rect=stage.getBoundingClientRect();
       const x=e.clientX-rect.left,y=e.clientY-rect.top;
       const now=performance.now();
       if(last){
         const dx=x-last.x,dy=y-last.y,dist=Math.hypot(dx,dy);
-        const steps=Math.max(1,Math.ceil(dist/16));
+        const steps=Math.max(1,Math.ceil(dist/14));
         for(let s=1;s<=steps;s++)addPoint(last.x+dx*s/steps,last.y+dy*s/steps,now-s);
       }else addPoint(x,y,now);
       last={x,y};
-    },{passive:true});
-    stage.addEventListener("pointerleave",()=>{last=null});
+    };
+    stage.addEventListener("pointerdown",e=>{
+      if(e.pointerType==="touch"){
+        touchDrawing=true;
+        stage.setPointerCapture?.(e.pointerId);
+        paintPointer(e);
+        e.preventDefault();
+      }
+    });
+    stage.addEventListener("pointermove",e=>{
+      if(e.pointerType==="touch"&&touchDrawing)e.preventDefault();
+      paintPointer(e);
+    },{passive:false});
+    const endPointer=e=>{
+      if(e.pointerType==="touch"){
+        touchDrawing=false;
+        try{stage.releasePointerCapture?.(e.pointerId)}catch{}
+      }
+      last=null;
+    };
+    stage.addEventListener("pointerup",endPointer);
+    stage.addEventListener("pointercancel",endPointer);
+    stage.addEventListener("pointerleave",e=>{if(e.pointerType!=="touch")last=null});
 
     stage.addEventListener("keydown",e=>{
       const keys={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};
