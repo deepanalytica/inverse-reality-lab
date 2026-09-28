@@ -8,7 +8,7 @@
     ["GEO","Deep Geo",href("mineral-systems.html")],
     ["LAB","Research",href("lab.html")],
     ["BOOK","EL PUENTE",href("el-puente/")],
-    ["ACCESS","Architecture Room",href("architecture-room/")]
+    ["TECH","Revisión técnica",href("architecture-room/")]
   ];
   const style=document.createElement("style");style.dataset.irlGlobalNav="styles";style.textContent=`
   [data-irl-global-nav]{--bg:rgba(9,10,8,.95);--line:rgba(245,244,238,.14);--text:#f4f5ef;--muted:#8d948b;--acid:#d9ff63;position:fixed;right:16px;bottom:16px;z-index:2147483000;font-family:Inter,system-ui,sans-serif}
@@ -20,7 +20,7 @@
   document.head.appendChild(style);
   const root=document.createElement("div");root.dataset.irlGlobalNav="";root.dataset.open="false";root.innerHTML=`
   <button class="irl-trigger" type="button" aria-expanded="false" aria-label="Abrir navegación"><i></i><span>DEEP ANALYTICA / NAV</span></button>
-  <div class="irl-panel"><div class="irl-head"><div><span>PUBLIC SURFACE</span><strong>Deep Analytica</strong></div><button type="button" aria-label="Cerrar">×</button></div><div class="irl-links"></div><div class="irl-foot">CAPABILITY PUBLIC · MECHANISM PROTECTED</div></div>`;
+  <div class="irl-panel"><div class="irl-head"><div><span>DEEP ANALYTICA</span><strong>Deep Analytica</strong></div><button type="button" aria-label="Cerrar">×</button></div><div class="irl-links"></div><div class="irl-foot">DECISIONS · EVIDENCE · HUMAN AUTHORITY</div></div>`;
   const list=root.querySelector(".irl-links");
   for(const [code,label,url] of links){const a=document.createElement("a");a.href=url;const norm=url.replace(/index\.html$/,"").replace(/\/$/,""),here=current.replace(/index\.html(?:#.*)?$/,"").replace(/#.*$/,"").replace(/\/$/,"");if(here===norm||(label==="EL PUENTE"&&current.includes("/el-puente/")))a.dataset.current="true";a.innerHTML=`<b>${code}</b><span>${label}</span>`;list.appendChild(a)}
   const trigger=root.querySelector(".irl-trigger"),close=root.querySelector(".irl-head button"),setOpen=open=>{root.dataset.open=String(open);trigger.setAttribute("aria-expanded",String(open))};

@@ -4,15 +4,14 @@ This repository publishes selected research, public demonstrations and the stati
 
 Public site: https://deepanalytica.github.io/inverse-reality-lab/
 
-## Public purpose
+## What you can evaluate here
 
-The public surface exists to show:
-- the problem Deep Analytica addresses;
+The public repository is intended to help clients, researchers, partners and other evaluators understand:
+- the problems Deep Analytica addresses;
 - selected product interactions;
 - selected research and domain applications;
-- enough evidence for a visitor to evaluate whether a deeper conversation is warranted.
-
-It is **not** intended to contain the complete production architecture or the proprietary decision-control implementation.
+- the evidence currently available;
+- whether a deeper technical review or pilot is warranted.
 
 ## Public systems
 
@@ -20,24 +19,13 @@ It is **not** intended to contain the complete production architecture or the pr
 - Deep Geo / Mineral Systems research: https://deepanalytica.github.io/inverse-reality-lab/mineral-systems.html
 - Inverse Reality Laboratory: https://deepanalytica.github.io/inverse-reality-lab/lab.html
 - EL PUENTE: https://deepanalytica.github.io/inverse-reality-lab/el-puente/
-- Architecture Room request: https://deepanalytica.github.io/inverse-reality-lab/architecture-room/
+- Technical review request: https://deepanalytica.github.io/inverse-reality-lab/architecture-room/
 
-## Disclosure rule
+## Technical evaluation
 
-Public work follows progressive disclosure:
+Organizations considering a pilot can request a deeper review focused on their actual environment: integration, data boundaries, deployment, security, evidence and implementation requirements.
 
-P0 PUBLIC — positioning, use cases, public interface and high-level flows.  
-P1 PUBLIC EVIDENCE — selected research, benchmarks and evidence required to evaluate seriousness.  
-P2 QUALIFIED ACCESS — selected architecture, integration and deployment material.  
-P3 DUE DILIGENCE — expanded technical and commercial review under controlled process.  
-P4 INTERNAL — implementation details and operational know-how.  
-P5 CROWN JEWEL — proprietary control logic, evaluators, algorithms and sensitive system intelligence.
-
-Detailed runtime and proprietary control logic are maintained in private repositories. New work should default to private unless explicitly reviewed for public disclosure.
-
-## Important historical note
-
-Some technical material was previously published in this repository. Moving or removing a file from the current branch does not erase prior clones, caches or Git history. Treat previously public information as already disclosed and protect new implementation work accordingly.
+The public repository is not the production source of truth for the full Deep Analytica platform.
 
 ## Contact
 
