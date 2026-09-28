@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es" class="portal-v5" data-theme="light" data-portal-native-nav="true">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F8F7F3">
+<title>Deep Analytica · Design System Lab</title>
+<script>(function(){try{var t=localStorage.getItem("deep-analytica-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal-v3.css">
+<link rel="stylesheet" href="../assets/portal-v4.css">
+<link rel="stylesheet" href="../assets/portal-v5.css">
+<link rel="stylesheet" href="../assets/design-system-v1.css">
+<style>
+.ds-page{min-height:100vh;background:var(--da-bg);color:var(--da-text)}
+.ds-bar{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--da-border);background:var(--da-nav-bg);backdrop-filter:blur(18px)}
+.ds-bar-inner{width:min(1320px,calc(100% - 32px));height:68px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ds-brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.1em;font-size:12px}
+.ds-actions{display:flex;gap:8px;align-items:center}
+.ds-main{width:min(1320px,calc(100% - 32px));margin:auto;padding:72px 0 100px}
+.ds-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:end;padding-bottom:72px;border-bottom:1px solid var(--da-border)}
+.ds-hero h1{margin:12px 0 0;font:650 clamp(48px,7vw,96px)/.92 var(--da-font-sans);letter-spacing:-.065em}
+.ds-hero h1 em{display:block;color:var(--da-accent);font:400 .78em/.95 var(--da-font-display);letter-spacing:-.025em}
+.ds-hero p{max-width:620px;margin:0;color:var(--da-text-2);font-size:17px;line-height:1.65}
+.ds-section{padding:64px 0;border-bottom:1px solid var(--da-border)}
+.ds-head{display:grid;grid-template-columns:.5fr 1fr;gap:40px;margin-bottom:32px}
+.ds-head h2{margin:0;font:650 clamp(30px,4vw,52px)/1 var(--da-font-sans);letter-spacing:-.045em}
+.ds-head p{margin:0;color:var(--da-text-2);line-height:1.65}
+.ds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ds-swatch{min-height:170px;padding:18px;border:1px solid var(--da-border);border-radius:16px;background:var(--da-surface);display:flex;flex-direction:column;justify-content:space-between}
+.ds-swatch i{height:66px;border-radius:10px;border:1px solid var(--da-border)}
+.ds-swatch code{font:500 11px var(--da-font-mono);color:var(--da-text-3)}
+.ds-type{display:grid;gap:20px}
+.ds-type-row{padding:22px;border:1px solid var(--da-border);border-radius:16px;background:var(--da-surface)}
+.ds-type-row small{display:block;margin-bottom:14px;color:var(--da-text-3);font:500 10px var(--da-font-mono)}
+.ds-display{font:400 clamp(42px,7vw,86px)/.92 var(--da-font-display);letter-spacing:-.035em}
+.ds-h1{font:650 clamp(40px,6vw,72px)/.95 var(--da-font-sans);letter-spacing:-.055em}
+.ds-h2{font:650 clamp(30px,4vw,50px)/1 var(--da-font-sans);letter-spacing:-.04em}
+.ds-body{font:400 17px/1.65 var(--da-font-sans);color:var(--da-text-2)}
+.ds-mono{font:500 11px/1.5 var(--da-font-mono);letter-spacing:.08em;color:var(--da-text-3)}
+.ds-card{padding:24px;border:1px solid var(--da-border);border-radius:18px;background:var(--da-surface);box-shadow:var(--da-card-shadow)}
+.ds-card h3{margin:28px 0 10px;font:650 24px/1.1 var(--da-font-sans);letter-spacing:-.035em}
+.ds-card p{margin:0;color:var(--da-text-2);line-height:1.6}
+.ds-kicker{color:var(--da-text-3);font:500 10px var(--da-font-mono);letter-spacing:.1em;text-transform:uppercase}
+.ds-field{height:360px;border:1px solid var(--da-border);border-radius:22px;background:linear-gradient(var(--da-field-grid) 1px,transparent 1px),linear-gradient(90deg,var(--da-field-grid) 1px,transparent 1px),var(--da-field-bg);background-size:32px 32px;position:relative;overflow:hidden}
+.ds-field:before{content:"DECISION FIELD";position:absolute;left:18px;top:16px;color:var(--da-text-3);font:500 10px var(--da-font-mono)}
+.ds-node{position:absolute;width:18px;height:18px;border-radius:5px;background:var(--da-accent);box-shadow:0 0 0 7px var(--da-accent-soft)}
+.ds-node.n1{left:20%;top:38%}.ds-node.n2{left:44%;top:55%}.ds-node.n3{left:70%;top:30%}
+.ds-field svg{position:absolute;inset:0;width:100%;height:100%}
+.ds-field path{stroke:var(--da-accent);stroke-width:2;fill:none;opacity:.72}
+.ds-controls{display:flex;flex-wrap:wrap;gap:10px}
+.ds-btn{min-height:48px;padding:0 18px;border-radius:12px;border:1px solid var(--da-border-strong);background:transparent;color:var(--da-text);font:500 10px var(--da-font-mono);text-transform:uppercase;letter-spacing:.05em}
+.ds-btn.primary{background:var(--da-accent);border-color:var(--da-accent);color:#fff}
+.ds-btn.soft{background:var(--da-accent-soft);border-color:transparent;color:var(--da-accent)}
+.ds-input{width:100%;min-height:48px;padding:0 14px;border:1px solid var(--da-border);border-radius:12px;background:var(--da-surface);color:var(--da-text);outline:0}
+.ds-input:focus{border-color:var(--da-accent);box-shadow:0 0 0 4px var(--da-focus)}
+@media(max-width:820px){.ds-hero,.ds-head{grid-template-columns:1fr}.ds-grid{grid-template-columns:1fr 1fr}.ds-main{padding-top:48px}}@media(max-width:480px){.ds-grid{grid-template-columns:1fr}}
+</style>
+<script defer src="../assets/theme-v1.js"></script>
+</head>
+<body class="ds-page">
+<header class="ds-bar">
+  <div class="ds-bar-inner">
+    <div class="ds-brand">DEEP ANALYTICA · DESIGN SYSTEM</div>
+    <div class="ds-actions">
+      <a class="btn btn-outline" href="../">Volver al sitio</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro" aria-pressed="false"><span class="theme-toggle__sun" aria-hidden="true">☼</span><span class="theme-toggle__moon" aria-hidden="true">◐</span></button>
+    </div>
+  </div>
+</header>
+<main class="ds-main">
+  <section class="ds-hero">
+    <div><div class="ds-kicker">System 01 / Foundations</div><h1>Una UI gobernada, <em>no improvisada.</em></h1></div>
+    <p>Este laboratorio sirve para validar contraste, tipografía, superficie, componentes y comportamiento en modo claro y oscuro antes de llevar cambios a producción.</p>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-head"><h2>Color semántico</h2><p>Los componentes consumen roles —no hexadecimales sueltos— para que todo el sistema pueda cambiar de tema sin perder jerarquía.</p></div>
+    <div class="ds-grid">
+      <div class="ds-swatch"><i style="background:var(--da-bg)"></i><div><strong>Background</strong><br><code>--da-bg</code></div></div>
+      <div class="ds-swatch"><i style="background:var(--da-surface)"></i><div><strong>Surface</strong><br><code>--da-surface</code></div></div>
+      <div class="ds-swatch"><i style="background:var(--da-accent)"></i><div><strong>Electric Iris</strong><br><code>--da-accent</code></div></div>
+      <div class="ds-swatch"><i style="background:var(--da-secondary)"></i><div><strong>Secondary</strong><br><code>--da-secondary</code></div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-head"><h2>Jerarquía tipográfica</h2><p>Sans para comunicar; serif para enfatizar; mono para estado y metadatos. Nunca compiten por el mismo nivel.</p></div>
+    <div class="ds-type">
+      <div class="ds-type-row"><small>DISPLAY / EDITORIAL</small><div class="ds-display">La evidencia sostiene.</div></div>
+      <div class="ds-type-row"><small>H1 / PRODUCT</small><div class="ds-h1">Cuando decidir importa.</div></div>
+      <div class="ds-type-row"><small>H2 / SECTION</small><div class="ds-h2">Ordenamos cómo se decide.</div></div>
+      <div class="ds-type-row"><small>BODY / EXPLANATION</small><div class="ds-body">Deep Analytica organiza datos, modelos, especialistas y herramientas alrededor de una decisión concreta.</div></div>
+      <div class="ds-type-row"><small>MONO / SYSTEM</small><div class="ds-mono">MISSION · EVIDENCE · ASSURANCE · HUMAN AUTHORITY</div></div>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-head"><h2>Componentes</h2><p>Cards, controles y formularios usan el mismo sistema de superficie, borde, foco y espaciado.</p></div>
+    <div class="ds-grid">
+      <article class="ds-card"><div class="ds-kicker">01 / Evidence</div><h3>Evidence Map</h3><p>Qué fuentes sostienen las afirmaciones importantes y dónde persiste incertidumbre.</p></article>
+      <article class="ds-card"><div class="ds-kicker">02 / Unknowns</div><h3>Unknowns & Risks</h3><p>Qué no sabemos todavía y qué podría cambiar la decisión.</p></article>
+      <article class="ds-card"><div class="ds-kicker">03 / Options</div><h3>Decision Conditions</h3><p>Qué tendría que ser cierto para actuar, esperar o medir nuevamente.</p></article>
+      <article class="ds-card"><div class="ds-kicker">04 / Outcome</div><h3>Decision Trace</h3><p>Cómo evolucionó el análisis y qué ocurrió después de decidir.</p></article>
+    </div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-head"><h2>Decision Field</h2><p>La retícula es infraestructura visual. Debe comunicar conexión y trayectoria sin competir con el contenido.</p></div>
+    <div class="ds-field"><svg viewBox="0 0 1000 400" preserveAspectRatio="none"><path d="M180 150 C330 120 350 250 450 220 S650 80 720 120"></path></svg><i class="ds-node n1"></i><i class="ds-node n2"></i><i class="ds-node n3"></i></div>
+  </section>
+
+  <section class="ds-section">
+    <div class="ds-head"><h2>Controles</h2><p>El foco debe ser visible, el acento consistente y los estados legibles en ambos temas.</p></div>
+    <div class="ds-controls"><button class="ds-btn primary">Primary action</button><button class="ds-btn">Secondary</button><button class="ds-btn soft">Soft state</button></div>
+    <div style="margin-top:18px;max-width:520px"><input class="ds-input" placeholder="Describa la decisión que necesita evaluar"></div>
+  </section>
+</main>
+</body>
+</html>
