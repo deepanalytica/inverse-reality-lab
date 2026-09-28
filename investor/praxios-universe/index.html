@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#08090c">
+<title>PRAXIOS Universe — Investor Preview</title>
+<meta name="description" content="Investor preview of PRAXIOS OS, Meta-Harness, The Bridge and Inverse Reality Laboratory.">
+<style>
+:root{
+  --bg:#08090c;--bg2:#0d1015;--panel:#10141b;--panel2:#0b0e13;
+  --line:rgba(238,244,255,.105);--line2:rgba(238,244,255,.18);
+  --text:#f4f7fb;--muted:#98a2af;--faint:#5d6673;
+  --cyan:#6ee7f2;--blue:#67a8ff;--lime:#a7e65a;--amber:#f7c65b;--orange:#ff985e;--red:#ff6d86;
+  --max:1500px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:
+radial-gradient(circle at 14% 7%,rgba(42,128,144,.17),transparent 34rem),
+radial-gradient(circle at 92% 35%,rgba(69,87,125,.11),transparent 34rem),
+var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(#000,transparent 82%)}
+.top{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:15px clamp(18px,4vw,60px);border-bottom:1px solid var(--line);background:rgba(8,9,12,.8);backdrop-filter:blur(22px)}
+.brand{display:flex;gap:11px;align-items:center;text-decoration:none}.mark{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(110,231,242,.35);background:rgba(110,231,242,.04);color:var(--cyan);font:700 11px ui-monospace,monospace}.brand strong,.brand small{display:block}.brand strong{font-size:13px;letter-spacing:.08em}.brand small{margin-top:3px;color:var(--muted);font:600 8px ui-monospace,monospace;letter-spacing:.11em}
+.nav{display:flex;gap:25px}.nav a{text-decoration:none;color:#a4adb9;font-size:11px}.nav a:hover{color:#fff}.private{justify-self:end;display:flex;align-items:center;gap:7px;color:#9ca6b2;font:600 8px ui-monospace,monospace;letter-spacing:.1em}.private i{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 14px rgba(247,198,91,.4)}
+.wrap{max-width:var(--max);margin:auto;padding-left:clamp(18px,6vw,92px);padding-right:clamp(18px,6vw,92px)}
+.hero{padding-top:clamp(90px,11vw,150px);padding-bottom:66px}.eyebrow,.kicker{color:var(--cyan);font:700 9px ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{max-width:1110px;margin:22px 0 25px;font-size:clamp(56px,8.5vw,128px);line-height:.88;letter-spacing:-.065em}.hero h1 span{display:block;color:#818b98}.hero p{max-width:790px;margin:0;color:#aeb7c3;font-size:clamp(17px,1.8vw,24px);line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}.btn{min-height:46px;display:inline-flex;align-items:center;padding:0 17px;border:1px solid var(--line2);text-decoration:none;font:700 9px ui-monospace,monospace;letter-spacing:.08em}.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#071014}.btn:hover{transform:translateY(-1px)}
+.thesis{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.thesis div{padding:19px 18px 19px 0;border-right:1px solid var(--line)}.thesis div:not(:first-child){padding-left:18px}.thesis div:last-child{border-right:0}.thesis span{display:block;color:#68727f;font:600 8px ui-monospace,monospace;letter-spacing:.08em}.thesis strong{display:block;margin-top:8px;font-size:12px;line-height:1.4}
+.section{padding-top:96px;padding-bottom:96px}.head{display:flex;align-items:end;justify-content:space-between;gap:45px;margin-bottom:36px}.head h2{margin:8px 0 0;font-size:clamp(38px,5vw,70px);line-height:1;letter-spacing:-.045em}.head p{max-width:570px;margin:0;color:var(--muted);line-height:1.65}
+.problemgrid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);background:rgba(255,255,255,.013)}.problem{padding:42px}.problem:first-child{border-right:1px solid var(--line)}.problem small{color:var(--faint);font:700 8px ui-monospace,monospace;letter-spacing:.12em}.problem h3{margin:12px 0 18px;font-size:clamp(27px,3.2vw,45px);letter-spacing:-.035em}.problem p{color:#9ea8b4;line-height:1.7}.problem ul{list-style:none;padding:0;margin:22px 0 0}.problem li{padding:10px 0;border-top:1px solid rgba(255,255,255,.05);color:#a9b2bd;font-size:12px}.problem li:before{content:"→";color:var(--cyan);margin-right:10px}
+.arch{display:grid;grid-template-columns:350px 1fr;border:1px solid var(--line);background:var(--panel2)}.archrail{padding:8px;border-right:1px solid var(--line)}.anode{width:100%;display:grid;grid-template-columns:34px 1fr;padding:13px;border:0;border-bottom:1px solid rgba(255,255,255,.045);background:none;color:#88929f;text-align:left;cursor:pointer}.anode .n{grid-row:1/3;color:#515a66;font:600 8px ui-monospace,monospace}.anode b{font-size:12px}.anode small{display:block;margin-top:3px;font:500 8px ui-monospace,monospace}.anode.active{color:#fff;background:rgba(110,231,242,.075);box-shadow:inset 2px 0 0 var(--cyan)}.ainspect{position:relative;min-height:520px;display:grid;align-content:center;padding:clamp(42px,6vw,82px);overflow:hidden}.ainspect:after{content:"";position:absolute;right:-160px;top:-160px;width:430px;height:430px;border:1px solid rgba(110,231,242,.12);border-radius:50%;box-shadow:0 0 0 60px rgba(110,231,242,.018),0 0 0 120px rgba(110,231,242,.009)}.ainspect h3{margin:10px 0 15px;font-size:clamp(34px,4.5vw,64px);line-height:1;letter-spacing:-.04em}.ainspect p{max-width:700px;color:#aab3be;line-height:1.7}.boundary{margin-top:35px;max-width:680px;padding:15px 17px;border-left:2px solid var(--cyan);background:rgba(110,231,242,.04)}.boundary span{display:block;color:var(--cyan);font:700 8px ui-monospace,monospace;letter-spacing:.1em;margin-bottom:6px}.boundary strong{font-size:12px;line-height:1.5}
+.evidencegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.ecard{min-height:220px;padding:24px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.008))}.ecard .tag{display:inline-flex;padding:5px 7px;border:1px solid var(--line);font:700 7px ui-monospace,monospace;letter-spacing:.08em}.tag.implemented{color:var(--blue);border-color:rgba(103,168,255,.22)}.tag.validated{color:var(--lime);border-color:rgba(167,230,90,.22)}.tag.research{color:var(--amber);border-color:rgba(247,198,91,.22)}.ecard h3{margin:22px 0 10px;font-size:21px;letter-spacing:-.02em}.ecard p{margin:0;color:#919ba8;font-size:12px;line-height:1.6}.ecard a{display:inline-block;margin-top:20px;color:var(--cyan);font:700 8px ui-monospace,monospace;letter-spacing:.08em;text-decoration:none}
+.demo{padding:75px clamp(18px,4vw,64px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#090b0f}.demowrap{max-width:1600px;margin:auto}.demohead{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:28px}.demohead h2{margin:8px 0 0;font-size:clamp(38px,5vw,68px);letter-spacing:-.045em}.mode{padding:7px 9px;border:1px solid rgba(247,198,91,.22);color:var(--amber);font:700 8px ui-monospace,monospace;letter-spacing:.09em}.form{padding:19px;border:1px solid var(--line2);background:#0b0e13}.form label{display:block;margin-bottom:9px;color:#69737f;font:700 8px ui-monospace,monospace;letter-spacing:.1em}.form textarea{width:100%;min-height:100px;resize:vertical;border:0;outline:none;background:none;color:#fff;font-size:17px;line-height:1.55}.formfoot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:13px;border-top:1px solid var(--line)}.formfoot span{color:#606a77;font:600 8px ui-monospace,monospace}.formfoot button{min-height:40px;padding:0 15px;border:1px solid var(--cyan);background:var(--cyan);color:#061014;font:800 8px ui-monospace,monospace;letter-spacing:.08em;cursor:pointer}
+.pipeline{display:grid;grid-template-columns:repeat(8,1fr);margin-top:14px;border:1px solid var(--line)}.stage{min-height:105px;padding:12px;border-right:1px solid var(--line)}.stage:last-child{border:0}.stage i{display:block;width:7px;height:7px;border-radius:50%;margin-bottom:27px}.stage b,.stage small{display:block}.stage b{font:700 9px ui-monospace,monospace}.stage small{margin-top:5px;color:#717b87;font-size:9px;line-height:1.35}
+.console{display:grid;grid-template-columns:330px 1fr 350px;margin-top:12px;border:1px solid var(--line);background:#0c0f14}.panel{border-right:1px solid var(--line)}.panel:last-child{border-right:0}.ptitle{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--line);color:#75808c;font:700 8px ui-monospace,monospace;letter-spacing:.07em}.claims{padding:7px}.claim{width:100%;display:flex;gap:9px;padding:11px;border:0;border-bottom:1px solid rgba(255,255,255,.04);background:none;color:#99a3af;text-align:left;cursor:pointer}.claim.active{background:rgba(255,255,255,.035);box-shadow:inset 2px 0 0 var(--cyan)}.claim i,.state i{flex:0 0 auto;width:8px;height:8px;border-radius:50%;margin-top:4px}.claim b{display:block;color:#d7dee6;font:700 8px ui-monospace,monospace}.claim p{margin:4px 0 0;font-size:10px;line-height:1.4}
+.core{min-height:440px;position:relative;display:grid;place-items:center;overflow:hidden}.ring{position:absolute;border:1px solid rgba(110,231,242,.12);border-radius:50%}.r1{width:300px;height:300px}.r2{width:190px;height:190px;border-style:dashed}.center{z-index:2;display:grid;place-content:center;width:105px;height:105px;border:1px solid rgba(110,231,242,.35);border-radius:50%;background:rgba(110,231,242,.045);color:var(--cyan);text-align:center;font:700 9px ui-monospace,monospace}.sat{position:absolute;z-index:2;display:grid;place-content:center;width:76px;height:76px;border:1px solid var(--line2);border-radius:50%;background:#0e1218;text-align:center;font:700 8px ui-monospace,monospace}.s1{transform:translate(-185px,0)}.s2{transform:translate(0,-185px)}.s3{transform:translate(185px,0);border-color:rgba(255,109,134,.23)}.s4{transform:translate(0,185px);border-color:rgba(167,230,90,.23)}
+.inspect{padding:17px}.state{display:flex;gap:10px;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line)}.state span,.state b{display:block}.state span{color:#65707d;font:600 7px ui-monospace,monospace}.state b{margin-top:3px;font:700 10px ui-monospace,monospace}.inspect>p{color:#adb6c1;font-size:11px;line-height:1.55}.debt{margin-top:15px;padding:11px;border-left:2px solid var(--amber);background:rgba(247,198,91,.045)}.debt span{display:block;color:#6b7581;font:700 7px ui-monospace,monospace;margin-bottom:5px}.debt p{margin:0;color:#99a3af;font-size:10px;line-height:1.45}
+.statusgrid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.status{padding:22px;border-right:1px solid var(--line)}.status:last-child{border:0}.status span{color:#69737f;font:700 8px ui-monospace,monospace;letter-spacing:.08em}.status strong{display:block;margin:9px 0 7px;font-size:17px}.status p{margin:0;color:#89939f;font-size:10px;line-height:1.5}
+.usegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.use{padding:28px;border:1px solid var(--line);background:rgba(255,255,255,.012)}.use span{color:var(--cyan);font:700 8px ui-monospace,monospace;letter-spacing:.09em}.use h3{margin:14px 0 10px;font-size:24px;letter-spacing:-.025em}.use p{margin:0;color:#929ca8;font-size:12px;line-height:1.65}
+.truth{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:start}.truth h2{margin:8px 0 17px;font-size:clamp(38px,5vw,68px);letter-spacing:-.045em}.truth>div>p{color:#949eaa;line-height:1.65}.truthbox{border:1px solid var(--line);background:var(--panel2)}.truthrow{display:grid;grid-template-columns:160px 1fr;padding:15px 17px;border-bottom:1px solid var(--line);gap:20px}.truthrow:last-child{border:0}.truthrow b{font:700 8px ui-monospace,monospace;color:#76808d}.truthrow span{color:#a9b2bd;font-size:11px;line-height:1.5}
+.cta{padding-top:100px;padding-bottom:120px;text-align:center}.cta h2{max-width:950px;margin:10px auto 20px;font-size:clamp(42px,6vw,86px);line-height:.96;letter-spacing:-.055em}.cta p{max-width:650px;margin:0 auto;color:#97a1ad;line-height:1.65}.cta .actions{justify-content:center}
+.footer{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:28px clamp(18px,4vw,60px);border-top:1px solid var(--line);background:#06070a}.footer strong,.footer span{display:block}.footer strong{font-size:11px;letter-spacing:.08em}.footer span,.footer p{color:#626c78;font-size:9px}.footer p{justify-self:end;max-width:600px;margin:0;line-height:1.55}
+.blue{background:var(--blue)}.lime{background:var(--lime)}.amber{background:var(--amber)}.orange{background:var(--orange)}.red{background:var(--red)}.cyan{background:var(--cyan)}
+@media(max-width:1100px){.nav{display:none}.top{grid-template-columns:1fr auto}.evidencegrid,.usegrid{grid-template-columns:1fr 1fr}.console{grid-template-columns:280px 1fr}.console>.panel:last-child{grid-column:1/-1;border-top:1px solid var(--line)}.pipeline{grid-template-columns:repeat(4,1fr)}.stage{border-bottom:1px solid var(--line)}}
+@media(max-width:800px){.head,.demohead{align-items:start;flex-direction:column}.problemgrid,.arch,.truth{grid-template-columns:1fr}.problem:first-child,.archrail{border-right:0;border-bottom:1px solid var(--line)}.evidencegrid,.usegrid{grid-template-columns:1fr}.statusgrid{grid-template-columns:1fr 1fr}.status{border-bottom:1px solid var(--line)}.console{grid-template-columns:1fr}.console>.panel{border-right:0;border-bottom:1px solid var(--line)}.console>.panel:last-child{grid-column:auto}.thesis{grid-template-columns:1fr 1fr}.truthrow{grid-template-columns:1fr}.footer{grid-template-columns:1fr}.footer p{justify-self:start}.ainspect{min-height:440px}}
+@media(max-width:560px){.brand small{display:none}.hero h1{font-size:clamp(54px,15vw,80px)}.thesis,.statusgrid,.pipeline{grid-template-columns:1fr}.thesis div{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}.formfoot{align-items:stretch;flex-direction:column}.formfoot button{width:100%}.r1{width:260px;height:260px}.s1{transform:translate(-150px,0)}.s3{transform:translate(150px,0)}}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<header class="top">
+  <a class="brand" href="#top"><span class="mark">PX</span><span><strong>PRAXIOS UNIVERSE</strong><small>INVESTOR PREVIEW · DEEP ANALYTICA</small></span></a>
+  <nav class="nav"><a href="#system">System</a><a href="#evidence">Evidence</a><a href="#demo">Demo</a><a href="#domains">Domains</a></nav>
+  <div class="private"><i></i>DIRECT LINK · NOINDEX</div>
+</header>
+
+<main>
+<section class="wrap hero" id="top">
+  <div class="eyebrow">EXECUTION · ASSURANCE · EVIDENCE · HUMAN AUTHORITY</div>
+  <h1>AI can answer.<span>PRAXIOS must prove the process.</span></h1>
+  <p>PRAXIOS is an execution layer for model-driven work. Meta-Harness sits between model output and accepted claims or executable actions. The goal is not to make another chatbot — it is to make complex AI work inspectable, contestable and governable.</p>
+  <div class="actions">
+    <a class="btn primary" href="#demo">Open interactive demo →</a>
+    <a class="btn" href="../../praxios.html">Open current Control Room</a>
+    <a class="btn" href="../../paper/PAPER.pdf">Read research paper</a>
+  </div>
+  <div class="thesis">
+    <div><span>01 / EXECUTION</span><strong>Canonical state lives outside the model.</strong></div>
+    <div><span>02 / ASSURANCE</span><strong>Claims and actions cross explicit gates.</strong></div>
+    <div><span>03 / ADVERSARIAL</span><strong>The Shark tries to break what survives.</strong></div>
+    <div><span>04 / AUTHORITY</span><strong>High-impact decisions return to humans.</strong></div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="head"><div><div class="kicker">01 / THE PROBLEM</div><h2>More intelligence does not automatically create more trust.</h2></div><p>As models gain tools, memory and autonomy, the bottleneck shifts from generating an answer to establishing whether that answer — and the action built on it — deserves authority.</p></div>
+  <div class="problemgrid">
+    <article class="problem"><small>TODAY</small><h3>Model-centric AI</h3><p>The dominant interaction compresses a complex process into a conversation and a final answer.</p><ul><li>Reasoning state is ephemeral</li><li>Evidence can be mixed with narrative</li><li>Tools can become implicit trust anchors</li><li>Action permissions are often application-specific</li></ul></article>
+    <article class="problem"><small>PRAXIOS THESIS</small><h3>Process-centric AI</h3><p>Treat the model as one organ inside a larger system whose state, evidence, permissions and audit trail are explicit.</p><ul><li>Mission and state persist outside the LLM</li><li>Claims carry epistemic status and provenance</li><li>Meta-Harness can PASS / REVIEW / BLOCK</li><li>Decision and authorization remain separate</li></ul></article>
+  </div>
+</section>
+
+<section class="wrap section" id="system">
+  <div class="head"><div><div class="kicker">02 / SYSTEM GENEALOGY</div><h2>One architecture, not a collection of AI features.</h2></div><p>The system grew from an epistemic doctrine into formal gates, an adversarial operator, an execution runtime and a human decision surface.</p></div>
+  <div class="arch"><div class="archrail" id="archRail"></div><article class="ainspect"><div class="kicker" id="archRole"></div><h3 id="archTitle"></h3><p id="archBody"></p><div class="boundary"><span>BOUNDARY RULE</span><strong id="archRule">A claim cannot inherit more authority than its evidence supports.</strong></div></article></div>
+</section>
+
+<section class="wrap section" id="evidence">
+  <div class="head"><div><div class="kicker">03 / EVIDENCE SURFACE</div><h2>What exists today.</h2></div><p>The preview deliberately separates implemented runtime behavior, empirically exercised research artifacts, and open research questions.</p></div>
+  <div class="evidencegrid">
+    <article class="ecard"><span class="tag implemented">IMPLEMENTED</span><h3>Meta-Harness runtime</h3><p>Claim gates include epistemic class, provenance, evidence, contradiction, uncertainty, identifiability, role separation, review coverage, model independence and audit.</p><a href="../../META_HARNESS_RUNTIME.md">OPEN SPEC →</a></article>
+    <article class="ecard"><span class="tag implemented">IMPLEMENTED</span><h3>Decision Room runtime</h3><p>Projects canonical PRAXIOS state for human judgment. PASS claims become findings, REVIEW becomes unknowns, BLOCK becomes excluded claims.</p><a href="../../DECISION_ROOM_RUNTIME.md">OPEN SPEC →</a></article>
+    <article class="ecard"><span class="tag validated">EVIDENCE LEDGER</span><h3>Epistemic status registry</h3><p>Mathematics, observations, proposed formalism, counterfactual hypotheses and unknowns are explicitly separated rather than flattened into one confidence score.</p><a href="../../EPISTEMIC_STATUS.md">OPEN LEDGER →</a></article>
+    <article class="ecard"><span class="tag validated">RESEARCH</span><h3>Inverse Reality Laboratory</h3><p>Uses terminal observations, constraints and forward simulation to reduce the space of compatible histories and expose non-identifiability.</p><a href="../../index.html">OPEN LAB →</a></article>
+    <article class="ecard"><span class="tag research">OPEN RESEARCH</span><h3>Benchmarking</h3><p>The research program includes documented calibration and adversarial identifiability studies. Superiority over arbitrary AI baselines is not assumed.</p><a href="../../benchmarks/">OPEN BENCHMARKS →</a></article>
+    <article class="ecard"><span class="tag research">OPEN RESEARCH</span><h3>Production hardening</h3><p>Investor preview ≠ production certification. Security boundaries, independent evaluation, deployment topology and domain validation remain explicit workstreams.</p><a href="../../THREAT_MODEL.md">OPEN THREAT MODEL →</a></article>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="demowrap">
+    <div class="demohead"><div><div class="kicker">04 / INTERACTIVE VERTICAL SLICE</div><h2>Cross the Bridge</h2></div><div class="mode">DETERMINISTIC DEMO · NO SCIENTIFIC CLAIM</div></div>
+    <form class="form" id="bridgeForm">
+      <label for="statement">CLAIM OR MISSION</label>
+      <textarea id="statement" maxlength="600">The observed alteration pattern may be compatible with a mineralized system, but compatibility alone does not establish causality.</textarea>
+      <div class="formfoot"><span id="counter">0/600 · INPUT IS NOT INDEPENDENT EVIDENCE</span><button>CROSS THE BRIDGE →</button></div>
+    </form>
+    <div class="pipeline">
+      <div class="stage"><i class="amber"></i><b>DREAM</b><small>Generate without authority</small></div>
+      <div class="stage"><i class="blue"></i><b>DECOMPOSE</b><small>Atomic claims</small></div>
+      <div class="stage"><i class="orange"></i><b>INSTRUMENT</b><small>Touch the Outside</small></div>
+      <div class="stage"><i class="orange"></i><b>CUSTOMS</b><small>Domain-transfer gate</small></div>
+      <div class="stage"><i class="blue"></i><b>SKEPTIC</b><small>Rival explanation</small></div>
+      <div class="stage"><i class="amber"></i><b>METAMATH</b><small>Formalize when valid</small></div>
+      <div class="stage"><i class="red"></i><b>SHARK</b><small>Adversarial attack</small></div>
+      <div class="stage"><i class="orange"></i><b>STOP</b><small>Authority gate</small></div>
+    </div>
+    <div class="console">
+      <aside class="panel"><div class="ptitle"><span>CLAIMS</span><span>4</span></div><div class="claims" id="claims"></div></aside>
+      <section class="panel"><div class="ptitle"><span>EXECUTION GRAPH</span><span>STATE OUTSIDE LLM</span></div><div class="core"><div class="ring r1"></div><div class="ring r2"></div><div class="center" id="missionId">PX-DEMO</div><div class="sat s1">DREAMER</div><div class="sat s2">TOOLS</div><div class="sat s3">SHARK</div><div class="sat s4">HUMAN</div></div></section>
+      <aside><div class="ptitle"><span>CLAIM INSPECTOR</span><span id="claimId">C-001</span></div><div class="inspect"><div class="state"><i id="stateDot" class="amber"></i><div><span>EPISTEMIC STATE</span><b id="stateLabel">CONJECTURE</b></div></div><p id="claimText"></p><div class="debt"><span>OPEN DEBT</span><p id="debtText"></p></div></div></aside>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="head"><div><div class="kicker">05 / CURRENT SYSTEM STATUS</div><h2>Built to survive due diligence.</h2></div><p>The strongest investor story is not “everything is solved.” It is a system that exposes what is real, what is uncertain, and exactly what has to happen next.</p></div>
+  <div class="statusgrid">
+    <div class="status"><span>PUBLIC RESEARCH</span><strong>Live</strong><p>IRL site, paper, benchmark artifacts and review surfaces are publicly inspectable.</p></div>
+    <div class="status"><span>PRAXIOS SURFACE</span><strong>Live prototype</strong><p>Control Room and design-system surfaces exist as working research interfaces.</p></div>
+    <div class="status"><span>META-HARNESS</span><strong>Runtime spec</strong><p>Explicit claim/action gate semantics, authorization constraints and audit boundaries are documented.</p></div>
+    <div class="status"><span>INVESTOR PREVIEW</span><strong>This build</strong><p>Executive narrative plus interactive vertical slice, isolated from the corporate website.</p></div>
+  </div>
+</section>
+
+<section class="wrap section" id="domains">
+  <div class="head"><div><div class="kicker">06 / WHERE IT MATTERS</div><h2>Domains where answers are not enough.</h2></div><p>The architecture is domain-agnostic; the first research and product surfaces focus on high-evidence workflows where provenance, uncertainty and human authorization materially matter.</p></div>
+  <div class="usegrid">
+    <article class="use"><span>MINING & GEOSCIENCE</span><h3>Evidence-rich spatial decisions</h3><p>Combine geological observations, geophysics, remote sensing, hypotheses and decision packages without silently promoting correlation into causality.</p></article>
+    <article class="use"><span>INVERSE PROBLEMS</span><h3>Reconstruct hidden histories</h3><p>Start from an observed terminal state, generate compatible histories, run forward checks and preserve non-identifiability when evidence cannot discriminate.</p></article>
+    <article class="use"><span>ENTERPRISE AI</span><h3>Bounded agentic work</h3><p>Keep mission state, permissions, required claims, authorization and audit outside the language model while still using models as replaceable cognitive organs.</p></article>
+  </div>
+</section>
+
+<section class="wrap section truth">
+  <div><div class="kicker">07 / WHAT WE WILL NOT CLAIM</div><h2>No authority by presentation.</h2><p>PRAXIOS is itself built around the idea that a polished narrative must not outrank evidence. The investor preview follows the same rule.</p></div>
+  <div class="truthbox">
+    <div class="truthrow"><b>NOT CLAIMED</b><span>That Meta-Harness “eliminates hallucinations.”</span></div>
+    <div class="truthrow"><b>NOT CLAIMED</b><span>That an interactive demo equals production certification.</span></div>
+    <div class="truthrow"><b>NOT CLAIMED</b><span>That a surviving hypothesis has become historical or scientific truth.</span></div>
+    <div class="truthrow"><b>CLAIMED</b><span>That the architecture can represent claims, evidence, gates, review states, authorizations and human decision boundaries explicitly.</span></div>
+  </div>
+</section>
+
+<section class="wrap cta">
+  <div class="kicker">INVESTOR / TECHNICAL REVIEW</div>
+  <h2>Inspect the system, not just the pitch.</h2>
+  <p>Use the live research site, runtime documentation, paper and interactive PRAXIOS surfaces to evaluate what exists today and where the product can go next.</p>
+  <div class="actions"><a class="btn primary" href="mailto:contacto@deepanalytica.cl">Contact Deep Analytica →</a><a class="btn" href="../../review.html">Academic review surface</a><a class="btn" href="../../dashboard.html">Open 3D/4D lab</a></div>
+</section>
+</main>
+
+<footer class="footer"><div><strong>PRAXIOS UNIVERSE</strong><span>Investor Preview · Deep Analytica · 2026</span></div><p>This page is a working investor/technical preview. Public availability does not imply production certification, regulatory approval or scientific validation beyond the linked evidence.</p></footer>
+
+<script>
+const architecture=[
+["00","Super Prompt Euler","Cognitive protocol","A disciplined sequence for naming, observing, conjecturing, verifying and preserving the frontier of what remains unknown."],
+["01","χ · The Characteristic","Inherited invariants","Rules intended to survive when systems create systems: observation, verification, contestability, minimal power, an Outside and a stop condition."],
+["02","EL PUENTE","Epistemic doctrine","Do not cure the dreamer. Build the laboratory around the dream. Imagination is allowed; unsupported authority is not."],
+["03","Harness family","Critical instruments","Discriminating experiments, instrument error, conjecture debt, autopsy, falsification and protection against self-deception."],
+["04","Mathematical Harness","Formal layer","Epistemic states, operators, domain transfers and formal rules for how claims can or cannot ascend."],
+["05","The Shark","Adversarial operator","An independent role that does not help the result survive. It attacks claims, instruments, provenance, reproducibility and debt."],
+["06","Meta-Harness","Assurance plane","The policy decision point between model output and accepted claims or executable actions."],
+["07","PRAXIOS OS","Execution plane","Canonical mission state, workflow, tools, checkpoints, recovery, action execution and outcomes outside the LLM."],
+["08","Decision Room","Human authority","A projection of canonical state for human judgment. It does not create evidence and decision is separate from authorization."],
+["09","Inverse Reality Lab","Research domain","A laboratory for inverse physical problems: observed terminal state → constraints → candidate histories → forward checks → refutation."]
+];
+const rail=document.getElementById("archRail"),role=document.getElementById("archRole"),title=document.getElementById("archTitle"),body=document.getElementById("archBody");
+function pick(i){[...rail.children].forEach((el,n)=>el.classList.toggle("active",i===n));role.textContent=architecture[i][2];title.textContent=architecture[i][1];body.textContent=architecture[i][3]}
+architecture.forEach((a,i)=>{const b=document.createElement("button");b.className="anode";b.innerHTML='<span class="n">'+a[0]+'</span><b>'+a[1]+'</b><small>'+a[2]+'</small>';b.onclick=()=>pick(i);rail.appendChild(b)});pick(6);
+
+const statement=document.getElementById("statement"),counter=document.getElementById("counter"),claims=document.getElementById("claims"),missionId=document.getElementById("missionId"),claimId=document.getElementById("claimId"),claimText=document.getElementById("claimText"),debtText=document.getElementById("debtText"),stateLabel=document.getElementById("stateLabel"),stateDot=document.getElementById("stateDot");
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return(h>>>0).toString(16).toUpperCase().padStart(8,"0")}
+function makeRun(text){return{mission:"PX-"+hash(text).slice(0,6),claims:[
+{id:"C-001",state:"CONJECTURE",color:"amber",text:text,debt:"User input is a proposition, not independent evidence."},
+{id:"C-002",state:"CORROBORATED",color:"blue",text:"The mission must be decomposed into claims before it can acquire authority.",debt:"Structural rule in this investor demo; canonical runtime integration remains a separate boundary."},
+{id:"C-003",state:"REVIEW",color:"orange",text:"No causal or factual promotion is authorized from the evidence available in this demo.",debt:"Requires an Outside: independent source, instrument, measurement or test."},
+{id:"C-004",state:"REVIEW",color:"orange",text:"Final factual emission remains held for human review.",debt:"Stop Gate remains active until sufficient traceable evidence exists."}
+]}}
+let run=makeRun(statement.value),selected=0;
+function render(){missionId.textContent=run.mission;claims.innerHTML="";run.claims.forEach((c,i)=>{const b=document.createElement("button");b.className="claim"+(selected===i?" active":"");b.innerHTML='<i class="'+c.color+'"></i><div><b>'+c.id+'</b><p>'+c.text+'</p></div>';b.onclick=()=>{selected=i;render()};claims.appendChild(b)});const c=run.claims[selected];claimId.textContent=c.id;stateLabel.textContent=c.state;stateDot.className=c.color;claimText.textContent=c.text;debtText.textContent=c.debt}
+counter.textContent=statement.value.length+"/600 · INPUT IS NOT INDEPENDENT EVIDENCE";
+statement.oninput=()=>counter.textContent=statement.value.length+"/600 · INPUT IS NOT INDEPENDENT EVIDENCE";
+document.getElementById("bridgeForm").onsubmit=e=>{e.preventDefault();const s=statement.value.trim();if(s.length<12)return;run=makeRun(s);selected=0;render();document.querySelector(".console").scrollIntoView({behavior:"smooth",block:"center"})};render();
+</script>
+</body>
+</html>
