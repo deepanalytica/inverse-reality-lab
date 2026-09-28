@@ -55,6 +55,7 @@ jobs:
           node --check assets/praxios-api.mjs
           node --check assets/portal-v3.js
           node --check assets/portal-v4.js
+          node --check assets/portal-v5.js
           node --check assets/architecture-room.js
           node --input-type=module --check < assets/portal-three.js
           node --check site-nav.js
