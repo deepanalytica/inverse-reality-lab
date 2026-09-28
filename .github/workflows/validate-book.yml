@@ -1,0 +1,38 @@
+name: Validate EL PUENTE publication
+
+on:
+  push:
+    branches:
+      - main
+      - feat/el-puente-readable-site
+    paths:
+      - "el-puente/**"
+      - "site-nav.js"
+      - "*.html"
+      - "investor/**/*.html"
+      - "scripts/validate_book.mjs"
+      - ".github/workflows/validate-book.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "el-puente/**"
+      - "site-nav.js"
+      - "*.html"
+      - "investor/**/*.html"
+      - "scripts/validate_book.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate global navigation syntax
+        run: node --check site-nav.js
+      - name: Validate complete book publication
+        run: node scripts/validate_book.mjs
