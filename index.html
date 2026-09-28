@@ -1,149 +1,433 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Inverse Reality Laboratory · PRAXIOS</title>
-<meta name="description" content="Laboratorio de investigación para reconstruir historias constructivas a partir de objetos terminados, con Khufu como caso arqueológico principal y benchmarks de ingeniería documentada.">
-<meta name="keywords" content="Egyptology,Egyptian archaeology,Great Pyramid of Giza,Khufu,pyramid construction,inverse archaeology,computational archaeology,archaeological inference,muography,ScanPyramids,topology,persistent homology,4D reconstruction,inverse problems,Vaidya,Kerr,PRAXIOS,Meta-Harness">
-<meta name="author" content="Alexis Brian Reyes Saavedra, Deep Analytica">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deep Analytica · Inteligencia, evidencia y decisión</title>
+<meta name="description" content="Deep Analytica convierte modelos, datos y conocimiento experto en procesos de decisión controlables, verificables y utilizables por humanos. PRAXIOS, Meta-Harness, EL PUENTE, Deep Geo e Inverse Reality Lab.">
+<meta name="author" content="Deep Analytica">
+<meta name="theme-color" content="#11110f">
 <link rel="canonical" href="https://deepanalytica.github.io/inverse-reality-lab/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Inverse Reality Laboratory · Khufu · PRAXIOS">
-<meta property="og:description" content="Reconstrucción inversa de procesos constructivos mediante geometría, mecánica, topología, evidencia, logística e identificabilidad.">
+<meta property="og:title" content="Deep Analytica · De la complejidad a decisiones defendibles">
+<meta property="og:description" content="Arquitectura para inteligencia, evidencia y decisión.">
 <meta property="og:url" content="https://deepanalytica.github.io/inverse-reality-lab/">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/portal.css">
+<script defer src="assets/portal.js"></script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
-  "@type":"ResearchProject",
-  "name":"Inverse Reality Laboratory",
-  "alternateName":"IRL",
-  "url":"https://deepanalytica.github.io/inverse-reality-lab/",
-  "description":"Laboratorio de reconstrucción inversa de procesos constructivos. Integra geometría, mecánica, topología, evidencia, logística e identificabilidad, con la Gran Pirámide de Khufu como caso arqueológico principal.",
-  "keywords":["Egyptology","Egyptian archaeology","Great Pyramid of Giza","Khufu","inverse archaeology","computational archaeology","muography","ScanPyramids","topology","persistent homology","inverse problems","causal reconstruction","PRAXIOS"],
-  "founder":{"@type":"Person","name":"Alexis Brian Reyes Saavedra","email":"mailto:contacto@deepanalytica.cl","url":"https://deepanalytica.cl"},
-  "parentOrganization":{"@type":"Organization","name":"Deep Analytica","url":"https://deepanalytica.cl"},
-  "sameAs":["https://github.com/deepanalytica/inverse-reality-lab"]
+  "@type":"Organization",
+  "name":"Deep Analytica",
+  "url":"https://deepanalytica.cl",
+  "email":"contacto@deepanalytica.cl",
+  "description":"Sistemas para transformar inteligencia artificial, datos, evidencia y conocimiento experto en procesos de decisión controlables, verificables y utilizables por humanos.",
+  "knowsAbout":["Artificial intelligence","Decision intelligence","Geospatial intelligence","Inverse problems","AI governance","Evidence systems"]
 }
 </script>
-<style>
-:root{--bg:#f6f7f9;--card:#fff;--ink:#111827;--muted:#667085;--line:#d0d5dd;--blue:#2563eb;--cyan:#0891b2;--violet:#7c3aed;--amber:#d97706;--red:#dc2626}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 18px}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--muted)}h1{font-size:clamp(32px,6vw,60px);line-height:1;margin:.25em 0}.lead{max-width:850px;color:var(--muted);font-size:18px}.actions,.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.btn,.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;text-decoration:none;cursor:pointer}.btn.primary,.tab.active{background:var(--ink);color:#fff}.grid{display:grid;grid-template-columns:1.45fr .55fr;gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.panel{display:none}.panel.active{display:block}.sim{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}svg{width:100%;height:auto;background:#fafafa;border:1px solid var(--line);border-radius:12px}.metric{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.metric div{padding:10px;background:#f8fafc;border-radius:10px}.small{font-size:12px;color:var(--muted)}label{display:block;margin:12px 0 4px}input[type=range]{width:100%}.call{margin-top:10px;padding:11px;border:1px solid var(--line);border-radius:10px}.foot{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}code{background:#f2f4f7;padding:2px 5px;border-radius:5px}@media(max-width:800px){.grid,.sim{grid-template-columns:1fr}}
-</style>
-<script defer src="site-nav.js"></script>\n</head>
-<body><div class="wrap">
-<div class="eyebrow">Deep Analytica · laboratorio de investigación</div>
-<h1>Inverse Reality Laboratory</h1>
-<p class="lead">IRL reconstruye historias de construcción a partir de objetos terminados. Combina geometría, materiales, mecánica, topología, accesibilidad, logística y evidencia para determinar qué secuencias siguen siendo compatibles y qué información adicional permitiría distinguirlas.</p>
-<div class="actions">
-<a class="btn primary" href="praxios.html">Abrir PRAXIOS Control Room</a>\n<a class="btn" href="el-puente/">EL PUENTE · Libro abierto</a>
-<a class="btn" href="dashboard.html">Dashboard IRL 3D/4D</a>
-<a class="btn" href="mineral-systems.html">Mineral Systems · 3 controles</a>
-<a class="btn" href="library.html#start">Entender el proyecto</a>
-<a class="btn" href="paper/PAPER.pdf" download>Descargar paper PDF</a>
-<a class="btn" href="review.html">Revisión académica</a>
-<a class="btn" href="library.html#advanced">Matemática avanzada</a>
-<a class="btn" href="library.html#topology">Topología</a>
-<a class="btn" href="library.html#proofs">Obligaciones de prueba</a>
-<a class="btn" href="library.html#glossary">Glosario</a>
-<a class="btn" href="library.html">Biblioteca completa</a><a class="btn" href="mathematics.html">Matemáticas · LaTeX/MathJax</a>
-<a class="btn" href="paper/main.tex" download>Fuente LaTeX</a>
-<a class="btn" href="library.html#theory">Teoría completa</a>
-<a class="btn" href="library.html#ontology">Ontología</a>
-<a class="btn" href="library.html#contrib">Contribuciones</a>
-<a class="btn" href="library.html#log">Proceso y descubrimientos</a>
-<a class="btn" href="library.html#program">Programa de investigación</a>
-<a class="btn" href="library.html#vars">Variables</a>
-<a class="btn" href="library.html#sim">Especificación simulaciones</a>
-<a class="btn" href="library.html#epistemic">Estado epistemológico</a>
-<a class="btn" href="library.html#refs">Referencias</a>
-<a class="btn" href="CITATION.cff" download>Citation CFF</a>
-<a class="btn" href="mailto:contacto@deepanalytica.cl">Contactar autor</a>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header" data-header>
+  <a class="brand" href="index.html" aria-label="Deep Analytica · Inicio">
+    <span class="brand-mark" aria-hidden="true"><i></i></span>
+    <span class="brand-copy"><strong>DEEP ANALYTICA</strong><small>INTELLIGENCE · EVIDENCE · DECISION</small></span>
+  </a>
+
+  <nav class="desktop-nav" aria-label="Navegación principal">
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#ecosistema">Ecosistema</a>
+    <a href="#soluciones">Soluciones</a>
+    <a href="#evidencia">Evidencia</a>
+    <a href="lab.html">Laboratorio</a>
+    <a href="el-puente/">EL PUENTE</a>
+  </nav>
+
+  <div class="header-actions">
+    <a class="text-link" href="mailto:contacto@deepanalytica.cl">Contacto</a>
+    <a class="button button-acid header-cta" href="mailto:contacto@deepanalytica.cl?subject=Demostración%20ejecutiva%20Deep%20Analytica">Solicitar demo <span>↗</span></a>
+    <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-button><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu aria-hidden="true">
+  <nav aria-label="Navegación móvil">
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#ecosistema">Ecosistema</a>
+    <a href="#soluciones">Soluciones</a>
+    <a href="#evidencia">Evidencia</a>
+    <a href="praxios.html">PRAXIOS</a>
+    <a href="el-puente/">EL PUENTE</a>
+    <a href="lab.html">Inverse Reality Lab</a>
+    <a href="investor/praxios-universe/">Investor Preview</a>
+    <a href="mailto:contacto@deepanalytica.cl">Contacto</a>
+  </nav>
 </div>
-<div class="card" style="margin:0 0 14px 0">
-  <div class="eyebrow">Cómo leer el laboratorio</div>
-  <h2 style="margin:.25em 0 .35em">Del objeto terminado a historias constructivas comprobables</h2>
-  <p class="lead" style="font-size:15px;margin:0;max-width:none">La guía rápida explica el propósito y los conceptos básicos. El paper desarrolla el modelo formal. Los benchmarks muestran cómo se prueba el método con estructuras documentadas. La biblioteca conserva las ecuaciones, la ontología, las variables, las referencias y el registro de desarrollo del proyecto.</p>
-</div>
-<section class="card" style="margin:0 0 14px 0">
-  <div class="eyebrow">PRAXIOS Control & Decision Room</div>
-  <h2 style="margin:.25em 0 .35em">Una sesión, tres lentes: operar, verificar y decidir</h2>
-  <p class="lead" style="font-size:15px;margin:0;max-width:none">El prototipo hace visibles PRAXIOS, Meta-Harness y Decision Room sobre el mismo estado canónico. Permite explorar delegación de agentes, claims, gates, autoridad humana y ledger de sesión.</p>
-  <div class="actions"><a class="btn primary" href="praxios.html">Probar Control Room</a><a class="btn" href="praxios-design-system.html">Ver Design System</a><a class="btn" href="library.html#praxiosui">Especificación UI</a></div>
-</section>
-<section class="card" style="margin:0 0 14px 0">
-  <div class="eyebrow">IRL Mineral Systems</div>
-  <h2 style="margin:.25em 0 .35em">Chuquicamata · Escondida · El Teniente</h2>
-  <p class="lead" style="font-size:15px;margin:0;max-width:none">Tres controles retrospectivos prueban la reconstrucción causal de sistemas porfídicos a partir de litología, estructuras, alteración, brechas, magnetismo y procesos supergénicos. Un segundo modo elimina señales directas de mena para medir cuánto sobrevive en un escenario de exploración más exigente.</p>
-  <div class="actions"><a class="btn primary" href="mineral-systems.html">Abrir benchmark</a><a class="btn" href="library.html#mineralsystems">Método y resultados</a></div>
-</section>
-<div class="grid"><main class="card">
-<section class="card" style="margin:18px 0">
-  <div class="eyebrow">Dashboard 3D/4D de Khufu</div>
-  <h2 style="margin:.25em 0 .35em">Geometría, evidencia, fuerzas e hipótesis en un mismo visor</h2>
-  <p class="lead" style="font-size:15px;margin:0;max-width:none">El dashboard integra la envolvente de la pirámide, espacios interiores, Big Void, North Face Corridor, cursos paramétricos, bloques proxy, líneas muográficas, fuerzas, estados causales, hipótesis y una capa topológica interactiva con filtración por despeje. Cada entidad conserva su fuente y nivel epistemológico.</p>
-  <div class="actions"><a class="btn primary" href="dashboard.html">Entrar al visor</a><a class="btn" href="library.html#dashboard">Especificación</a><a class="btn" href="library.html#schema">Esquema de datos</a></div>
-</section>
-<div class="tabs"><button class="tab active" data-tab="pyr">Pirámide</button><button class="tab" data-tab="vai">Vaidya</button><button class="tab" data-tab="ker">Kerr</button><button class="tab" data-tab="uni">Unificado</button></div>
 
-<section id="pyr" class="panel active"><div class="sim"><svg id="pyrSvg" viewBox="0 0 520 350"></svg><div>
-<label>Retroceso geométrico τh: <b id="pTauV"></b></label><input id="pTau" type="range" min="0" max="100" step=".5" value="0">
-<div class="metric"><div>Frente z<br><b id="pZ"></b></div><div>Masa retirada*<br><b id="pM"></b></div><div>ΔUg descargada*<br><b id="pU"></b></div><div>m⊖ Cámara*<br><b id="pN"></b></div></div>
-<div class="call"><b id="pState"></b><div id="pDetail" class="small"></div></div>
-<p class="small">Modelo geométrico ideal: H=146,6 m; Cámara del Rey aproximada 10,5×5,2×5,8 m, piso ~43 m, techo ~48,8 m y superestructura ~64,5 m. m⊖ representa el déficit de masa respecto de un sólido de referencia.</p>
-</div></div></section>
+<main id="contenido">
+  <section class="hero section-shell">
+    <div class="hero-copy reveal">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> INTELIGENCIA, EVIDENCIA Y DECISIÓN</div>
+      <h1>De la complejidad a <em>decisiones defendibles.</em></h1>
+      <p class="hero-lead">Deep Analytica convierte modelos, datos y conocimiento experto en procesos de decisión controlables, verificables y utilizables por humanos.</p>
+      <p class="hero-body">Diseñamos sistemas para investigar, coordinar, contrastar y gobernar trabajo complejo con IA, sin ceder la autoridad final.</p>
+      <p class="manifesto-line">No vendemos humo algorítmico. <strong>Construimos criterio operativo.</strong></p>
+      <div class="hero-actions">
+        <a class="button button-acid" href="mailto:contacto@deepanalytica.cl?subject=Demostración%20ejecutiva%20Deep%20Analytica">Solicitar demostración ejecutiva <span>↗</span></a>
+        <a class="button button-ghost" href="#ecosistema">Explorar el ecosistema <span>↓</span></a>
+      </div>
+      <div class="hero-trust" aria-label="Principios">
+        <span><i>01</i>Trazabilidad</span>
+        <span><i>02</i>Control</span>
+        <span><i>03</i>Autoridad humana</span>
+      </div>
+    </div>
 
-<section id="vai" class="panel"><div class="sim"><svg id="vSvg" viewBox="0 0 560 350"></svg><div>
-<label>v/M: <b id="vTV"></b></label><input id="vT" type="range" min="-5" max="5" step=".02" value="0">
-<label>Duración w/M: <b id="vWV"></b></label><input id="vW" type="range" min=".6" max="2.5" step=".05" value="1.5">
-<label>Radio prueba r/M: <b id="vRV"></b></label><input id="vR" type="range" min=".15" max="4" step=".01" value="1.2">
-<div class="metric"><div>m(v)<br><b id="vM"></b></div><div>rAH<br><b id="vAH"></b></div><div>rEH<br><b id="vEH"></b></div><div>θ+<br><b id="vTh"></b></div></div><div id="vState" class="call"></div>
-<p class="small">Vaidya es un modelo relativista didáctico; el horizonte de eventos se integra numéricamente hacia atrás desde una condición futura estacionaria.</p>
-</div></div></section>
+    <div class="hero-art reveal" aria-label="Atlas de decisión Deep Analytica">
+      <div class="art-topline">
+        <span>DECISION ATLAS / 01</span>
+        <span>LIVE SYSTEM MAP</span>
+      </div>
+      <div class="atlas">
+        <svg class="atlas-lines" viewBox="0 0 760 620" role="img" aria-label="Diagrama conceptual de evidencia y decisión">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#d8ff5f" stop-opacity=".8"/>
+              <stop offset="1" stop-color="#5cc8ff" stop-opacity=".1"/>
+            </linearGradient>
+            <filter id="softGlow"><feGaussianBlur stdDeviation="3"/></filter>
+          </defs>
+          <path class="contour c1" d="M54 420 C120 332 185 520 275 410 S455 280 530 382 666 470 715 322"/>
+          <path class="contour c2" d="M34 456 C118 365 178 555 285 444 S465 320 548 414 655 512 730 355"/>
+          <path class="contour c3" d="M90 383 C145 308 206 470 302 372 S472 246 567 350 655 424 699 292"/>
+          <path class="signal" d="M116 158 C215 108 273 216 354 180 S498 98 590 168 636 244 668 226"/>
+          <path class="signal second" d="M138 222 C229 168 297 263 381 236 S518 167 625 256"/>
+          <circle class="node n1" cx="116" cy="158" r="6"/><circle class="node n2" cx="354" cy="180" r="6"/><circle class="node n3" cx="590" cy="168" r="6"/>
+          <circle class="node warm n4" cx="138" cy="222" r="6"/><circle class="node warm n5" cx="381" cy="236" r="6"/><circle class="node warm n6" cx="625" cy="256" r="6"/>
+          <line class="axis" x1="78" y1="520" x2="690" y2="520"/>
+          <line class="axis" x1="78" y1="520" x2="78" y2="92"/>
+        </svg>
 
-<section id="ker" class="panel"><div class="sim"><svg id="kSvg" viewBox="0 0 560 350"></svg><div>
-<label>Spin a/M: <b id="kAV"></b></label><input id="kA" type="range" min="0" max=".99" step=".005" value=".9">
-<label>Impacto b=L/E: <b id="kBV"></b></label><input id="kB" type="range" min=".5" max="7" step=".005" value="2.84">
-<div class="metric"><div>r+<br><b id="kHp"></b></div><div>rph<br><b id="kPh"></b></div><div>bc<br><b id="kBc"></b></div><div>β0<br><b id="kBeta"></b></div></div>
-<div class="call"><div id="kRoots"></div><div id="kState" class="small"></div></div>
-<p class="small">Geodésicas nulas ecuatoriales (Q=0). El conjunto radial permitido es R≥0; la raíz doble R=0, dR/dr=0 actúa como separatriz crítica.</p>
-</div></div></section>
+        <div class="atlas-title">
+          <span>MISSION / EXECUTIVE VIEW</span>
+          <strong>¿Qué merece convertirse en decisión?</strong>
+        </div>
 
-<section id="uni" class="panel"><svg viewBox="0 0 760 270" id="uSvg"></svg><div class="call"><b>Objeto común:</b> <code>N_R(λ)=Ω\Accessible_R(Ω,λ)</code>. La relación R significa conectividad material, escape causal o movimiento geodésico según el sistema. La comparación se limita a propiedades matemáticas de accesibilidad y fronteras.</div></section>
+        <div class="atlas-card atlas-card-a">
+          <span class="atlas-kicker">EVIDENCE</span>
+          <strong>12 fuentes</strong>
+          <small>4 independientes · 2 en revisión</small>
+        </div>
+        <div class="atlas-card atlas-card-b">
+          <span class="atlas-kicker">CLAIMS</span>
+          <strong>7 activos</strong>
+          <small><b>3 PASS</b> · 3 REVIEW · 1 BLOCK</small>
+        </div>
+        <div class="atlas-card atlas-card-c">
+          <span class="atlas-kicker">AUTHORITY</span>
+          <strong>HUMAN</strong>
+          <small>decisión ≠ autorización</small>
+        </div>
+
+        <div class="atlas-stamp">
+          <span>NO BLACK BOX</span>
+          <strong>Every claim leaves a trace.</strong>
+        </div>
+
+        <div class="atlas-index">
+          <span>PERSONAS</span><span>MODELOS</span><span>TERRITORIO</span><span>RIESGOS</span><span>OPORTUNIDADES</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement-band" aria-label="Propuesta de valor">
+    <div class="statement-marquee">
+      <span>PROBLEMAS REALES</span><i>◆</i><span>EVIDENCIA TRAZABLE</span><i>◆</i><span>MODELOS BAJO CONTROL</span><i>◆</i><span>DECISIONES HUMANAS</span><i>◆</i>
+    </div>
+  </section>
+
+  <section class="section-shell section-space" id="soluciones">
+    <div class="section-intro reveal">
+      <div>
+        <div class="eyebrow">QUÉ RESOLVEMOS</div>
+        <h2>Cuando la información se fragmenta, <em>la decisión se debilita.</em></h2>
+      </div>
+      <p>Los equipos que operan en contextos complejos no necesitan más ruido. Necesitan una arquitectura capaz de integrar evidencia, exponer incertidumbre, coordinar modelos y traducir análisis técnico en decisiones explicables.</p>
+    </div>
+
+    <div class="problem-grid">
+      <article class="problem-card reveal">
+        <div class="problem-number">01</div>
+        <div class="problem-visual visual-complex">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h3>Decisiones complejas</h3>
+        <p>Múltiples variables, escenarios inciertos y consecuencias reales para la operación.</p>
+        <strong>Necesita síntesis sin simplificación.</strong>
+      </article>
+      <article class="problem-card reveal">
+        <div class="problem-number">02</div>
+        <div class="problem-visual visual-evidence">
+          <span>PDF</span><span>GIS</span><span>DB</span><span>LLM</span><span>HUMAN</span>
+        </div>
+        <h3>Evidencia dispersa</h3>
+        <p>Datos, documentos, modelos y criterio experto suelen vivir separados, sin una lógica común de validación.</p>
+        <strong>Necesita una fuente común de verdad.</strong>
+      </article>
+      <article class="problem-card reveal">
+        <div class="problem-number">03</div>
+        <div class="problem-visual visual-risk">
+          <div class="risk-line"></div><i>BLOCK</i>
+        </div>
+        <h3>Riesgo operativo</h3>
+        <p>La velocidad sin control acelera errores, sesgos y decisiones difíciles de sostener.</p>
+        <strong>Necesita límites antes de la acción.</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="architecture-section" id="arquitectura">
+    <div class="section-shell section-space">
+      <div class="section-intro architecture-intro reveal">
+        <div>
+          <div class="eyebrow">UNA INVESTIGACIÓN, VARIOS ÓRGANOS</div>
+          <h2>No son proyectos aislados. <em>Es una arquitectura.</em></h2>
+        </div>
+        <p>Una misma investigación fue produciendo órganos especializados para imaginar, ejecutar, verificar, decidir y aprender sin confundir capacidad con autoridad.</p>
+      </div>
+
+      <div class="architecture-grid">
+        <a class="architecture-card card-bridge reveal" href="el-puente/">
+          <div class="arch-top"><span>01 / DOCTRINA</span><b>OPEN BOOK ↗</b></div>
+          <div class="arch-symbol bridge-symbol"><i></i><i></i><i></i></div>
+          <h3>EL PUENTE</h3>
+          <p>Marco intelectual para distinguir imaginación, hipótesis, evidencia y autoridad.</p>
+          <strong>Permite soñar sin permitir que el sueño se disfrace de hecho.</strong>
+        </a>
+
+        <a class="architecture-card card-praxios reveal" href="praxios.html">
+          <div class="arch-top"><span>02 / EXECUTION PLANE</span><b>OPEN SYSTEM ↗</b></div>
+          <div class="arch-symbol stack-symbol"><i></i><i></i><i></i><i></i></div>
+          <h3>PRAXIOS OS</h3>
+          <p>Misiones, estado, flujos de trabajo, agentes, herramientas, checkpoints, acciones y outcomes fuera del LLM.</p>
+          <strong>El modelo es un órgano. No el sistema.</strong>
+        </a>
+
+        <a class="architecture-card card-harness reveal" href="praxios.html">
+          <div class="arch-top"><span>03 / ASSURANCE PLANE</span><b>INSPECT GATES ↗</b></div>
+          <div class="arch-symbol harness-symbol"><i></i><i></i><i></i></div>
+          <h3>META-HARNESS</h3>
+          <p>Claims, evidencia, provenance, contradicción, incertidumbre, verificación, policy y autorización.</p>
+          <strong>Decide qué información tiene derecho a ascender.</strong>
+        </a>
+
+        <a class="architecture-card card-decision reveal" href="praxios.html">
+          <div class="arch-top"><span>04 / HUMAN AUTHORITY</span><b>OPEN ROOM ↗</b></div>
+          <div class="arch-symbol decision-symbol"><i></i><i></i><i></i><i></i></div>
+          <h3>DECISION ROOM</h3>
+          <p>Hallazgos, riesgos, alternativas y deuda convertidos en una superficie comprensible para quien debe responder por la decisión.</p>
+          <strong>La decisión final vuelve al humano.</strong>
+        </a>
+      </div>
+
+      <div class="process-rail reveal" aria-label="Flujo de decisión">
+        <span><i>01</i>Problema</span><b>→</b>
+        <span><i>02</i>Investigación</span><b>→</b>
+        <span><i>03</i>Evidencia</span><b>→</b>
+        <span><i>04</i>Verificación</span><b>→</b>
+        <span><i>05</i>Decisión</span><b>→</b>
+        <span><i>06</i>Acción</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-space" id="ecosistema">
+    <div class="role-head reveal">
+      <div>
+        <div class="eyebrow">LA PUERTA CORRECTA PARA CADA PERSONA</div>
+        <h2>Entre al universo por <em>la pregunta que necesita responder.</em></h2>
+      </div>
+      <p>No todos necesitan recorrer papers, runtime y laboratorios. La arquitectura entrega distintos niveles de profundidad sin perder trazabilidad.</p>
+    </div>
+
+    <div class="role-switcher reveal" role="tablist" aria-label="Elegir perspectiva">
+      <button class="active" type="button" role="tab" aria-selected="true" data-role-tab="executive">Tomador de decisiones</button>
+      <button type="button" role="tab" aria-selected="false" data-role-tab="technical">Equipo técnico</button>
+      <button type="button" role="tab" aria-selected="false" data-role-tab="research">Investigación</button>
+      <button type="button" role="tab" aria-selected="false" data-role-tab="investor">Inversión / alianza</button>
+    </div>
+
+    <div class="role-stage reveal" data-role-stage>
+      <div class="role-copy">
+        <span class="role-label" data-role-label>PARA DIRECCIÓN / GERENCIA</span>
+        <h3 data-role-title>Necesito entender qué está ocurriendo y decidir qué hacer.</h3>
+        <p data-role-description>Entre por una vista ejecutiva: hallazgos, riesgos, alternativas, evidencia y deuda abierta. La complejidad permanece debajo; la responsabilidad queda arriba.</p>
+        <div class="role-actions">
+          <a class="button button-dark" data-role-primary href="praxios.html">Abrir Decision Room <span>↗</span></a>
+          <a class="button button-paper" data-role-secondary href="mineral-systems.html">Ver un caso aplicado <span>↗</span></a>
+        </div>
+      </div>
+      <div class="role-map" aria-hidden="true">
+        <div class="map-node node-question"><span>QUESTION</span><strong>¿Qué debemos decidir?</strong></div>
+        <div class="map-line line-a"></div>
+        <div class="map-node node-evidence"><span>EVIDENCE</span><strong>Qué sabemos</strong></div>
+        <div class="map-line line-b"></div>
+        <div class="map-node node-risk"><span>RISK</span><strong>Qué no sabemos</strong></div>
+        <div class="map-line line-c"></div>
+        <div class="map-node node-human"><span>AUTHORITY</span><strong>Humano decide</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="applications-section" id="soluciones-reales">
+    <div class="section-shell section-space">
+      <div class="section-intro reveal">
+        <div>
+          <div class="eyebrow">DÓNDE CREA VALOR</div>
+          <h2>Aplicaciones reales para <em>desafíos complejos.</em></h2>
+        </div>
+        <p>El núcleo es transversal. El valor aparece cuando se conecta a instrumentos, evidencia y decisiones propias de un dominio.</p>
+      </div>
+
+      <div class="applications-grid">
+        <div class="application-list">
+          <a class="application-item reveal" href="mineral-systems.html">
+            <span class="app-number">01</span>
+            <div><h3>Minería y geociencias</h3><p>Exploración mineral, sistemas geológicos, productividad y visión ejecutiva basada en evidencia.</p></div>
+            <b>↗</b>
+          </a>
+          <a class="application-item reveal" href="dashboard.html">
+            <span class="app-number">02</span>
+            <div><h3>Territorio y riesgo</h3><p>Análisis espacial, infraestructura, evolución territorial y reconstrucción de escenarios para decisiones públicas y privadas.</p></div>
+            <b>↗</b>
+          </a>
+          <a class="application-item reveal" href="praxios.html">
+            <span class="app-number">03</span>
+            <div><h3>Operaciones con IA</h3><p>Orquestación de múltiples modelos, control de procesos, evaluación y salidas defendibles.</p></div>
+            <b>↗</b>
+          </a>
+          <a class="application-item reveal" href="lab.html">
+            <span class="app-number">04</span>
+            <div><h3>Investigación avanzada</h3><p>Inverse Reality Lab explora límites mediante problemas inversos, simulación, formalización y experimentos.</p></div>
+            <b>↗</b>
+          </a>
+        </div>
+
+        <a class="deepgeo-feature reveal" href="mineral-systems.html">
+          <div class="deepgeo-art">
+            <svg viewBox="0 0 650 500" aria-hidden="true">
+              <path d="M0 410 L88 338 L160 365 L228 246 L294 310 L370 168 L439 253 L526 126 L650 250 L650 500 L0 500Z" fill="#171916"/>
+              <path d="M0 428 L88 355 L160 382 L228 263 L294 327 L370 185 L439 270 L526 143 L650 267" fill="none" stroke="#d8ff5f" stroke-width="2"/>
+              <path d="M23 450 C125 390 182 456 285 366 S461 338 626 231" fill="none" stroke="#65cfff" stroke-width="1.5" stroke-dasharray="5 7"/>
+              <path d="M-15 472 C104 408 190 496 312 392 S484 390 675 255" fill="none" stroke="#e4674f" stroke-width="1" stroke-dasharray="2 9"/>
+              <circle cx="370" cy="185" r="6" fill="#d8ff5f"/><circle cx="526" cy="143" r="5" fill="#65cfff"/><circle cx="228" cy="263" r="4" fill="#e4674f"/>
+            </svg>
+            <div class="geo-coordinates">35°28' S<br>71°44' W</div>
+            <div class="geo-tag">LAYERS / MODELS / EVIDENCE</div>
+          </div>
+          <div class="deepgeo-copy">
+            <span>DEEP ANALYTICA / DOMAIN SYSTEM</span>
+            <h3>Deep Geo</h3>
+            <p>El territorio deja de ser un mapa pasivo. Capas, modelos, evidencia, incertidumbre y escenarios se convierten en contexto para decidir.</p>
+            <strong>Explorar inteligencia geoespacial ↗</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell section-space leaders-section">
+    <div class="leaders-grid">
+      <div class="leaders-copy reveal">
+        <div class="eyebrow">POR QUÉ IMPORTA PARA LÍDERES</div>
+        <h2>Menos humo. Más criterio. <em>Más capacidad de decisión.</em></h2>
+        <p>El objetivo no es producir más respuestas. Es transformar inteligencia artificial y conocimiento técnico en decisiones que puedan explicarse, auditarse y sostenerse.</p>
+      </div>
+      <div class="leader-benefits">
+        <article class="benefit reveal"><span>TRACE</span><h3>Mayor trazabilidad</h3><p>Cada decisión puede rastrearse desde la evidencia hasta la acción.</p></article>
+        <article class="benefit reveal"><span>FOCUS</span><h3>Mejor criterio ejecutivo</h3><p>Complejidad técnica presentada con claridad para focalizar lo importante.</p></article>
+        <article class="benefit reveal"><span>PACE</span><h3>Más velocidad con control</h3><p>IA para avanzar más rápido sin convertir velocidad en autoridad.</p></article>
+        <article class="benefit reveal"><span>RISK</span><h3>Menor riesgo epistemológico</h3><p>Sesgos, contradicciones, incertidumbre y deuda quedan visibles.</p></article>
+        <article class="benefit reveal"><span>WHY</span><h3>Decisiones explicables</h3><p>Resultados que pueden auditarse, justificarse y comunicarse.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-section" id="evidencia">
+    <div class="section-shell section-space">
+      <div class="section-intro proof-intro reveal">
+        <div>
+          <div class="eyebrow">EVIDENCIA DEL ECOSISTEMA</div>
+          <h2>No es una promesa. <em>Puede entrar y revisar.</em></h2>
+        </div>
+        <p>La visión existe en forma de interfaces, runtime, investigación, publicación, benchmarks y demostraciones navegables.</p>
+      </div>
+
+      <div class="proof-grid">
+        <a class="proof-card reveal" href="praxios.html"><span>01 / PRODUCT</span><h3>PRAXIOS Control Room</h3><p>Sesión, agentes, claims, gates, autoridad humana y ledger sobre el mismo estado canónico.</p><b>Abrir sistema ↗</b></a>
+        <a class="proof-card reveal" href="el-puente/"><span>02 / BOOK</span><h3>EL PUENTE</h3><p>El corpus completo: doctrina, Euler, χ, harnesses, engranajes, Tiburón y desarrollo intelectual.</p><b>Leer libro ↗</b></a>
+        <a class="proof-card reveal" href="lab.html"><span>03 / RESEARCH</span><h3>Inverse Reality Lab</h3><p>Problemas inversos, identificación, topología, simulación y experimentos reproducibles.</p><b>Entrar al laboratorio ↗</b></a>
+        <a class="proof-card reveal" href="mineral-systems.html"><span>04 / DOMAIN</span><h3>Mineral Systems</h3><p>Chuquicamata, Escondida y El Teniente como controles de reconstrucción causal.</p><b>Ver benchmark ↗</b></a>
+        <a class="proof-card reveal" href="review.html"><span>05 / REVIEW</span><h3>Revisión académica</h3><p>Superficies para inspección técnica, obligaciones de prueba y crítica multidisciplinaria.</p><b>Revisar evidencia ↗</b></a>
+        <a class="proof-card reveal" href="investor/praxios-universe/"><span>06 / STRATEGY</span><h3>Investor Preview</h3><p>Producto, arquitectura, defensibilidad, tesis comercial, roadmap y due diligence.</p><b>Abrir preview ↗</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="decision-question section-shell section-space reveal">
+    <div class="question-mark">?</div>
+    <div class="question-copy">
+      <div class="eyebrow">LA PREGUNTA DE FONDO</div>
+      <h2>¿Qué derecho tiene una afirmación, recomendación o acción generada por IA a adquirir autoridad?</h2>
+      <p>Deep Analytica trabaja precisamente en esa frontera: transformar capacidad computacional en procesos que una organización pueda comprender, gobernar y defender.</p>
+    </div>
+    <a class="button button-dark" href="el-puente/">Entender la tesis <span>↗</span></a>
+  </section>
+
+  <section class="final-cta">
+    <div class="final-landscape" aria-hidden="true">
+      <svg viewBox="0 0 1600 620" preserveAspectRatio="none">
+        <path d="M0 470 C150 390 245 430 350 346 S563 324 686 262 883 314 1004 228 1196 182 1320 274 1480 205 1600 240 L1600 620 L0 620Z" fill="#151713"/>
+        <path d="M0 506 C162 424 270 478 387 385 S606 373 731 307 933 360 1060 274 1243 231 1392 316 1510 258 1600 285" fill="none" stroke="#d8ff5f" stroke-width="2"/>
+        <path d="M-30 553 C145 456 278 536 425 435 S676 429 820 358 1010 415 1163 326 1388 287 1640 345" fill="none" stroke="#65cfff" stroke-width="1.2" stroke-dasharray="7 9"/>
+      </svg>
+    </div>
+    <div class="section-shell final-inner">
+      <div class="final-copy reveal">
+        <div class="eyebrow">DEEP ANALYTICA / EXECUTIVE SESSION</div>
+        <h2>Convirtamos complejidad en <em>decisión clara.</em></h2>
+        <p>Si su organización enfrenta escenarios críticos, evidencia fragmentada o procesos complejos con IA, podemos ayudarle a estructurar, verificar y gobernar la decisión.</p>
+        <div class="hero-actions">
+          <a class="button button-acid" href="mailto:contacto@deepanalytica.cl?subject=Sesión%20estratégica%20Deep%20Analytica">Agendar sesión estratégica <span>↗</span></a>
+          <a class="button button-ghost-light" href="investor/praxios-universe/">Solicitar dossier ejecutivo <span>↗</span></a>
+        </div>
+      </div>
+      <div class="final-side reveal">
+        <span>TERRITORIOS REALES</span>
+        <span>DECISIONES REALES</span>
+        <span>RESPONSABILIDAD HUMANA</span>
+      </div>
+    </div>
+  </section>
 </main>
-<aside class="card"><h3>Lectura epistemológica</h3><p id="readout"></p><p class="small"><b>Estado:</b> prototipo de investigación. Su función es explorar y contrastar modelos de reconstrucción; el método histórico de Khufu permanece como problema de investigación.</p>
-<p class="small"><b>Paper:</b> <code>paper/main.tex</code> es la fuente canónica; Actions compila y publica <code>paper/PAPER.pdf</code> automáticamente.</p>
-<p class="small"><b>Matemática:</b> la biblioteca <a href="mathematics.html">MathJax</a> muestra las ecuaciones con tipografía LaTeX y enlaza las derivaciones completas.</p><hr><h3>Para investigadores</h3><p class="small">Buscamos colaboración con egiptología, arqueología de campo, arquitectura histórica, geología, ingeniería estructural, muografía, topología computacional y problemas inversos.</p><p><b>Alexis Brian Reyes Saavedra</b><br>Deep Analytica<br><a href="mailto:contacto@deepanalytica.cl">contacto@deepanalytica.cl</a><br><a href="https://deepanalytica.cl">deepanalytica.cl</a></p></aside></div>
 
-<div class="foot"><b>Keywords:</b> Egyptology, Egyptian archaeology, Great Pyramid of Giza, Khufu, pyramid construction, construction sequence, inverse archaeology, computational archaeology, archaeological inference, digital archaeology, topology, persistent homology, causal reconstruction, inverse problems, muography, ScanPyramids, structural mechanics, Vaidya spacetime, Kerr geodesics, PRAXIOS, Meta-Harness.</div>
-</div>
-<script>
-const q=s=>document.querySelector(s), C={ink:'#111827',mut:'#667085',line:'#d0d5dd',b:'#2563eb',c:'#0891b2',v:'#7c3aed',a:'#d97706',r:'#dc2626'},NS='http://www.w3.org/2000/svg';
-const E=(t,a={})=>{let x=document.createElementNS(NS,t);Object.entries(a).forEach(([k,v])=>x.setAttribute(k,v));return x},clear=s=>s.replaceChildren(),ln=(s,x1,y1,x2,y2,a={})=>s.appendChild(E('line',{x1,y1,x2,y2,stroke:C.line,'stroke-width':1,...a})),tx=(s,x,y,z,a={})=>{let e=E('text',{x,y,fill:C.ink,'font-size':11,...a});e.textContent=z;s.appendChild(e)},pth=(s,d,a={})=>s.appendChild(E('path',{d,fill:'none',stroke:C.ink,'stroke-width':2,...a})),f=(x,n=3)=>Number.isFinite(x)?x.toFixed(n):'—',cl=(x,a,b)=>Math.max(a,Math.min(b,x));
-let active='pyr';
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{active=b.dataset.tab;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===active));all()});
-
-function pyramid(){let H=146.6,t=+q('#pTau').value/100,u=1-t,z=H*u,m=t**3,du=cl(1-6*u*u+8*u**3-3*u**4,0,1),floor=43,top=48.8,sup=64.5,eta,state,detail;
-if(z>=top){eta=1;state=z>=sup?'Cavidad cerrada y encapsulada':'Cavidad cerrada; superestructura expuesta';detail='La identidad topológica negativa sigue separada del exterior.'}else if(z>floor){eta=(z-floor)/(top-floor);state='Cavidad abierta al exterior';detail='Al desaparecer el techo, el vacío se fusiona topológicamente con el exterior.'}else{eta=0;state='Identidad de cámara extinguida';detail='El volumen dejó de estar delimitado como objeto arquitectónico.'}
-q('#pTauV').textContent=f(t*100,1)+' %';q('#pZ').textContent=f(z,1)+' m';q('#pM').textContent=f(m*100,1)+' %';q('#pU').textContent=f(du*100,1)+' %';q('#pN').textContent=f(-10.5*5.2*5.8*2.6*eta,0)+' t-eq';q('#pState').textContent=state;q('#pDetail').textContent=detail;
-let s=q('#pyrSvg');clear(s);let bx=260,by=315,ay=25,hw=205,y=by-(z/H)*(by-ay),w=hw*(1-z/H),Y=zz=>by-(zz/H)*(by-ay);
-s.appendChild(E('polygon',{points:'260,25 55,315 465,315',fill:'none',stroke:C.ink,'stroke-width':2}));s.appendChild(E('polygon',{points:'55,315 465,315 '+(bx+w)+','+y+' '+(bx-w)+','+y,fill:C.b,'fill-opacity':.14}));ln(s,bx-w,y,bx+w,y,{stroke:C.c,'stroke-width':2,'stroke-dasharray':'6 5'});s.appendChild(E('rect',{x:235,y:Y(top),width:50,height:Math.max(4,Y(floor)-Y(top)),fill:C.v,'fill-opacity':eta?.24:.05,stroke:C.v,'stroke-width':2,'stroke-dasharray':eta<1?'5 4':'0'}));ln(s,220,Y(sup),300,Y(sup),{stroke:C.a,'stroke-width':3});tx(s,306,Y(sup)+4,'~64,5 m',{fill:C.mut});tx(s,306,Y(top)+4,'~48,8 m',{fill:C.mut});tx(s,306,Y(floor)+4,'~43 m',{fill:C.mut})}
-
-function mv(v,w){if(v<=-w)return 0;if(v>=w)return 1;let s=(v+w)/(2*w);return 3*s*s-2*s*s*s}
-function ehCurve(w){let out=[],v0=6,v1=-6,n=650,r=2,v=v0,F=(x,y)=>y<=1e-6?.5:.5*(1-2*mv(x,w)/y);out.push([v,r]);for(let i=1;i<n;i++){let vn=v0+(v1-v0)*i/(n-1),h=vn-v;if(r<=1e-6){r=0;v=vn;out.push([v,r]);continue}let k1=F(v,r),k2=F(v+h/2,r+h*k1/2),k3=F(v+h/2,r+h*k2/2),k4=F(v+h,r+h*k3);r=Math.max(0,r+h*(k1+2*k2+2*k3+k4)/6);v=vn;out.push([v,r])}return out.reverse()}
-function interp(a,x){for(let i=1;i<a.length;i++)if(a[i][0]>=x){let p=a[i-1],n=a[i],t=(x-p[0])/(n[0]-p[0]);return p[1]+t*(n[1]-p[1])}return x<a[0][0]?a[0][1]:a.at(-1)[1]}
-function vaidya(){let v=+q('#vT').value,w=+q('#vW').value,r=+q('#vR').value,m=mv(v,w),ah=2*m,th=(r-2*m)/(r*r),curve=ehCurve(w),eh=interp(curve,v);q('#vTV').textContent=f(v,2);q('#vWV').textContent=f(w,2);q('#vRV').textContent=f(r,2);q('#vM').textContent=f(m);q('#vAH').textContent=f(ah);q('#vEH').textContent=f(eh);q('#vTh').textContent=f(th);q('#vState').textContent=ah>0&&r<ah?'θ+<0: punto de prueba atrapado':th>0?'θ+>0: expansión saliente':'θ+=0: frontera aparente';
-let s=q('#vSvg');clear(s),L=45,R=535,T=25,B=310,X=x=>L+(x+6)/12*(R-L),Y=y=>B-cl(y,0,3.2)/3.2*(B-T);ln(s,L,B,R,B);ln(s,L,T,L,B);let a='',e='';curve.forEach((p,i)=>{a+=(i?' L':'M')+X(p[0])+' '+Y(2*mv(p[0],w));e+=(i?' L':'M')+X(p[0])+' '+Y(p[1])});pth(s,a,{stroke:C.c});pth(s,e,{stroke:C.a});ln(s,X(v),T,X(v),B,{stroke:C.v,'stroke-dasharray':'5 4'});s.appendChild(E('circle',{cx:X(v),cy:Y(r),r:5,fill:ah>0&&r<ah?C.r:C.b}));tx(s,365,45,'AH: r=2m(v)',{fill:C.c});tx(s,365,62,'EH: global',{fill:C.a})}
-
-function KR(r,a,b){let D=r*r-2*r+a*a;return (r*r+a*a-a*b)**2-D*(b-a)**2}
-function rph(a){return a<1e-8?3:2*(1+Math.cos((2/3)*Math.acos(-a)))}
-function bc(a){if(a<1e-8)return 3*Math.sqrt(3);let r=rph(a);return -(r**3-3*r*r+a*a*r+a*a)/(a*(r-1))}
-function roots(a,b,r0,r1){let o=[],n=900,x0=r0,y0=KR(x0,a,b);for(let i=1;i<=n;i++){let x=r0+(r1-r0)*i/n,y=KR(x,a,b);if(y*y0<0){let lo=x0,hi=x,fl=y0;for(let j=0;j<38;j++){let m=(lo+hi)/2,fm=KR(m,a,b);if(fl*fm<=0)hi=m;else{lo=m;fl=fm}}let z=(lo+hi)/2;if(!o.some(k=>Math.abs(k-z)<1e-3))o.push(z)}x0=x;y0=y}return o}
-function comps(a,b,r0,r1){let n=0,on=false;for(let i=0;i<=600;i++){let r=r0+(r1-r0)*i/600,ok=KR(r,a,b)>=0;if(ok&&!on){n++;on=true}if(!ok)on=false}return n}
-function kerr(){let a=+q('#kA').value,b=+q('#kB').value,h=1+Math.sqrt(1-a*a),ph=rph(a),crit=bc(a),r0=h+.003,r1=8,rr=roots(a,b,r0,r1),beta=comps(a,b,r0,r1);q('#kAV').textContent=f(a);q('#kBV').textContent=f(b);q('#kHp').textContent=f(h);q('#kPh').textContent=f(ph);q('#kBc').textContent=f(crit);q('#kBeta').textContent=beta;q('#kRoots').textContent=rr.length?'Raíces R=0: '+rr.map(x=>f(x)+'M').join(', '):'Sin turning points externos detectados';q('#kState').textContent=Math.abs(b-crit)<.015?'Separatriz: R≈0 y ∂rR≈0 en el light ring':beta>1?'Una banda radial prohibida separa el conjunto permitido':'El conjunto radial permitido permanece conectado';
-let s=q('#kSvg');clear(s),L=45,R=535,T=28,B=310,X=x=>L+(x-r0)/(r1-r0)*(R-L),mid=170,mx=1e-9,pts=[];for(let i=0;i<=600;i++){let r=r0+(r1-r0)*i/600,v=KR(r,a,b);pts.push([r,v]);mx=Math.max(mx,Math.abs(v))}ln(s,L,mid,R,mid,{'stroke-dasharray':'4 4'});let d='';pts.forEach((p,i)=>d+=(i?' L':'M')+X(p[0])+' '+(mid-cl(p[1]/mx,-1,1)*115));pth(s,d,{stroke:C.c});rr.forEach(x=>ln(s,X(x),T,X(x),B,{stroke:C.a,'stroke-dasharray':'4 4'}));ln(s,X(ph),T,X(ph),B,{stroke:C.v,'stroke-width':2});tx(s,X(ph)+4,48,'rph',{fill:C.v})}
-
-function unified(){let s=q('#uSvg');clear(s),rows=[['Pirámide','conectado exterior','cierre ∂V','cavidad',C.b],['Vaidya','θ+>0','θ+=0','θ+<0',C.c],['Kerr','β0=1','R=0,R′=0','β0=2',C.v]];rows.forEach((r,i)=>{let y=60+i*70;tx(s,20,y,r[0],{'font-size':13,'font-weight':600});ln(s,145,y-5,680,y-5,{'stroke-width':3});s.appendChild(E('circle',{cx:410,cy:y-5,r:7,fill:r[4]}));tx(s,150,y+20,r[1],{fill:C.mut});tx(s,410,y+20,r[2],{'text-anchor':'middle',fill:r[4]});tx(s,675,y+20,r[3],{'text-anchor':'end',fill:C.mut})});tx(s,410,25,'transición crítica de accesibilidad',{'text-anchor':'middle',fill:C.mut})}
-function read(){q('#readout').textContent=active==='pyr'?'El estado terminal restringe el pasado: al desmontar, una cámara conserva identidad mientras su frontera permanezca cerrada. Masa retirada, altura y tiempo describen dimensiones distintas del proceso.':active==='vai'?'El horizonte aparente responde a variables locales; el horizonte de eventos depende de la estructura causal global y puede reconstruirse imponiendo una condición futura.':active==='ker'?'En Kerr, una raíz doble del potencial radial crea una separatriz: al cruzar el parámetro crítico puede cambiar la conectividad del espacio permitido.':'Los tres sistemas se comparan por accesibilidad y topología de complementos, conservando la física propia de cada dominio.'}
-function all(){pyramid();vaidya();kerr();unified();read()}['#pTau','#vT','#vW','#vR','#kA','#kB'].forEach(x=>q(x).oninput=all);all();
-</script></body></html>
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="brand-mark" aria-hidden="true"><i></i></span>
+    <div><strong>DEEP ANALYTICA</strong><p>Arquitectura para inteligencia, evidencia y decisión.</p></div>
+  </div>
+  <nav aria-label="Pie de página">
+    <a href="praxios.html">PRAXIOS</a>
+    <a href="el-puente/">EL PUENTE</a>
+    <a href="mineral-systems.html">Deep Geo</a>
+    <a href="lab.html">IRL</a>
+    <a href="review.html">Evidencia</a>
+    <a href="mailto:contacto@deepanalytica.cl">Contacto</a>
+  </nav>
+  <div class="footer-note">© 2026 DEEP ANALYTICA · HUMAN AUTHORITY FINAL</div>
+</footer>
+</body>
+</html>
