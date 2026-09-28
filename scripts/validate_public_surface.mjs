@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 const required=[
-  "index.html","assets/portal-v3.css","assets/portal-v4.css","assets/portal-v5.css","assets/portal-v5.js","assets/portal-three.js",
+  "index.html","assets/portal-v3.css","assets/portal-v4.css","assets/portal-v5.css","assets/design-system-v1.css","assets/theme-v1.js","assets/portal-v5.js","assets/portal-three.js",
   "architecture-room/index.html","assets/architecture-room.js","site-nav.js",
   "robots.txt","sitemap.xml","llms.txt",
   "praxios.html","mineral-systems.html","lab.html","el-puente/index.html"
@@ -10,8 +10,16 @@ const errors=[];
 for(const p of required)if(!fs.existsSync(p))errors.push("missing "+p);
 
 if(!errors.length){
-  const html=fs.readFileSync("index.html","utf8"),css=fs.readFileSync("assets/portal-v5.css","utf8"),js=fs.readFileSync("assets/portal-v5.js","utf8"),room=fs.readFileSync("architecture-room/index.html","utf8"),llms=fs.readFileSync("llms.txt","utf8"),sitemap=fs.readFileSync("sitemap.xml","utf8");
+  const html=fs.readFileSync("index.html","utf8"),css=fs.readFileSync("assets/design-system-v1.css","utf8"),themeJs=fs.readFileSync("assets/theme-v1.js","utf8"),js=fs.readFileSync("assets/portal-v5.js","utf8"),room=fs.readFileSync("architecture-room/index.html","utf8"),llms=fs.readFileSync("llms.txt","utf8"),sitemap=fs.readFileSync("sitemap.xml","utf8");
   const checks=[
+    ["design system active",html.includes("assets/design-system-v1.css")],
+    ["theme controller active",html.includes("assets/theme-v1.js")&&html.includes("data-theme-toggle")],
+    ["semantic light dark tokens",css.includes('html[data-theme="light"]')&&css.includes('html[data-theme="dark"]')&&css.includes("--da-text-2")&&css.includes("--da-surface")],
+    ["typography hierarchy",css.includes("--da-font-display")&&css.includes(".section-head h2")&&css.includes(".hero h1")],
+    ["mobile hierarchy repair",css.includes("@media(max-width:820px)")&&css.includes(".decision-metaphor")&&css.includes("opacity:.025!important")],
+    ["theme persistence",themeJs.includes("deep-analytica-theme")&&themeJs.includes("localStorage")],
+    ["buyer copy customer-facing",html.includes("Lo que necesita saber")&&!html.includes("receta propietaria")&&!html.includes("Leads cualificados")&&!html.includes("Solicitar Architecture Room")],
+
     ["pain first",html.includes("Más información. Más modelos.")],
     ["decision finder",html.includes("¿Qué decisión necesita")],
     ["before after",html.includes("CON DEEP ANALYTICA")],
@@ -37,7 +45,7 @@ if(!errors.length){
     ["section numbering",js.includes("data-n")||js.includes("head.dataset.n")],
     ["pixel boot",js.includes("da-preload")],
     ["scramble interaction",js.includes("const scramble=")],
-    ["responsive",css.includes("@media(max-width:820px)")&&css.includes("@media(max-width:520px)")],
+    ["responsive",css.includes("@media(max-width:820px)")&&css.includes("@media(max-width:480px)")],
     ["reduced motion",css.includes("prefers-reduced-motion")],
     ["decision interaction",js.includes("decisionData")],
     ["llms high level",llms.includes("Organizations evaluating a pilot can request a deeper technical review")],
