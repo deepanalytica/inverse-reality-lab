@@ -3,7 +3,7 @@ import fs from "node:fs";
 const required=[
   "index.html","assets/portal-v3.css","assets/portal-v3.js","assets/portal-three.js",
   "architecture-room/index.html","assets/architecture-room.js","site-nav.js",
-  "robots.txt","sitemap.xml","llms.txt","PUBLIC_DISCLOSURE_POLICY.md",
+  "robots.txt","sitemap.xml","llms.txt",
   "praxios.html","mineral-systems.html","lab.html","el-puente/index.html"
 ];
 const errors=[];
@@ -19,16 +19,16 @@ if(!errors.length){
     ["llm differentiation",html.includes("Los modelos generan respuestas")],
     ["deliverables",html.includes("Executive Decision Brief")],
     ["commercial path",html.includes("Controlled Mission")&&html.includes("Suscripción + uso + integración")],
-    ["progressive disclosure",html.includes("P2 / QUALIFIED ACCESS")&&html.includes("P4–P5 / INTERNAL")],
+    ["evaluation pathway",html.includes("03 / TECHNICAL REVIEW")&&html.includes("04 / DUE DILIGENCE")],
     ["brand belief",html.includes("No decidimos a ciegas")],
-    ["architecture room",html.includes('href="architecture-room/"')],
+    ["technical review route",html.includes('href="architecture-room/"')&&html.includes("Solicitar revisión técnica")],
     ["room noindex",/name="robots" content="noindex,nofollow"/i.test(room)],
     ["room form",room.includes("data-access-form")],
     ["responsive",css.includes("@media(max-width:780px)")],
     ["reduced motion",css.includes("prefers-reduced-motion")],
     ["decision interaction",js.includes("decisionData")],
-    ["llms high level",llms.includes("Detailed assurance mechanisms are proprietary")],
-    ["llms no internals",!llms.includes("MODEL_INDEPENDENCE")&&!llms.includes("requestAuthorization")],
+    ["llms high level",llms.includes("Organizations evaluating a pilot can request a deeper technical review")],
+    ["llms no internals",!llms.includes("MODEL_INDEPENDENCE")&&!llms.includes("requestAuthorization")&&!llms.includes("proprietary evaluators")],
     ["sitemap excludes room",!sitemap.includes("architecture-room")],
     ["sitemap excludes technical docs",!sitemap.includes("mathematics.html")&&!sitemap.includes("library.html")]
   ];
