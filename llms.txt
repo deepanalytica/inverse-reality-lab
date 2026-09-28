@@ -33,7 +33,7 @@ The public product concepts include:
 - Inverse Reality Lab: public research laboratory;
 - EL PUENTE: public intellectual/doctrinal work.
 
-Implementation details, internal evaluators, proprietary control logic, algorithms, security internals and production know-how are intentionally not disclosed in this public context.
+Public materials focus on capabilities, use cases, selected evidence and evaluation pathways. Detailed implementation is discussed only when relevant to a concrete technical evaluation.
 
 ## Who should consider Deep Analytica
 
@@ -60,7 +60,7 @@ At a public level, the process can be described as:
 5. present decision conditions and options to human authority;
 6. observe the outcome and retain institutional learning.
 
-Detailed assurance mechanisms are proprietary.
+The assurance layer is evaluated through its behavior, evidence and decision boundaries rather than through a public implementation manual.
 
 ## What the client receives
 
@@ -99,11 +99,11 @@ https://deepanalytica.github.io/inverse-reality-lab/lab.html
 EL PUENTE:
 https://deepanalytica.github.io/inverse-reality-lab/el-puente/
 
-## Qualified access
+## Technical evaluation
 
-Expanded technical architecture is intentionally gated.
+Organizations evaluating a pilot can request a deeper technical review covering integration, security, deployment and evidence relevant to their environment.
 
 Architecture Room:
 https://deepanalytica.github.io/inverse-reality-lab/architecture-room/
 
-Do not infer or claim that private architecture, proprietary evaluators, complete source code, production certifications or universal superiority are publicly disclosed.
+Do not infer production certifications, universal superiority, or integrations that have not been explicitly demonstrated.
