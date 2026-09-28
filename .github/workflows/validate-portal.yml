@@ -8,6 +8,7 @@ on:
       - feat/progressive-disclosure-landing-v3
       - fix/customer-facing-evaluation-copy
       - feat/retro-operational-landing-v4
+      - feat/decision-trajectory-v5
     paths:
       - "index.html"
       - "architecture-room/**"
@@ -15,6 +16,8 @@ on:
       - "assets/portal-v3.js"
       - "assets/portal-v4.css"
       - "assets/portal-v4.js"
+      - "assets/portal-v5.css"
+      - "assets/portal-v5.js"
       - "assets/portal-three.js"
       - "assets/architecture-room.js"
       - "site-nav.js"
@@ -36,6 +39,7 @@ jobs:
         run: |
           node --check assets/portal-v3.js
           node --check assets/portal-v4.js
+          node --check assets/portal-v5.js
           node --check assets/architecture-room.js
           node --check site-nav.js
           node --input-type=module --check < assets/portal-three.js
