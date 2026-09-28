@@ -13,7 +13,9 @@
   --v5-ink:#121312;
   --v5-grid:rgba(18,19,18,.135);
   --v5-grid-dark:rgba(255,255,255,.13);
-  --v5-warm:#FF8066
+  --v5-warm:#FF8066;
+  --acid:var(--v5-iris);
+  --coral:var(--v5-warm)
 }
 
 html.portal-v5{
@@ -370,4 +372,278 @@ html.portal-v5 .hero-machine .machine-foot{position:relative;z-index:8}
   html.portal-v5 .trajectory-canvas{display:none}
   html.portal-v5 .pixel-signal-grid i,
   .decision-metaphor-grid i{transition:none}
+}
+
+
+/* ── v5.1 mobile-first hero repair ───────────────────────── */
+html.portal-v5 .hero-statement{
+  display:block;
+  color:var(--v5-ink);
+  font:inherit;
+  opacity:1
+}
+html.portal-v5 .hero-copy .btn-acid{
+  background:var(--v5-iris)!important;
+  border-color:var(--v5-iris)!important;
+  color:#fff!important
+}
+html.portal-v5 .hero-copy .btn-acid:hover{
+  background:var(--v5-iris-bright)!important;
+  border-color:var(--v5-iris-bright)!important
+}
+
+@media(max-width:820px){
+  html.portal-v5 .topbar{
+    height:62px;
+    grid-template-columns:1fr auto;
+    padding:0 14px
+  }
+  html.portal-v5 .brand-orbit{width:30px;height:30px}
+  html.portal-v5 .brand>span:last-child strong{
+    font-size:10px;
+    line-height:1.25;
+    letter-spacing:.16em
+  }
+  html.portal-v5 .menu{
+    display:block;
+    width:46px;
+    height:46px;
+    border-color:rgba(255,255,255,.18)
+  }
+  html.portal-v5 .da-progress{top:62px}
+
+  html.portal-v5 .hero{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "kicker"
+      "title"
+      "machine"
+      "lead"
+      "support"
+      "principle"
+      "actions"
+      "proof";
+    min-height:auto;
+    background:
+      linear-gradient(var(--v5-grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--v5-grid) 1px,transparent 1px),
+      var(--v5-mineral);
+    background-size:49px 49px;
+    border:0
+  }
+  html.portal-v5 .hero-copy{
+    display:contents;
+    background:none;
+    border:0
+  }
+  html.portal-v5 .hero-copy>.kicker{
+    grid-area:kicker;
+    margin:0;
+    padding:34px 24px 16px;
+    min-height:68px
+  }
+  html.portal-v5 .hero h1{
+    grid-area:title;
+    margin:0;
+    padding:6px 24px 26px;
+    font-family:var(--v4-sans)!important;
+    font-style:normal!important;
+    font-weight:500!important;
+    font-size:clamp(48px,12.7vw,68px)!important;
+    line-height:.91!important;
+    letter-spacing:-.062em!important;
+    color:var(--v5-ink)!important;
+    opacity:1!important
+  }
+  html.portal-v5 .hero h1 .hero-statement{
+    display:block;
+    color:var(--v5-ink)!important;
+    font-family:var(--v4-sans)!important;
+    font-style:normal!important;
+    opacity:1!important
+  }
+  html.portal-v5 .hero h1 em{
+    display:block;
+    margin-top:.16em;
+    color:var(--v5-iris)!important;
+    font-family:var(--v4-mono)!important;
+    font-style:normal!important;
+    font-weight:500!important;
+    font-size:.63em!important;
+    line-height:1.02!important;
+    letter-spacing:-.055em!important
+  }
+
+  html.portal-v5 .hero-machine{
+    grid-area:machine;
+    order:initial;
+    width:calc(100% - 28px);
+    height:236px;
+    min-height:236px;
+    margin:0 14px 24px;
+    border:1px solid rgba(18,19,18,.22);
+    background:var(--v5-charcoal)
+  }
+  html.portal-v5 .machine-head{
+    height:31px;
+    flex-basis:31px;
+    padding:0 10px
+  }
+  html.portal-v5 .machine-head span{
+    font-size:5px
+  }
+  html.portal-v5 .machine-head span:last-child{display:block}
+  html.portal-v5 .machine-stage{
+    height:174px;
+    min-height:174px;
+    touch-action:none;
+    background-size:34px 34px,34px 34px,auto,auto
+  }
+  html.portal-v5 .machine-foot{
+    height:29px;
+    flex-basis:29px;
+    padding:0 10px
+  }
+  html.portal-v5 .machine-foot span{
+    font-size:5px
+  }
+  html.portal-v5 .machine-foot:after{
+    display:block;
+    content:"TOQUE Y ARRASTRE";
+    font-size:5px;
+    letter-spacing:.08em
+  }
+  html.portal-v5 .machine-stage:after{
+    content:"TRACE A DECISION";
+    left:10px;
+    bottom:8px;
+    font-size:5px
+  }
+  html.portal-v5 .pixel-signal-grid{
+    grid-template-columns:repeat(12,1fr);
+    grid-template-rows:repeat(7,1fr)
+  }
+  html.portal-v5 .machine-input{display:none}
+  html.portal-v5 .machine-core{
+    width:182px;
+    min-height:112px;
+    padding:12px
+  }
+  html.portal-v5 .machine-core>strong{
+    margin-top:5px;
+    font-size:17px
+  }
+  html.portal-v5 .core-slots{
+    margin-top:9px
+  }
+  html.portal-v5 .core-slots i{
+    padding:5px 2px;
+    font-size:5px
+  }
+  html.portal-v5 .redacted{
+    margin-top:8px;
+    padding:5px
+  }
+  html.portal-v5 .redacted b{
+    height:3px;
+    margin:2px 0
+  }
+  html.portal-v5 .redacted small{font-size:4px}
+  html.portal-v5 .machine-output{
+    width:174px;
+    bottom:7px;
+    padding:6px 8px
+  }
+  html.portal-v5 .machine-output strong{font-size:12px}
+  html.portal-v5 .machine-output span{display:none}
+
+  html.portal-v5 .lead{
+    grid-area:lead;
+    max-width:none;
+    margin:0;
+    padding:3px 24px 0;
+    color:#30332f!important;
+    font-family:var(--v4-sans)!important;
+    font-size:16px!important;
+    line-height:1.5!important;
+    opacity:1!important
+  }
+  html.portal-v5 .lead strong{
+    color:var(--v5-ink)!important;
+    font-weight:650!important
+  }
+  html.portal-v5 .support{
+    grid-area:support;
+    max-width:none;
+    margin:0;
+    padding:18px 24px 0;
+    color:#656a63!important;
+    font-size:13px!important;
+    line-height:1.55!important;
+    opacity:1!important
+  }
+  html.portal-v5 .principle{
+    grid-area:principle;
+    max-width:none;
+    margin:24px 24px 0;
+    padding:15px 0;
+    color:var(--v5-ink)!important;
+    font-family:var(--v4-sans)!important;
+    font-size:17px!important;
+    line-height:1.27!important;
+    border-color:var(--v5-grid)
+  }
+  html.portal-v5 .principle b{
+    color:var(--v5-iris)!important
+  }
+  html.portal-v5 .hero-copy>.actions{
+    grid-area:actions;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    margin:20px 24px 0
+  }
+  html.portal-v5 .hero-copy>.actions .btn{
+    width:100%;
+    min-height:52px;
+    font-size:8px
+  }
+  html.portal-v5 .hero-copy .btn-outline{
+    background:rgba(245,244,238,.86)!important;
+    border-color:rgba(18,19,18,.18)!important;
+    color:var(--v5-ink)!important
+  }
+  html.portal-v5 .micro-proof{
+    grid-area:proof;
+    max-width:none;
+    margin:20px 24px 48px;
+    grid-template-columns:1fr 1fr;
+    background:rgba(245,244,238,.84)
+  }
+  html.portal-v5 .micro-proof span{
+    min-height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:9px 10px;
+    text-align:left;
+    color:#555a53!important
+  }
+  html.portal-v5 .micro-proof span:nth-child(2){border-right:0}
+  html.portal-v5 .micro-proof span:last-child{
+    grid-column:1/-1;
+    border-top:1px solid var(--v5-grid)
+  }
+}
+
+@media(max-width:420px){
+  html.portal-v5 .hero-copy>.kicker{padding-inline:18px}
+  html.portal-v5 .hero h1{padding-inline:18px;font-size:clamp(45px,13.5vw,60px)!important}
+  html.portal-v5 .hero-machine{width:calc(100% - 24px);margin-inline:12px}
+  html.portal-v5 .lead,
+  html.portal-v5 .support{padding-inline:18px}
+  html.portal-v5 .principle,
+  html.portal-v5 .hero-copy>.actions,
+  html.portal-v5 .micro-proof{margin-left:18px;margin-right:18px}
 }

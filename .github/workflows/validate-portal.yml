@@ -9,6 +9,7 @@ on:
       - fix/customer-facing-evaluation-copy
       - feat/retro-operational-landing-v4
       - feat/decision-trajectory-v5
+      - fix/mobile-hero-v5-1
     paths:
       - "index.html"
       - "architecture-room/**"
