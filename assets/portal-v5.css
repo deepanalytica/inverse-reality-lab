@@ -230,7 +230,7 @@ html.portal-v5 .final{
   overflow:hidden;
   isolation:isolate
 }
-html.portal-v5 #dolor>.shell,
+html.portal-v5 #dolor>*:not(.decision-metaphor),
 html.portal-v5 .how-section>.shell,
 html.portal-v5 .integration>*:not(.decision-metaphor),
 html.portal-v5 .evidence-section>.shell,
