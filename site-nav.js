@@ -163,8 +163,8 @@
   const setOpen=open=>{root.dataset.open=String(open);trigger.setAttribute("aria-expanded",String(open))};
   trigger.addEventListener("click",()=>setOpen(root.dataset.open!=="true"));
   close.addEventListener("click",()=>setOpen(false));
-  root.addEventListener("click",e=>{
-    const btn=e.target.closest("[data-da-theme-toggle]");
+  document.addEventListener("click",e=>{
+    const btn=e.target.closest?.("[data-da-theme-toggle]");
     if(!btn)return;
     applyTheme(html.dataset.theme==="dark"?"light":"dark");
   });
