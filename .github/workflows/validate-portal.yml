@@ -11,6 +11,7 @@ on:
       - feat/decision-trajectory-v5
       - fix/mobile-hero-v5-1
       - feat/design-system-v1
+      - feat/design-system-v1-clean
     paths:
       - "index.html"
       - "architecture-room/**"
