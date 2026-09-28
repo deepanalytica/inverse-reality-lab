@@ -10,6 +10,7 @@ on:
       - feat/retro-operational-landing-v4
       - feat/decision-trajectory-v5
       - fix/mobile-hero-v5-1
+      - feat/design-system-production-v6
     paths:
       - "index.html"
       - "architecture-room/**"
@@ -18,6 +19,7 @@ on:
       - "assets/portal-v4.css"
       - "assets/portal-v4.js"
       - "assets/portal-v5.css"
+      - "assets/system/**"
       - "assets/portal-v5.js"
       - "assets/portal-three.js"
       - "assets/architecture-room.js"
@@ -41,6 +43,7 @@ jobs:
           node --check assets/portal-v3.js
           node --check assets/portal-v4.js
           node --check assets/portal-v5.js
+          node --check assets/system/theme.js
           node --check assets/architecture-room.js
           node --check site-nav.js
           node --input-type=module --check < assets/portal-three.js
