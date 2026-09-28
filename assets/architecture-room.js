@@ -3,7 +3,7 @@
   form?.addEventListener("submit",e=>{
     e.preventDefault();
     const d=new FormData(form);
-    const subject="Architecture Room request — "+(d.get("org")||"");
+    const subject="Deep Analytica technical review — "+(d.get("org")||"");
     const body=[
       "Nombre: "+d.get("name"),
       "Organización: "+d.get("org"),
