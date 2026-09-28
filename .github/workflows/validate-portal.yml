@@ -17,7 +17,6 @@ on:
       - "robots.txt"
       - "sitemap.xml"
       - "llms.txt"
-      - "PUBLIC_DISCLOSURE_POLICY.md"
       - "scripts/validate_public_surface.mjs"
       - ".github/workflows/validate-portal.yml"
 
