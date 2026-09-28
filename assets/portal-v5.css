@@ -1,0 +1,373 @@
+/* Deep Analytica · Decision Trajectory v5
+   Electric Iris visual system + interactive decision-field metaphors. */
+
+:root{
+  --v5-iris:#725BFF;
+  --v5-iris-bright:#927FFF;
+  --v5-iris-deep:#4B36D6;
+  --v5-lilac:#CEC7FF;
+  --v5-charcoal:#151615;
+  --v5-charcoal-2:#0D0E0D;
+  --v5-mineral:#F5F4EE;
+  --v5-paper:#ECEAE3;
+  --v5-ink:#121312;
+  --v5-grid:rgba(18,19,18,.135);
+  --v5-grid-dark:rgba(255,255,255,.13);
+  --v5-warm:#FF8066
+}
+
+html.portal-v5{
+  --v4-blue:var(--v5-iris);
+  --v4-blue-2:var(--v5-iris-deep);
+  --v4-signal:var(--v5-lilac);
+  --v4-black:var(--v5-charcoal);
+  --v4-black-2:var(--v5-charcoal-2);
+  --v4-white:var(--v5-mineral);
+  --v4-paper:var(--v5-paper);
+  --v4-ink:var(--v5-ink);
+  background:var(--v5-charcoal)
+}
+html.portal-v5 body{background:var(--v5-mineral)}
+html.portal-v5 ::selection{background:var(--v5-iris);color:#fff}
+html.portal-v5 .brand-orbit:before,
+html.portal-v5 .kicker i,
+html.portal-v5 .da-progress i{background:var(--v5-iris)}
+html.portal-v5 .nav a:first-child:before,
+html.portal-v5 .nav a:first-child:after,
+html.portal-v5 .birth-flow>i,
+html.portal-v5 .difference-grid .featured,
+html.portal-v5 .identity{color:inherit}
+html.portal-v5 .nav a:first-child:before,
+html.portal-v5 .nav a:first-child:after{color:var(--v5-lilac)}
+
+/* Hero must read as one complete first-screen experience. */
+html.portal-v5 .hero{
+  width:min(1500px,100%);
+  min-height:calc(100svh - 58px);
+  max-width:1500px;
+  margin:0 auto;
+  padding:0;
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) minmax(500px,.98fr);
+  gap:0;
+  background:var(--v5-mineral);
+  border-left:1px solid var(--v5-grid);
+  border-right:1px solid var(--v5-grid);
+  overflow:hidden
+}
+html.portal-v5 .hero-copy{
+  order:0;
+  width:auto;
+  margin:0;
+  padding:clamp(42px,5.2vw,78px) clamp(30px,5vw,76px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-right:1px solid var(--v5-grid);
+  background:
+    linear-gradient(var(--v5-grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--v5-grid) 1px,transparent 1px),
+    var(--v5-mineral);
+  background-size:56px 56px
+}
+html.portal-v5 .hero-copy>.kicker{margin:0 0 20px}
+html.portal-v5 .hero h1{
+  max-width:800px;
+  margin:0;
+  font-size:clamp(56px,5.8vw,94px);
+  line-height:.91
+}
+html.portal-v5 .hero h1 em{
+  color:var(--v5-iris);
+  font-size:.72em;
+  margin-top:.15em
+}
+html.portal-v5 .lead{max-width:640px;margin-top:28px;padding:0;font-size:clamp(15px,1.25vw,19px)}
+html.portal-v5 .support{max-width:620px;margin-top:15px}
+html.portal-v5 .principle{max-width:620px;margin-top:20px}
+html.portal-v5 .hero-copy>.actions{margin-top:20px}
+html.portal-v5 .micro-proof{max-width:620px;margin-top:18px}
+html.portal-v5 .hero-machine{
+  order:1;
+  min-height:calc(100svh - 58px);
+  height:auto;
+  align-self:stretch;
+  border:0;
+  background:var(--v5-charcoal);
+  overflow:hidden
+}
+html.portal-v5 .machine-head,
+html.portal-v5 .machine-foot{
+  flex:0 0 42px;
+  height:42px;
+  padding:0 clamp(14px,2.3vw,32px);
+  border-color:var(--v5-grid-dark)
+}
+html.portal-v5 .machine-head span:first-child:before{color:var(--v5-iris)}
+html.portal-v5 .machine-stage{
+  position:relative;
+  height:calc(100% - 84px);
+  min-height:540px;
+  cursor:crosshair;
+  touch-action:pan-y;
+  outline:none;
+  background:
+    linear-gradient(var(--v5-grid-dark) 1px,transparent 1px),
+    linear-gradient(90deg,var(--v5-grid-dark) 1px,transparent 1px),
+    radial-gradient(circle at 55% 44%,rgba(114,91,255,.10),transparent 32rem),
+    var(--v5-charcoal);
+  background-size:48px 48px,48px 48px,auto,auto
+}
+html.portal-v5 .machine-stage:focus-visible{box-shadow:inset 0 0 0 2px var(--v5-iris)}
+html.portal-v5 .machine-stage:after{
+  content:"MOVE / TRACE / CONNECT";
+  position:absolute;
+  left:16px;bottom:15px;z-index:7;
+  color:#71756f;
+  font:700 6px/1 var(--v4-mono);
+  letter-spacing:.12em;
+  pointer-events:none
+}
+html.portal-v5 .machine-stage canvas#decision-lattice{opacity:.07}
+html.portal-v5 .trajectory-canvas{
+  position:absolute;inset:0;z-index:2;width:100%;height:100%;
+  pointer-events:none
+}
+html.portal-v5 .pixel-signal-grid{
+  z-index:3;
+  grid-template-columns:repeat(18,1fr);
+  grid-template-rows:repeat(10,1fr)
+}
+html.portal-v5 .pixel-signal-grid i{
+  position:relative;
+  border-color:rgba(255,255,255,.075);
+  background:transparent;
+  opacity:1;
+  transition:background .22s ease,box-shadow .22s ease,opacity .34s ease
+}
+html.portal-v5 .pixel-signal-grid i.trace-1{background:rgba(114,91,255,.18)}
+html.portal-v5 .pixel-signal-grid i.trace-2{background:rgba(114,91,255,.38)}
+html.portal-v5 .pixel-signal-grid i.trace-3{
+  background:var(--v5-iris);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 0 24px rgba(114,91,255,.24)
+}
+html.portal-v5 .pixel-signal-grid i.trace-near{background:rgba(206,199,255,.15)}
+html.portal-v5 .pixel-signal-grid i.locked{
+  background:rgba(114,91,255,.13);
+  box-shadow:inset 0 0 0 1px var(--v5-lilac)
+}
+html.portal-v5 .machine-input,
+html.portal-v5 .machine-core,
+html.portal-v5 .machine-output{
+  z-index:5;
+  pointer-events:none
+}
+html.portal-v5 .machine-core{
+  width:min(280px,44%);
+  border-color:rgba(206,199,255,.36);
+  box-shadow:0 18px 60px rgba(0,0,0,.18)
+}
+html.portal-v5 .machine-core>span,
+html.portal-v5 .redacted small{color:var(--v5-lilac)}
+html.portal-v5 .redacted{border-color:rgba(114,91,255,.42)}
+html.portal-v5 .machine-output{
+  bottom:17px;
+  border-top:3px solid var(--v5-iris)
+}
+html.portal-v5 .machine-foot{
+  color:#80847e
+}
+html.portal-v5 .machine-foot:after{
+  content:"Mueva el cursor para recorrer el campo";
+  color:var(--v5-lilac)
+}
+
+/* Stronger proprietary visual language without borrowing the reference blue. */
+html.portal-v5 .btn-acid:hover,
+html.portal-v5 .hero-copy .btn-acid:hover,
+html.portal-v5 .decision-tabs button.active,
+html.portal-v5 .stack-center,
+html.portal-v5 .difference-grid .featured,
+html.portal-v5 .identity{
+  background:var(--v5-iris)!important;
+  border-color:var(--v5-iris)!important
+}
+html.portal-v5 .hero h1 em,
+html.portal-v5 .principle b,
+html.portal-v5 .symptom>span,
+html.portal-v5 .deliverables span,
+html.portal-v5 .decision-questions li:before,
+html.portal-v5 .commercial-grid article:nth-child(2) h3,
+html.portal-v5 .deployment-note strong,
+html.portal-v5 .disclosure-grid a,
+html.portal-v5 .evidence-card b,
+html.portal-v5 .faq summary:after,
+html.portal-v5 .final-code b,
+html.portal-v5 .disclosure-manifesto b{
+  color:var(--v5-iris)
+}
+html.portal-v5 .compare-after .ordered i:nth-child(1),
+html.portal-v5 .compare-after .ordered i:nth-child(6){
+  border-color:var(--v5-iris);
+  color:var(--v5-lilac)
+}
+html.portal-v5 .compare-after>b,
+html.portal-v5 .birth-flow .protected small,
+html.portal-v5 .evidence-card b{color:var(--v5-lilac)}
+html.portal-v5 .birth-flow .protected{
+  background:linear-gradient(145deg,#131315,#1c1730)
+}
+html.portal-v5 .commercial-grid article:nth-child(2){box-shadow:inset 0 3px 0 var(--v5-iris)}
+html.portal-v5 .stack-center{color:#fff}
+
+/* ── Reusable visual metaphor field ─────────────────────── */
+html.portal-v5 #dolor,
+html.portal-v5 .how-section,
+html.portal-v5 .integration,
+html.portal-v5 .evidence-section,
+html.portal-v5 .final{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate
+}
+html.portal-v5 #dolor>.shell,
+html.portal-v5 .how-section>.shell,
+html.portal-v5 .integration>*:not(.decision-metaphor),
+html.portal-v5 .evidence-section>.shell,
+html.portal-v5 .final>.shell{
+  position:relative;
+  z-index:2
+}
+.decision-metaphor{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.72;
+  overflow:hidden
+}
+.decision-metaphor-grid{
+  position:absolute;
+  inset:0;
+  display:grid;
+  grid-template-columns:repeat(16,1fr);
+  grid-template-rows:repeat(7,1fr)
+}
+.decision-metaphor-grid i{
+  position:relative;
+  border-right:1px solid var(--v5-grid);
+  border-bottom:1px solid var(--v5-grid);
+  background:transparent;
+  transition:background .32s ease,box-shadow .32s ease,opacity .32s ease
+}
+.how-section .decision-metaphor-grid i,
+.evidence-section .decision-metaphor-grid i,
+.final .decision-metaphor-grid i{
+  border-color:rgba(255,255,255,.065)
+}
+.decision-metaphor-grid i.on{background:rgba(114,91,255,.12)}
+.decision-metaphor-grid i.hot{background:rgba(114,91,255,.34)}
+.decision-metaphor-grid i.signal{background:var(--v5-iris);box-shadow:0 0 25px rgba(114,91,255,.18)}
+.decision-metaphor-grid i.broken:after{
+  content:"";position:absolute;inset:43% 12%;height:1px;background:var(--v5-warm);transform:rotate(-18deg)
+}
+.decision-metaphor-grid i.verified{
+  background:rgba(114,91,255,.11);
+  box-shadow:inset 0 0 0 1px var(--v5-lilac)
+}
+.decision-metaphor-grid i.verified:after{
+  content:"✓";position:absolute;right:6px;bottom:5px;color:var(--v5-lilac);font:700 7px var(--v4-mono)
+}
+.decision-metaphor-label{
+  position:absolute;right:18px;top:18px;
+  color:#777b75;font:700 6px/1 var(--v4-mono);letter-spacing:.1em
+}
+.how-section .decision-metaphor-label,
+.evidence-section .decision-metaphor-label,
+.final .decision-metaphor-label{color:#666b66}
+
+/* Fragmentation: grid is visible but paths do not connect. */
+#dolor .decision-metaphor{opacity:.28}
+#dolor .decision-metaphor-grid{transform:scale(1.02)}
+#dolor .symptoms{position:relative;background:rgba(245,244,238,.90);backdrop-filter:blur(3px)}
+
+/* Decision birth: continuous rail appears through the dark field. */
+.how-section .decision-metaphor{opacity:.46}
+.how-section .birth-flow{position:relative;background:rgba(21,22,21,.90);backdrop-filter:blur(4px)}
+
+/* Integration: sources visually converge into the center. */
+.integration .decision-metaphor{opacity:.30}
+.integration .stack-map{position:relative;background:rgba(245,244,238,.89);backdrop-filter:blur(4px)}
+
+/* Evidence: selected nodes remain sealed. */
+.evidence-section .decision-metaphor{opacity:.52}
+.evidence-section .evidence-grid{position:relative;background:rgba(21,22,21,.91);backdrop-filter:blur(3px)}
+
+/* Final resolution: one trajectory survives. */
+.final .decision-metaphor{opacity:.55}
+.final .final-grid{position:relative}
+
+/* Local pointer-paint overlays on metaphor sections. */
+html.pointer-fine .decision-metaphor{pointer-events:auto}
+html.pointer-fine .decision-metaphor-grid i.pointer-hit{background:rgba(114,91,255,.23)}
+html.pointer-fine .decision-metaphor-grid i.pointer-near{background:rgba(206,199,255,.09)}
+
+/* Hero information must remain above interactive surface. */
+html.portal-v5 .hero-machine .machine-head,
+html.portal-v5 .hero-machine .machine-foot{position:relative;z-index:8}
+
+/* desktop height safety */
+@media(max-height:790px) and (min-width:1001px){
+  html.portal-v5 .hero h1{font-size:clamp(48px,5.1vw,78px)}
+  html.portal-v5 .hero-copy{padding-block:34px}
+  html.portal-v5 .lead{margin-top:20px;font-size:15px}
+  html.portal-v5 .support{margin-top:11px;line-height:1.52}
+  html.portal-v5 .principle{margin-top:14px;padding-block:10px}
+  html.portal-v5 .hero-copy>.actions{margin-top:14px}
+  html.portal-v5 .micro-proof{margin-top:12px}
+  html.portal-v5 .machine-stage{min-height:430px}
+}
+
+@media(max-width:1100px){
+  html.portal-v5 .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    border:0
+  }
+  html.portal-v5 .hero-machine{
+    order:0;
+    min-height:420px;
+    height:46svh
+  }
+  html.portal-v5 .hero-copy{
+    order:1;
+    border-right:0;
+    border-bottom:1px solid var(--v5-grid)
+  }
+  html.portal-v5 .machine-stage{min-height:336px}
+  html.portal-v5 .machine-foot:after{display:none}
+}
+@media(max-width:820px){
+  html.portal-v5 .hero-machine{height:380px;min-height:380px}
+  html.portal-v5 .machine-stage{min-height:296px}
+  html.portal-v5 .pixel-signal-grid{
+    grid-template-columns:repeat(12,1fr);
+    grid-template-rows:repeat(8,1fr)
+  }
+  html.portal-v5 .machine-stage:after{content:"TOUCH / TRACE";font-size:5px}
+  html.portal-v5 .machine-core{width:220px}
+  .decision-metaphor-grid{grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(8,1fr)}
+}
+@media(max-width:520px){
+  html.portal-v5 .hero-machine{height:330px;min-height:330px}
+  html.portal-v5 .machine-stage{min-height:246px}
+  html.portal-v5 .machine-core{width:200px}
+  html.portal-v5 .machine-output{width:190px}
+  html.portal-v5 .hero-copy{padding:42px 14px 54px}
+  html.portal-v5 .hero h1{font-size:clamp(45px,14vw,64px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html.portal-v5 .trajectory-canvas{display:none}
+  html.portal-v5 .pixel-signal-grid i,
+  .decision-metaphor-grid i{transition:none}
+}
