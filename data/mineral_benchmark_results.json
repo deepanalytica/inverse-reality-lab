@@ -1,0 +1,296 @@
+{
+  "benchmark": "IRL-Mineral-Genesis-3",
+  "schema_version": "0.1.0",
+  "protocol": {
+    "task": "Infer a causal mineral-system graph from standardized observations without reading deposit-specific ground_truth.",
+    "mode": "retrospective pseudo-blind control",
+    "warning": "This is not a prospectivity or resource estimate. Deposit identity is known to the curator; true blind spatial validation requires independently masked raw datasets.",
+    "metrics": [
+      "edge_precision",
+      "edge_recall",
+      "edge_f1",
+      "rule_trace",
+      "porphyry_system_support"
+    ],
+    "modes": {
+      "reconstruction": "Uses the standardized observation set, while withholding the causal graph.",
+      "exploration_proxy": "Ablates direct ore/mineral-stage observations to estimate how much causal recovery survives with sparser exploration-style evidence."
+    },
+    "exploration_proxy_ablation": [
+      "sulfides_in_brecciation",
+      "quartz_moly_veins",
+      "main_stage_veins",
+      "fault_adjacent_main_stage",
+      "late_high_sulfidation_minerals",
+      "sulfide_cemented_breccias",
+      "high_sulfidation_veins",
+      "chalcocite_blanket",
+      "central_pipe_ore_destruction",
+      "late_hydrothermal_stage",
+      "hydrothermal_magnetic_reset"
+    ]
+  },
+  "results": [
+    {
+      "id": "CTRL-CHUQUI",
+      "public_name": "Chuquicamata",
+      "label": "Control A",
+      "observations": 17,
+      "reconstruction": {
+        "id": "CTRL-CHUQUI",
+        "inferred_edges": [
+          "alteration_modifies_magnetic_properties",
+          "brecciation_focuses_sulfides",
+          "fault_zone_focuses_main_stage",
+          "hypogene_precedes_supergene",
+          "intrusion_precedes_potassic",
+          "main_stage_precedes_late_high_sulfidation",
+          "mineralization_precedes_postmineral_faulting",
+          "potassic_precedes_sericitic_overprint",
+          "quartz_moly_precedes_main_stage",
+          "structure_localizes_intrusion"
+        ],
+        "rule_trace": [],
+        "porphyry_system_support": 0.6,
+        "score": {
+          "tp": [
+            "alteration_modifies_magnetic_properties",
+            "brecciation_focuses_sulfides",
+            "fault_zone_focuses_main_stage",
+            "hypogene_precedes_supergene",
+            "intrusion_precedes_potassic",
+            "main_stage_precedes_late_high_sulfidation",
+            "mineralization_precedes_postmineral_faulting",
+            "potassic_precedes_sericitic_overprint",
+            "quartz_moly_precedes_main_stage",
+            "structure_localizes_intrusion"
+          ],
+          "fp": [],
+          "fn": [
+            "dextral_main_stage_precedes_late_sinistral_opening",
+            "early_ductile_precedes_cataclastic_deformation",
+            "erosion_precedes_supergene_enrichment"
+          ],
+          "precision": 1,
+          "recall": 0.769,
+          "f1": 0.87
+        }
+      },
+      "exploration_proxy": {
+        "observations": 11,
+        "id": "CTRL-CHUQUI",
+        "inferred_edges": [
+          "alteration_modifies_magnetic_properties",
+          "intrusion_precedes_potassic",
+          "mineralization_precedes_postmineral_faulting",
+          "potassic_precedes_sericitic_overprint",
+          "structure_localizes_intrusion"
+        ],
+        "rule_trace": [],
+        "porphyry_system_support": 0.55,
+        "score": {
+          "tp": [
+            "alteration_modifies_magnetic_properties",
+            "intrusion_precedes_potassic",
+            "mineralization_precedes_postmineral_faulting",
+            "potassic_precedes_sericitic_overprint",
+            "structure_localizes_intrusion"
+          ],
+          "fp": [],
+          "fn": [
+            "brecciation_focuses_sulfides",
+            "dextral_main_stage_precedes_late_sinistral_opening",
+            "early_ductile_precedes_cataclastic_deformation",
+            "erosion_precedes_supergene_enrichment",
+            "fault_zone_focuses_main_stage",
+            "hypogene_precedes_supergene",
+            "main_stage_precedes_late_high_sulfidation",
+            "quartz_moly_precedes_main_stage"
+          ],
+          "precision": 1,
+          "recall": 0.385,
+          "f1": 0.556
+        }
+      }
+    },
+    {
+      "id": "CTRL-ESCONDIDA",
+      "public_name": "Escondida",
+      "label": "Control B",
+      "observations": 17,
+      "reconstruction": {
+        "id": "CTRL-ESCONDIDA",
+        "inferred_edges": [
+          "advanced_argillic_hosts_late_high_sulfidation",
+          "alteration_modifies_magnetic_properties",
+          "brecciation_focuses_sulfides",
+          "chlorite_sericite_precedes_quartz_sericite",
+          "dilation_localizes_intrusion",
+          "hypogene_precedes_supergene",
+          "intrusion_precedes_potassic",
+          "potassic_precedes_chlorite_sericite",
+          "structure_localizes_intrusion",
+          "structures_control_supergene_geometry"
+        ],
+        "rule_trace": [],
+        "porphyry_system_support": 0.65,
+        "score": {
+          "tp": [
+            "advanced_argillic_hosts_late_high_sulfidation",
+            "alteration_modifies_magnetic_properties",
+            "brecciation_focuses_sulfides",
+            "chlorite_sericite_precedes_quartz_sericite",
+            "dilation_localizes_intrusion",
+            "hypogene_precedes_supergene",
+            "intrusion_precedes_potassic",
+            "potassic_precedes_chlorite_sericite",
+            "structure_localizes_intrusion",
+            "structures_control_supergene_geometry"
+          ],
+          "fp": [],
+          "fn": [
+            "dextral_intrusion_stage_precedes_late_sinistral_stage",
+            "early_porphyry_precedes_intermineral_intrusions",
+            "sericite_precedes_advanced_argillic_overprint"
+          ],
+          "precision": 1,
+          "recall": 0.769,
+          "f1": 0.87
+        }
+      },
+      "exploration_proxy": {
+        "observations": 14,
+        "id": "CTRL-ESCONDIDA",
+        "inferred_edges": [
+          "alteration_modifies_magnetic_properties",
+          "chlorite_sericite_precedes_quartz_sericite",
+          "dilation_localizes_intrusion",
+          "intrusion_precedes_potassic",
+          "potassic_precedes_chlorite_sericite",
+          "structure_localizes_intrusion"
+        ],
+        "rule_trace": [],
+        "porphyry_system_support": 0.6,
+        "score": {
+          "tp": [
+            "alteration_modifies_magnetic_properties",
+            "chlorite_sericite_precedes_quartz_sericite",
+            "dilation_localizes_intrusion",
+            "intrusion_precedes_potassic",
+            "potassic_precedes_chlorite_sericite",
+            "structure_localizes_intrusion"
+          ],
+          "fp": [],
+          "fn": [
+            "advanced_argillic_hosts_late_high_sulfidation",
+            "brecciation_focuses_sulfides",
+            "dextral_intrusion_stage_precedes_late_sinistral_stage",
+            "early_porphyry_precedes_intermineral_intrusions",
+            "hypogene_precedes_supergene",
+            "sericite_precedes_advanced_argillic_overprint",
+            "structures_control_supergene_geometry"
+          ],
+          "precision": 1,
+          "recall": 0.462,
+          "f1": 0.632
+        }
+      }
+    },
+    {
+      "id": "CTRL-TENIENTE",
+      "public_name": "El Teniente",
+      "label": "Control C",
+      "observations": 13,
+      "reconstruction": {
+        "id": "CTRL-TENIENTE",
+        "inferred_edges": [
+          "alteration_modifies_magnetic_properties",
+          "breccia_pipe_modifies_central_ore",
+          "hydrothermal_event_resets_magnetic_record",
+          "hydrothermal_precedes_late_ne_faulting",
+          "hydrothermal_pressure_precedes_breccia_pipe",
+          "intrusion_precedes_potassic",
+          "intrusion_stress_controls_radial_concentric_veins",
+          "late_magmatic_precedes_principal_hydrothermal",
+          "principal_precedes_late_hydrothermal",
+          "stockwork_records_late_magmatic_stage"
+        ],
+        "rule_trace": [],
+        "porphyry_system_support": 0.4,
+        "score": {
+          "tp": [
+            "alteration_modifies_magnetic_properties",
+            "breccia_pipe_modifies_central_ore",
+            "hydrothermal_event_resets_magnetic_record",
+            "hydrothermal_precedes_late_ne_faulting",
+            "hydrothermal_pressure_precedes_breccia_pipe",
+            "intrusion_precedes_potassic",
+            "intrusion_stress_controls_radial_concentric_veins",
+            "late_magmatic_precedes_principal_hydrothermal",
+            "principal_precedes_late_hydrothermal",
+            "stockwork_records_late_magmatic_stage"
+          ],
+          "fp": [],
+          "fn": [
+            "dacite_intrusion_coeval_late_magmatic_ore",
+            "mineralization_cooling_records_short_interval",
+            "resurgence_reactivates_concentric_structures",
+            "subsidence_precedes_resurgence"
+          ],
+          "precision": 1,
+          "recall": 0.714,
+          "f1": 0.833
+        }
+      },
+      "exploration_proxy": {
+        "observations": 10,
+        "id": "CTRL-TENIENTE",
+        "inferred_edges": [
+          "alteration_modifies_magnetic_properties",
+          "intrusion_precedes_potassic",
+          "intrusion_stress_controls_radial_concentric_veins",
+          "late_magmatic_precedes_principal_hydrothermal",
+          "stockwork_records_late_magmatic_stage"
+        ],
+        "rule_trace": [],
+        "porphyry_system_support": 0.4,
+        "score": {
+          "tp": [
+            "alteration_modifies_magnetic_properties",
+            "intrusion_precedes_potassic",
+            "intrusion_stress_controls_radial_concentric_veins",
+            "late_magmatic_precedes_principal_hydrothermal",
+            "stockwork_records_late_magmatic_stage"
+          ],
+          "fp": [],
+          "fn": [
+            "breccia_pipe_modifies_central_ore",
+            "dacite_intrusion_coeval_late_magmatic_ore",
+            "hydrothermal_event_resets_magnetic_record",
+            "hydrothermal_precedes_late_ne_faulting",
+            "hydrothermal_pressure_precedes_breccia_pipe",
+            "mineralization_cooling_records_short_interval",
+            "principal_precedes_late_hydrothermal",
+            "resurgence_reactivates_concentric_structures",
+            "subsidence_precedes_resurgence"
+          ],
+          "precision": 1,
+          "recall": 0.357,
+          "f1": 0.526
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "reconstruction": {
+      "mean_precision": 1,
+      "mean_recall": 0.751,
+      "mean_f1": 0.858
+    },
+    "exploration_proxy": {
+      "mean_precision": 1,
+      "mean_recall": 0.401,
+      "mean_f1": 0.571
+    }
+  }
+}
