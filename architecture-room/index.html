@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es" data-portal-native-nav="true">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#10110f">
+<title>Architecture Room · Deep Analytica</title>
+<meta name="description" content="Solicitud de acceso cualificado a la arquitectura ampliada de Deep Analytica.">
+<link rel="stylesheet" href="../assets/portal-v3.css">
+<style>
+.room{min-height:100vh;padding:clamp(70px,10vw,150px) 0}.room-grid{display:grid;grid-template-columns:1fr .8fr;gap:clamp(45px,9vw,140px);align-items:start}.room h1{max-width:900px;margin:20px 0;font:400 clamp(56px,8vw,118px)/.88 var(--serif);letter-spacing:-.055em}.room h1 em{font-weight:400;color:#b8bbb2}.room-lead{max-width:760px;color:#a0a59c;font-size:16px;line-height:1.7}.room-teaser{margin-top:45px;border:1px solid var(--line)}.room-teaser>div{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:16px;border-bottom:1px solid var(--line)}.room-teaser>div:last-child{border-bottom:0}.room-teaser span{color:#686e65;font:700 7px var(--mono)}.room-teaser p{margin:0;color:#989d94;font-size:10px}.request{position:sticky;top:90px;padding:26px;border:1px solid rgba(217,255,99,.28);background:#0b0c0a}.request>span{color:var(--acid);font:700 7px var(--mono)}.request h2{margin:12px 0 6px;font:400 35px var(--serif)}.request>p{color:#767c73;font-size:10px;line-height:1.6}.request label{display:block;margin-top:14px;color:#747a71;font:700 7px var(--mono)}.request input,.request textarea,.request select{width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);background:#11130f;color:#fff;outline:none}.request textarea{min-height:100px;resize:vertical}.request button{width:100%;margin-top:18px;cursor:pointer}.room-note{margin-top:16px;color:#585e56;font-size:8px;line-height:1.5}.room-back{display:inline-block;margin-top:35px;color:#7f857c;text-decoration:none;font:700 8px var(--mono)}@media(max-width:850px){.room-grid{grid-template-columns:1fr}.request{position:static}}
+</style>
+<script defer src="../assets/architecture-room.js"></script>
+</head>
+<body>
+<main class="room">
+  <div class="shell room-grid">
+    <section>
+      <div class="kicker"><i></i>QUALIFIED ACCESS / P2</div>
+      <h1>Vea más de la máquina. <em>No toda la máquina.</em></h1>
+      <p class="room-lead">Architecture Room está pensado para clientes potenciales, socios e inversionistas que ya tienen una intención concreta. Aquí podemos compartir una vista ampliada de integración, deployment, seguridad y arquitectura sin convertir el núcleo propietario en documentación pública.</p>
+      <div class="room-teaser">
+        <div><span>01 / SYSTEM</span><p>Cómo una misión conecta fuentes, análisis, evidencia, decisiones y outcomes.</p></div>
+        <div><span>02 / INTEGRATION</span><p>Patrones para convivir con datos, GIS, modelos, documentos, APIs y herramientas existentes.</p></div>
+        <div><span>03 / DEPLOYMENT</span><p>Opciones de entorno y separación entre superficie de usuario, servicios y datos.</p></div>
+        <div><span>04 / SECURITY</span><p>Principios de autoridad, permisos, trazabilidad y aislamiento que pueden discutirse bajo el nivel de acceso adecuado.</p></div>
+        <div><span>05 / EVIDENCE</span><p>Benchmarks, demos y evidencia técnica seleccionada para evaluar si la propuesta merece una prueba real.</p></div>
+        <div><span>06 / COMMERCIAL</span><p>Modelo de piloto, despliegue y operación recurrente adaptado al problema y requisitos del cliente.</p></div>
+      </div>
+      <a class="room-back" href="../">← Volver a la superficie pública</a>
+    </section>
+
+    <aside class="request">
+      <span>REQUEST ACCESS</span>
+      <h2>Cuéntenos por qué quiere entrar.</h2>
+      <p>El acceso no es automático. La intención importa tanto como el cargo.</p>
+      <form data-access-form>
+        <label>Nombre<input required name="name" autocomplete="name"></label>
+        <label>Organización<input required name="org" autocomplete="organization"></label>
+        <label>Cargo / función<input required name="role"></label>
+        <label>Email de trabajo<input required type="email" name="email" autocomplete="email"></label>
+        <label>¿Qué necesita evaluar?
+          <select name="reason">
+            <option>Posible piloto / cliente</option>
+            <option>Integración / partnership</option>
+            <option>Inversión / due diligence</option>
+            <option>Investigación / colaboración</option>
+            <option>Otro</option>
+          </select>
+        </label>
+        <label>¿Qué decisión o problema está intentando resolver?<textarea required name="problem"></textarea></label>
+        <button class="btn btn-acid" type="submit">Solicitar Architecture Room ↗</button>
+      </form>
+      <div class="room-note">Este formulario prepara una solicitud dirigida a Deep Analytica. Architecture Room no publica código fuente, secretos, algoritmos propietarios ni lógica de control completa.</div>
+    </aside>
+  </div>
+</main>
+</body></html>

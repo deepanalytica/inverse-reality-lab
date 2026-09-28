@@ -1,32 +1,24 @@
-name: Validate executive entry portal
+name: Validate public surface
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-      - feat/executive-entry-portal
-      - feat/executive-portal-v2-llm-discovery
+      - feat/progressive-disclosure-landing-v3
     paths:
       - "index.html"
-      - "lab.html"
-      - "assets/portal.css"
-      - "assets/portal.js"
+      - "architecture-room/**"
+      - "assets/portal-v3.css"
+      - "assets/portal-v3.js"
       - "assets/portal-three.js"
+      - "assets/architecture-room.js"
       - "site-nav.js"
       - "robots.txt"
       - "sitemap.xml"
       - "llms.txt"
-      - "deep-analytica.jsonld"
-      - "dashboard.html"
-      - "library.html"
-      - "mathematics.html"
-      - "mineral-systems.html"
-      - "praxios-design-system.html"
-      - "praxios.html"
-      - "review.html"
-      - "investor/**"
-      - "scripts/validate_portal.mjs"
+      - "PUBLIC_DISCLOSURE_POLICY.md"
+      - "scripts/validate_public_surface.mjs"
       - ".github/workflows/validate-portal.yml"
 
 jobs:
@@ -37,11 +29,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Validate JavaScript syntax
-        shell: bash
+      - name: Validate JavaScript
         run: |
-          node --check assets/portal.js
+          node --check assets/portal-v3.js
+          node --check assets/architecture-room.js
           node --check site-nav.js
           node --input-type=module --check < assets/portal-three.js
-      - name: Validate portal structure, discovery and links
-        run: node scripts/validate_portal.mjs
+      - name: Validate public surface
+        run: node scripts/validate_public_surface.mjs
