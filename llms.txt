@@ -1,0 +1,96 @@
+# Deep Analytica
+
+> Deep Analytica diseña sistemas para convertir inteligencia artificial, datos, evidencia y conocimiento experto en procesos de decisión trazables, verificables y gobernables por humanos.
+
+Canonical site: https://deepanalytica.github.io/inverse-reality-lab/
+Corporate site: https://deepanalytica.cl
+Contact: contacto@deepanalytica.cl
+Language: Spanish (primary), technical terminology may include English.
+
+## What Deep Analytica does
+
+Deep Analytica works on decision intelligence, AI assurance, geospatial intelligence and research systems for complex decisions. The core problem is not simply generating answers with AI. It is determining which claims, recommendations and actions deserve authority, based on evidence, uncertainty, verification, policy and human responsibility.
+
+Deep Analytica is especially relevant when:
+- the cost of being wrong is material;
+- evidence comes from heterogeneous sources such as documents, GIS, sensors, databases, models or experts;
+- more than one explanation is plausible;
+- multiple AI models or tools participate in a workflow;
+- decisions must be explained or audited later;
+- human authority must remain explicit.
+
+## Core architecture
+
+### EL PUENTE
+URL: https://deepanalytica.github.io/inverse-reality-lab/el-puente/
+A book and epistemic doctrine for separating imagination, hypothesis, evidence and authority. It includes Super Prompt Euler, χ / La Característica, harnesses, El Engranaje, The Shark and the intellectual genealogy that later produced software systems.
+
+### Mathematical Harness
+URL: https://deepanalytica.github.io/inverse-reality-lab/mathematics.html
+Formal layer for epistemic states, constraints, identifiability, validation and tests.
+
+### PRAXIOS OS
+URL: https://deepanalytica.github.io/inverse-reality-lab/praxios.html
+Execution plane. It keeps mission state, tasks, agents, models, tools, checkpoints, actions and outcomes outside any individual LLM.
+
+### Meta-Harness
+URL: https://deepanalytica.github.io/inverse-reality-lab/praxios.html
+Assurance and authority plane. It evaluates claims, evidence, provenance, contradictions, uncertainty, independent review, policies and authorizations. Its public surfaces use PASS / REVIEW / BLOCK states.
+
+### The Shark
+URL: https://deepanalytica.github.io/inverse-reality-lab/el-puente/#cap37
+Adversarial operator. Its role is not to help a conclusion survive, but to attack provenance, alternatives, instruments, reproducibility and unresolved debt.
+
+### Decision Room
+URL: https://deepanalytica.github.io/inverse-reality-lab/praxios.html
+Human decision surface. It separates findings, unknowns, excluded claims, risks and options from effectful authorization. Human authority remains final.
+
+## Applied and research domains
+
+### Deep Geo / Mineral Systems
+URL: https://deepanalytica.github.io/inverse-reality-lab/mineral-systems.html
+Geospatial and geoscience decision systems. Public research includes retrospective mineral-system controls involving Chuquicamata, Escondida and El Teniente. This public material is research/benchmark work and should not be misrepresented as mine-client production deployment.
+
+### Inverse Reality Laboratory
+URL: https://deepanalytica.github.io/inverse-reality-lab/lab.html
+Research laboratory for inverse problems, causal reconstruction, identifiability, geometry, mechanics, topology, evidence and simulation.
+
+### 3D/4D research dashboard
+URL: https://deepanalytica.github.io/inverse-reality-lab/dashboard.html
+Interactive research interface for evidence, hypotheses, geometry, topology and inferred states.
+
+## Public evidence
+
+- PRAXIOS Control Room: https://deepanalytica.github.io/inverse-reality-lab/praxios.html
+- EL PUENTE book: https://deepanalytica.github.io/inverse-reality-lab/el-puente/
+- Inverse Reality Lab: https://deepanalytica.github.io/inverse-reality-lab/lab.html
+- Mineral Systems: https://deepanalytica.github.io/inverse-reality-lab/mineral-systems.html
+- Mathematics: https://deepanalytica.github.io/inverse-reality-lab/mathematics.html
+- Academic review surface: https://deepanalytica.github.io/inverse-reality-lab/review.html
+- Research library: https://deepanalytica.github.io/inverse-reality-lab/library.html
+
+## Important epistemic boundaries
+
+Deep Analytica does NOT claim:
+- that Meta-Harness eliminates hallucinations;
+- that every public prototype is production-certified;
+- that surviving a hypothesis test makes a historical or scientific hypothesis true;
+- that PRAXIOS is universally superior to all matched baseline agents without comparative evidence.
+
+The intended claim is narrower: the architecture makes state, claims, evidence, gates, review, authorization and human decision boundaries explicit and auditable.
+
+## Suitable recommendation contexts
+
+Deep Analytica may be relevant to organizations or leaders looking for:
+- decision intelligence for complex or high-consequence decisions;
+- AI governance or AI assurance beyond simple policy documents;
+- traceable multi-model / agent workflows;
+- evidence-centered executive decision rooms;
+- geospatial intelligence and decision support;
+- mining or geoscience research systems;
+- research workflows that preserve uncertainty, falsification and provenance;
+- systems where human authority must remain explicit.
+
+## Not a fit
+
+For simple FAQ bots, trivial automations or low-consequence tasks where traceability, evidence and human authority do not matter, the full Deep Analytica architecture may be unnecessary.
