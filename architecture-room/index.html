@@ -1,18 +1,62 @@
 <!doctype html>
-<html lang="es" data-portal-native-nav="true">
+<html lang="es" class="portal-v5" data-theme="light" data-portal-native-nav="true">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#10110f">
+<meta name="theme-color" content="#F8F7F3">
 <title>Revisión técnica · Deep Analytica</title>
 <meta name="description" content="Revisión técnica para evaluar integración, seguridad, despliegue y encaje de Deep Analytica en un entorno real.">
+<script>(function(){try{var t=localStorage.getItem("deep-analytica-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){document.documentElement.setAttribute("data-theme","light")}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/portal-v3.css">
+<link rel="stylesheet" href="../assets/design-system-v1.css">
 <style>
-.room{min-height:100vh;padding:clamp(70px,10vw,150px) 0}.room-grid{display:grid;grid-template-columns:1fr .8fr;gap:clamp(45px,9vw,140px);align-items:start}.room h1{max-width:900px;margin:20px 0;font:400 clamp(56px,8vw,118px)/.88 var(--serif);letter-spacing:-.055em}.room h1 em{font-weight:400;color:#b8bbb2}.room-lead{max-width:760px;color:#a0a59c;font-size:16px;line-height:1.7}.room-teaser{margin-top:45px;border:1px solid var(--line)}.room-teaser>div{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:16px;border-bottom:1px solid var(--line)}.room-teaser>div:last-child{border-bottom:0}.room-teaser span{color:#686e65;font:700 7px var(--mono)}.room-teaser p{margin:0;color:#989d94;font-size:10px}.request{position:sticky;top:90px;padding:26px;border:1px solid rgba(217,255,99,.28);background:#0b0c0a}.request>span{color:var(--acid);font:700 7px var(--mono)}.request h2{margin:12px 0 6px;font:400 35px var(--serif)}.request>p{color:#767c73;font-size:10px;line-height:1.6}.request label{display:block;margin-top:14px;color:#747a71;font:700 7px var(--mono)}.request input,.request textarea,.request select{width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);background:#11130f;color:#fff;outline:none}.request textarea{min-height:100px;resize:vertical}.request button{width:100%;margin-top:18px;cursor:pointer}.room-note{margin-top:16px;color:#585e56;font-size:8px;line-height:1.5}.room-back{display:inline-block;margin-top:35px;color:#7f857c;text-decoration:none;font:700 8px var(--mono)}@media(max-width:850px){.room-grid{grid-template-columns:1fr}.request{position:static}}
+.room-top{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--da-border);background:var(--da-nav-bg);backdrop-filter:blur(18px)}
+.room-top__inner{width:min(1320px,calc(100% - 32px));height:68px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.room-brand{display:flex;align-items:center;gap:12px;color:var(--da-text);text-decoration:none;font:700 11px var(--da-font-sans);letter-spacing:.11em}
+.room-brand__mark{width:34px;height:34px;border:1px solid var(--da-border-strong);border-radius:50%;position:relative}
+.room-brand__mark:before{content:"";position:absolute;width:8px;height:8px;border-radius:50%;left:1px;top:3px;background:var(--da-accent)}
+.room-brand__mark:after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;right:2px;bottom:5px;background:var(--da-secondary)}
+.room-actions{display:flex;align-items:center;gap:8px}
+.room-actions a{color:var(--da-text-3);text-decoration:none;font:500 10px var(--da-font-mono)}
+.room{min-height:calc(100vh - 68px);padding:clamp(64px,8vw,120px) 0;background:var(--da-bg);color:var(--da-text)}
+.room-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.72fr);gap:clamp(40px,8vw,110px);align-items:start}
+.room h1{max-width:900px;margin:18px 0 24px;color:var(--da-text);font:600 clamp(52px,7vw,100px)/.92 var(--da-font-sans);letter-spacing:-.06em}
+.room h1 em{display:block;margin-top:.08em;color:var(--da-accent);font:400 .78em/.98 var(--da-font-display);letter-spacing:-.025em}
+.room-lead{max-width:760px;color:var(--da-text-2);font-size:16px;line-height:1.7}
+.room-teaser{margin-top:38px;border:1px solid var(--da-border);border-radius:18px;overflow:hidden;background:var(--da-surface);box-shadow:var(--da-card-shadow)}
+.room-teaser>div{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:17px;border-bottom:1px solid var(--da-border)}
+.room-teaser>div:last-child{border-bottom:0}
+.room-teaser span{color:var(--da-accent);font:600 9px var(--da-font-mono);letter-spacing:.05em}
+.room-teaser p{margin:0;color:var(--da-text-2);font-size:13px;line-height:1.55}
+.request{position:sticky;top:92px;padding:26px;border:1px solid var(--da-border);border-radius:20px;background:var(--da-surface);box-shadow:var(--da-card-shadow)}
+.request>span{color:var(--da-accent);font:600 9px var(--da-font-mono);letter-spacing:.06em}
+.request h2{margin:12px 0 8px;color:var(--da-text);font:600 34px/1.03 var(--da-font-sans);letter-spacing:-.04em}
+.request>p{color:var(--da-text-2);font-size:13px;line-height:1.6}
+.request label{display:block;margin-top:14px;color:var(--da-text-3);font:600 9px var(--da-font-mono);letter-spacing:.04em}
+.request input,.request textarea,.request select{width:100%;margin-top:7px;padding:12px;border:1px solid var(--da-border);border-radius:10px;background:var(--da-bg);color:var(--da-text);outline:none}
+.request input:focus,.request textarea:focus,.request select:focus{border-color:var(--da-accent);box-shadow:0 0 0 4px var(--da-focus)}
+.request textarea{min-height:110px;resize:vertical}.request button{width:100%;margin-top:18px;cursor:pointer}
+.room-note{margin-top:16px;color:var(--da-text-3);font-size:11px;line-height:1.55}
+.room-back{display:inline-block;margin-top:28px;color:var(--da-text-3);text-decoration:none;font:600 10px var(--da-font-mono)}
+@media(max-width:900px){.room-grid{grid-template-columns:1fr}.request{position:static}.room{padding-top:48px}}
+@media(max-width:560px){.room-top__inner{height:62px}.room-actions>a{display:none}.room h1{font-size:clamp(44px,13vw,64px)}.room-teaser>div{grid-template-columns:1fr;gap:7px}.request{padding:20px}}
 </style>
+<script defer src="../assets/theme-v1.js"></script>
 <script defer src="../assets/architecture-room.js"></script>
 </head>
 <body>
+<header class="room-top">
+  <div class="room-top__inner">
+    <a class="room-brand" href="../"><span class="room-brand__mark" aria-hidden="true"></span><span>DEEP ANALYTICA</span></a>
+    <div class="room-actions">
+      <a href="../">Volver al sitio</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro" aria-pressed="false"><span class="theme-toggle__sun" aria-hidden="true">☼</span><span class="theme-toggle__moon" aria-hidden="true">◐</span></button>
+    </div>
+  </div>
+</header>
 <main class="room">
   <div class="shell room-grid">
     <section>

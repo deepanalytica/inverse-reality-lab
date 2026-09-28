@@ -10,7 +10,7 @@ on:
       - feat/retro-operational-landing-v4
       - feat/decision-trajectory-v5
       - fix/mobile-hero-v5-1
-      - feat/design-system-production-v6
+      - feat/design-system-v1
     paths:
       - "index.html"
       - "architecture-room/**"
@@ -19,8 +19,21 @@ on:
       - "assets/portal-v4.css"
       - "assets/portal-v4.js"
       - "assets/portal-v5.css"
-      - "assets/system/**"
       - "assets/portal-v5.js"
+      - "assets/design-system-v1.css"
+      - "assets/theme-v1.js"
+      - "el-puente/**"
+      - "praxios-design-system.html"
+      - "mathematics.html"
+      - "library.html"
+      - "review.html"
+      - "dashboard.html"
+      - "lab.html"
+      - "mineral-systems.html"
+      - "praxios.html"
+      - "design-system/**"
+      - "DESIGN_SYSTEM.md"
+      - "assets/site-theme-bridge-v1.css"
       - "assets/portal-three.js"
       - "assets/architecture-room.js"
       - "site-nav.js"
@@ -43,7 +56,7 @@ jobs:
           node --check assets/portal-v3.js
           node --check assets/portal-v4.js
           node --check assets/portal-v5.js
-          node --check assets/system/theme.js
+          node --check assets/theme-v1.js
           node --check assets/architecture-room.js
           node --check site-nav.js
           node --input-type=module --check < assets/portal-three.js
