@@ -1,6 +1,6 @@
 (() => {
   const script = document.currentScript;
-  if (!script || document.querySelector("[data-irl-global-nav]")) return;
+  if (!script || document.documentElement.dataset.portalNativeNav === "true" || document.querySelector("[data-irl-global-nav]")) return;
 
   const scriptUrl = new URL(script.src, location.href);
   const base = new URL("./", scriptUrl);
