@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#08090c">
-<title>PRAXIOS Universe — Investor Preview</title>
+<title>PRAXIOS Universe — Investor Preview v2</title>
 <meta name="description" content="Investor preview of PRAXIOS OS, Meta-Harness, The Bridge and Inverse Reality Laboratory.">
 <style>
 :root{
@@ -41,6 +41,12 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
 .cta{padding-top:100px;padding-bottom:120px;text-align:center}.cta h2{max-width:950px;margin:10px auto 20px;font-size:clamp(42px,6vw,86px);line-height:.96;letter-spacing:-.055em}.cta p{max-width:650px;margin:0 auto;color:#97a1ad;line-height:1.65}.cta .actions{justify-content:center}
 .footer{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:28px clamp(18px,4vw,60px);border-top:1px solid var(--line);background:#06070a}.footer strong,.footer span{display:block}.footer strong{font-size:11px;letter-spacing:.08em}.footer span,.footer p{color:#626c78;font-size:9px}.footer p{justify-self:end;max-width:600px;margin:0;line-height:1.55}
 .blue{background:var(--blue)}.lime{background:var(--lime)}.amber{background:var(--amber)}.orange{background:var(--orange)}.red{background:var(--red)}.cyan{background:var(--cyan)}
+
+.productgrid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:rgba(255,255,255,.012)}.productcard{padding:24px;border-right:1px solid var(--line)}.productcard:last-child{border-right:0}.productcard span{color:var(--cyan);font:700 8px ui-monospace,monospace;letter-spacing:.08em}.productcard h3{margin:13px 0 9px;font-size:22px;letter-spacing:-.025em}.productcard p{margin:0;color:#909aa6;font-size:11px;line-height:1.6}.productcard small{display:block;margin-top:16px;color:#66707c;font:600 7px ui-monospace,monospace}
+.moatgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.moatcard{padding:30px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.008))}.moatcard>span{color:var(--amber);font:700 8px ui-monospace,monospace;letter-spacing:.1em}.moatcard h3{margin:14px 0 10px;font-size:27px;letter-spacing:-.03em}.moatcard p{margin:0;color:#949eaa;font-size:12px;line-height:1.65}.moatcard ul{list-style:none;padding:0;margin:18px 0 0}.moatcard li{padding:8px 0;border-top:1px solid rgba(255,255,255,.05);color:#9ca6b2;font-size:10px}.moatcard li:before{content:"◆";color:var(--cyan);margin-right:8px;font-size:7px}
+.businessgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:12px}.businessbox{border:1px solid var(--line);background:#0c0f14}.businessbox h3{margin:0;padding:22px 24px;border-bottom:1px solid var(--line);font-size:22px}.businessrow{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.045)}.businessrow:last-child{border-bottom:0}.businessrow b{color:#69737f;font:700 8px ui-monospace,monospace}.businessrow span{color:#a0aab5;font-size:11px;line-height:1.55}.wedge{padding:28px;border:1px solid var(--line);background:radial-gradient(circle at 12% 12%,rgba(110,231,242,.07),transparent 20rem),rgba(255,255,255,.01)}.wedge>span{color:var(--cyan);font:700 8px ui-monospace,monospace;letter-spacing:.1em}.wedge h3{margin:14px 0 12px;font-size:30px;letter-spacing:-.03em}.wedge p{color:#98a2ae;font-size:12px;line-height:1.65}.wedge .arrow{margin:22px 0;color:#59636f;font:700 8px ui-monospace,monospace}.wedge strong{display:block;font-size:16px}.roadmap{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.road{padding:23px;border-right:1px solid var(--line)}.road:last-child{border-right:0}.road span{color:#6d7783;font:700 8px ui-monospace,monospace;letter-spacing:.08em}.road h3{margin:12px 0 10px;font-size:20px}.road ul{list-style:none;padding:0;margin:0}.road li{padding:7px 0;border-top:1px solid rgba(255,255,255,.045);color:#8f99a5;font-size:10px;line-height:1.45}.diligence{border:1px solid var(--line);background:#0c0f14}.drow{display:grid;grid-template-columns:170px 1fr 1fr;padding:14px 17px;border-bottom:1px solid var(--line);gap:18px}.drow:last-child{border-bottom:0}.drow b{color:#6d7783;font:700 8px ui-monospace,monospace}.drow strong{font-size:10px}.drow span{color:#8f99a5;font-size:10px;line-height:1.45}.investorflag{display:inline-flex;margin-top:18px;padding:7px 9px;border:1px solid rgba(167,230,90,.22);color:var(--lime);font:700 8px ui-monospace,monospace;letter-spacing:.08em}
+@media(max-width:1100px){.productgrid,.roadmap{grid-template-columns:1fr 1fr}.businessgrid{grid-template-columns:1fr}}
+@media(max-width:800px){.moatgrid{grid-template-columns:1fr}.drow{grid-template-columns:1fr}.productgrid,.roadmap{grid-template-columns:1fr}.productcard,.road{border-right:0;border-bottom:1px solid var(--line)}.businessrow{grid-template-columns:1fr}}
 @media(max-width:1100px){.nav{display:none}.top{grid-template-columns:1fr auto}.evidencegrid,.usegrid{grid-template-columns:1fr 1fr}.console{grid-template-columns:280px 1fr}.console>.panel:last-child{grid-column:1/-1;border-top:1px solid var(--line)}.pipeline{grid-template-columns:repeat(4,1fr)}.stage{border-bottom:1px solid var(--line)}}
 @media(max-width:800px){.head,.demohead{align-items:start;flex-direction:column}.problemgrid,.arch,.truth{grid-template-columns:1fr}.problem:first-child,.archrail{border-right:0;border-bottom:1px solid var(--line)}.evidencegrid,.usegrid{grid-template-columns:1fr}.statusgrid{grid-template-columns:1fr 1fr}.status{border-bottom:1px solid var(--line)}.console{grid-template-columns:1fr}.console>.panel{border-right:0;border-bottom:1px solid var(--line)}.console>.panel:last-child{grid-column:auto}.thesis{grid-template-columns:1fr 1fr}.truthrow{grid-template-columns:1fr}.footer{grid-template-columns:1fr}.footer p{justify-self:start}.ainspect{min-height:440px}}
 @media(max-width:560px){.brand small{display:none}.hero h1{font-size:clamp(54px,15vw,80px)}.thesis,.statusgrid,.pipeline{grid-template-columns:1fr}.thesis div{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}.formfoot{align-items:stretch;flex-direction:column}.formfoot button{width:100%}.r1{width:260px;height:260px}.s1{transform:translate(-150px,0)}.s3{transform:translate(150px,0)}}
@@ -50,7 +56,7 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
 <div class="grid"></div>
 <header class="top">
   <a class="brand" href="#top"><span class="mark">PX</span><span><strong>PRAXIOS UNIVERSE</strong><small>INVESTOR PREVIEW · DEEP ANALYTICA</small></span></a>
-  <nav class="nav"><a href="#system">System</a><a href="#evidence">Evidence</a><a href="#demo">Demo</a><a href="#domains">Domains</a></nav>
+  <nav class="nav"><a href="#system">System</a><a href="#evidence">Evidence</a><a href="#product">Product</a><a href="#moat">Moat</a><a href="#demo">Demo</a><a href="#roadmap">Roadmap</a></nav>
   <div class="private"><i></i>DIRECT LINK · NOINDEX</div>
 </header>
 
@@ -97,6 +103,40 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
   </div>
 </section>
 
+
+<section class="wrap section" id="product">
+  <div class="head"><div><div class="kicker">05 / PRODUCT ARCHITECTURE</div><h2>From research system to operating product.</h2></div><p>The product is not a single interface. It is a stack: execution, assurance, human control and domain adapters. The Web OS turns those layers into one operational surface.</p></div>
+  <div class="productgrid">
+    <article class="productcard"><span>PRAXIOS OS</span><h3>Execution plane</h3><p>Mission state, task DAGs, providers, tools, budgets, checkpoints, actions and outcomes live outside the model.</p><small>RUNTIME CORE</small></article>
+    <article class="productcard"><span>META-HARNESS</span><h3>Assurance plane</h3><p>Claims and actions cross provenance, evidence, contradiction, uncertainty, identifiability, review and policy gates.</p><small>POLICY + VERIFICATION</small></article>
+    <article class="productcard"><span>DECISION ROOM</span><h3>Human control</h3><p>Findings, unknowns, exclusions, options and authorization remain separated so UI selection cannot silently become execution capability.</p><small>AUTHORITY SURFACE</small></article>
+    <article class="productcard"><span>WEB OS</span><h3>Operational console</h3><p>Mission Control, orchestration, evidence, claims, approvals, action execution, ledger audit and architecture in one application.</p><small>PRODUCT SURFACE · V1 BUILT</small></article>
+  </div>
+  <div class="investorflag">WEB OS V1 IMPLEMENTATION EXISTS IN ISOLATED APPLICATION BRANCH</div>
+</section>
+
+<section class="wrap section" id="moat">
+  <div class="head"><div><div class="kicker">06 / DEFENSIBILITY</div><h2>The moat is the control architecture, not the model.</h2></div><p>Models can be replaced. The accumulated value is in how claims, evidence, tools, policy, human authority and domain-specific instruments are composed and audited.</p></div>
+  <div class="moatgrid">
+    <article class="moatcard"><span>01 / SYSTEM IP</span><h3>Execution + assurance separation</h3><p>PRAXIOS and Meta-Harness solve different problems and remain independently inspectable.</p><ul><li>Canonical state outside the LLM</li><li>Claim and action gates</li><li>Independent verifier semantics</li><li>Single-use exact authorization</li></ul></article>
+    <article class="moatcard"><span>02 / EPISTEMIC DATA</span><h3>A ledger of how decisions were earned</h3><p>Over time, missions generate structured traces of evidence quality, failed hypotheses, gate behavior, contradictions and human decisions.</p><ul><li>Not just conversation history</li><li>Machine-readable evidence lineage</li><li>Reusable institutional memory</li><li>Audit-ready failure history</li></ul></article>
+    <article class="moatcard"><span>03 / DOMAIN ADAPTERS</span><h3>High-friction real-world instruments</h3><p>Deep Geo and Inverse Reality Lab create domain adapters where generic chat interfaces are weakest.</p><ul><li>Geospatial evidence</li><li>Inverse physical problems</li><li>Measurement design</li><li>Scientific identifiability</li></ul></article>
+    <article class="moatcard"><span>04 / CULTURE + METHOD</span><h3>EL PUENTE, The Shark and the Book</h3><p>The doctrine gives the software a coherent operating culture: speculate aggressively, record debt, invite attack and preserve the Outside.</p><ul><li>Distinct vocabulary and rituals</li><li>Adversarial design by default</li><li>Failure is retained as information</li><li>Human authority is explicit</li></ul></article>
+  </div>
+</section>
+
+<section class="wrap section" id="business">
+  <div class="head"><div><div class="kicker">07 / COMMERCIAL THESIS</div><h2>Start where evidence and decisions are expensive.</h2></div><p>This is a commercialization hypothesis, not a claim of proven product-market fit. The first wedge should reward traceability, domain evidence and bounded action.</p></div>
+  <div class="businessgrid">
+    <div class="wedge"><span>INITIAL WEDGE</span><h3>Mining, geoscience and high-stakes technical analysis.</h3><p>These workflows already contain heterogeneous evidence, expert review, expensive uncertainty and management decisions. Deep Geo provides a concrete path from domain data to PRAXIOS-governed decision packages.</p><div class="arrow">WEDGE → REPEATABLE CONTROL PLANE → CROSS-DOMAIN EXPANSION</div><strong>Expand only after the assurance layer demonstrates value against domain baselines.</strong></div>
+    <div class="businessbox"><h3>Commercial model hypotheses</h3>
+      <div class="businessrow"><b>ENTERPRISE SOFTWARE</b><span>Private PRAXIOS runtime + Web OS + policy configuration + connectors.</span></div>
+      <div class="businessrow"><b>DOMAIN PACKAGES</b><span>Deep Geo / mining / inverse-problem adapters, instruments and decision templates.</span></div>
+      <div class="businessrow"><b>IMPLEMENTATION</b><span>Integration, custom gates, evidence ontologies, internal workflows and audit design.</span></div>
+      <div class="businessrow"><b>RESEARCH PARTNERSHIPS</b><span>Universities, technical teams and institutions for independent evaluation and domain validation.</span></div>
+    </div>
+  </div>
+</section>
 <section class="demo" id="demo">
   <div class="demowrap">
     <div class="demohead"><div><div class="kicker">04 / INTERACTIVE VERTICAL SLICE</div><h2>Cross the Bridge</h2></div><div class="mode">DETERMINISTIC DEMO · NO SCIENTIFIC CLAIM</div></div>
@@ -124,7 +164,7 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
 </section>
 
 <section class="wrap section">
-  <div class="head"><div><div class="kicker">05 / CURRENT SYSTEM STATUS</div><h2>Built to survive due diligence.</h2></div><p>The strongest investor story is not “everything is solved.” It is a system that exposes what is real, what is uncertain, and exactly what has to happen next.</p></div>
+  <div class="head"><div><div class="kicker">08 / CURRENT SYSTEM STATUS</div><h2>Built to survive due diligence.</h2></div><p>The strongest investor story is not “everything is solved.” It is a system that exposes what is real, what is uncertain, and exactly what has to happen next.</p></div>
   <div class="statusgrid">
     <div class="status"><span>PUBLIC RESEARCH</span><strong>Live</strong><p>IRL site, paper, benchmark artifacts and review surfaces are publicly inspectable.</p></div>
     <div class="status"><span>PRAXIOS SURFACE</span><strong>Live prototype</strong><p>Control Room and design-system surfaces exist as working research interfaces.</p></div>
@@ -134,7 +174,7 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
 </section>
 
 <section class="wrap section" id="domains">
-  <div class="head"><div><div class="kicker">06 / WHERE IT MATTERS</div><h2>Domains where answers are not enough.</h2></div><p>The architecture is domain-agnostic; the first research and product surfaces focus on high-evidence workflows where provenance, uncertainty and human authorization materially matter.</p></div>
+  <div class="head"><div><div class="kicker">08B / WHERE IT MATTERS</div><h2>Domains where answers are not enough.</h2></div><p>The architecture is domain-agnostic; the first research and product surfaces focus on high-evidence workflows where provenance, uncertainty and human authorization materially matter.</p></div>
   <div class="usegrid">
     <article class="use"><span>MINING & GEOSCIENCE</span><h3>Evidence-rich spatial decisions</h3><p>Combine geological observations, geophysics, remote sensing, hypotheses and decision packages without silently promoting correlation into causality.</p></article>
     <article class="use"><span>INVERSE PROBLEMS</span><h3>Reconstruct hidden histories</h3><p>Start from an observed terminal state, generate compatible histories, run forward checks and preserve non-identifiability when evidence cannot discriminate.</p></article>
@@ -142,8 +182,29 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
   </div>
 </section>
 
+
+<section class="wrap section" id="roadmap">
+  <div class="head"><div><div class="kicker">09 / EXECUTION ROADMAP</div><h2>Turn the control thesis into measurable product proof.</h2></div><p>The roadmap is organized around acceptance gates rather than feature volume. Each stage should close a specific technical or commercial uncertainty.</p></div>
+  <div class="roadmap">
+    <article class="road"><span>NOW</span><h3>Product surface</h3><ul><li>Web OS v1</li><li>Fixture + remote runtime modes</li><li>Evidence / claims / decisions / actions</li><li>Ledger + audit UI</li></ul></article>
+    <article class="road"><span>NEXT GATE</span><h3>Production runtime</h3><ul><li>Isolated hosted runtime</li><li>Encrypted persistence</li><li>Provider configuration</li><li>Human-authority acceptance tests</li></ul></article>
+    <article class="road"><span>VALIDATION</span><h3>Comparative evidence</h3><ul><li>Baseline agent vs governed agent</li><li>Unsupported-claim rate</li><li>False verification states</li><li>Cost / latency / task completion</li></ul></article>
+    <article class="road"><span>COMMERCIAL</span><h3>Design partners</h3><ul><li>One narrow domain workflow</li><li>Real operator feedback</li><li>Decision-quality instrumentation</li><li>Repeatable deployment package</li></ul></article>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="head"><div><div class="kicker">10 / DUE DILIGENCE MAP</div><h2>What an investor can inspect today.</h2></div><p>The system is designed to expose its own boundaries. These artifacts are the starting points for technical diligence.</p></div>
+  <div class="diligence">
+    <div class="drow"><b>RUNTIME</b><strong>PRAXIOS v0.2 documented</strong><span>Canonical state, scheduler, orchestration, providers, budgets, actions, persistence and API server.</span></div>
+    <div class="drow"><b>ASSURANCE</b><strong>Meta-Harness gates documented</strong><span>Claim gates, walls, review separation, authorization semantics and action dependencies.</span></div>
+    <div class="drow"><b>RESEARCH</b><strong>IRL public artifact set</strong><span>Paper, benchmarks, epistemic ledger, formal models, threat model and reproducible workflows.</span></div>
+    <div class="drow"><b>PRODUCT</b><strong>Web OS v1 implemented</strong><span>Mission Control, orchestration, Evidence Registry, Claim Assurance, Decision Room, actions, ledger, audit and secure runtime gateway.</span></div>
+    <div class="drow"><b>OPEN GATE</b><strong>Independent comparative validation</strong><span>Still required before claiming superior reliability versus matched baseline agents.</span></div>
+  </div>
+</section>
 <section class="wrap section truth">
-  <div><div class="kicker">07 / WHAT WE WILL NOT CLAIM</div><h2>No authority by presentation.</h2><p>PRAXIOS is itself built around the idea that a polished narrative must not outrank evidence. The investor preview follows the same rule.</p></div>
+  <div><div class="kicker">11 / WHAT WE WILL NOT CLAIM</div><h2>No authority by presentation.</h2><p>PRAXIOS is itself built around the idea that a polished narrative must not outrank evidence. The investor preview follows the same rule.</p></div>
   <div class="truthbox">
     <div class="truthrow"><b>NOT CLAIMED</b><span>That Meta-Harness “eliminates hallucinations.”</span></div>
     <div class="truthrow"><b>NOT CLAIMED</b><span>That an interactive demo equals production certification.</span></div>
@@ -160,7 +221,7 @@ a{color:inherit}.grid{position:fixed;inset:0;pointer-events:none;opacity:.23;bac
 </section>
 </main>
 
-<footer class="footer"><div><strong>PRAXIOS UNIVERSE</strong><span>Investor Preview · Deep Analytica · 2026</span></div><p>This page is a working investor/technical preview. Public availability does not imply production certification, regulatory approval or scientific validation beyond the linked evidence.</p></footer>
+<footer class="footer"><div><strong>PRAXIOS UNIVERSE</strong><span>Investor Preview v2 · Deep Analytica · 2026</span></div><p>This page is a working investor/technical preview. Public availability does not imply production certification, regulatory approval or scientific validation beyond the linked evidence.</p></footer>
 
 <script>
 const architecture=[
