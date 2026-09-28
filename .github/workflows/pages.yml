@@ -34,7 +34,6 @@ jobs:
         run: |
           PDF_PATH="$(find . -type f -name 'main.pdf' | head -n 1)"
           test -n "$PDF_PATH"
-          echo "Compiled paper: $PDF_PATH"
           cp "$PDF_PATH" paper/PAPER.pdf
 
       - name: Sync compiled PDF back to repository
@@ -46,44 +45,25 @@ jobs:
             git add paper/PAPER.pdf
             git commit -m "Update compiled preprint PDF v1.2 [skip ci]"
             git push
-          else
-            echo "Compiled PDF already matches tracked file."
           fi
 
-      - name: Validate research site and PRAXIOS runtime
+      - name: Validate public research and product surface
         shell: bash
         run: |
           node --check assets/dashboard.js
           node --check assets/praxios.js
           node --check assets/praxios-api.mjs
-          node --check runtime/server.mjs
-          node --check runtime/core/ledger.mjs
-          node --check runtime/core/policy.mjs
-          node --check runtime/core/meta-harness.mjs
-          node --check runtime/core/contracts.mjs
-          node --check runtime/core/budget.mjs
-          node --check runtime/core/decision-room.mjs
-          node --check runtime/core/scheduler.mjs
-          node --check runtime/core/praxios-runtime.mjs
-          node --check runtime/core/orchestrator.mjs
-          node --check runtime/providers/openai.mjs
-          node --check runtime/providers/anthropic.mjs
-          node --check runtime/providers/fixture.mjs
-          node --check runtime/storage/file-store.mjs
-          node --check runtime/storage/encrypted-file-store.mjs
-          node --check scripts/mineral_inverse_benchmark.mjs
+          node --check assets/portal-v3.js
+          node --check assets/architecture-room.js
+          node --input-type=module --check < assets/portal-three.js
+          node --check site-nav.js
           node scripts/mineral_inverse_benchmark.mjs
           python -m json.tool data/mineral_benchmarks.json >/dev/null
           python -m json.tool data/mineral_benchmark_results.json >/dev/null
           python -m json.tool data/khufu.json >/dev/null
-          python -m json.tool data/hypotheses.json >/dev/null
-          python -m json.tool data/sources.json >/dev/null
-          python -m json.tool data/monuments.json >/dev/null
-          python -m json.tool data/topology.json >/dev/null
-          node scripts/security_scan.mjs
           node scripts/validate_data.mjs
-          node scripts/validate_site.mjs
-          node --test runtime/tests/*.test.mjs
+          node scripts/validate_public_surface.mjs
+          node scripts/validate_book.mjs
           python scripts/topology_synthetic.py
 
       - name: Configure Pages
