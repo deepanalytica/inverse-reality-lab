@@ -1,0 +1,27 @@
+name: Validate executive entry portal
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - feat/executive-entry-portal
+    paths:
+      - "index.html"
+      - "lab.html"
+      - "assets/portal.css"
+      - "assets/portal.js"
+      - "site-nav.js"
+      - "scripts/validate_portal.mjs"
+      - ".github/workflows/validate-portal.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate portal structure and links
+        run: node scripts/validate_portal.mjs

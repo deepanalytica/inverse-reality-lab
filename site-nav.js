@@ -8,7 +8,8 @@
 
   const current = location.href;
   const links = [
-    ["LAB", "Laboratorio", href("index.html")],
+    ["HOME", "Inicio", href("index.html")],
+    ["LAB", "Laboratorio", href("lab.html")],
     ["BOOK", "EL PUENTE · Libro", href("el-puente/")],
     ["PX", "PRAXIOS", href("praxios.html")],
     ["3D", "Dashboard 3D/4D", href("dashboard.html")],
