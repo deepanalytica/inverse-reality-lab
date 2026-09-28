@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - feat/progressive-disclosure-landing-v3
+      - fix/customer-facing-evaluation-copy
     paths:
       - "index.html"
       - "architecture-room/**"
