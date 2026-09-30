@@ -18,3 +18,13 @@ A shared storm is not proof of direct causal connectivity. Every edge is classif
 MapBiomas Chile 1999–2024; DEM/drainage; rainfall/temperature/freezing level/discharge; Sentinel/Landsat; MOP/Vialidad/SENAPRED/DGA/municipal records; geolocated media; repair contracts.
 
 See EVENT_CATALOG.md, SOURCES.md, CASCADE_GRAPH.md, RESEARCH_PLAN.md and data/events.csv.
+
+
+## Commission-grade research package
+- [PRD_PHD_COMMISSION.md](PRD_PHD_COMMISSION.md) — scientific/engineering product requirements.
+- [PHD_RESEARCH_PROTOCOL.md](PHD_RESEARCH_PROTOCOL.md) — inferential, causal and geospatial protocol.
+- [WORK_PLAN_PHD.md](WORK_PLAN_PHD.md) — gated execution plan.
+- [COMMISSION_REVIEW_GATE.md](COMMISSION_REVIEW_GATE.md) — adversarial review criteria.
+- [TRACEABILITY_MATRIX.md](TRACEABILITY_MATRIX.md) — requirement → evidence → analysis → output → gate.
+
+**Current maturity:** protocol/design stage. Inclusion of a hypothesis in this package is not evidence that the hypothesis is true.
