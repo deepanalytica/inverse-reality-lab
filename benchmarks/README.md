@@ -65,3 +65,17 @@ Por tanto, la versión autoritativa del programa distingue:
 - [005 — Sydney Opera House](sydney-opera-house/BENCHMARK.md)
 
 El paper v1.0 integra estas correcciones y debe usarse como interpretación académica principal.
+
+## Adversarial Study 002 — Voynich LLM Context/Harness Ablation
+
+- [Diseño y estado](voynich-llm-ablation/README.md)
+- [Prerregistro](voynich-llm-ablation/PREREGISTRATION.md)
+- [Protocolo A/B/C](voynich-llm-ablation/CONDITIONS.md)
+- [Rúbrica ciega](voynich-llm-ablation/RUBRIC.md)
+- [Plan de análisis](voynich-llm-ablation/ANALYSIS_PLAN.md)
+- [Decision Gate](voynich-llm-ablation/DECISION_GATE.md)
+
+Este estudio compara el mismo LLM bajo tres tratamientos: baseline genérico, contexto acumulado y contexto + protocolo inspirado en PRAXIOS/Meta-Harness/Decision Room. La condición C se documenta explícitamente como **aplicación protocolizada**, no como ejecución de un runtime externo salvo evidencia instrumental de ello.
+
+El estudio queda prerregistrado y **sin resultados** hasta ejecutar 45 respuestas piloto y 225 respuestas del main con scoring ciego.
+
