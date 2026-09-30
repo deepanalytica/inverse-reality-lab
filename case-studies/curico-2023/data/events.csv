@@ -1,0 +1,7 @@
+event_id,date_start,date_end,place,event_type,system,route_or_asset,observation,status,confidence,source_ids,lat,lon
+CUR23-AUG-UPEO-01,2023-08-22,2023-08-24,Upeo,landslide_debris_flow,geomorphic,,Multiple failures blocked access; bridges/roads affected; isolation and helicopter response,documented,medium-high,"8;9;10",,
+CUR23-AUG-LP-01,2023-08-19,2023-08-20,Las Piedras,water_over_road,infrastructure,J-641,Official Vialidad record: water over road in Las Piedras sector,documented,high,4,,
+CUR23-AUG-LP-02,2023-08-19,2023-08-20,Las Piedras Interior,water_over_road,infrastructure,J-647,Official Vialidad record: water over road,documented,high,4,,
+CUR23-AUG-ZAP-01,2023-08-21,2023-08-22,Parque Zapallar,river_overflow_flood,hydro_social,Estero Guaiquillo,Evacuation due to Guaiquillo overflow; homes inundated,documented,high,"6;15",,
+CUR23-AUG-DRG-01,2023-08-21,2023-08-22,Dragones Sur,river_overflow_evacuation,hydro_social,Estero Guaiquillo,Evacuation ordered during overflow,documented,high,19,,
+CUR24-LP-REC-01,2024-07-22,2024-08-06,Los Niches-Chequenlemu,emergency_reconstruction,response,J-645,"Gabions, embankments, subgrade, granular base, patching and marking",documented,high,5,,
