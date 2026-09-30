@@ -1,0 +1,43 @@
+{
+  "experiment_id": "IRL-ADV-002",
+  "title": "Voynich LLM Context/Harness Ablation",
+  "created": "2026-09-30",
+  "status": "preregistered_not_run",
+  "domain": "Voynich Manuscript",
+  "conditions": {
+    "A": "generic_baseline",
+    "B": "project_context",
+    "C": "project_context_plus_protocolized_praxios_meta_harness_decision_room"
+  },
+  "primary_track": "closed_book",
+  "confirmatory_track": "open_book",
+  "pilot": {
+    "tasks": 5,
+    "conditions": 3,
+    "replicates": 3,
+    "outputs": 45
+  },
+  "main": {
+    "tasks": 15,
+    "conditions": 3,
+    "replicates": 5,
+    "outputs": 225
+  },
+  "primary_metrics": [
+    "unsupported_claim_rate",
+    "factual_accuracy",
+    "traceability",
+    "falsification_quality",
+    "hypothesis_control"
+  ],
+  "secondary_metrics": [
+    "calibration",
+    "error_detection",
+    "latency",
+    "tokens",
+    "cost",
+    "ers",
+    "ers_adjusted"
+  ],
+  "epistemic_note": "Condition C is a protocolized application of PRAXIOS/Meta-Harness/Decision Room principles unless an external runtime execution is explicitly logged."
+}
