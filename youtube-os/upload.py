@@ -1,5 +1,5 @@
 """Upload reviewed renders, with channel identity and duplicate checks. Never log credentials."""
-import os,json,pathlib
+import os,json,pathlib,sys
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
@@ -29,6 +29,10 @@ def main():
     privacy=os.environ.get('YT_PRIVACY','private')
     if privacy not in ('private','unlisted','public'): raise SystemExit('Invalid privacy')
     approved=set(os.environ.get('YT_APPROVED_IDS','').split(','))
+    if '--pending' in sys.argv:
+        episodes=json.loads((P/'episodes.json').read_text())
+        (P/'pending.txt').write_text(' '.join(e['id'] for e in episodes if e['id'] in approved and 's01-'+e['id'] not in seen))
+        return
     receipts=[]
     for ep in json.loads((P/'episodes.json').read_text()):
         id=ep['id']; marker='s01-'+id
