@@ -1,0 +1,14 @@
+{
+  "name": "inverse-reality-youtube-os",
+  "private": true,
+  "scripts": {
+    "render": "remotion render src.jsx Episode"
+  },
+  "dependencies": {
+    "remotion": "4.0.317",
+    "@remotion/cli": "4.0.317",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.170.0"
+  }
+}
